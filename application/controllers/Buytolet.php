@@ -1103,7 +1103,7 @@ class Buytolet extends CI_Controller {
 			
 			$data['header'] = "<span style='color:green'>Successful</span>";
 			
-			$data['note'] = "We have received your 5% commitment fee of N".number_format($amount)." for ".$prop_name["property_name"].",  We've sent a copy of your offer letter and contract of sale to your email. <a href='https://rent.smallsmall.com'>Click here to view on your dashboard</a>.<p>Our customer support team will reach out to you within 24hours to help you close your purchase.</p>";
+			$data['note'] = "We have received your 5% commitment fee of N".number_format($amount)." for ".$prop_name["property_name"].",  We've sent a copy of your offer letter and contract of sale to your email. <a href='https://dev-rent.smallsmall.com'>Click here to view on your dashboard</a>.<p>Our customer support team will reach out to you within 24hours to help you close your purchase.</p>";
 
 			//Check login status
 
