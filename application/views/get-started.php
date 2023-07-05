@@ -26,7 +26,7 @@
                     <div class="faq-container-line-item">
 	                    <div class="question" id="question-3"><i id="caret-3" class="fa fa-caret-right"></i> How do I register on BuySmallSmall?</div>
 	                    <div class="answer" id="answer-3">
-						Creating an account on BuySmallSmall is easy and straightforward. Use this <a href="https://buy.smallsmall.com/signup">link </a>
+						Creating an account on BuySmallSmall is easy and straightforward. Use this <a href="https://dev-buy.smallsmall.com/signup">link </a>
 	                    </div>
 	                </div>
 
@@ -44,7 +44,7 @@
 					<div class="faq-container-line-item">
 	                    <div class="question" id="question-5"><i id="caret-5" class="fa fa-caret-right"></i> How do I recover my password?</div>
 	                    <div class="answer" id="answer-5">
-						In case you forgot your BuySmallSmall password, you can always reset in the login window, click the <a href="https://buy.smallsmall.com/login">Forgot password? button </a>to start the password recovery.
+						In case you forgot your BuySmallSmall password, you can always reset in the login window, click the <a href="https://dev-buy.smallsmall.com/login">Forgot password? button </a>to start the password recovery.
 	                    </div>
 	                </div>
 
@@ -53,7 +53,7 @@
 					<div class="faq-container-line-item">
 	                    <div class="question" id="question-6"><i id="caret-6" class="fa fa-caret-right"></i> How do I change my password?</div>
 	                    <div class="answer" id="answer-6">
-						You can change your BuySmallSmall password not only using the <a href="https://buy.smallsmall.com/login">Forgot password? option </a>, but also on your BuySmallSmall Profile page.
+						You can change your BuySmallSmall password not only using the <a href="https://dev-buy.smallsmall.com/login">Forgot password? option </a>, but also on your BuySmallSmall Profile page.
                         Log in to your BuySmallSmall account, go to profile and click the “Change Password” button in the Password section.
 	                    </div>
 	                </div>

@@ -2,7 +2,7 @@ $(init);
 
 function init(){
     
-    var baseUrl = 'https://buy.smallsmall.com/';
+    var baseUrl = 'https://dev-buy.smallsmall.com/';
     
     $('#back__btn').click(function(e){
         

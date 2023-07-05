@@ -724,7 +724,7 @@
     });
 </script>
 <script>
-    var baseURL = "https://buy.smallsmall.com/";
+    var baseURL = "https://dev-buy.smallsmall.com/";
     
     const paymentForm = document.getElementById('outrightPaymentForm');
     
