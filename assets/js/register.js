@@ -187,8 +187,6 @@ $('#signupForm').submit(function(e){
 
 				$('.form-report').show();
 
-				window.scrollTo(0);
-
 				$('.signup-button').val("Sign Up");
 
 			}
