@@ -1,5 +1,5 @@
 //Javascript document
-var baseUrl = "https://buy.smallsmall.com/";
+var baseUrl = "https://dev-buy.smallsmall.com/";
 
 //window.localStorage.removeItem('co_own_basket');
 

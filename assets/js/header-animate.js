@@ -10,28 +10,28 @@ window.addEventListener("scroll", function() {
 
   if(this.pageYOffset > 0) {
 
-    if(animateFlag) {
+	if(animateFlag) {
 
-      element.classList.add("animateElement");
+	  element.classList.add("animateElement");
 
-      animateFlag = false;
+	  animateFlag = false;
 
-    }
+	}
 
   }
 
 })*/
-$(window).scroll(function(){
+$(window).scroll(function () {
 	"use strict";
 	if ($(window).scrollTop() >= 150) {
-		
+
 		$('.header').removeClass('header-regular');
 		$('.header').addClass('header-sticky');
-		
-	}else {
-		
-	   	$('.header').removeClass('header-sticky');
-	   	$('.header').addClass('header-regular');
-		
+
+	} else {
+
+		$('.header').removeClass('header-sticky');
+		$('.header').addClass('header-regular');
+
 	}
 });

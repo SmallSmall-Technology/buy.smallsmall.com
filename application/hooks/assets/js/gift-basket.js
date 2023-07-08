@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    var baseUrl = "https://buy.smallsmall.com/";
+    var baseUrl = "https://dev-buy.smallsmall.com/";
     
     $('#giftBasket').submit(function(e){
         e.preventDefault();

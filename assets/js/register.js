@@ -1,6 +1,6 @@
 // JavaScript Document
 
-var baseUrl = "https://buy.smallsmall.com/";
+var baseUrl = "https://dev-buy.smallsmall.com/";
 
 
 
@@ -186,8 +186,6 @@ $('#signupForm').submit(function(e){
 				$('.form-report').css("background", "red");
 
 				$('.form-report').show();
-
-				window.scrollTo(0);
 
 				$('.signup-button').val("Sign Up");
 

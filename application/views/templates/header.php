@@ -90,6 +90,38 @@
 	
 	<!-----Data Script ------>
 	<script async src="https:///tag.clearbitscripts.com/v1/pk_37b3240118bfdca2cb061665cc17319e/tags.js" referrerpolicy="strict-origin-when-cross-origin"></script>
+	<!-----Data Script ------>
+	<script>
+        (function(w,t,c,p,s,e,l,k){
+            
+            p=new Promise(function(r){w[c]={client:function(){return p}};
+            
+            l=document.createElement('div');l.setAttribute("id", "live-caller-widget");
+            
+            s=document.createElement(t);s.async=1;s.setAttribute("data-livecaller", 'script');
+            
+            k=document.body || document.documentElement;k.insertBefore(l, k.firstChild);
+            
+            l.setAttribute("data-livecaller", 'mount-el');
+            
+            s.src='https://cdn.livecaller.io/js/app.js';
+            
+            e=document.getElementsByTagName(t)[0];e ? e.parentNode.insertBefore(s,e) : k.insertBefore(s, l.nextSibling);
+            
+            s.onload=function(){r(w[c]);};});
+            
+            return p;
+            
+            })(window,'script','LiveCaller').then(function(){
+                
+            try{
+                LiveCaller.config.merge({"widget":{"id":"5c2b9bac-785c-49f6-b122-87bbaaca1a7a"},"app":{"locale":"en"}});
+                LiveCaller.liftOff();
+            }catch(e){
+                
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -137,11 +169,11 @@
 						</div>
 
 						<div class="small-small-section">
-							<a class="NavLink" href="https://rent.smallsmall.com" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="https://dev-rent.smallsmall.com" onclick='closeMobileMenu()'>
 								<span style='font-size:9px'>Rent monthly</span>
 								<span>RentSmallsmall</span>
 							</a>
-							<a class="NavLink" href="https://stay.smallsmall.com" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="https://dev-stay.smallsmall.com" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>Nightly stay</span>
 								<span>StaySmallsmall</span>
 							</a>
@@ -152,7 +184,7 @@
 						<?php if(@$userID && !@$ongod && @$user_type == 'tenant' && $interest != 'Buy'){ ?>
                             <!--- Tenant button ---->
                             <a class="login BtnLink" onclick='closeMobileMenu()' href="<?php echo base_url('logout'); ?>">Logout</a>
-                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="https://buy.smallsmall.com/user/dashboard">Dashboard</a>
+                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="https://dev-buy.smallsmall.com/user/dashboard">Dashboard</a>
                     
                         <?php }else if(@$userID && !@$ongod && @$user_type == 'landlord' && $interest != 'Buy'){ ?>
                                 <!--- Landlord button ---->

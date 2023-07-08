@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 
@@ -100,6 +100,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Properties filter
 
+$route['test/eligible'] = 'buytolet/get_eligible_users';
+
 $route['tests/date-diff'] = 'tests/getNumOfDays';
 
 $route['confirmation/send'] = 'buytolet/send_confirmation';
@@ -159,15 +161,15 @@ $route['final'] = 'buytolet/final_page';
 
 $route['successful-payment'] = 'buytolet/payment_successful';
 
-$route['reset/(:any)/(:any)'] = 'buytolet/user_reset/$1/$2'; 
+$route['reset/(:any)/(:any)'] = 'buytolet/user_reset/$1/$2';
 
 $route['verify'] = 'buytolet/verify';
 
 $route['result-page'] = 'buytolet/result_page';
 
-$route['buytolet/get-all-images/(:any)/(:any)'] = 'buytolet/get_all_images/$1/$2'; 
+$route['buytolet/get-all-images/(:any)/(:any)'] = 'buytolet/get_all_images/$1/$2';
 
-$route['buytolet/remove-image/(:any)/(:any)'] = 'buytolet/remove_image/$1/$2'; 
+$route['buytolet/remove-image/(:any)/(:any)'] = 'buytolet/remove_image/$1/$2';
 
 $route['activate/(:any)'] = 'buytolet/activate/$1';
 
@@ -245,22 +247,22 @@ $route['login'] = 'buytolet/login';
 $route['logout'] = 'buytolet/logout';
 
 $route['signup-investor-profile'] = 'buytolet/signup_investor/';
- 
-$route['signup'] = 'buytolet/signup'; 
 
-$route['pool-buy-faq'] = 'buytolet/pool_buy_faq'; 
+$route['signup'] = 'buytolet/signup';
+
+$route['pool-buy-faq'] = 'buytolet/pool_buy_faq';
 
 $route['faq'] = 'buytolet/faq';
 
 $route['general-faq'] = 'buytolet/general_faq';
 
-$route['get-started'] = 'buytolet/get_started'; 
+$route['get-started'] = 'buytolet/get_started';
 
-$route['investment-types'] = 'buytolet/investment_types'; 
+$route['investment-types'] = 'buytolet/investment_types';
 
-$route['property-title'] = 'buytolet/property_title'; 
+$route['property-title'] = 'buytolet/property_title';
 
-$route['rent-guarantee'] = 'buytolet/rent_guarantee'; 
+$route['rent-guarantee'] = 'buytolet/rent_guarantee';
 
 $route['terminologies'] = 'buytolet/terminologies';
 
@@ -268,7 +270,7 @@ $route['financing'] = 'buytolet/financing';
 
 $route['partnership'] = 'buytolet/partnership';
 
-$route['property-inspection'] = 'buytolet/property_inspection'; 
+$route['property-inspection'] = 'buytolet/property_inspection';
 
 $route['search/(:any)'] = 'buytolet/search/$1';
 
@@ -276,11 +278,11 @@ $route['search'] = 'buytolet/search';
 
 $route['how-it-works'] = 'buytolet/how_it_works';
 
-$route['terms-and-conditions'] = 'buytolet/terms_and_conditions'; 
+$route['terms-and-conditions'] = 'buytolet/terms_and_conditions';
 
-$route['co-own-tandc'] = 'buytolet/co_own_tandc'; 
+$route['co-own-tandc'] = 'buytolet/co_own_tandc';
 
-$route['about-us'] = 'buytolet/about_us'; 
+$route['about-us'] = 'buytolet/about_us';
 
 $route['home-test'] = 'buytolet/home_test';
 
@@ -289,4 +291,3 @@ $route['default_controller'] = 'buytolet';
 $route['404_override'] = '';
 
 $route['translate_uri_dashes'] = FALSE;
-
