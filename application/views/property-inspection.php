@@ -64,7 +64,7 @@
                         <div class="answer" id="answer-8">
                         We’re glad you asked. We have numerous resources, including:
                         <ul>
-                            <li><a href="https://dev-rent.smallsmall.com/blog">SmallSmall Blog </a>provides a comprehensive resource for investing in real estate, including <a>How to Get Started in Real Estate Investing - The Complete Guide,</a> which covers five basic steps essential in getting started in real estate investing. </li>
+                            <li><a href="https://rent.smallsmall.com/blog">SmallSmall Blog </a>provides a comprehensive resource for investing in real estate, including <a>How to Get Started in Real Estate Investing - The Complete Guide,</a> which covers five basic steps essential in getting started in real estate investing. </li>
                         </ul>
                         </div>
 

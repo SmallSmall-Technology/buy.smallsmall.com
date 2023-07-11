@@ -169,11 +169,11 @@
 						</div>
 
 						<div class="small-small-section">
-							<a class="NavLink" href="https://dev-rent.smallsmall.com" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="https://rent.smallsmall.com" onclick='closeMobileMenu()'>
 								<span style='font-size:9px'>Rent monthly</span>
 								<span>RentSmallsmall</span>
 							</a>
-							<a class="NavLink" href="https://dev-stay.smallsmall.com" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="https://stay.smallsmall.com" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>Nightly stay</span>
 								<span>StaySmallsmall</span>
 							</a>
@@ -184,7 +184,7 @@
 						<?php if(@$userID && !@$ongod && @$user_type == 'tenant' && $interest != 'Buy'){ ?>
                             <!--- Tenant button ---->
                             <a class="login BtnLink" onclick='closeMobileMenu()' href="<?php echo base_url('logout'); ?>">Logout</a>
-                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="https://dev-buy.smallsmall.com/user/dashboard">Dashboard</a>
+                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="https://smallsmall.com/user/dashboard">Dashboard</a>
                     
                         <?php }else if(@$userID && !@$ongod && @$user_type == 'landlord' && $interest != 'Buy'){ ?>
                                 <!--- Landlord button ---->

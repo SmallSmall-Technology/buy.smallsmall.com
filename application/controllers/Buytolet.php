@@ -3236,9 +3236,9 @@ class Buytolet extends CI_Controller
 
 		$data['address'] = $property_address . ' ' . $property_city . ', ' . $property_state;
 
-		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
+		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
 
-		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
+		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
 
 		//Set folder to save PDF to
 		$this->html2pdf->folder('./uploads/offers/');
