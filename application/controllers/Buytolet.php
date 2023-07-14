@@ -2830,16 +2830,16 @@ class Buytolet extends CI_Controller
 					'json' => $emailData,
 				]);
 
-				// Output the result
-				if($responseEmail){
-					echo 1;
-				}else{
-					echo 0;
-				}
+				// // Output the result
+				// if($responseEmail){
+				// 	echo 1;
+				// }else{
+				// 	echo 0;
+				// }
 
 			} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
-				$data['response'] = $e->getMessage();
+				// $data['response'] = $e->getMessage();
 			}
 
 			echo 1;
