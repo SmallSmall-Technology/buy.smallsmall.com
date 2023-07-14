@@ -1733,27 +1733,30 @@ class Buytolet extends CI_Controller
 					$htmlBody = str_replace('{{link}}', $link, $htmlBody);
 
 					$data['response'] = $htmlBody;
+
+					// Prepare the email data
+					$emailData = [
+						"message" => [
+							"recipients" => [
+								["email" => $email],
+							],
+							"body" => ["html" => $htmlBody],
+							"subject" => "Confirm your email",
+							"from_email" => "donotreply@smallsmall.com",
+							"from_name" => "Smallsmall",
+						],
+					];
+
+					// Send the email using the Unione API
+					$responseEmail = $client->request('POST', 'email/send.json', [
+						'headers' => $headers,
+						'json' => $emailData,
+					]);
+
 				} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 					$data['response'] = $e->getMessage();
 				}
-				$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-				$this->email->to($email);
-
-				$this->email->subject("Confirm your email");
-
-				$this->email->set_mailtype("html");
-
-				$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-				// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-				$this->email->message($message);
-
-				$emailRes = $this->email->send();
-
-				// End Of Unione
 
 				//Insert notification
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
@@ -2807,26 +2810,40 @@ class Buytolet extends CI_Controller
 				$htmlBody = str_replace('{{Name}}', $name, $htmlBody);
 
 				$data['response'] = $htmlBody;
+
+				// Prepare the email data
+				$emailData = [
+					"message" => [
+						"recipients" => [
+							["email" => $username],
+						],
+						"body" => ["html" => $htmlBody],
+						"subject" => "Password Reset Link",
+						"from_email" => "donotreply@smallsmall.com",
+						"from_name" => "Smallsmall",
+					],
+				];
+
+				// Send the email using the Unione API
+				$responseEmail = $client->request('POST', 'email/send.json', [
+					'headers' => $headers,
+					'json' => $emailData,
+				]);
+
+				// Output the result
+				if($responseEmail){
+					echo 1;
+				}else{
+					echo 0;
+				}
+
 			} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 				$data['response'] = $e->getMessage();
 			}
 
-			$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-			$this->email->to($username);
-
-			$this->email->subject("Password Reset Link");
-
-			$this->email->set_mailtype("html");
-
-			$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-			$this->email->message($message);
-
-			$emailRes = $this->email->send();
-
 			echo 1;
+
 		} else {
 
 			echo "Email doesn't not exist";
@@ -4295,24 +4312,51 @@ class Buytolet extends CI_Controller
 			$htmlBody = str_replace('{{link}}', base_url('login'), $htmlBody);
 
 			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Payment Successful",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Smallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+	
+			// Output the result
+			if($responseEmail){
+				echo 1;
+			}else{
+				echo 0;
+			}
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
 
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
+		// $this->email->from('donotreply@smallsmall.com', 'Small Small');
 
-		$this->email->to($email);
+		// $this->email->to($email);
 
-		$this->email->subject("Payment Successful");
+		// $this->email->subject("Payment Successful");
 
-		$this->email->set_mailtype("html");
+		// $this->email->set_mailtype("html");
 
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+		// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
-		$this->email->message($message);
+		// $this->email->message($message);
 
-		$emailRes = $this->email->send();
+		// $emailRes = $this->email->send();
 	}
 
 	public function self_shares_notification_email($name, $propertyName, $propertyLocation, $sharesAmount, $amount, $email, $rate, $holdPeriod, $migrationDate, $completionDate)
@@ -4368,27 +4412,38 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = str_replace('{{rate}}', $rate, $htmlBody);
 
-
-
 			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Payment Successful",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Smallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+	
+			// Output the result
+			if($responseEmail){
+				echo 1;
+			}else{
+				echo 0;
+			}
+	
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
-
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-		$this->email->to($email);
-
-		$this->email->subject("Payment Successful");
-
-		$this->email->set_mailtype("html");
-
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-		$this->email->message($message);
-
-		$emailRes = $this->email->send();
 	}
 
 	public function get_eligible_users()
