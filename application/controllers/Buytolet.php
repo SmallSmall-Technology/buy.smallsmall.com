@@ -4442,4 +4442,126 @@ class Buytolet extends CI_Controller
 		exit;
 		//print_r($users);
 	}
+
+	public function get_stp_buyers(){
+
+		$users = $this->buytolet_model->get_stp_users();
+
+		for($i = 0; $i < count($users); $i++){
+
+			$email = $this->buytolet_model->get_user($users[$i]['userID'])['email'];
+
+			$this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['amount']);
+
+		}
+	}
+
+	public function stp_subscription_plan($email, $userid, $interval, $amount){
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+
+			CURLOPT_URL => "https://api.paystack.co/plan",
+
+			CURLOPT_RETURNTRANSFER => true,
+
+			CURLOPT_ENCODING => "",
+
+			CURLOPT_MAXREDIRS => 10,
+
+			CURLOPT_TIMEOUT => 30,
+
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+
+			CURLOPT_CUSTOMREQUEST => "POST",
+
+			CURLOPT_POSTFIELDS => array(
+
+				"name" => $interval." STP Plan",
+
+				"interval" => $interval,
+
+				"amount" => $amount
+
+			),
+
+			CURLOPT_HTTPHEADER => array(
+
+				"Authorization: Bearer B55-R3Nt55",
+
+				"Cache-Control: no-cache"
+
+			),
+
+			)
+
+		);
+
+		$response = curl_exec($curl);
+
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+
+			echo "cURL Error #:" . $err;
+
+		} else {
+
+			$this->stp_subscription($email, $amount, $response['data']['plan_code']);
+
+			$this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid);
+
+		}
+	}
+
+	public function stp_subscription($email, $amount, $plan){
+
+		$url = "https://api.paystack.co/transaction/initialize";
+
+		$fields = [
+
+			'email' => $email,
+
+			'amount' => $amount,
+
+			'plan' => $plan
+
+		];
+
+		$fields_string = http_build_query($fields);
+
+		//open connection
+
+		$ch = curl_init();		
+
+		//set the url, number of POST vars, POST data
+
+		curl_setopt($ch, CURLOPT_URL, $url);
+
+		curl_setopt($ch, CURLOPT_POST, true);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+
+			"Authorization: Bearer B55-R3Nt55",
+
+			"Cache-Control: no-cache",
+
+		));		
+
+		//So that curl_exec returns the contents of the cURL; rather than echoing it
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);		
+
+		//execute post
+
+		$result = curl_exec($ch);
+
+		echo $result;
+
+	}
 }
