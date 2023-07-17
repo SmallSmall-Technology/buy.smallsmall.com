@@ -184,7 +184,7 @@
 						<?php if(@$userID && !@$ongod && @$user_type == 'tenant' && $interest != 'Buy'){ ?>
                             <!--- Tenant button ---->
                             <a class="login BtnLink" onclick='closeMobileMenu()' href="<?php echo base_url('logout'); ?>">Logout</a>
-                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="https://smallsmall.com/user/dashboard">Dashboard</a>
+                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="<?php echo base_url('user/dashboard'); ?>">Dashboard</a>
                     
                         <?php }else if(@$userID && !@$ongod && @$user_type == 'landlord' && $interest != 'Buy'){ ?>
                                 <!--- Landlord button ---->
