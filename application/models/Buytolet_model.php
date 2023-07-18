@@ -2395,14 +2395,15 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
+
 	}
 
-	public function insertTargetOptions($userID, $frequency, $duration)
+	public function insertTargetOptions($userID, $frequency, $duration, $ref)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today);
+		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today, 'request_id' => $ref);
 
 		return $this->db->insert('target_options', $targetOptions);
 	}
@@ -2518,7 +2519,30 @@ class Buytolet_model extends CI_Model
 
 	public function update_with_plan_code($plan_code, $userid){
 
-		return 1;
+		$update = array('plan_code' => $plan_code);
 
+		$this->db->where('userID', $userid);
+
+		return $this->db->update('target_options', $update);
+
+	}
+
+	public function update_with_authorization_url($authorization_url, $userid){
+
+		$update = array('authorization_url' => $authorization_url);
+
+		$this->db->where('userID', $userid);
+
+		return $this->db->update('target_options', $update);
+
+	}
+
+	public function update_with_request_id($refID, $userID){
+
+		$update = array('request_id' => $refID);
+
+		$this->db->where('userID', $userID);
+
+		return $this->db->update('target_options', $update);
 	}
 }
