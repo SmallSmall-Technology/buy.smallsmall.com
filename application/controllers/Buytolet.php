@@ -2141,12 +2141,20 @@ class Buytolet extends CI_Controller
 		if (!empty($toStatus)) {
 
 			if ($purchase_frequency && $duration) {
+
 				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration);
+
+				$this->stp_subscription_plan($email, $userid, $interval, $amount);
+
 			}
 		} else {
 
 			if ($purchase_frequency && $duration) {
-				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration);
+
+				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref);
+
+				$this->stp_subscription_plan($email, $userid, $interval, $amount);
+
 			}
 		}
 
@@ -4502,13 +4510,27 @@ class Buytolet extends CI_Controller
 
 		$users = $this->buytolet_model->get_stp_users();
 
-		for($i = 0; $i < count($users); $i++){
+		if(count($users) > 0){
+			for($i = 0; $i < count($users); $i++){
 
-			$email = $this->buytolet_model->get_user($users[$i]['userID'])['email'];
+				$email = $this->buytolet_model->get_user($users[$i]['userID'])['email'];
 
-			$this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['amount']);
+				if($email){
+					
+					if($this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['amount'])){
+						echo "Done <br />";
+					}
 
-		}
+					if(is_null($users[$i]['request_id']) || $users[$i]['request_id'] == ''){
+						$this->buytolet_model->update_with_request_id($users[$i]['refID'], $users[$i]['userID']);
+					}
+
+				}	
+			}
+		}else{
+			echo "0 Users";
+			exit;
+		}	
 	}
 
 	public function stp_subscription_plan($email, $userid, $interval, $amount){
@@ -4535,7 +4557,7 @@ class Buytolet extends CI_Controller
 
 				"name" => $interval." STP Plan",
 
-				"interval" => $interval,
+				"interval" => strtolower($interval),
 
 				"amount" => $amount
 
@@ -4553,26 +4575,37 @@ class Buytolet extends CI_Controller
 
 		);
 
-		$response = curl_exec($curl);
-
-		$err = curl_error($curl);
+		$response = json_decode(curl_exec($curl), true);
 
 		curl_close($curl);
 
-		if ($err) {
+		if ($response['status']) {
 
-			echo "cURL Error #:" . $err;
+			if($this->stp_subscription($email, $amount, $response['data']['plan_code'], $userid)){
 
+				if($this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid)){
+
+					return 1;
+
+				}else{
+
+					return 0;
+
+				}
+
+			}else{
+
+				return 0;
+
+			}
 		} else {
 
-			$this->stp_subscription($email, $amount, $response['data']['plan_code']);
-
-			$this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid);
+			return 0;	
 
 		}
 	}
 
-	public function stp_subscription($email, $amount, $plan){
+	public function stp_subscription($email, $amount, $plan, $userid){
 
 		$url = "https://api.paystack.co/transaction/initialize";
 
@@ -4614,9 +4647,25 @@ class Buytolet extends CI_Controller
 
 		//execute post
 
-		$result = curl_exec($ch);
+		$response = json_decode(curl_exec($ch), true);
 
-		echo $result;
+		if($response['status']){
+
+			if($this->buytolet_model->update_with_authorization_url($response['data']['authorization_url'], $userid)){
+				
+				return 1;
+
+			}else{
+
+				return 0;
+
+			}		
+
+		}else{
+
+			return 0;
+
+		}
 
 	}
 }
