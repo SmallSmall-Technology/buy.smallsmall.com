@@ -2138,7 +2138,7 @@ class Buytolet extends CI_Controller
 
 		$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID']);
 
-		if (!empty($toStatus)) {
+		if (isset($toStatus)) {
 
 			if ($purchase_frequency && $duration) {
 
