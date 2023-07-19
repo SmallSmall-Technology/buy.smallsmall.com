@@ -4464,7 +4464,7 @@ class Buytolet extends CI_Controller
 					
 					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['amount']);
 
-					if($res != 1){
+					if($res == 1){
 						echo "Done <br />";
 					}else{
 						echo "Not completed : ".$res." <br />";
