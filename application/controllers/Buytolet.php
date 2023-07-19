@@ -4569,7 +4569,7 @@ class Buytolet extends CI_Controller
 
 			CURLOPT_HTTPHEADER => array(
 
-				"Authorization: Bearer B55-R3Nt55",
+				"Authorization: Bearer sk_live_9ebad81beeda5a8cfe05fd8b4853a1942167e56b",
 
 				"Cache-Control: no-cache"
 
@@ -4641,7 +4641,7 @@ class Buytolet extends CI_Controller
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
-			"Authorization: Bearer B55-R3Nt55",
+			"Authorization: Bearer sk_live_9ebad81beeda5a8cfe05fd8b4853a1942167e56b",
 
 			"Cache-Control: no-cache",
 
