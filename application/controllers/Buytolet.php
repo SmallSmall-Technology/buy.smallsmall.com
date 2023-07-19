@@ -4462,7 +4462,7 @@ class Buytolet extends CI_Controller
 
 				if($email){
 					
-					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['purchase_amount']);
+					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], $users[$i]['frequency'], $users[$i]['purchase_amount']);
 
 					if($res == 1){
 						echo "Done <br />";
@@ -4484,6 +4484,17 @@ class Buytolet extends CI_Controller
 
 	public function stp_subscription_plan($email, $userid, $interval, $amount){
 
+		$intv = "";
+
+		if($interval == 'Monthly')
+			$intv = "monthly";
+		elseif($interval == 'Daily')
+			$intv = "daily";
+		elseif($interval == 'Weekly')
+			$intv = "weekly";
+		else
+			$intv = '';
+
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -4504,11 +4515,11 @@ class Buytolet extends CI_Controller
 
 			CURLOPT_POSTFIELDS => array(
 
-				"name" => "'".$interval.' STP Plan',
+				"name" => $interval.' STP Plan',
+				
+				"interval" => $intv,//($intv == 'Monthy')? "monthly" : "daily",
 
-				"interval" => "'".$interval."'",
-
-				"amount" => "'".$amount."'"
+				"amount" => $amount * 100
 
 			),
 
@@ -4526,12 +4537,10 @@ class Buytolet extends CI_Controller
 
 		$response = json_decode(curl_exec($curl), true);
 
-		$err = curl_error($curl);
-
 		if ($response['status']) {
 
 			if($this->stp_subscription($email, $amount, $response['data']['plan_code'], $userid)){
-
+				
 				if($this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid)){
 
 					return 1;
@@ -4549,7 +4558,7 @@ class Buytolet extends CI_Controller
 			}
 		} else {
 
-			return $err;	
+			return $response['message'];
 
 		}
 		curl_close($curl);
@@ -4561,11 +4570,11 @@ class Buytolet extends CI_Controller
 
 		$fields = [
 
-			'email' => "'".$email."'",
+			'email' => "$email",
 
-			'amount' => "'".$amount."'",
+			'amount' => $amount * 100,
 
-			'plan' => "'".$plan."'"
+			'plan' => "$plan"
 
 		];
 
