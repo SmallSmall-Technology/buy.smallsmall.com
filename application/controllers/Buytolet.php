@@ -4528,8 +4528,6 @@ class Buytolet extends CI_Controller
 
 		$err = curl_error($curl);
 
-		curl_close($curl);
-
 		if ($response['status']) {
 
 			if($this->stp_subscription($email, $amount, $response['data']['plan_code'], $userid)){
@@ -4540,7 +4538,7 @@ class Buytolet extends CI_Controller
 
 				}else{
 
-					return 01;
+					return 00;
 
 				}
 
@@ -4554,6 +4552,7 @@ class Buytolet extends CI_Controller
 			return $err;	
 
 		}
+		curl_close($curl);
 	}
 
 	public function stp_subscription($email, $amount, $plan, $userid){
