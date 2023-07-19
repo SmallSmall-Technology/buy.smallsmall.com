@@ -4464,7 +4464,7 @@ class Buytolet extends CI_Controller
 					
 					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['amount']);
 
-					if($res){
+					if($res != 1){
 						echo "Done <br />";
 					}else{
 						echo "Not completed : ".$res." <br />";
@@ -4504,11 +4504,11 @@ class Buytolet extends CI_Controller
 
 			CURLOPT_POSTFIELDS => array(
 
-				"name" => $interval." STP Plan",
+				"name" => "'".$interval.' STP Plan',
 
-				"interval" => strtolower($interval),
+				"interval" => "'".$interval."'",
 
-				"amount" => $amount
+				"amount" => "'".$amount."'"
 
 			),
 
@@ -4526,6 +4526,8 @@ class Buytolet extends CI_Controller
 
 		$response = json_decode(curl_exec($curl), true);
 
+		$err = curl_error($curl);
+
 		curl_close($curl);
 
 		if ($response['status']) {
@@ -4538,18 +4540,18 @@ class Buytolet extends CI_Controller
 
 				}else{
 
-					return 0;
+					return 01;
 
 				}
 
 			}else{
 
-				return 0;
+				return 02;
 
 			}
 		} else {
 
-			return 0;	
+			return $err;	
 
 		}
 	}
@@ -4560,11 +4562,11 @@ class Buytolet extends CI_Controller
 
 		$fields = [
 
-			'email' => $email,
+			'email' => "'".$email."'",
 
-			'amount' => $amount,
+			'amount' => "'".$amount."'",
 
-			'plan' => $plan
+			'plan' => "'".$plan."'"
 
 		];
 
@@ -4606,13 +4608,13 @@ class Buytolet extends CI_Controller
 
 			}else{
 
-				return 0;
+				return 04;
 
 			}		
 
 		}else{
 
-			return 0;
+			return curl_error($curl);;
 
 		}
 
