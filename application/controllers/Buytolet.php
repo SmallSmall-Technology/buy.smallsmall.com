@@ -2141,7 +2141,7 @@ class Buytolet extends CI_Controller
 
 				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration);
 
-				$this->stp_subscription_plan($email, $userid, $interval, $amount);
+				$this->stp_subscription_plan($email, $userid, $interval, $amount, $duration);
 
 			}
 		} else {
@@ -2150,7 +2150,7 @@ class Buytolet extends CI_Controller
 
 				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref);
 
-				$this->stp_subscription_plan($email, $userid, $interval, $amount);
+				$this->stp_subscription_plan($email, $userid, $interval, $amount, $duration);
 
 			}
 		}
@@ -4462,7 +4462,7 @@ class Buytolet extends CI_Controller
 
 				if($email){
 					
-					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], $users[$i]['frequency'], $users[$i]['purchase_amount']);
+					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], $users[$i]['frequency'], $users[$i]['purchase_amount'], $users[$i]['duration']);
 
 					if($res == 1){
 						echo "Done <br />";
@@ -4482,7 +4482,7 @@ class Buytolet extends CI_Controller
 		}	
 	}
 
-	public function stp_subscription_plan($email, $userid, $interval, $amount){
+	public function stp_subscription_plan($email, $userid, $interval, $amount, $duration = 1){
 
 		$intv = "";
 
@@ -4539,7 +4539,7 @@ class Buytolet extends CI_Controller
 
 		if ($response['status']) {
 
-			if($this->stp_subscription($email, $amount, $response['data']['plan_code'], $userid)){
+			if($this->stp_subscription($email, $amount, $response['data']['plan_code'], $userid, $duration)){
 				
 				if($this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid)){
 
@@ -4564,7 +4564,7 @@ class Buytolet extends CI_Controller
 		curl_close($curl);
 	}
 
-	public function stp_subscription($email, $amount, $plan, $userid){
+	public function stp_subscription($email, $amount, $plan, $userid, $duration){
 
 		$url = "https://api.paystack.co/transaction/initialize";
 
@@ -4574,7 +4574,9 @@ class Buytolet extends CI_Controller
 
 			'amount' => $amount * 100,
 
-			'plan' => "$plan"
+			'plan' => "$plan",
+
+			'invoice_limit' => $duration
 
 		];
 

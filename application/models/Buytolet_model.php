@@ -2545,4 +2545,14 @@ class Buytolet_model extends CI_Model
 
 		return $this->db->update('target_options', $update);
 	}
+
+	public function subscription_created($event){
+
+		$next_payment_date = date('Y-m-d H:i:s', strtotime($event['data']['next_payment_date']));
+
+		$inserts = array('plan_code' => $event['data']['plan']['plan_code'], 'subscription_code' => $event['data']['subscription_code'], 'next_payment_date' => $next_payment_date, 'authorization_code' => $event['data']['authorization']['authorization_code'], 'bin' => $event['data']['authorization']['bin'], 'last_4' => $event['data']['authorization']['last4'], 'expiry_year' => $event['data']['authorization']['exp_year'], 'expiry_month' => $event['data']['authorization']['exp_month'], 'card_type' => $event['data']['authorization']['card_type'], 'card_brand' => $event['data']['authorization']['brand'], 'bank' => $event['data']['authorization']['bank'], 'country_code' => $event['data']['authorization']['country_code'], 'account_name' => $event['data']['authorization']['account_name'], 'customer_code' => $event['data']['customer']['customer_code'], 'entry_date' => date('Y-m-d H:i:s'));
+
+		return $this->db->insert('subscription_payment_tbl', $inserts);
+
+	}
 }
