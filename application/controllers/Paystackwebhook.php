@@ -43,7 +43,7 @@ class Paystackwebhook extends CI_Controller
 
                 $ref = md5(date('YmdHis'));
 
-                $coown_details = $this->buytolet_model->get_request_details_by_plan_code($event['plan']['plan_code']);
+                $coown_details = $this->buytolet_model->get_request_details_by_plan_code($event['data']['plan']['plan_code']);
                 
                 $buyer_type = 'Investor';
 
