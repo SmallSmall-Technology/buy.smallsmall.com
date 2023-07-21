@@ -1047,6 +1047,7 @@ class Buytolet_model extends CI_Model
 			$this->db->update('target_options', $targetOptions);
 
 			return 1;
+			
 		} else {
 
 			return 0;
@@ -2500,7 +2501,7 @@ class Buytolet_model extends CI_Model
 
 	public function get_stp_users(){
 
-		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount');
+		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName');
 
 		$this->db->from('target_options as a');
 
@@ -2509,6 +2510,8 @@ class Buytolet_model extends CI_Model
 		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
 
 		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
+
+		$this->db->join('users_tbl as d', 'd.userID = b.userID');
 
 		$this->db->group_by('a.userID');
 
@@ -2554,5 +2557,20 @@ class Buytolet_model extends CI_Model
 
 		return $this->db->insert('subscription_payment_tbl', $inserts);
 
+	}
+
+	public function get_request_details_by_plan_code($plan_code){
+
+		$this->db->select('a.*, b.*');
+
+		$this->db->from('target_options as a');
+
+		$this->db->join('buytolet_request as b', 'b.refID = a.request_id');
+
+		$this->db->where('a.plan_code', $plan_code);
+
+		$query = $this->db->get();
+
+		return $query->row_array();
 	}
 }
