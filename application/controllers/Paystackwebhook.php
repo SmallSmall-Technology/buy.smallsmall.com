@@ -39,6 +39,51 @@ class Paystackwebhook extends CI_Controller
 
             $result = $this->buytolet_model->subscription_created($event);
 
+            if($result){
+
+                $ref = md5(date('YmdHis'));
+
+                $coown_details = $this->buytolet_model->get_request_details_by_plan_code($event['data']['plan']['plan_code']);
+                
+                $buyer_type = 'Investor';
+
+                $property_id = $coown_details['propertyID'];
+
+                $cost = $coown_details['amount'];
+
+                $payment_plan = $coown_details['plan'];
+
+                $userID = $coown_details['userID'];
+
+                $payable = $coown_details['payable'];
+
+                $balance = 0;
+
+                $mop = 'Paystack Subscription';
+
+                $payment_period = 1;
+
+                $unit_amount = $coown_details['unit_amount'];
+
+                $promo_code = '';
+
+                $promo_amount = 0;
+
+                $beneficiary_type = 'Self';
+
+                $beneficiary_id_path = 0;
+
+                $firstname = '';
+
+                $lastname = '';
+
+                $result = $this->buytolet_model->insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $beneficiary_id_path, $firstname, $lastname, $beneficiary_type);
+
+                if($result){
+                    $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref);
+                }
+            }
+
         }
 
 

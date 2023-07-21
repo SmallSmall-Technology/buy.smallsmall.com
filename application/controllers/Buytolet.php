@@ -4669,8 +4669,11 @@ class Buytolet extends CI_Controller
 
 			if($this->buytolet_model->update_with_authorization_url($response['data']['authorization_url'], $userid)){
 				
-				return 1;
-
+				if($this->subscription_email($name, $amount, date('Y-m-d H:i:s'), $plan, $duration, $response['data']['authorization_url'], $email)){
+					return 1;
+				}else{
+					return 0;
+				}
 			}else{
 
 				return 04;
@@ -4684,4 +4687,115 @@ class Buytolet extends CI_Controller
 		}
 
 	}
+
+	public function generate_subscription_email(){
+
+		$users = $this->buytolet_model->get_stp_users();
+
+		if(count($users) > 0){
+
+			for($i = 0; $i < count($users); $i++){
+
+				$user = $this->buytolet_model->get_user($users[$i]['userID']);
+
+				if(isset($user)){
+
+					$name = $user['lastName'];
+
+					$email = $user['email'];
+
+					$auth_url = $users[$i]['authorization_url'];
+
+					$duration = $users[$i]['duration'].' '.$users[$i]['frequency'];
+
+					$plan_name = $users[$i]['plan_code'];
+
+					$subscription_date = $users[$i]['date_subscribed'];
+
+					$subscription_amount = $users[$i]['purchase_amount'];
+					
+					$res = $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
+
+					if($res == 1){
+						echo "Done <br />";
+					}else{
+						echo "Not completed : ".$res." <br />";
+					}
+
+				}
+			}	
+		}
+
+	}
+
+
+	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
+		
+		require 'vendor/autoload.php';
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => UNIONE_API_KEY,
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "dccfd05e-26bd-11ee-add8-22c5ed548c22"
+		];
+
+		try {
+
+			$response = $client->request('POST', 'template/get.json', array(
+				'headers' => $headers,
+				'json' => $requestBody,
+			));
+
+			$jsonResponse = $response->getBody()->getContents();
+
+			$responseData = json_decode($jsonResponse, true);
+
+			$htmlBody = $responseData['template']['body']['html'];
+
+			$htmlBody = str_replace('{{name}}', $name, $htmlBody);
+
+			$htmlBody = str_replace('{{amount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{subscriptionAmount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{subscriptionDate}}', $subscription_date, $htmlBody);
+
+			$htmlBody = str_replace('{{STPPlan}}', $plan_name, $htmlBody);
+
+			$htmlBody = str_replace('{{STPDuration}}', $duration, $htmlBody);
+
+			$htmlBody = str_replace('{{authorizationURL}}', $auth_url, $htmlBody);
+
+			$data['response'] = $htmlBody;
+
+		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+			$data['response'] = $e->getMessage();
+
+		}
+		$this->email->from('donotreply@smallsmall.com', 'Small Small');
+
+		$this->email->to($email);
+
+		$this->email->subject("BuySmallsmall Property Shares Subscription");
+
+		$this->email->set_mailtype("html");
+
+		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+
+		$this->email->message($message);
+
+		$emailRes = $this->email->send();
+
+		return 1;
+	}
+	
 }
