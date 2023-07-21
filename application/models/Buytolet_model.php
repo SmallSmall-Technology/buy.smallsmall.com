@@ -1047,7 +1047,7 @@ class Buytolet_model extends CI_Model
 			$this->db->update('target_options', $targetOptions);
 
 			return 1;
-			
+
 		} else {
 
 			return 0;
@@ -2511,7 +2511,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
 
-		$this->db->join('users_tbl as d', 'd.userID = b.userID');
+		$this->db->join('user_tbl as d', 'd.userID = b.userID');
 
 		$this->db->group_by('a.userID');
 
