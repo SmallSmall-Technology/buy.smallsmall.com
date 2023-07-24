@@ -172,7 +172,7 @@
     </div>
     <script>
         
-        var baseUrl = "https://staging.buysmallsmall.smallsmall.com/";
+        var baseUrl = "https://buy.smallsmall.com/";
         
         let button = document.querySelector('.browse-btn');
         let input = document.querySelector('.input');
