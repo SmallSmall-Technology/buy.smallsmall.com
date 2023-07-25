@@ -4738,9 +4738,12 @@ class Buytolet extends CI_Controller
 
 		$this->email->message($message);
 
-		$emailRes = $this->email->send();
+		$emailRes = json_decode($this->email->send(), true);
 
-		return 1;
+		if($emailRes['status'] == 'success')
+			return 1;
+		else
+			return 0;
 	}
 	
 }
