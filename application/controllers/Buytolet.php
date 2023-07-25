@@ -4736,7 +4736,7 @@ class Buytolet extends CI_Controller
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
-			'X-API-KEY' => UNIONE_API_KEY,
+			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
 		);
 
 		$client = new \GuzzleHttp\Client([
@@ -4793,9 +4793,12 @@ class Buytolet extends CI_Controller
 
 		$this->email->message($message);
 
-		$emailRes = $this->email->send();
+		$emailRes = json_decode($this->email->send(), true);
 
-		return 1;
+		if($emailRes['status'] == 'success')
+			return 1;
+		else
+			return 0;
 	}
 	
 }
