@@ -100,6 +100,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // Properties filter
 
+
+$route['test/sub-email'] = 'buytolet/subscription_email';
 //Manually sign users up for subscription
 $route['test/sub-email'] = 'buytolet/test_subscription_email';
 

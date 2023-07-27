@@ -122,6 +122,21 @@
             }
         });
     </script>
+
+	<!-- TruConversion for buy.smallsmall.com -->
+	<script type="text/javascript">
+    	var _tip = _tip || [];
+    	(function(d,s,id){
+        	var js, tjs = d.getElementsByTagName(s)[0];
+        	if(d.getElementById(id)) { return; }
+        	js = d.createElement(s); js.id = id;
+        	js.async = true;
+        	js.src = d.location.protocol + '//app.truconversion.com/ti-js/29045/42102.js';
+        	tjs.parentNode.insertBefore(js, tjs);
+    	}(document, 'script', 'ti-js'));
+	</script>
+	<!-- End TruConversion for buy.smallsmall.com -->
+
 </head>
 
 <body>
@@ -184,7 +199,7 @@
 						<?php if(@$userID && !@$ongod && @$user_type == 'tenant' && $interest != 'Buy'){ ?>
                             <!--- Tenant button ---->
                             <a class="login BtnLink" onclick='closeMobileMenu()' href="<?php echo base_url('logout'); ?>">Logout</a>
-                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="https://smallsmall.com/user/dashboard">Dashboard</a>
+                            <a class="signup BtnLink" onclick='closeMobileMenu()' href="<?php echo base_url('user/dashboard'); ?>">Dashboard</a>
                     
                         <?php }else if(@$userID && !@$ongod && @$user_type == 'landlord' && $interest != 'Buy'){ ?>
                                 <!--- Landlord button ---->

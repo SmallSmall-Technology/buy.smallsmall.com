@@ -2135,23 +2135,15 @@ class Buytolet extends CI_Controller
 
 		$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID']);
 
-		if (isset($toStatus)) {
+		if (!empty($toStatus)) {
 
 			if ($purchase_frequency && $duration) {
-
 				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration);
-
-				$this->stp_subscription_plan($email, $userid, $interval, $amount, $duration);
-
 			}
 		} else {
 
 			if ($purchase_frequency && $duration) {
-
-				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref);
-
-				$this->stp_subscription_plan($email, $userid, $interval, $amount, $duration);
-
+				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration);
 			}
 		}
 
@@ -3244,9 +3236,9 @@ class Buytolet extends CI_Controller
 
 		$data['address'] = $property_address . ' ' . $property_city . ', ' . $property_state;
 
-		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
+		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
 
-		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
+		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
 
 		//Set folder to save PDF to
 		$this->html2pdf->folder('./uploads/offers/');
@@ -4451,230 +4443,7 @@ class Buytolet extends CI_Controller
 		//print_r($users);
 	}
 
-	public function get_stp_buyers(){
-
-		$users = $this->buytolet_model->get_stp_users();
-
-		if(count($users) > 0){
-			for($i = 0; $i < count($users); $i++){
-
-				$email = $this->buytolet_model->get_user($users[$i]['userID'])['email'];
-
-				if($email){
-					
-					$res = $this->stp_subscription_plan($email, $users[$i]['userID'], $users[$i]['frequency'], $users[$i]['purchase_amount'], $users[$i]['duration']);
-
-					if($res == 1){
-						echo "Done <br />";
-					}else{
-						echo "Not completed : ".$res." <br />";
-					}
-
-					if(is_null($users[$i]['request_id']) || $users[$i]['request_id'] == ''){
-						$this->buytolet_model->update_with_request_id($users[$i]['refID'], $users[$i]['userID']);
-					}
-
-				}	
-			}
-		}else{
-			echo "0 Users";
-			exit;
-		}	
-	}
-
-	public function stp_subscription_plan($email, $userid, $interval, $amount, $duration = 1){
-
-		$intv = "";
-
-		if($interval == 'Monthly')
-			$intv = "monthly";
-		elseif($interval == 'Daily')
-			$intv = "daily";
-		elseif($interval == 'Weekly')
-			$intv = "weekly";
-		else
-			$intv = '';
-
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-
-			CURLOPT_URL => "https://api.paystack.co/plan",
-
-			CURLOPT_RETURNTRANSFER => true,
-
-			CURLOPT_ENCODING => "",
-
-			CURLOPT_MAXREDIRS => 10,
-
-			CURLOPT_TIMEOUT => 30,
-
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-
-			CURLOPT_CUSTOMREQUEST => "POST",
-
-			CURLOPT_POSTFIELDS => array(
-
-				"name" => $interval.' STP Plan',
-				
-				"interval" => $intv,//($intv == 'Monthy')? "monthly" : "daily",
-
-				"amount" => $amount * 100
-
-			),
-
-			CURLOPT_HTTPHEADER => array(
-
-				"Authorization: Bearer sk_live_9ebad81beeda5a8cfe05fd8b4853a1942167e56b",
-
-				"Cache-Control: no-cache"
-
-			),
-
-			)
-
-		);
-
-		$response = json_decode(curl_exec($curl), true);
-
-		if ($response['status']) {
-
-			if($this->stp_subscription($email, $amount, $response['data']['plan_code'], $userid, $duration)){
-				
-				if($this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid)){
-
-					return 1;
-
-				}else{
-
-					return 00;
-
-				}
-
-			}else{
-
-				return 02;
-
-			}
-		} else {
-
-			return $response['message'];
-
-		}
-		curl_close($curl);
-	}
-
-	public function stp_subscription($email, $amount, $plan, $userid, $duration){
-
-		$url = "https://api.paystack.co/transaction/initialize";
-
-		$fields = [
-
-			'email' => "$email",
-
-			'amount' => $amount * 100,
-
-			'plan' => "$plan",
-
-			'invoice_limit' => $duration
-
-		];
-
-		$fields_string = http_build_query($fields);
-
-		//open connection
-
-		$ch = curl_init();		
-
-		//set the url, number of POST vars, POST data
-
-		curl_setopt($ch, CURLOPT_URL, $url);
-
-		curl_setopt($ch, CURLOPT_POST, true);
-
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-
-			"Authorization: Bearer sk_live_9ebad81beeda5a8cfe05fd8b4853a1942167e56b",
-
-			"Cache-Control: no-cache",
-
-		));		
-
-		//So that curl_exec returns the contents of the cURL; rather than echoing it
-
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);		
-
-		//execute post
-
-		$response = json_decode(curl_exec($ch), true);
-
-		if($response['status']){
-
-			if($this->buytolet_model->update_with_authorization_url($response['data']['authorization_url'], $userid)){
-				
-				if($this->subscription_email($name, $amount, date('Y-m-d H:i:s'), $plan, $duration, $response['data']['authorization_url'], $email)){
-					return 1;
-				}else{
-					return 0;
-				}
-			}else{
-
-				return 04;
-
-			}		
-
-		}else{
-
-			return curl_error($curl);;
-
-		}
-
-	}
-
-	public function generate_subscription_email(){
-
-		$users = $this->buytolet_model->get_stp_users();
-
-		if(count($users) > 0){
-
-			for($i = 0; $i < count($users); $i++){
-
-				$user = $this->buytolet_model->get_user($users[$i]['userID']);
-
-				if(isset($user)){
-
-					$name = $user['lastName'];
-
-					$email = $user['email'];
-
-					$auth_url = $users[$i]['authorization_url'];
-
-					$duration = $users[$i]['duration'].' '.$users[$i]['frequency'];
-
-					$plan_name = $users[$i]['plan_code'];
-
-					$subscription_date = $users[$i]['date_subscribed'];
-
-					$subscription_amount = $users[$i]['purchase_amount'];
-					
-					$res = $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
-
-					if($res == 1){
-						echo "Done <br />";
-					}else{
-						echo "Not completed : ".$res." <br />";
-					}
-
-				}
-			}	
-		}
-
-	}
-
-
-	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
+	function subscription_email($name = 'Crowther', $subscription_amount = 1000000, $subscription_date = '2023-07-27 10:00:00', $plan_name = 'PLN_seuncrowther', $duration = 2, $auth_url = 'https://www.google.com', $email = 'seuncrowther@yahoo.com'){
 		
 		require 'vendor/autoload.php';
 
@@ -4741,10 +4510,11 @@ class Buytolet extends CI_Controller
 		$emailRes = json_decode($this->email->send(), true);
 
 		if($emailRes['status'] == 'success')
-			return 1;
+			echo 1;
 		else
-			return $emailRes['status'].' - '.$emailRes['job_id'];
+			print_r($emailRes);
 	}
+
 
 	function test_subscription_email($name = 'Crowther', $subscription_amount = 1000000, $subscription_date = '2023-07-27 10:00:00', $plan_name = 'PLN_seuncrowther', $duration = 2, $auth_url = 'https://www.google.com', $email = 'seuncrowther@yahoo.com'){
 		
