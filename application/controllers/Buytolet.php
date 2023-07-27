@@ -4743,7 +4743,7 @@ class Buytolet extends CI_Controller
 		if($emailRes['status'] == 'success')
 			return 1;
 		else
-			return 0;
+			return $emailRes['status'].' - '.$emailRes['job_id'];
 	}
 	
 }
