@@ -4510,8 +4510,8 @@ class Buytolet extends CI_Controller
 		$emailRes = json_decode($this->email->send(), true);
 
 		if($emailRes['status'] == 'success')
-			return 1;
+			echo 1;
 		else
-			return $emailRes['status'].' - '.$emailRes['job_id'];
+			print_r($emailRes);
 	}
 }
