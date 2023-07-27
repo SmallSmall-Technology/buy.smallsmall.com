@@ -4563,29 +4563,38 @@ class Buytolet extends CI_Controller
 
 			$data['response'] = $htmlBody;
 
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "subject",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Buysmallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+
+			$emailRes = json_decode($responseEmail->getBody()->getContents(), true);
+
+			if($emailRes['status'] == 'success')
+				echo 1;
+			else
+				print_r($emailRes);
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 
 		}
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-		$this->email->to($email);
-
-		$this->email->subject("BuySmallsmall Property Shares Subscription");
-
-		$this->email->set_mailtype("html");
-
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-		$this->email->message($message);
-
-		$emailRes = json_decode($this->email->send(), true);
-
-		if($emailRes['status'] == 'success')
-			echo 1;
-		else
-			print_r($emailRes);
+		
 	}
 	
 }
