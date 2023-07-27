@@ -100,6 +100,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // Properties filter
 
+$route['test/sub-email'] = 'buytolet/subscription_email';
+
 $route['test/eligible'] = 'buytolet/get_eligible_users';
 
 $route['tests/date-diff'] = 'tests/getNumOfDays';
