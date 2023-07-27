@@ -4745,5 +4745,77 @@ class Buytolet extends CI_Controller
 		else
 			return $emailRes['status'].' - '.$emailRes['job_id'];
 	}
+
+	function test_subscription_email($name = 'Crowther', $subscription_amount = 1000000, $subscription_date = '2023-07-27 10:00:00', $plan_name = 'PLN_seuncrowther', $duration = 2, $auth_url = 'https://www.google.com', $email = 'seuncrowther@yahoo.com'){
+		
+		require 'vendor/autoload.php';
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "dccfd05e-26bd-11ee-add8-22c5ed548c22"
+		];
+
+		try {
+
+			$response = $client->request('POST', 'template/get.json', array(
+				'headers' => $headers,
+				'json' => $requestBody,
+			));
+
+			$jsonResponse = $response->getBody()->getContents();
+
+			$responseData = json_decode($jsonResponse, true);
+
+			$htmlBody = $responseData['template']['body']['html'];
+
+			$htmlBody = str_replace('{{name}}', $name, $htmlBody);
+
+			$htmlBody = str_replace('{{amount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{subscriptionAmount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{subscriptionDate}}', $subscription_date, $htmlBody);
+
+			$htmlBody = str_replace('{{STPPlan}}', $plan_name, $htmlBody);
+
+			$htmlBody = str_replace('{{STPDuration}}', $duration, $htmlBody);
+
+			$htmlBody = str_replace('{{authorizationURL}}', $auth_url, $htmlBody);
+
+			$data['response'] = $htmlBody;
+
+		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+			$data['response'] = $e->getMessage();
+
+		}
+		$this->email->from('donotreply@smallsmall.com', 'Small Small');
+
+		$this->email->to($email);
+
+		$this->email->subject("BuySmallsmall Property Shares Subscription");
+
+		$this->email->set_mailtype("html");
+
+		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+
+		$this->email->message($message);
+
+		$emailRes = json_decode($this->email->send(), true);
+
+		if($emailRes['status'] == 'success')
+			echo 1;
+		else
+			print_r($emailRes);
+	}
 	
 }
