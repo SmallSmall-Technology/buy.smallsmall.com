@@ -1,6 +1,6 @@
 // JavaScript Document
 
-var baseUrl = "https://dev-buy.smallsmall.com/";
+var baseUrl = "https://buy.smallsmall.com/";
 
 
 

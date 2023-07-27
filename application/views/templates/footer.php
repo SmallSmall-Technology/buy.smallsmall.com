@@ -28,14 +28,14 @@
         	<div class="footer-quick-link-section">
 				<div class="footer-grid-box">
 					<a class="link-header" href="/">Products</a>
-					<a class="link-text" target="_blank" href="https://dev-rent.smallsmall.com">Rent</a>
-					<a class="link-text" target="_blank" href="https://dev-stay.smallsmall.com">Nightly stay</a>
+					<a class="link-text" target="_blank" href="https://rent.smallsmall.com">Rent</a>
+					<a class="link-text" target="_blank" href="https://stay.smallsmall.com">Nightly stay</a>
 					<a class="link-text" href="<?php echo base_url(); ?>">Buy</a>
 				</div>
 				<div class="footer-grid-box">
 					<a class="link-header" href="/">Company</a>
 					<a target="_blank" class="link-text" href="https://www.smallsmall.com/about">About us</a>
-					<a target="_blank" class="link-text" href="https://dev-rent.smallsmall.com/blog">Blog</a>
+					<a target="_blank" class="link-text" href="https://rent.smallsmall.com/blog">Blog</a>
 					<a class="link-text" href="#">Careers</a>
 					<a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>
 				</div>

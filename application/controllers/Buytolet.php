@@ -1733,27 +1733,30 @@ class Buytolet extends CI_Controller
 					$htmlBody = str_replace('{{link}}', $link, $htmlBody);
 
 					$data['response'] = $htmlBody;
+
+					// Prepare the email data
+					$emailData = [
+						"message" => [
+							"recipients" => [
+								["email" => $email],
+							],
+							"body" => ["html" => $htmlBody],
+							"subject" => "Confirm your email",
+							"from_email" => "donotreply@smallsmall.com",
+							"from_name" => "Smallsmall",
+						],
+					];
+
+					// Send the email using the Unione API
+					$responseEmail = $client->request('POST', 'email/send.json', [
+						'headers' => $headers,
+						'json' => $emailData,
+					]);
+
 				} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 					$data['response'] = $e->getMessage();
 				}
-				$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-				$this->email->to($email);
-
-				$this->email->subject("Confirm your email");
-
-				$this->email->set_mailtype("html");
-
-				$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-				// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-				$this->email->message($message);
-
-				$emailRes = $this->email->send();
-
-				// End Of Unione
 
 				//Insert notification
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
@@ -2135,15 +2138,23 @@ class Buytolet extends CI_Controller
 
 		$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID']);
 
-		if (!empty($toStatus)) {
+		if (isset($toStatus)) {
 
 			if ($purchase_frequency && $duration) {
+
 				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration);
+
+				$this->stp_subscription_plan($email, $userid, $interval, $amount, $duration);
+
 			}
 		} else {
 
 			if ($purchase_frequency && $duration) {
-				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration);
+
+				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref);
+
+				$this->stp_subscription_plan($email, $userid, $interval, $amount, $duration);
+
 			}
 		}
 
@@ -2807,26 +2818,40 @@ class Buytolet extends CI_Controller
 				$htmlBody = str_replace('{{Name}}', $name, $htmlBody);
 
 				$data['response'] = $htmlBody;
+
+				// Prepare the email data
+				$emailData = [
+					"message" => [
+						"recipients" => [
+							["email" => $username],
+						],
+						"body" => ["html" => $htmlBody],
+						"subject" => "Password Reset Link",
+						"from_email" => "donotreply@smallsmall.com",
+						"from_name" => "Smallsmall",
+					],
+				];
+
+				// Send the email using the Unione API
+				$responseEmail = $client->request('POST', 'email/send.json', [
+					'headers' => $headers,
+					'json' => $emailData,
+				]);
+
+				// // Output the result
+				// if($responseEmail){
+				// 	echo 1;
+				// }else{
+				// 	echo 0;
+				// }
+
 			} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
-				$data['response'] = $e->getMessage();
+				// $data['response'] = $e->getMessage();
 			}
 
-			$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-			$this->email->to($username);
-
-			$this->email->subject("Password Reset Link");
-
-			$this->email->set_mailtype("html");
-
-			$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-			$this->email->message($message);
-
-			$emailRes = $this->email->send();
-
 			echo 1;
+
 		} else {
 
 			echo "Email doesn't not exist";
@@ -3236,9 +3261,9 @@ class Buytolet extends CI_Controller
 
 		$data['address'] = $property_address . ' ' . $property_city . ', ' . $property_state;
 
-		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
+		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
 
-		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
+		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
 
 		//Set folder to save PDF to
 		$this->html2pdf->folder('./uploads/offers/');
@@ -4295,24 +4320,51 @@ class Buytolet extends CI_Controller
 			$htmlBody = str_replace('{{link}}', base_url('login'), $htmlBody);
 
 			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Payment Successful",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Smallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+	
+			// Output the result
+			if($responseEmail){
+				echo 1;
+			}else{
+				echo 0;
+			}
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
 
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
+		// $this->email->from('donotreply@smallsmall.com', 'Small Small');
 
-		$this->email->to($email);
+		// $this->email->to($email);
 
-		$this->email->subject("Payment Successful");
+		// $this->email->subject("Payment Successful");
 
-		$this->email->set_mailtype("html");
+		// $this->email->set_mailtype("html");
 
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+		// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
-		$this->email->message($message);
+		// $this->email->message($message);
 
-		$emailRes = $this->email->send();
+		// $emailRes = $this->email->send();
 	}
 
 	public function self_shares_notification_email($name, $propertyName, $propertyLocation, $sharesAmount, $amount, $email, $rate, $holdPeriod, $migrationDate, $completionDate)
@@ -4368,27 +4420,38 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = str_replace('{{rate}}', $rate, $htmlBody);
 
-
-
 			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Payment Successful",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Smallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+	
+			// Output the result
+			if($responseEmail){
+				echo 1;
+			}else{
+				echo 0;
+			}
+	
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
-
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-		$this->email->to($email);
-
-		$this->email->subject("Payment Successful");
-
-		$this->email->set_mailtype("html");
-
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-		$this->email->message($message);
-
-		$emailRes = $this->email->send();
 	}
 
 	public function get_eligible_users()
@@ -4509,9 +4572,13 @@ class Buytolet extends CI_Controller
 
 		$emailRes = json_decode($this->email->send(), true);
 
-		if($emailRes['status'] == 'success')
+		if($emailRes['status'] == 'success'){
+
 			echo 1;
-		else
-			print_r($emailRes);
-	}
+	
+    }else{
+        print_r($emailRes);
+    }
+ }
+	
 }
