@@ -102,9 +102,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 $route['test/sub-email'] = 'buytolet/subscription_email';
-//Manually sign users up for subscription
-$route['test/test-sub-email'] = 'buytolet/test_subscription_email';
 
+//Manually sign users up for subscription
 $route['paystack/paystack-api'] = 'paystackwebhook/get_paystack_event';
 
 $route['admin/generate-sub-email'] = 'buytolet/generate_subscription_email';

@@ -4443,7 +4443,51 @@ class Buytolet extends CI_Controller
 		//print_r($users);
 	}
 
-	function subscription_email($name = 'Crowther', $subscription_amount = 1000000, $subscription_date = '2023-07-27 10:00:00', $plan_name = 'PLN_seuncrowther', $duration = 2, $auth_url = 'https://www.google.com', $email = 'seuncrowther@yahoo.com'){
+	public function generate_subscription_email(){
+
+		$users = $this->buytolet_model->get_stp_users();
+
+		if(count($users) > 0){
+			for($i = 0; $i < count($users); $i++){
+
+				$user = $this->buytolet_model->get_user($users[$i]['userID']);
+
+				if($user){
+
+					$name = $users[$i]['lastName'];
+
+					$subscription_amount = $users[$i]['purchase_amount'];
+
+					$subscription_date = date('Y-m-d H:i:s');
+
+					$plan_name = $users[$i]['plan_code'];
+
+					$duration = $users[$i]['frequency'];
+
+					$auth_url = $users[$i]['authorization_url'];
+
+					$email = $user['email'];
+					
+					$res = $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
+
+					if($res == 1){
+						echo "Done <br />";
+					}else{
+						echo "Not completed : ".$res." <br />";
+					}
+
+				}	
+			}
+		}else{
+
+			echo "0 Users";
+			exit;
+
+		}	
+	}
+
+
+	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
 		
 		require 'vendor/autoload.php';
 
@@ -4490,29 +4534,40 @@ class Buytolet extends CI_Controller
 
 			$data['response'] = $htmlBody;
 
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "subject",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Buysmallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+
+			$emailRes = json_decode($responseEmail->getBody()->getContents(), true);
+
+			if($emailRes['status'] == 'success')
+				return 1;
+			else
+				return $emailRes['status'];
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 
+			return $data['response'];
+
 		}
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-		$this->email->to($email);
-
-		$this->email->subject("BuySmallsmall Property Shares Subscription");
-
-		$this->email->set_mailtype("html");
-
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-		$this->email->message($message);
-
-		$emailRes = json_decode($this->email->send(), true);
-
-		if($emailRes['status'] == 'success')
-			echo 1;
-		else
-			print_r($emailRes);
+		
 	}
 
 
