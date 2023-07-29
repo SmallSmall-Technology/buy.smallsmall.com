@@ -101,12 +101,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // Properties filter
 
 
-$route['test/sub-email'] = 'buytolet/subscription_email';
+//$route['test/sub-email'] = 'buytolet/subscription_email';
 
 //Manually sign users up for subscription
 $route['paystack/paystack-api'] = 'paystackwebhook/get_paystack_event';
 
-$route['admin/generate-sub-email'] = 'buytolet/generate_subscription_email';
+$route['admin/generate-sub-email/(:any)'] = 'buytolet/create_target_option_plan/$1';
 
 $route['test/eligible'] = 'buytolet/get_eligible_users';
 
