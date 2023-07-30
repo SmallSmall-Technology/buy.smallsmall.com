@@ -4477,9 +4477,9 @@ class Buytolet extends CI_Controller
 
 					CURLOPT_POSTFIELDS => array(
 
-						"name" => "$plan_name",
+						"name" => '"'.$plan_name.'"',
 
-						"interval" => "$frequency",
+						"interval" => '"'.$frequency.'"',
 
 						"amount" => $amount * 100,
 
@@ -4512,6 +4512,9 @@ class Buytolet extends CI_Controller
 					$this->subscribe_user($amount, $plan_code, $user);
 					
 				}
+			}else{
+				$err = curl_error($curl);
+				echo "Error : ".$err;
 			}
 		}	
 		//$err = curl_error($curl);
@@ -4536,11 +4539,11 @@ class Buytolet extends CI_Controller
 
 		$fields = [
 
-			'email' => "$email",
+			'email' => '"'.$email.'"',
 
 			'amount' => $amount * 100,
 
-			'plan' => "$plan_code"
+			'plan' => '"'.$plan_code.'"'
 
 		];
 
@@ -4572,7 +4575,7 @@ class Buytolet extends CI_Controller
 
 			if($this->buytolet_model->update_with_authorization_url($auth_url, $userID))
 
-				$this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
+				return $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
 
 			else
 
