@@ -2520,7 +2520,7 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_single_stp_user($userID, $ref){
+	public function get_single_stp_user($userID){
 
 		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName');
 
@@ -2530,7 +2530,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.userID', $userID);
 
-		$this->db->where('a.request_id', $ref);
+		//$this->db->where('a.request_id', $ref);
 
 		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
 
@@ -2540,7 +2540,7 @@ class Buytolet_model extends CI_Model
 
 		$query = $this->db->get();
 
-		return $query->result_array();
+		return $query->row_array();
 	}
 
 	public function update_with_plan_code($plan_code, $userid){
