@@ -4451,7 +4451,19 @@ class Buytolet extends CI_Controller
 
 		if($user){
 
-			$plan_name = strtolower($user['frequency']). ' STP Plan';
+			$frequency = '';
+
+			if($user['frequency'] == 'Monthly'){
+				$frequency = 'monthly';
+			}elseif($user['frequency'] == 'Daily'){
+				$frequency = 'daily';
+			}elseif($user['frequency'] == 'Weekly'){
+				$frequency = 'weekly';
+			}
+
+			$plan_name = $user['frequency']. ' STP Plan';
+
+			$frequency = $frequency;
 
 			$amount = $user['purchase_amount'];
 
@@ -4479,7 +4491,7 @@ class Buytolet extends CI_Controller
 
 						"name" => '"'.$plan_name.'"',
 
-						"interval" => '"'.$frequency.'"',
+						"interval" => $frequency,
 
 						"amount" => $amount * 100,
 
@@ -4489,7 +4501,7 @@ class Buytolet extends CI_Controller
 
 					CURLOPT_HTTPHEADER => array(
 
-						"Authorization: Bearer sk_live_9ebad81beeda5a8cfe05fd8b4853a1942167e56b",
+						"Authorization: Bearer ".PAYSTACK_SECRET_KEY,
 
 						"Cache-Control: no-cache"
 
@@ -4539,11 +4551,11 @@ class Buytolet extends CI_Controller
 
 		$fields = [
 
-			'email' => '"'.$email.'"',
+			'email' => "$email",
 
 			'amount' => $amount * 100,
 
-			'plan' => '"'.$plan_code.'"'
+			'plan' => "$plan_code"
 
 		];
 
@@ -4559,7 +4571,7 @@ class Buytolet extends CI_Controller
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
-			"Authorization: Bearer sk_live_9ebad81beeda5a8cfe05fd8b4853a1942167e56b",
+			"Authorization: Bearer ".PAYSTACK_SECRET_KEY,
 
 			"Cache-Control: no-cache",
 
@@ -4569,11 +4581,13 @@ class Buytolet extends CI_Controller
 
 		$result = json_decode(curl_exec($ch), true);
 
+		print_r($result);
+
 		if($result['status']){
 
 			$auth_url = $result['data']['authorization_url'];
 
-			if($this->buytolet_model->update_with_authorization_url($auth_url, $userID))
+			if($this->buytolet_model->update_with_authorization_url($auth_url, $user['userID']))
 
 				return $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
 

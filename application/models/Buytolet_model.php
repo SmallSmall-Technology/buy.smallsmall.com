@@ -2522,7 +2522,7 @@ class Buytolet_model extends CI_Model
 
 	public function get_single_stp_user($userID){
 
-		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName');
+		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
 
 		$this->db->from('target_options as a');
 
