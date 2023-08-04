@@ -3068,6 +3068,8 @@ class Buytolet extends CI_Controller
 
 		if ($result) {
 
+			$this->create_target_option_plan($userID);
+
 			$notificationRes = 0;
 
 			$subject = 'Property Offer Update';
@@ -3138,14 +3140,14 @@ class Buytolet extends CI_Controller
 				$this->self_shares_email($subject, $email, $unit_amount, $property_name, $payable, $prop['finish_date'], $returns, $hold_period, $prop['maturity_date'], $lastname);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+				//$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 
 				if ($request['purchase_beneficiary'] == 'Self') {
 
-					$user_certificate = $this->shares_certificate($userID,  $request['refID'], $name, $email, $request['unit_amount'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
+					//$user_certificate = $this->shares_certificate($userID,  $request['refID'], $name, $email, $request['unit_amount'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
 
-					$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
+					//$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
 
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
 				}
@@ -3236,9 +3238,9 @@ class Buytolet extends CI_Controller
 
 		$data['address'] = $property_address . ' ' . $property_city . ', ' . $property_state;
 
-		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
+		$pdf_content = '<div style="width:100%;height:800px;padding:20px;background:url(' . "https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" . ');background-position:center;background-size:cover;background-repeat:no-repeat"></div>';
 
-		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
+		//<div style="width:100%;height:800px;padding:20px;position:relative"><img src="https://dev-buy.smallsmall.com/assets/images/cs-bg-1.png" width="100%" /><div style="width:70%;height:100px;position:absolute;top:100px;left:10%;background:#333;z-index:99999999999"></div></div>
 
 		//Set folder to save PDF to
 		$this->html2pdf->folder('./uploads/offers/');
@@ -4443,125 +4445,289 @@ class Buytolet extends CI_Controller
 		//print_r($users);
 	}
 
-	public function get_stp_buyers(){
+	public function create_target_option_plan($userID){
 
-		$users = $this->buytolet_model->get_stp_users();
+		$user = $this->buytolet_model->get_single_stp_user($userID);
 
-		for($i = 0; $i < count($users); $i++){
+		if($user){
 
-			$email = $this->buytolet_model->get_user($users[$i]['userID'])['email'];
+			$frequency = '';
 
-			$this->stp_subscription_plan($email, $users[$i]['userID'], strtolower($users[$i]['duration']), $users[$i]['amount']);
+			if($user['frequency'] == 'Monthly'){
+				$frequency = 'monthly';
+			}elseif($user['frequency'] == 'Daily'){
+				$frequency = 'daily';
+			}elseif($user['frequency'] == 'Weekly'){
+				$frequency = 'weekly';
+			}
 
-		}
+			$plan_name = $user['frequency']. ' STP Plan';
+
+			$frequency = $frequency;
+
+			$amount = $user['purchase_amount'];
+
+			$interval = $user['duration'];
+
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+
+					CURLOPT_URL => "https://api.paystack.co/plan",
+
+					CURLOPT_RETURNTRANSFER => true,
+
+					CURLOPT_ENCODING => "",
+
+					CURLOPT_MAXREDIRS => 10,
+
+					CURLOPT_TIMEOUT => 30,
+
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+
+					CURLOPT_CUSTOMREQUEST => "POST",
+
+					CURLOPT_POSTFIELDS => array(
+
+						"name" => '"'.$plan_name.'"',
+
+						"interval" => $frequency,
+
+						"amount" => $amount * 100,
+
+						"invoice_limit" => $interval
+
+					),
+
+					CURLOPT_HTTPHEADER => array(
+
+						"Authorization: Bearer ".PAYSTACK_SECRET_KEY,
+
+						"Cache-Control: no-cache"
+
+					),
+
+				)
+
+			);
+
+			$response = json_decode(curl_exec($curl), true);
+
+			if($response['status']){
+				//Update table with plan code from Paystack
+				$plan_code = $response['data']['plan_code'];
+
+				$result = $this->buytolet_model->update_with_plan_code($plan_code, $userID);
+
+				if($result){
+					//Subscribe user
+					$this->subscribe_user($amount, $plan_code, $user);
+					
+				}
+			}else{
+				$err = curl_error($curl);
+				echo "Error : ".$err;
+			}
+		}	
+		//$err = curl_error($curl);
+
 	}
 
-	public function stp_subscription_plan($email, $userid, $interval, $amount){
+	public function subscribe_user($amount, $plan_code, $user){
 
-		$curl = curl_init();
+		$email = $user['user_email'];
 
-		curl_setopt_array($curl, array(
+		$name = $user['lastName'];
 
-			CURLOPT_URL => "https://api.paystack.co/plan",
-
-			CURLOPT_RETURNTRANSFER => true,
-
-			CURLOPT_ENCODING => "",
-
-			CURLOPT_MAXREDIRS => 10,
-
-			CURLOPT_TIMEOUT => 30,
-
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-
-			CURLOPT_CUSTOMREQUEST => "POST",
-
-			CURLOPT_POSTFIELDS => array(
-
-				"name" => $interval." STP Plan",
-
-				"interval" => $interval,
-
-				"amount" => $amount
-
-			),
-
-			CURLOPT_HTTPHEADER => array(
-
-				"Authorization: Bearer B55-R3Nt55",
-
-				"Cache-Control: no-cache"
-
-			),
-
-			)
-
-		);
-
-		$response = curl_exec($curl);
-
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-
-			echo "cURL Error #:" . $err;
-
-		} else {
-
-			$this->stp_subscription($email, $amount, $response['data']['plan_code']);
-
-			$this->buytolet_model->update_with_plan_code($response['data']['plan_code'], $userid);
-
-		}
-	}
-
-	public function stp_subscription($email, $amount, $plan){
+		$subscription_amount = $amount;
+		
+		$subscription_date = date("Y-m-d");
+		
+		$plan_name = $user['frequency']. 'STP Plan';
+		
+		$duration = $user['duration']. ' '. $user['frequency'];
 
 		$url = "https://api.paystack.co/transaction/initialize";
 
 		$fields = [
 
-			'email' => $email,
+			'email' => "$email",
 
-			'amount' => $amount,
+			'amount' => $amount * 100,
 
-			'plan' => $plan
+			'plan' => "$plan_code"
 
 		];
 
 		$fields_string = http_build_query($fields);
 
-		//open connection
+		$ch = curl_init();
 
-		$ch = curl_init();		
+		curl_setopt($ch,CURLOPT_URL, $url);
 
-		//set the url, number of POST vars, POST data
+		curl_setopt($ch,CURLOPT_POST, true);
 
-		curl_setopt($ch, CURLOPT_URL, $url);
-
-		curl_setopt($ch, CURLOPT_POST, true);
-
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
-			"Authorization: Bearer B55-R3Nt55",
+			"Authorization: Bearer ".PAYSTACK_SECRET_KEY,
 
 			"Cache-Control: no-cache",
 
-		));		
+		));
 
-		//So that curl_exec returns the contents of the cURL; rather than echoing it
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);		
+		$result = json_decode(curl_exec($ch), true);
 
-		//execute post
+		print_r($result);
 
-		$result = curl_exec($ch);
+		if($result['status']){
 
-		echo $result;
+			$auth_url = $result['data']['authorization_url'];
 
+			if($this->buytolet_model->update_with_authorization_url($auth_url, $user['userID']))
+
+				return $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
+
+			else
+
+				return 0;
+
+		}else{
+
+			return 0;
+
+		}
 	}
+
+	public function generate_subscription_email($id){
+
+		//$users = $this->buytolet_model->get_stp_users();
+
+		if(count($users) > 0){
+			for($i = 0; $i < count($users); $i++){
+
+				$user = $this->buytolet_model->get_user($id);
+
+				if($user){
+
+					$name = $users[$i]['lastName'];
+
+					$subscription_amount = $users[$i]['purchase_amount'];
+
+					$subscription_date = date('Y-m-d H:i:s');
+
+					$plan_name = $users[$i]['plan_code'];
+
+					$duration = $users[$i]['frequency'];
+
+					$auth_url = $users[$i]['authorization_url'];
+
+					$email = $user['email'];
+					
+					$res = $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
+
+					if($res == 1){
+						echo "Done <br />";
+					}else{
+						echo "Not completed : ".$res." <br />";
+					}
+
+				}	
+			}
+		}else{
+
+			echo "0 Users";
+
+			exit;
+
+		}	
+	}
+
+
+	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
+		
+		require 'vendor/autoload.php';
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "dccfd05e-26bd-11ee-add8-22c5ed548c22"
+		];
+
+		try {
+
+			$response = $client->request('POST', 'template/get.json', array(
+				'headers' => $headers,
+				'json' => $requestBody,
+			));
+
+			$jsonResponse = $response->getBody()->getContents();
+
+			$responseData = json_decode($jsonResponse, true);
+
+			$htmlBody = $responseData['template']['body']['html'];
+
+			$htmlBody = str_replace('{{name}}', $name, $htmlBody);
+
+			$htmlBody = str_replace('{{amount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{subscriptionAmount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{subscriptionDate}}', $subscription_date, $htmlBody);
+
+			$htmlBody = str_replace('{{STPPlan}}', $plan_name, $htmlBody);
+
+			$htmlBody = str_replace('{{STPDuration}}', $duration, $htmlBody);
+
+			$htmlBody = str_replace('{{authorizationURL}}', $auth_url, $htmlBody);
+
+			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "subject",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Buysmallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+
+			$emailRes = json_decode($responseEmail->getBody()->getContents(), true);
+
+			if($emailRes['status'] == 'success')
+				return 1;
+			else
+				return $emailRes['status'];
+
+		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+			$data['response'] = $e->getMessage();
+
+			return $data['response'];
+
+		}
+		
+	}
+	
 }

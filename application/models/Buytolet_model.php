@@ -1047,6 +1047,7 @@ class Buytolet_model extends CI_Model
 			$this->db->update('target_options', $targetOptions);
 
 			return 1;
+
 		} else {
 
 			return 0;
@@ -2395,14 +2396,15 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
+
 	}
 
-	public function insertTargetOptions($userID, $frequency, $duration)
+	public function insertTargetOptions($userID, $frequency, $duration, $ref)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today);
+		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today, 'request_id' => $ref);
 
 		return $this->db->insert('target_options', $targetOptions);
 	}
@@ -2499,7 +2501,7 @@ class Buytolet_model extends CI_Model
 
 	public function get_stp_users(){
 
-		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount');
+		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName');
 
 		$this->db->from('target_options as a');
 
@@ -2509,6 +2511,8 @@ class Buytolet_model extends CI_Model
 
 		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
 
+		$this->db->join('user_tbl as d', 'd.userID = b.userID');
+
 		$this->db->group_by('a.userID');
 
 		$query = $this->db->get();
@@ -2516,9 +2520,80 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
+	public function get_single_stp_user($userID){
+
+		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
+
+		$this->db->from('target_options as a');
+
+		$this->db->where('a.active', 1);
+
+		$this->db->where('a.userID', $userID);
+
+		//$this->db->where('a.request_id', $ref);
+
+		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
+
+		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
+
+		$this->db->join('user_tbl as d', 'd.userID = b.userID');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
+
 	public function update_with_plan_code($plan_code, $userid){
 
-		return 1;
+		$update = array('plan_code' => $plan_code);
 
+		$this->db->where('userID', $userid);
+
+		return $this->db->update('target_options', $update);
+
+	}
+
+	public function update_with_authorization_url($authorization_url, $userid){
+
+		$update = array('authorization_url' => $authorization_url);
+
+		$this->db->where('userID', $userid);
+
+		return $this->db->update('target_options', $update);
+
+	}
+
+	public function update_with_request_id($refID, $userID){
+
+		$update = array('request_id' => $refID);
+
+		$this->db->where('userID', $userID);
+
+		return $this->db->update('target_options', $update);
+	}
+
+	public function subscription_created($event){
+
+		$next_payment_date = date('Y-m-d H:i:s', strtotime($event['data']['next_payment_date']));
+
+		$inserts = array('plan_code' => $event['data']['plan']['plan_code'], 'subscription_code' => $event['data']['subscription_code'], 'next_payment_date' => $next_payment_date, 'authorization_code' => $event['data']['authorization']['authorization_code'], 'bin' => $event['data']['authorization']['bin'], 'last_4' => $event['data']['authorization']['last4'], 'expiry_year' => $event['data']['authorization']['exp_year'], 'expiry_month' => $event['data']['authorization']['exp_month'], 'card_type' => $event['data']['authorization']['card_type'], 'card_brand' => $event['data']['authorization']['brand'], 'bank' => $event['data']['authorization']['bank'], 'country_code' => $event['data']['authorization']['country_code'], 'account_name' => $event['data']['authorization']['account_name'], 'customer_code' => $event['data']['customer']['customer_code'], 'entry_date' => date('Y-m-d H:i:s'));
+
+		return $this->db->insert('subscription_payment_tbl', $inserts);
+
+	}
+
+	public function get_request_details_by_plan_code($plan_code){
+
+		$this->db->select('a.*, b.*');
+
+		$this->db->from('target_options as a');
+
+		$this->db->join('buytolet_request as b', 'b.refID = a.request_id');
+
+		$this->db->where('a.plan_code', $plan_code);
+
+		$query = $this->db->get();
+
+		return $query->row_array();
 	}
 }
