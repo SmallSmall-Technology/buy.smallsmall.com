@@ -1359,15 +1359,19 @@ class Buytolet_model extends CI_Model
 	public function get_total_coown_shares($userID)
 	{
 
+		$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
+
 		$this->db->select_sum('a.unit_amount');
 
 		$this->db->from('buytolet_request as a');
+
+		//$this->db->group_start();
 
 		$this->db->where('a.userID', $userID);
 
 		$this->db->where('a.plan', 'co-own');
 
-		($this->db->where('a.purchase_beneficiary', 'Champions') ->or_where('a.purchase_beneficiary', 'Champions') );
+		$this->db->where_not_in('a.purchase_beneficiary', $options);
 
 		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
 
