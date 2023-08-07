@@ -1371,7 +1371,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.purchase_beneficiary', 'Self');
 
-		$this->db->or_where('a.method', 'Promotional');
+		$this->db->or_where('a.purchase_beneficiary', 'Free');
 
 		$query = $this->db->get();
 
