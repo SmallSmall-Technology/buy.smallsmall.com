@@ -1365,13 +1365,11 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.userID', $userID);
 
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
-
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->where('a.purchase_beneficiary', 'Self');
+		($this->db->where('a.purchase_beneficiary', 'Champions') ->or_where('a.purchase_beneficiary', 'Champions') );
 
-		$this->db->or_where('a.purchase_beneficiary', 'Free');
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
 
 		$query = $this->db->get();
 
