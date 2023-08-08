@@ -1335,19 +1335,19 @@ class Buytolet_model extends CI_Model
 	public function get_total_portfolios($userID)
 	{
 
+		$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
+
 		$this->db->select_sum('a.unit_amount');
 
 		$this->db->from('buytolet_request as a');
 
 		$this->db->where('a.userID', $userID);
 
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
-
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->where('a.purchase_beneficiary', 'Self');
+		$this->db->where_not_in('a.purchase_beneficiary', $options);
 
-		$this->db->or_where('a.purchase_beneficiary', 'Promotional');
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
 
 		$this->db->group_by('a.propertyID');
 
@@ -1971,21 +1971,33 @@ class Buytolet_model extends CI_Model
 	public function getAllUserCoOwnProperties($user_id, $rID = 0)
 	{
 
+		$options = array('Self', 'Free');
+
 		$this->db->select('a.purchase_beneficiary, a.propertyID, a.request_date, a.unit_amount, b.price, c.amount, e.no_of_units');
 
 		$this->db->from('buytolet_request as a');
 
 		if ($rID) {
+
 			$this->db->where('a.id', $rID);
+			
 		}
 
 		$this->db->where('a.plan', 'co-own');
+		
+		$this->db->group_start();
+			
+			$this->db->or_where('e.receiverID', $user_id);
 
-		$this->db->where('a.userID', $user_id);
+			$this->db->or_group_start();
 
-		$this->db->where('a.purchase_beneficiary', 'Self');
+				$this->db->where('a.userID', $user_id);
 
-		$this->db->or_where('e.receiverID', $user_id);
+				$this->db->where_in('a.purchase_beneficiary', $options);
+
+			$this->db->group_end();
+
+		$this->db->group_end();
 
 		$this->db->join('buytolet_beneficiary_details as e', 'e.requestID = a.refID', 'LEFT OUTER');
 
