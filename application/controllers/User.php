@@ -346,6 +346,10 @@ class User extends CI_Controller
 
 			$data['all_co_own_properties'] = $this->buytolet_model->get_all_co_own_properties($data['userID']);
 
+			$worth_and_bbr = $this->getPropertyWorth($data['userID']);
+
+			$data['buybackrate'] = $worth_and_bbr['buybackrate'];
+
 			$data['profile_title'] = "Property Portfolio";
 
 			$data['title'] = "Property Portfolio";
@@ -353,7 +357,7 @@ class User extends CI_Controller
 			if (!empty($data['co_details']) && $data['co_details']['request_status'] == 'new') {
 
 				$this->buytolet_model->changeRequestStatus($data['co_details']['reqID']);
-			}
+			} 
 
 			$this->load->view('user/templates/header', $data);
 
@@ -413,10 +417,9 @@ class User extends CI_Controller
 
 			$data['all_co_own_history'] = $this->buytolet_model->get_all_co_own_history($data['userID']);
 
-
 			$data['profile_title'] = "Property Portfolio";
 
-			$data['title'] = "Property Portfolio";
+			$data['title'] = "Property Portfolio"; 
 
 			$this->load->view('user/templates/header', $data);
 

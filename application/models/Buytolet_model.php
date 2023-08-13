@@ -1487,7 +1487,7 @@ class Buytolet_model extends CI_Model
 	public function get_co_own_property($id)
 	{
 
-		$this->db->select('a.*, a.status as request_status, a.id as reqID, a.propertyID as propID, b.*, c.*, d.*');
+		$this->db->select('a.*, a.status as request_status, a.id as reqID, a.propertyID as propID, b.*, c.*, c.amount as transaction_amount, d.*');
 
 		$this->db->from('buytolet_request as a');
 
@@ -1532,6 +1532,7 @@ class Buytolet_model extends CI_Model
 
 	public function get_all_co_own_properties($userID)
 	{
+		$options = array('Self', 'Free');
 
 		$this->db->select('a.*, a.id as reqID, b.*, c.*, d.*, e.*');
 
@@ -1543,11 +1544,15 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->where('a.userID', $userID);
+		$this->db->where_in('a.purchase_beneficiary', $options);
 
-		$this->db->where('a.purchase_beneficiary', 'Self');
+		$this->db->group_start();
 
-		$this->db->or_where('e.receiverID', $userID);
+			$this->db->where('a.userID', $userID);
+
+			$this->db->or_where('e.receiverID', $userID);
+
+		$this->db->group_end();
 
 		$this->db->join('buytolet_beneficiary_details as e', 'e.requestID = a.refID', 'LEFT OUTER');
 
@@ -1617,9 +1622,13 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->where('a.userID', $userID);
+		$this->db->group_start();
 
-		$this->db->or_where('e.receiverID', $userID);
+			$this->db->where('a.userID', $userID);
+
+			$this->db->or_where('e.receiverID', $userID);
+
+		$this->db->group_end();
 
 		$this->db->join('buytolet_beneficiary_details as e', 'e.requestID = a.refID', 'LEFT OUTER');
 

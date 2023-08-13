@@ -131,8 +131,8 @@
         </div>
         <div class="col-md-2 col-6 my-2 my-md-0">
           <p style="font-size: 14px;" class="font-weight-light">Paid</p>
-          <p style="font-size: 26px;">&#8358;<?php echo number_format($co_details['amount']); ?></p>
-        </div>
+          <p style="font-size: 26px;">&#8358;<?php echo number_format($co_details['transaction_amount']); ?></p>
+        </div> 
         <div class="col-md-2 col-6 my-2 my-md-0">
           <p style="font-size: 14px;" class="font-weight-light">Property Status</p>
           <p style="font-size: 26px;"><?php echo $co_details['construction_lvl']; ?></p>
@@ -182,7 +182,7 @@
         </div>
         <div class="col-md-2 col-6 my-2 my-md-0">
           <p style="font-size: 14px;" class="font-weight-light">Free Property Shares</p>
-          <p style="font-size: 26px;">0</p>
+          <p style="font-size: 26px;"><?php echo ($co_details['purchase_beneficiary'] == 'Free')? $co_details['unit_amount'] : 0; ?></p>
         </div>
         <div class="col-md-2 col-6 my-2 my-md-0">
           <p style="font-size: 14px;" class="font-weight-light">Transferred shares</p>
