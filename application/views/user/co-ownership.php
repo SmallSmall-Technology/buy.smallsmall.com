@@ -31,7 +31,7 @@
                     <p style="font-size:14px">Bought on <?php echo date('M Y', strtotime($value['request_date'])); ?><br><small class="font-weight-lighter">Co ownership</small></p>
                   </div>
                   <p class="card-text"><?php echo $value['property_name']; ?></p>
-                  <p class="card-text font-weight-lighter"><?php echo ($value['purchase_beneficiary'] == 'Self') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares</p>
+                  <p class="card-text font-weight-lighter"><?php echo ($value['purchase_beneficiary'] == 'Self' || $value['purchase_beneficiary'] == 'Free') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares</p>
                   <div class=" mt-5">
                     <a href="<?php echo base_url(); ?>user/co-ownership-property/<?php echo $value['reqID']; ?>" class="btn tertiary-background px-5">view</a>
                   </div>
