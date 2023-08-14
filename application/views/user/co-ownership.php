@@ -22,7 +22,12 @@
     <div class="row">
       <?php if (!empty($all_co_own_properties)) { ?>
         <?php foreach ($all_co_own_properties as $all_co_own_property => $value) { ?>
-          <?php if ($value['purchase_beneficiary'] != 'Champions') { ?>
+          
+          <?php if ($value['purchase_beneficiary'] != 'Champions') { 
+            
+            $p_ben = $value['purchase_beneficiary'];
+          ?>       
+            
             <div class="col-md-4 col-12  mb-4">
               <div class="card border-0 default-background h-100">
                 <div class="card-body">
@@ -31,7 +36,7 @@
                     <p style="font-size:14px">Bought on <?php echo date('M Y', strtotime($value['request_date'])); ?><br><small class="font-weight-lighter">Co ownership</small></p>
                   </div>
                   <p class="card-text"><?php echo $value['property_name']; ?></p>
-                  <p class="card-text font-weight-lighter"><?php echo ($value['purchase_beneficiary'] == 'Self' || $value['purchase_beneficiary'] == 'Free') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares</p>
+                  <p class="card-text font-weight-lighter"><?php echo ($p_ben == 'Self' || $p_ben == 'Free') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares <?php echo ($p_ben == 'Free')? '(Free)' : ''; ?></p>
                   <div class=" mt-5">
                     <a href="<?php echo base_url(); ?>user/co-ownership-property/<?php echo $value['reqID']; ?>" class="btn tertiary-background px-5">view</a>
                   </div>
