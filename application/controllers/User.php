@@ -1085,6 +1085,7 @@ class User extends CI_Controller
 
 		$properties = $this->buytolet_model->getAllUserCoOwnProperties($user_id);
 
+
 		if (count($properties) > 1) {
 
 			for ($i = 0; $i < count($properties); $i++) {
@@ -1092,7 +1093,7 @@ class User extends CI_Controller
 				//get request date diff
 				$date_diff = $this->getNumOfDays($properties[$i]['request_date']);
 
-				if ($properties[$i]['purchase_beneficiary'] == 'Self') {
+				if ($properties[$i]['purchase_beneficiary'] == 'Self' || $properties[$i]['purchase_beneficiary'] == 'Free') {
 
 					$worth = $worth + ($properties[$i]['unit_amount'] * $properties[$i]['price']);
 
@@ -1118,7 +1119,7 @@ class User extends CI_Controller
 			//get request date diff
 			$date_diff = $this->getNumOfDays($properties[0]['request_date']);
 
-			if ($properties[0]['purchase_beneficiary'] == 'Self') {
+			if ($properties[0]['purchase_beneficiary'] == 'Self' || $properties[0]['purchase_beneficiary'] == 'Free') {
 
 				$worth = $worth + ($properties[0]['unit_amount'] * $properties[0]['price']);
 
