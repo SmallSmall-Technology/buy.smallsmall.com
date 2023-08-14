@@ -2774,12 +2774,16 @@ class Buytolet extends CI_Controller
 
 			$headers = array(
 				'Content-Type' => 'application/json',
+
 				'Accept' => 'application/json',
+
 				'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
 			);
 
 			$client = new \GuzzleHttp\Client([
+
 				'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+
 			]);
 
 			$requestBody = [
@@ -2791,7 +2795,9 @@ class Buytolet extends CI_Controller
 			try {
 				$response = $client->request('POST', 'template/get.json', array(
 					'headers' => $headers,
+
 					'json' => $requestBody,
+
 				));
 
 				$jsonResponse = $response->getBody()->getContents();
@@ -2807,26 +2813,53 @@ class Buytolet extends CI_Controller
 				$htmlBody = str_replace('{{Name}}', $name, $htmlBody);
 
 				$data['response'] = $htmlBody;
+
+				// Prepare the email data
+				$emailData = [
+					"message" => [
+						"recipients" => [
+							["email" => $username],
+						],
+						"body" => ["html" => $htmlBody],
+
+						"subject" => "Password Reset Link",
+
+						"from_email" => "donotreply@smallsmall.com",
+
+						"from_name" => "BuySmallSmall Password Reset",
+
+					],
+				];
+
+				// Send the email using the Unione API
+
+				$responseEmail = $client->request('POST', 'email/send.json', [
+					'headers' => $headers,
+
+					'json' => $emailData,
+				]);
+
 			} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 				$data['response'] = $e->getMessage();
 			}
 
-			$this->email->from('donotreply@smallsmall.com', 'Small Small');
+			// $this->email->from('donotreply@smallsmall.com', 'Small Small');
 
-			$this->email->to($username);
+			// $this->email->to($username);
 
-			$this->email->subject("Password Reset Link");
+			// $this->email->subject("Password Reset Link");
 
-			$this->email->set_mailtype("html");
+			// $this->email->set_mailtype("html");
 
-			$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+			// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
-			$this->email->message($message);
+			// $this->email->message($message);
 
-			$emailRes = $this->email->send();
+			// $emailRes = $this->email->send();
 
 			echo 1;
+			
 		} else {
 
 			echo "Email doesn't not exist";
