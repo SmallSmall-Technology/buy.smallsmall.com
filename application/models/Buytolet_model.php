@@ -2617,4 +2617,18 @@ class Buytolet_model extends CI_Model
 
 		return $query->row_array();
 	}
+
+	public function check_if_stp_exists($id){
+
+		$this->db->from('target_options');
+
+		$this->db->where('userID', $id);
+
+		$this->db->where('active', 1);
+
+		$query = $this->db->count_all_results();
+
+		return $query;
+
+	}
 }
