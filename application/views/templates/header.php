@@ -146,8 +146,6 @@
 	data-platform="custom_website"
 ></script>
 
-	<!-- End Nector Reward Widget -->
-
 </head>
 
 <body>
