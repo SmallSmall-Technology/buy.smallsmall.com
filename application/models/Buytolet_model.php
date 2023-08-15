@@ -1343,7 +1343,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.userID', $userID);
 
-		$this->db->where('a.plan', 'co-own');
+		$this->db->where('a.plan', 'co-own'); 
 
 		$this->db->where_not_in('a.purchase_beneficiary', $options);
 
@@ -2015,8 +2015,6 @@ class Buytolet_model extends CI_Model
 		$this->db->join('buytolet_transactions as c', 'c.transaction_id = a.refID', 'INNER');
 
 		$this->db->join('states as d', 'd.id = b.state');
-
-		$this->db->group_by('a.propertyID');
 
 		$query = $this->db->get();
 
