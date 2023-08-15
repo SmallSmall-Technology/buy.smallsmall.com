@@ -417,6 +417,8 @@ class User extends CI_Controller
 
 			$data['all_co_own_history'] = $this->buytolet_model->get_all_co_own_history($data['userID']);
 
+			$data['stp_exists'] = $this->buytolet_model->check_if_stp_exists($data['userID']);
+
 			$data['profile_title'] = "Property Portfolio";
 
 			$data['title'] = "Property Portfolio"; 

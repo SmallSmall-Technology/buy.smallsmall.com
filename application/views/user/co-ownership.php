@@ -162,6 +162,16 @@
 <!-- Shares Target Program- STP -->
 <div class="col-12 mt-5 collapse" id="stp">
 
+<?php if( !$stp_exists ){ ?>
+  <!-- default view for unregistered STP -->
+  <div class="primary-background py-md-4 px-md-5 p-2">
+    <div class="text-center mb-5">
+      <p class="m-3">You do not have an active share target program subscription</p>
+      <p class="m-3">Read our <a href="<?php echo base_url('faq'); ?>">FAQ</a> About Shares Target Program to get started</p>
+      <a href="<?php echo base_url('properties/co-ownership'); ?>" class="btn tertiary-background btn-custom-tertiary px-5 mt-5">Get started</a>
+    </div>
+  </div>
+<?php }else{ ?>
   <!--  section -->
   <div class="tertiary-background p-md-5 p-2 mb-4" style="border-radius: 10px">
     <div class="row mb-4">
@@ -337,14 +347,9 @@
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
-
   </div>
+  <?php } ?>
 </div>
 
 <!---End of STP box --->

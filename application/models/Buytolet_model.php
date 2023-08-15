@@ -1343,7 +1343,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.userID', $userID);
 
-		$this->db->where('a.plan', 'co-own');
+		$this->db->where('a.plan', 'co-own'); 
 
 		$this->db->where_not_in('a.purchase_beneficiary', $options);
 
@@ -2016,8 +2016,6 @@ class Buytolet_model extends CI_Model
 
 		$this->db->join('states as d', 'd.id = b.state');
 
-		$this->db->group_by('a.propertyID');
-
 		$query = $this->db->get();
 
 		return $query->result_array();
@@ -2618,5 +2616,19 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
+	}
+
+	public function check_if_stp_exists($id){
+
+		$this->db->from('target_options');
+
+		$this->db->where('userID', $id);
+
+		$this->db->where('active', 1);
+
+		$query = $this->db->count_all_results();
+
+		return $query;
+
 	}
 }
