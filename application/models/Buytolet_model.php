@@ -2541,7 +2541,7 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_single_stp_user($userID){
+	public function get_single_stp_user($id){
 
 		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
 
@@ -2549,9 +2549,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.active', 1);
 
-		$this->db->where('a.userID', $userID);
-
-		//$this->db->where('a.request_id', $ref);
+		$this->db->where('a.userID', $id);
 
 		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
 
@@ -2563,6 +2561,27 @@ class Buytolet_model extends CI_Model
 
 		return $query->row_array();
 	}
+
+	/*public function get_single_stp_user($userID){
+
+		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
+
+		$this->db->from('target_options as a');
+
+		$this->db->where('a.active', 1);
+
+		$this->db->where('a.userID', $userID);
+
+		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
+
+		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
+
+		$this->db->join('user_tbl as d', 'd.userID = b.userID');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}*/
 
 	public function update_with_plan_code($plan_code, $userid){
 

@@ -4637,26 +4637,26 @@ class Buytolet extends CI_Controller
 
 	public function generate_subscription_email($id){
 
-		//$users = $this->buytolet_model->get_stp_users();
+		$users = $this->buytolet_model->get_single_stp_user($id);
 
-		if(count($users) > 0){
-			for($i = 0; $i < count($users); $i++){
+		//if(count($users) > 0){
+			//for($i = 0; $i < count($users); $i++){
 
 				$user = $this->buytolet_model->get_user($id);
 
 				if($user){
 
-					$name = $users[$i]['lastName'];
+					$name = $users['lastName'];
 
-					$subscription_amount = $users[$i]['purchase_amount'];
+					$subscription_amount = $users['purchase_amount'];
 
 					$subscription_date = date('Y-m-d H:i:s');
 
-					$plan_name = $users[$i]['plan_code'];
+					$plan_name = $users['plan_code'];
 
-					$duration = $users[$i]['frequency'];
+					$duration = $users['frequency'];
 
-					$auth_url = $users[$i]['authorization_url'];
+					$auth_url = $users['authorization_url'];
 
 					$email = $user['email'];
 					
@@ -4669,14 +4669,14 @@ class Buytolet extends CI_Controller
 					}
 
 				}	
-			}
-		}else{
+			//}
+		//}else{
 
-			echo "0 Users";
+			//echo "0 Users";
 
-			exit;
+			//exit;
 
-		}	
+		//}	
 	}
 
 
