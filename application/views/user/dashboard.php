@@ -46,6 +46,7 @@
             $CI = &get_instance();
 
             if (isset($properties_buybackrate) && !empty($properties_buybackrate)) {
+              echo '<div class="buyback-props">';
               foreach ($properties_buybackrate as $property => $value) {
                 $property_name = $CI->buytolet_model->getProperty($value['propertyID'])['property_name'];
 
@@ -55,16 +56,10 @@
           </div>
       <?php
               }
+              echo '</div>';
             }
 
       ?>
-
-      <!---<div style="width:100%;min-height:10px;overflow:auto;margin-bottom:5px;font-size:14px">
-                    <span style="display:inline-block;width:200px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;float:left">Olivia Court 4 Bedroom Ikate</span><span style="float:right;display:inline-block;">&#8358;30.10</span>
-                </div>
-                <div style="width:100%;min-height:10px;overflow:auto;margin-bottom:5px;font-size:14px">
-                    <span style="display:inline-block;width:200px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;float:left">Olivia Court 4 Bedroom</span><span style="float:right;display:inline-block;">&#8358;5.10</span>
-                </div>--->
       </p>
       <?php //print_r($properties_buybackrate); 
       ?>
