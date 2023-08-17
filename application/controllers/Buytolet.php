@@ -1719,6 +1719,7 @@ class Buytolet extends CI_Controller
 				try {
 					$response = $client->request('POST', 'template/get.json', array(
 						'headers' => $headers,
+						
 						'json' => $requestBody,
 					));
 
@@ -1733,25 +1734,48 @@ class Buytolet extends CI_Controller
 					$htmlBody = str_replace('{{link}}', $link, $htmlBody);
 
 					$data['response'] = $htmlBody;
+
+					// Prepare the email data
+					$emailData = [
+						"message" => [
+							"recipients" => [
+								["email" => $email],
+							],
+							"body" => ["html" => $htmlBody],
+
+							"subject" => "Email Confirmation BuySmallsmall",
+
+							"from_email" => "donotreply@smallsmall.com",
+
+							"from_name" => "Smallsmall",
+						],
+					];
+
+					// Send the email using the Unione API
+					$responseEmail = $client->request('POST', 'email/send.json', [
+						'headers' => $headers,
+						'json' => $emailData,
+					]);
+
 				} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 					$data['response'] = $e->getMessage();
 				}
-				$this->email->from('donotreply@smallsmall.com', 'Small Small');
+				// $this->email->from('donotreply@smallsmall.com', 'Small Small');
 
-				$this->email->to($email);
+				// $this->email->to($email);
 
-				$this->email->subject("Confirm your email");
+				// $this->email->subject("Confirm your email");
 
-				$this->email->set_mailtype("html");
+				// $this->email->set_mailtype("html");
 
-				$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+				// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
 				// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
-				$this->email->message($message);
+				// $this->email->message($message);
 
-				$emailRes = $this->email->send();
+				// $emailRes = $this->email->send();
 
 				// End Of Unione
 
@@ -1759,6 +1783,7 @@ class Buytolet extends CI_Controller
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
+
 			} else {
 
 				//Unsuccessful insert
