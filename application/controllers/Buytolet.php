@@ -4736,11 +4736,13 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = $responseData['template']['body']['html'];
 
-			$htmlBody = str_replace('{{name}}', $name, $htmlBody);
+			$htmlBody = str_replace('{{Name}}', $name, $htmlBody);
 
-			$htmlBody = str_replace('{{amount}}', $subscription_amount, $htmlBody);
+			$htmlBody = str_replace('{{Amount}}', $subscription_amount, $htmlBody);
 
 			$htmlBody = str_replace('{{subscriptionAmount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{DueDate}}', $subscription_date, $htmlBody);
 
 			$htmlBody = str_replace('{{subscriptionDate}}', $subscription_date, $htmlBody);
 
