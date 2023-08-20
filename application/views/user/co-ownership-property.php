@@ -361,8 +361,15 @@
           <p><?php echo $co_details['property_name']; ?></p>
           <div class="d-flex justify-content-center mt-5">
             <div class="d-flex flex-column align-items-center">
-              <img class="img-fluid d-inline-block mb-4" src="<?php echo base_url(); ?>assets/user-assets/images/pdf-icon.svg" alt="pdf-icon">
-              <a href="<?php echo base_url() . 'uploads/shares_certificate/' . $userID . '/' . $co_details['refID'] . '/' . $co_details['shares_certificate']; ?>" target="_blank" class="btn tertiary-background d-inline-block">Download</a>
+              <?php
+                $image_source = base_url().'assets/user-assets/images/pdf-icon.svg';
+
+                if($co_details['certificate_image']){
+                  $image_source = $co_details['certificate_image'];
+                }
+              ?>
+              <img class="img-fluid d-inline-block mb-4" src="<?php echo $image_source; ?>" alt="certificate image" />
+              <a href="<?php echo $co_details['shares_certificate']; ?>" target="_blank" class="btn tertiary-background d-inline-block">Download</a>
             </div>
 
           </div>

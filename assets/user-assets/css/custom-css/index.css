@@ -50,9 +50,10 @@
 }
 .buyback-props{
   width:100%;
-  height:40px;
-  padding:15px 0;
+  height:50px;
+  padding:0;
   overflow:scroll;
+  overflow-x:hidden;
 }
 @media(max-width:900px){
     .popup-container{
