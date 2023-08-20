@@ -1753,23 +1753,23 @@ class Buytolet_model extends CI_Model
 		return $this->db->update('buytolet_request', array('unit_amount' => $remaining_shares));
 	}
 
-	public function updateSharesCertificateFieldB($filename, $requestID, $userID)
+	public function updateSharesCertificateFieldB($filename, $certificate_image, $requestID, $userID)
 	{
 
 		$this->db->where('requestID', $requestID);
 
 		$this->db->where('receiverID', $userID);
 
-		return $this->db->update('buytolet_beneficiary_details', array('beneficiary_shares_certificate ' => $filename));
+		return $this->db->update('buytolet_beneficiary_details', array('beneficiary_shares_certificate ' => $filename, 'certificate_image' => $certificate_image));
 	}
-	public function updateSharesCertificateFieldO($filename, $requestID, $userID)
+	public function updateSharesCertificateFieldO($filename, $certificate_image, $requestID, $userID)
 	{
 
 		$this->db->where('refID', $requestID);
 
 		$this->db->where('userID', $userID);
 
-		return $this->db->update('buytolet_request', array('shares_certificate' => $filename));
+		return $this->db->update('buytolet_request', array('shares_certificate' => $filename, 'certificate_image' => $certificate_image));
 	}
 
 	public function getGiftbags($userID)

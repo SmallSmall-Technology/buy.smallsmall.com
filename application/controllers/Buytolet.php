@@ -3149,6 +3149,7 @@ class Buytolet extends CI_Controller
 
 				// Send notification message to user at dashboard
 				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+
 			} else if ($this->input->post('plan') == 'Financing') {
 
 				$request = $this->buytolet_model->getRequest($ref_id);
@@ -3207,6 +3208,14 @@ class Buytolet extends CI_Controller
 
 					//$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
 
+					//Send certificate
+					$certificate = $this->certify_me($name. $email, $ref_id, $propertyLocation, $request['unit_amount']);
+
+					if ($certificate['credential_url']) {
+						//Update shares certificate folder
+						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
+					}
+
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
 				}
 
@@ -3221,15 +3230,17 @@ class Buytolet extends CI_Controller
 						//$email_res = $this->notification_letter($beneficiary[$i]['email'], $message, $beneficiary[$i]['lastname']);
 						$name = $beneficiary[$i]['firstname'] . ' ' . $beneficiary[$i]['lastname'];
 
-						$certificate = $this->shares_certificate($beneficiary[$i]['receiverID'],  $beneficiary[$i]['requestID'], $name, $beneficiary[$i]['email'], $beneficiary[$i]['no_of_units'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
+						$certificate = $this->certify_me($name. $beneficiary[$i]['email'], $beneficiary[$i]['requestID'],$property_details, $beneficiary[$i]['no_of_units']);
+						
+						//$this->shares_certificate($beneficiary[$i]['receiverID'],  $beneficiary[$i]['requestID'], $name, $beneficiary[$i]['email'], $beneficiary[$i]['no_of_units'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
 
 						// Send notification message to user at dashboard
-						$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+						//$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 
-						if (!empty($certificate)) {
+						if ($certificate['credential_url']) {
 							//Update shares certificate folder
-							$this->buytolet_model->updateSharesCertificateFieldB($certificate['filename'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
+							$this->buytolet_model->updateSharesCertificateFieldB($certificate['credential_url'], $certificate['credential_image'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
 						}
 					}
 				}
@@ -4380,6 +4391,8 @@ class Buytolet extends CI_Controller
 
 		$amount = number_format($amount);
 
+		require 'vendor/autoload.php';
+
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
@@ -4392,7 +4405,6 @@ class Buytolet extends CI_Controller
 
 		$requestBody = [
 			"id" => "c67f2132-f3dd-11ed-ad01-dabfde6df242"
-			//"id" => '"'.$template_id.'"'
 		];
 
 		// end Unione Template
@@ -4428,27 +4440,40 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = str_replace('{{rate}}', $rate, $htmlBody);
 
-
-
 			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailDetails = [
+				"message" => [
+					"recipients" => [
+						["email" => $email]
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Payment Successful",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "BuySmallSmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$response = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailDetails,
+			]);
+
+			$result = json_decode($response, true);
+
+			if($result['status'] == 'success'){
+				return 1;
+			}else{
+				return 0;
+			}
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
 
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-		$this->email->to($email);
-
-		$this->email->subject("Payment Successful");
-
-		$this->email->set_mailtype("html");
-
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-		$this->email->message($message);
-
-		$emailRes = $this->email->send();
 	}
 
 	public function get_eligible_users()
@@ -4790,4 +4815,38 @@ class Buytolet extends CI_Controller
 		
 	}
 	
+	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares){
+		
+		$curl = curl_init();
+
+		$today = date('Y-m-d H:i:s');
+
+		$login_details = base64_encode( "tunde.b@smallsmall.com:player2023" );
+
+		$data = '{"name":"'.$name.'" , "template_ID":7382, "email": "'.$email.'", "text": "VP Quadralogics", "license_number": "TPR-1267Af23", "verify_mode": "Passport Number", "verify_code": "13678AJKJY678JHGP0", "Issue.Date" : "'.$today.'", "Unique.ID":"'.$requestID.'", "Recipients.Name":"'.$name.'", "Custom.NumOf.Shares", "'.$amountOfShares.'", "Custom.Property.Address":"'.$propertyDets.'" }';
+        			
+		curl_setopt_array($curl, array(
+			
+		  	CURLOPT_URL => "https://my.certifyme.online/api/v1/credential",
+
+		  	CURLOPT_RETURNTRANSFER => true,
+
+			CURLOPT_POSTFIELDS => $data,
+
+		  	CURLOPT_HTTPHEADER => [
+				"Authorization: Basic $login_details",
+
+				"Accept: application/json",
+
+				"content-type: application/json"
+		  	]
+		));
+
+		$response = curl_exec($curl);
+
+		$result = json_decode($response, true);
+		
+		return $result;
+
+	}
 }
