@@ -175,7 +175,6 @@
 </html>
 <script src="<?php echo base_url(); ?>assets/js/register.js"></script>
 
-
 <!-- Nector Code -->
 
 <script>var nector_params = { customer_id: $userID }</script>
