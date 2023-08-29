@@ -1337,17 +1337,29 @@ class Buytolet_model extends CI_Model
 
 		$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
 
-		$this->db->select_sum('a.unit_amount');
+		$this->db->select('a.refID');
 
-		$this->db->from('buytolet_request as a');
+		$this->db->from('buytolet_request as a');		
 
-		$this->db->where('a.userID', $userID);
+		$this->db->where('a.plan', 'co-own');
+		
+		$this->db->group_start();
 
-		$this->db->where('a.plan', 'co-own'); 
+			$this->db->where('a.purchase_beneficiary', 'Self');
 
-		$this->db->where_not_in('a.purchase_beneficiary', $options);
+			$this->db->where('a.userID', $userID);
 
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
+			$this->db->or_group_start();
+
+				$this->db->where('c.receiverID', $userID);
+
+			$this->db->group_end();
+
+		$this->db->group_end();
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'LEFT OUTER');
+
+		$this->db->join('buytolet_beneficiary_details as c', 'c.requestID = a.refID', 'LEFT OUTER');
 
 		$this->db->group_by('a.propertyID');
 
@@ -1359,21 +1371,33 @@ class Buytolet_model extends CI_Model
 	public function get_total_coown_shares($userID)
 	{
 
-		$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
+		//$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
 
 		$this->db->select_sum('a.unit_amount');
 
+		$this->db->select_sum('c.no_of_units');
+
 		$this->db->from('buytolet_request as a');
-
-		//$this->db->group_start();
-
-		$this->db->where('a.userID', $userID);
 
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->where_not_in('a.purchase_beneficiary', $options);
+		$this->db->group_start();
 
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
+			$this->db->where('a.purchase_beneficiary', 'Self');
+
+			$this->db->where('a.userID', $userID);
+
+			$this->db->or_group_start();
+
+				$this->db->where('c.receiverID', $userID);
+
+			$this->db->group_end();
+
+		$this->db->group_end();
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'LEFT OUTER');
+
+		$this->db->join('buytolet_beneficiary_details as c', 'c.requestID = a.refID', 'LEFT OUTER');
 
 		$query = $this->db->get();
 
