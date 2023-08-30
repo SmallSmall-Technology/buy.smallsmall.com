@@ -1665,6 +1665,8 @@ class Buytolet extends CI_Controller
 
 		$income = $this->input->post("income");
 
+		$country = $this->input->post("country");
+
 		$occupation = $this->input->post("occupation");
 
 		$position = $this->input->post("position");
