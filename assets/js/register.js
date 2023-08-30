@@ -85,6 +85,8 @@ $('#signupForm').submit(function(e){
 
 	var medium = $.trim($('.medium').val());
 
+	var country = $.trim($('.country-code').val());
+
 	var ref_code = $.trim($('#referral-code').val());
 
 	var filteredList = []; 
@@ -147,7 +149,9 @@ $('#signupForm').submit(function(e){
 		
 		'gender' : gender,
 		
-		'ref_code' : ref_code
+		'ref_code' : ref_code,
+
+		'country' : country
 
 	};
 

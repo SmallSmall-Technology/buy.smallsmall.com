@@ -514,6 +514,8 @@ class Buytolet extends CI_Controller
 
 			//Check login status
 
+			$data['countries'] = $this->buytolet_model->get_countries();
+
 			$data['userID'] = $this->session->userdata('userID');
 
 			$data['title'] = "Signup :: Buy2Let";
@@ -1691,7 +1693,7 @@ class Buytolet extends CI_Controller
 
 			$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
 
-			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent']);
+			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
 
 			if ($registration) {
 
