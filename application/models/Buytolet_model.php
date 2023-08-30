@@ -177,12 +177,12 @@ class Buytolet_model extends CI_Model
 
 		return $this->db->insert('buytolet_users', $this);
 	}
-	public function register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $referral, $user_type, $interest, $rc, $gender, $user_agent)
+	public function register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $referral, $user_type, $interest, $rc, $gender, $user_agent, $country)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$user_insert = array("userID" => $id, "firstName" => $fname, "lastName" => $lname, "email" => $email, "password" => $password, "phone" => $phone, "income" => $income, "referral" => $referral, "gender" => $gender, "referral_code" => $rc, "user_type" => $user_type, "interest" => $interest, "verified" => 'no', "points" => 0, "status" => 'Active', "platform" => 'Web', "user_agent" => $user_agent, "regDate" => $today);
+		$user_insert = array("userID" => $id, "firstName" => $fname, "lastName" => $lname, "email" => $email, "password" => $password, "phone" => $phone, "income" => $income, "referral" => $referral, "gender" => $gender, "referral_code" => $rc, "user_type" => $user_type, "interest" => $interest, "verified" => 'no', "points" => 0, "status" => 'Active', "platform" => 'Web', "user_agent" => $user_agent, "regDate" => $today, "country" => $country);
 
 		if ($this->db->insert('user_tbl', $user_insert)) {
 
@@ -2673,5 +2673,17 @@ class Buytolet_model extends CI_Model
 
 		return $query;
 
+	}
+
+	public function get_countries(){
+		
+		$this->db->select('*');
+
+		$this->db->from('countries');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+		
 	}
 }

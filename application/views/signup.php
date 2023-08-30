@@ -132,7 +132,14 @@
 					<div class="single-span-col-input all-fields">
 						<textarea class="text-area address" rows="4" placeholder="Address"></textarea>
 					</div>
-
+					<div class="single-span-col-input">
+						<select id="country-code" class="minimal country-code verify-txt">
+							<option value="">Select Country</option>
+							<?php foreach($countries as $country => $value){ ?>
+								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] .' - '. $value['sortname'] ?></option>
+							<?php } ?>
+						</select>
+					</div>
 					<div class="single-span-col-input all-fields">
 						<select class="medium verify-txt minimal">
 							<option value="">How did you hear about us</option>
