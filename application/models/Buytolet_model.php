@@ -1335,31 +1335,19 @@ class Buytolet_model extends CI_Model
 	public function get_total_portfolios($userID)
 	{
 
-		$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
+		$this->db->select_sum('a.unit_amount');
 
-		$this->db->select('a.refID');
+		$this->db->from('buytolet_request as a');
 
-		$this->db->from('buytolet_request as a');		
+		$this->db->where('a.userID', $userID);
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
 
 		$this->db->where('a.plan', 'co-own');
-		
-		$this->db->group_start();
 
-			$this->db->where('a.purchase_beneficiary', 'Self');
+		$this->db->where('a.purchase_beneficiary', 'Self');
 
-			$this->db->where('a.userID', $userID);
-
-			$this->db->or_group_start();
-
-				$this->db->where('c.receiverID', $userID);
-
-			$this->db->group_end();
-
-		$this->db->group_end();
-
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'LEFT OUTER');
-
-		$this->db->join('buytolet_beneficiary_details as c', 'c.requestID = a.refID', 'LEFT OUTER');
+		$this->db->or_where('a.purchase_beneficiary', 'Promotional');
 
 		$this->db->group_by('a.propertyID');
 
@@ -1371,33 +1359,19 @@ class Buytolet_model extends CI_Model
 	public function get_total_coown_shares($userID)
 	{
 
-		//$options = array('Champions', 'Spouse', 'Wife', 'Child', 'Children');
-
 		$this->db->select_sum('a.unit_amount');
-
-		$this->db->select_sum('c.no_of_units');
 
 		$this->db->from('buytolet_request as a');
 
+		$this->db->where('a.userID', $userID);
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
+
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->group_start();
+		$this->db->where('a.purchase_beneficiary', 'Self');
 
-			$this->db->where('a.purchase_beneficiary', 'Self');
-
-			$this->db->where('a.userID', $userID);
-
-			$this->db->or_group_start();
-
-				$this->db->where('c.receiverID', $userID);
-
-			$this->db->group_end();
-
-		$this->db->group_end();
-
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'LEFT OUTER');
-
-		$this->db->join('buytolet_beneficiary_details as c', 'c.requestID = a.refID', 'LEFT OUTER');
+		$this->db->or_where('a.purchase_beneficiary', 'Promotional');
 
 		$query = $this->db->get();
 
@@ -1511,7 +1485,7 @@ class Buytolet_model extends CI_Model
 	public function get_co_own_property($id)
 	{
 
-		$this->db->select('a.*, a.status as request_status, a.id as reqID, a.propertyID as propID, b.*, c.*, c.amount as transaction_amount, d.*');
+		$this->db->select('a.*, a.status as request_status, a.id as reqID, a.propertyID as propID, b.*, c.*, d.*');
 
 		$this->db->from('buytolet_request as a');
 
@@ -1556,7 +1530,6 @@ class Buytolet_model extends CI_Model
 
 	public function get_all_co_own_properties($userID)
 	{
-		$options = array('Self', 'Free');
 
 		$this->db->select('a.*, a.id as reqID, b.*, c.*, d.*, e.*');
 
@@ -1568,15 +1541,11 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->where_in('a.purchase_beneficiary', $options);
+		$this->db->where('a.userID', $userID);
 
-		$this->db->group_start();
+		$this->db->where('a.purchase_beneficiary', 'Self');
 
-			$this->db->where('a.userID', $userID);
-
-			$this->db->or_where('e.receiverID', $userID);
-
-		$this->db->group_end();
+		$this->db->or_where('e.receiverID', $userID);
 
 		$this->db->join('buytolet_beneficiary_details as e', 'e.requestID = a.refID', 'LEFT OUTER');
 
@@ -1646,13 +1615,9 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('a.plan', 'co-own');
 
-		$this->db->group_start();
+		$this->db->where('a.userID', $userID);
 
-			$this->db->where('a.userID', $userID);
-
-			$this->db->or_where('e.receiverID', $userID);
-
-		$this->db->group_end();
+		$this->db->or_where('e.receiverID', $userID);
 
 		$this->db->join('buytolet_beneficiary_details as e', 'e.requestID = a.refID', 'LEFT OUTER');
 
@@ -1777,23 +1742,23 @@ class Buytolet_model extends CI_Model
 		return $this->db->update('buytolet_request', array('unit_amount' => $remaining_shares));
 	}
 
-	public function updateSharesCertificateFieldB($filename, $certificate_image, $requestID, $userID)
+	public function updateSharesCertificateFieldB($filename, $requestID, $userID)
 	{
 
 		$this->db->where('requestID', $requestID);
 
 		$this->db->where('receiverID', $userID);
 
-		return $this->db->update('buytolet_beneficiary_details', array('beneficiary_shares_certificate ' => $filename, 'certificate_image' => $certificate_image));
+		return $this->db->update('buytolet_beneficiary_details', array('beneficiary_shares_certificate ' => $filename));
 	}
-	public function updateSharesCertificateFieldO($filename, $certificate_image, $requestID, $userID)
+	public function updateSharesCertificateFieldO($filename, $requestID, $userID)
 	{
 
 		$this->db->where('refID', $requestID);
 
 		$this->db->where('userID', $userID);
 
-		return $this->db->update('buytolet_request', array('shares_certificate' => $filename, 'certificate_image' => $certificate_image));
+		return $this->db->update('buytolet_request', array('shares_certificate' => $filename));
 	}
 
 	public function getGiftbags($userID)
@@ -2004,33 +1969,21 @@ class Buytolet_model extends CI_Model
 	public function getAllUserCoOwnProperties($user_id, $rID = 0)
 	{
 
-		$options = array('Self', 'Free');
-
 		$this->db->select('a.purchase_beneficiary, a.propertyID, a.request_date, a.unit_amount, b.price, c.amount, e.no_of_units');
 
 		$this->db->from('buytolet_request as a');
 
 		if ($rID) {
-
 			$this->db->where('a.id', $rID);
-			
 		}
 
 		$this->db->where('a.plan', 'co-own');
-		
-		$this->db->group_start();
-			
-			$this->db->or_where('e.receiverID', $user_id);
 
-			$this->db->or_group_start();
+		$this->db->where('a.userID', $user_id);
 
-				$this->db->where('a.userID', $user_id);
+		$this->db->where('a.purchase_beneficiary', 'Self');
 
-				$this->db->where_in('a.purchase_beneficiary', $options);
-
-			$this->db->group_end();
-
-		$this->db->group_end();
+		$this->db->or_where('e.receiverID', $user_id);
 
 		$this->db->join('buytolet_beneficiary_details as e', 'e.requestID = a.refID', 'LEFT OUTER');
 
@@ -2039,6 +1992,8 @@ class Buytolet_model extends CI_Model
 		$this->db->join('buytolet_transactions as c', 'c.transaction_id = a.refID', 'INNER');
 
 		$this->db->join('states as d', 'd.id = b.state');
+
+		$this->db->group_by('a.propertyID');
 
 		$query = $this->db->get();
 
@@ -2565,48 +2520,6 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_single_stp_user($id){
-
-		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
-
-		$this->db->from('target_options as a');
-
-		$this->db->where('a.active', 1);
-
-		$this->db->where('a.userID', $id);
-
-		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
-
-		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
-
-		$this->db->join('user_tbl as d', 'd.userID = b.userID');
-
-		$query = $this->db->get();
-
-		return $query->row_array();
-	}
-
-	/*public function get_single_stp_user($userID){
-
-		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
-
-		$this->db->from('target_options as a');
-
-		$this->db->where('a.active', 1);
-
-		$this->db->where('a.userID', $userID);
-
-		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
-
-		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
-
-		$this->db->join('user_tbl as d', 'd.userID = b.userID');
-
-		$query = $this->db->get();
-
-		return $query->row_array();
-	}*/
-
 	public function update_with_plan_code($plan_code, $userid){
 
 		$update = array('plan_code' => $plan_code);
@@ -2659,19 +2572,5 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
-	}
-
-	public function check_if_stp_exists($id){
-
-		$this->db->from('target_options');
-
-		$this->db->where('userID', $id);
-
-		$this->db->where('active', 1);
-
-		$query = $this->db->count_all_results();
-
-		return $query;
-
 	}
 }
