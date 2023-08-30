@@ -3211,7 +3211,7 @@ class Buytolet extends CI_Controller
 					//$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
 
 					//Send certificate
-					$certificate = $this->certify_me($name. $email, $ref_id, $propertyLocation, $request['unit_amount']);
+					$certificate = $this->certify_me($name, $email, $ref_id, $propertyLocation, $request['unit_amount']);
 
 					if ($certificate['credential_url']) {
 						//Update shares certificate folder
@@ -3232,7 +3232,7 @@ class Buytolet extends CI_Controller
 						//$email_res = $this->notification_letter($beneficiary[$i]['email'], $message, $beneficiary[$i]['lastname']);
 						$name = $beneficiary[$i]['firstname'] . ' ' . $beneficiary[$i]['lastname'];
 
-						$certificate = $this->certify_me($name. $beneficiary[$i]['email'], $beneficiary[$i]['requestID'],$property_details, $beneficiary[$i]['no_of_units']);
+						$certificate = $this->certify_me($name, $beneficiary[$i]['email'], $beneficiary[$i]['requestID'],$property_details, $beneficiary[$i]['no_of_units']);
 						
 						//$this->shares_certificate($beneficiary[$i]['receiverID'],  $beneficiary[$i]['requestID'], $name, $beneficiary[$i]['email'], $beneficiary[$i]['no_of_units'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
 
