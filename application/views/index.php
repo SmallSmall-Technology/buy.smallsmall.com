@@ -480,5 +480,3 @@
   <script>
       amplitude.getInstance().logEvent('Homepage');
   </script>
-
-

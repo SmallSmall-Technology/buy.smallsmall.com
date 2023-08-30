@@ -346,6 +346,10 @@ class User extends CI_Controller
 
 			$data['all_co_own_properties'] = $this->buytolet_model->get_all_co_own_properties($data['userID']);
 
+			$worth_and_bbr = $this->getPropertyWorth($data['userID']);
+
+			$data['buybackrate'] = $worth_and_bbr['buybackrate'];
+
 			$data['profile_title'] = "Property Portfolio";
 
 			$data['title'] = "Property Portfolio";
@@ -353,7 +357,7 @@ class User extends CI_Controller
 			if (!empty($data['co_details']) && $data['co_details']['request_status'] == 'new') {
 
 				$this->buytolet_model->changeRequestStatus($data['co_details']['reqID']);
-			}
+			} 
 
 			$this->load->view('user/templates/header', $data);
 
@@ -413,10 +417,11 @@ class User extends CI_Controller
 
 			$data['all_co_own_history'] = $this->buytolet_model->get_all_co_own_history($data['userID']);
 
+			$data['stp_exists'] = $this->buytolet_model->check_if_stp_exists($data['userID']);
 
 			$data['profile_title'] = "Property Portfolio";
 
-			$data['title'] = "Property Portfolio";
+			$data['title'] = "Property Portfolio"; 
 
 			$this->load->view('user/templates/header', $data);
 
@@ -1082,6 +1087,7 @@ class User extends CI_Controller
 
 		$properties = $this->buytolet_model->getAllUserCoOwnProperties($user_id);
 
+
 		if (count($properties) > 1) {
 
 			for ($i = 0; $i < count($properties); $i++) {
@@ -1089,7 +1095,7 @@ class User extends CI_Controller
 				//get request date diff
 				$date_diff = $this->getNumOfDays($properties[$i]['request_date']);
 
-				if ($properties[$i]['purchase_beneficiary'] == 'Self') {
+				if ($properties[$i]['purchase_beneficiary'] == 'Self' || $properties[$i]['purchase_beneficiary'] == 'Free') {
 
 					$worth = $worth + ($properties[$i]['unit_amount'] * $properties[$i]['price']);
 
@@ -1115,7 +1121,7 @@ class User extends CI_Controller
 			//get request date diff
 			$date_diff = $this->getNumOfDays($properties[0]['request_date']);
 
-			if ($properties[0]['purchase_beneficiary'] == 'Self') {
+			if ($properties[0]['purchase_beneficiary'] == 'Self' || $properties[0]['purchase_beneficiary'] == 'Free') {
 
 				$worth = $worth + ($properties[0]['unit_amount'] * $properties[0]['price']);
 
