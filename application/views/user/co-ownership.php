@@ -22,12 +22,7 @@
     <div class="row">
       <?php if (!empty($all_co_own_properties)) { ?>
         <?php foreach ($all_co_own_properties as $all_co_own_property => $value) { ?>
-          
-          <?php if ($value['purchase_beneficiary'] != 'Champions') { 
-            
-            $p_ben = $value['purchase_beneficiary'];
-          ?>       
-            
+          <?php if ($value['purchase_beneficiary'] != 'Champions') { ?>
             <div class="col-md-4 col-12  mb-4">
               <div class="card border-0 default-background h-100">
                 <div class="card-body">
@@ -36,7 +31,7 @@
                     <p style="font-size:14px">Bought on <?php echo date('M Y', strtotime($value['request_date'])); ?><br><small class="font-weight-lighter">Co ownership</small></p>
                   </div>
                   <p class="card-text"><?php echo $value['property_name']; ?></p>
-                  <p class="card-text font-weight-lighter"><?php echo ($p_ben == 'Self' || $p_ben == 'Free') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares <?php echo ($p_ben == 'Free')? '(Free)' : ''; ?></p>
+                  <p class="card-text font-weight-lighter"><?php echo ($value['purchase_beneficiary'] == 'Self') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares</p>
                   <div class=" mt-5">
                     <a href="<?php echo base_url(); ?>user/co-ownership-property/<?php echo $value['reqID']; ?>" class="btn tertiary-background px-5">view</a>
                   </div>
@@ -162,16 +157,6 @@
 <!-- Shares Target Program- STP -->
 <div class="col-12 mt-5 collapse" id="stp">
 
-<?php if( !$stp_exists ){ ?>
-  <!-- default view for unregistered STP -->
-  <div class="primary-background py-md-4 px-md-5 p-2">
-    <div class="text-center mb-5">
-      <p class="m-3">You do not have an active share target program subscription</p>
-      <p class="m-3">Read our <a href="<?php echo base_url('faq'); ?>">FAQ</a> About Shares Target Program to get started</p>
-      <a href="<?php echo base_url('properties/co-ownership'); ?>" class="btn tertiary-background btn-custom-tertiary px-5 mt-5">Get started</a>
-    </div>
-  </div>
-<?php }else{ ?>
   <!--  section -->
   <div class="tertiary-background p-md-5 p-2 mb-4" style="border-radius: 10px">
     <div class="row mb-4">
@@ -347,9 +332,14 @@
           </div>
         </div>
       </div>
+
+
+
+
+
     </div>
+
   </div>
-  <?php } ?>
 </div>
 
 <!---End of STP box --->
