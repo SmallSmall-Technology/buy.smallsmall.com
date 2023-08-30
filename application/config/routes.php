@@ -296,6 +296,10 @@ $route['about-us'] = 'buytolet/about_us';
 
 $route['home-test'] = 'buytolet/home_test';
 
+$route['refer-and-earn'] = 'buytolet/refer_and_earn';
+
+$route['reward'] = 'buytolet/reward';
+
 $route['default_controller'] = 'buytolet';
 
 $route['404_override'] = '';

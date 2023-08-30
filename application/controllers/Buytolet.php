@@ -514,6 +514,8 @@ class Buytolet extends CI_Controller
 
 			//Check login status
 
+			$data['userID'] = $this->session->userdata('userID');
+
 			$data['title'] = "Signup :: Buy2Let";
 
 			//$this->load->view('templates/header', $data);
@@ -4849,4 +4851,64 @@ class Buytolet extends CI_Controller
 		return $result;
 
 	}
+
+	public function refer_and_earn(){
+
+			if ($this->session->has_userdata('loggedIn')) {
+	
+				$data['userID'] = $this->session->userdata('userID');
+	
+				$data['fname'] = $this->session->userdata('fname');
+	
+				$data['lname'] = $this->session->userdata('lname');
+	
+				$data['user_type'] = $this->session->userdata('user_type');
+	
+				$data['loggedIn'] = $this->session->userdata('loggedIn');
+	
+				$data['interest'] = $this->session->userdata('interest');
+			}
+	
+			$data['title'] = "Referals :: BuySmallSmall";
+	
+			//$data['content'] = $this->buytolet_model->get_faq();
+	
+			$this->load->view('templates/header', $data);
+	
+			$this->load->view('refer-and-earn', $data);
+	
+			$this->load->view('templates/footer', $data);
+
+	}
+
+	public function reward(){
+
+		if ($this->session->has_userdata('loggedIn')) {
+
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['loggedIn'] = $this->session->userdata('loggedIn');
+
+			$data['interest'] = $this->session->userdata('interest');
+		}
+
+		$data['title'] = "Referals :: BuySmallSmall";
+
+		//$data['content'] = $this->buytolet_model->get_faq();
+
+		$this->load->view('templates/header', $data);
+
+		$this->load->view('reward', $data);
+
+		$this->load->view('templates/footer', $data);
+
 }
+}
+
+

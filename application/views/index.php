@@ -383,6 +383,17 @@
 			
 		</div>
 
+		<div>
+<!-- Nector Script -->
+<script>var nector_params = { customer_id: window.localStorage.getItem("nector-customer-id") }</script>
+<script async src="https://cdn.nector.io/nector-static/no-cache/reward-widget/mainloader.min.js"
+	data-op="referral"
+	data-api_key="ca91f88601fb02c3c90db6bbd20da779dbb3f5d07827db9df99e290617d7d63e"
+	data-platform="custom_website"
+></script>
+
+		</div>
+
 		<div class="stats-wrapper">
 			<div class="main-numbers-container">
 				<div class="numbers-head">It's your turn; don't miss out!</div>
@@ -417,7 +428,11 @@
 			    <div class="partner-logo-item"></div>--->
 			</div>
         </div>
+
+		
+
   	</section>
+
   	<!-- main/middle section ends here -->
   	<script src="<?php echo base_url(); ?>asset/js/responsiveslides.js"></script>
     <script>
@@ -461,7 +476,7 @@
     		});
         });
   </script>
+										
   <script>
       amplitude.getInstance().logEvent('Homepage');
   </script>
-
