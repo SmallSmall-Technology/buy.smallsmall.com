@@ -13,7 +13,8 @@
 	"require": {
 		"php": ">=5.3.7",
 		"guzzlehttp/guzzle": "^7.5",
-		"unione/unione-php": "^1.2"
+		"unione/unione-php": "^1.2",
+		"aws/aws-sdk-php": "^3.276"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
