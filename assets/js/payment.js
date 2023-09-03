@@ -720,6 +720,8 @@ $('.co-own-option-but').click(function(){
 						"share_cost" : share_cost,
 						
 						"purchase_frequency" : '',
+
+						"plan_amount" : 0,
 						
 						"duration" : '',
 						
@@ -750,6 +752,8 @@ $('.co-own-option-but').click(function(){
 						"share_cost" : share_cost,
 						
 						"purchase_frequency" : '',
+
+						"plan_amount" : 0,
 						
 						"duration" : '',
 						
@@ -838,6 +842,8 @@ $('#targetProgramForm').submit(function(e){
     	    
     	    
     	}
+
+		co_own_order.plan_amount = $("#plan-amount").val();
 
     	co_own_order.purchase_frequency = $("#purchase-frequency").val();
     	

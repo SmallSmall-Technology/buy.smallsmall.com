@@ -916,6 +916,8 @@ class Buytolet extends CI_Controller
 
 			$data['interest'] = $this->session->userdata('interest');
 
+			$data['target_option'] = $this->session->userdata('target_option');;
+
 			//Check login status
 
 			$data['title'] = "Finance Confirmation :: Buy2Let";
@@ -2115,6 +2117,8 @@ class Buytolet extends CI_Controller
 
 		$purchase_frequency = $this->input->post('purchase_frequency');
 
+		$plan_amount = $this->input->post('plan_amount');
+
 		$duration = $this->input->post('duration');
 
 		$coupon_code = $this->input->post('coupon_code');
@@ -2125,6 +2129,8 @@ class Buytolet extends CI_Controller
 
 		$promo_amount = 0;
 
+		$target_option = 0;
+
 		$prop = $this->buytolet_model->getProperty($property_id);
 
 		if (!empty($promo) && $promo['promo_term'] <= $unit_amount) {
@@ -2132,6 +2138,7 @@ class Buytolet extends CI_Controller
 			if ($promo['type'] == 'Coupon') {
 
 				$promo_details = $this->promo_offer($unit_amount, $promo, $coupon_code);
+
 			} elseif ($promo['type'] == 'Free') {
 
 				$promo_details = $this->promo_offer($unit_amount, $promo);
@@ -2164,18 +2171,20 @@ class Buytolet extends CI_Controller
 			$this->buytolet_model->insert_user_info($data['userID'], $company_name, $position, $occupation, $income_range, $company_address, $id_path);
 		}
 
-		$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID']);
+		$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID'], $ref);
 
 		if (!empty($toStatus)) {
 
 			if ($purchase_frequency && $duration) {
-				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration);
+				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration, $plan_amount);
 			}
+			$target_option = 1;
 		} else {
 
 			if ($purchase_frequency && $duration) {
-				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration);
+				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref, $plan_amount);
 			}
+			$target_option = 1;
 		}
 
 		if ($result) {
@@ -2185,7 +2194,7 @@ class Buytolet extends CI_Controller
 
 			$this->buytolet_model->update_units($new_pool_units, $property_id);
 
-			$userdata = array('refID' => $ref);
+			$userdata = array('refID' => $ref, 'target_option' => $target_option);
 
 			$this->session->set_userdata($userdata);
 
@@ -3113,6 +3122,8 @@ class Buytolet extends CI_Controller
 
 		$ref_id = $this->input->post("ref");
 
+		$target_option = $this->input->post("target_option");
+
 		//Get propertty ID using reference ID
 		$prop = $this->buytolet_model->getPropWithRef($ref_id);
 
@@ -3127,12 +3138,14 @@ class Buytolet extends CI_Controller
 		$prop = $this->buytolet_model->getProperty($property_id);
 
 		$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref_id);
-
+ 
 		require 'vendor/autoload.php';
 
 		if ($result) {
 
-			$this->create_target_option_plan($userID);
+			if($target_option)
+
+				$this->create_target_option_plan($userID);
 
 			$notificationRes = 0;
 
@@ -3223,6 +3236,10 @@ class Buytolet extends CI_Controller
 					}
 
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
+
+					$userdata = array("target_option" => 0);
+
+					$this->session->set_userdata($userdata);
 				}
 
 				if (count($beneficiary) > 0) {
@@ -4140,7 +4157,6 @@ class Buytolet extends CI_Controller
 
 				if ($promo['promo_term']) {
 
-
 					$term_result = intval($shares_bought / $promo['promo_term']);
 
 					$promo_value = $term_result * $promo['promo_value'];
@@ -4610,7 +4626,10 @@ class Buytolet extends CI_Controller
 
 				if($result){
 					//Subscribe user
-					$this->subscribe_user($amount, $plan_code, $user);
+					if($this->subscribe_user($amount, $plan_code, $user))
+						return 1;
+					else
+						return 0;
 					
 				}
 			}else{

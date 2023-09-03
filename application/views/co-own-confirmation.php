@@ -116,6 +116,8 @@
                 
                 <input type="hidden" id="refID" value="<?php echo $refID; ?>" />
                 
+                <input type="hidden" id="target_option" value="<?php echo $target_option; ?>" />
+                
                 <input type="hidden" id="propertyID" value="<?php echo $propertyID; ?>" />
                 
 			    
@@ -184,12 +186,14 @@
         
         var ref = $('#refID').val();
         
+        var target_option = $('#target_option').val();
+        
         var plan = 'Co-own';
     	
     	//var cost = $('#due_amount').val();
     	
     	
-    	var data = {"plan" : plan, "payable" : payable, "ref" : ref};	
+    	var data = {"plan" : plan, "payable" : payable, "ref" : ref, "target_option" : target_option};	
             
             $.ajaxSetup ({ cache: false });
     

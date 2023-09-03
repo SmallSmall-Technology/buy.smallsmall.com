@@ -17,26 +17,41 @@
                     </div>
                     
                     <a id="shares-target-link" href="https://smallsmall.zendesk.com/hc/en-us/categories/10765648854429-Shares-Target-Program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a>
+
+                    <div class="single-span-col-input btm-spc user-target-options">
+                        <span id="field-label">Select a plan</span>
+                        <select name="plan-amount" class="minimal plan-amount verify-txt" id="plan-amount">
+                              <option value="16000">16,000</option>
+                              <option value="30000">30,000</option>
+                              <option value="70000">70,000</option>
+                              <option value="100000">100,000</option>
+                              <option value="150000">150,000</option>
+                              <option value="200000">200,000</option>
+                              <option value="250000">250,000</option>
+                              <option value="500000">500,000</option>
+                              <option value="1000000">1,000,000</option>
+                        </select>
+                    </div>
                     
                     <div class="single-span-col-input btm-spc user-target-options">
                         <span id="field-label">Auto-Purchase Frquency</span>
                         <select name="purchase-frequency" class="minimal purchase-frequency verify-txt" id="purchase-frequency">
                             <option value="">Select frequency</option>
-							<option value="Daily">Daily</option>
-							<option value="Weekly">Weekly</option>
-							<option value="Monthly">Monthly</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
                         </select>
                     </div>
                     <div class="single-span-col-input btm-spc user-target-options">
                         <span id="field-label">Duration</span>
                         <select name="duration" class="minimal duration verify-txt" id="duration">
                             <option value="">Select duration</option>
-							<option value="1">1 Year</option>
-							<option value="2">2 Years</option>
-							<option value="3">3 Years</option>
-							<option value="4">4 Years</option>
-							<option value="5">5 Years</option>
-							<option value="6">6 Years</option>
+                              <option value="1">1 Year</option>
+                              <option value="2">2 Years</option>
+                              <option value="3">3 Years</option>
+                              <option value="4">4 Years</option>
+                              <option value="5">5 Years</option>
+                              <option value="6">6 Years</option>
                         </select>
                     </div>
                     

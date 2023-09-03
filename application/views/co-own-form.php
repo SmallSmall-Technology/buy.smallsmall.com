@@ -26,7 +26,7 @@
                                 <span id="field-label" class="hanging">Occupation</span>
                                 <input class="occupation verify-txt" id="occupation" placeholder="Occupation" name="occupation" type="text">
                             </div>
-                        </div>
+                        </div> 
                         <div class="single-span-col-input btm-spc">
                             <div class="textInput-box">
                                 <span id="field-label" class="hanging">Position</span>
@@ -109,14 +109,7 @@
                         
                         
                     </div>
-                    <!---<div class="single-span-col-input">
-                        <div class="uploadArea" id="dropzone-id2">
-                            Upload ID<br />
-                            (int'l passport,drivers license,voters card,national ID)
-                            <input type="file" class="input2 identification-2-inp" id="upload" hidden />
-                            <div id="dd-dir">Drag and Drop or <span class="browse-btn-2">Browse</span></div> 
-                        </div>
-                    </div>--->
+                    
                     <div class="form-div-txt add-beneficiary" id="add-beneficiary-btn-0" style="color:#64318A">Add another profile <i class="fa fa-plus"></i></div>
                 </div>
                 <div style="margin-top:20px">

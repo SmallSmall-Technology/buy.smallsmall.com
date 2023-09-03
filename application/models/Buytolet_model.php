@@ -2427,7 +2427,7 @@ class Buytolet_model extends CI_Model
 		return $this->db->count_all_results();
 	}
 
-	public function checkTargetOptionStatus($id)
+	public function checkTargetOptionStatus($id, $ref)
 	{
 
 		$this->db->select('*');
@@ -2435,6 +2435,8 @@ class Buytolet_model extends CI_Model
 		$this->db->from('target_options');
 
 		$this->db->where('userID', $id);
+
+		$this->db->where('request_id', $ref);
 
 		$this->db->where('active', 1);
 
@@ -2444,22 +2446,22 @@ class Buytolet_model extends CI_Model
 
 	}
 
-	public function insertTargetOptions($userID, $frequency, $duration, $ref)
+	public function insertTargetOptions($userID, $frequency, $duration, $ref, $plan_amount)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today, 'request_id' => $ref);
+		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'amount' => $plan_amount, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today, 'request_id' => $ref);
 
 		return $this->db->insert('target_options', $targetOptions);
 	}
 
-	public function updateTargetOptions($userID, $frequency, $duration)
+	public function updateTargetOptions($userID, $frequency, $duration, $plan_amount)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'updated_at' => $today);
+		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'amount' => $plan_amount, 'updated_at' => $today);
 
 		$this->db->where('userID', $userID);
 
@@ -2484,7 +2486,7 @@ class Buytolet_model extends CI_Model
 		return $this->db->insert('buytolet_sent_emails', $email_dets);
 	}
 
-	public function getActivePromo()
+	public function getActivePromo($promo_type = 'Free')
 	{
 
 		$today = date('Y-m-d');
@@ -2494,6 +2496,8 @@ class Buytolet_model extends CI_Model
 		$this->db->from('buytolet_promos');
 
 		$this->db->where('status', 1);
+
+		$this->db->where('type', $promo_type);
 
 		$this->db->where('end_date >=', $today);
 
@@ -2567,7 +2571,7 @@ class Buytolet_model extends CI_Model
 
 	public function get_single_stp_user($id){
 
-		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
+		$this->db->select('a.*, b.*, c.*, a.amount as purchase_amount, d.lastName, d.email as user_email');
 
 		$this->db->from('target_options as a');
 
