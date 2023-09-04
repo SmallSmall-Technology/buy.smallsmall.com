@@ -3232,7 +3232,7 @@ class Buytolet extends CI_Controller
 
 					if ($certificate['credential_url']) {
 						//Update shares certificate folder
-						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
+						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $certificate['credential_image'], $ref_id, $user_id);
 					}
 
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
@@ -4838,6 +4838,49 @@ class Buytolet extends CI_Controller
 
 		}
 		
+	}
+
+	public function send_certificate_to_user($userID){
+
+		$user = $this->buytolet_model->get_user($userID);
+
+		$user_request = $this->buytolet_model->get_requests_without_certificate($userID);
+
+		if($user){
+
+			$name = $user['firstName'].' '.$user['lastName'];
+
+			$email = $user['email'];
+
+			if(count($user_request) > 0){
+
+				for($i = 0; $i < count($user_request); $i++){
+
+					$propertyDets = $user_request[$i]['property_name'].' '.$user_request[$i]['address'].' '.$user_request[$i]['city'];
+
+					$amountOfShares = $user_request[$i]['unit_amount'];
+
+					$requestID = $user_request[$i]['refID'];
+
+					$result = certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
+
+					if ($result['credential_url']) {
+						//Update shares certificate folder
+						$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
+					}
+
+					print_r($result);
+
+					echo "<br /><br />";
+
+				}
+
+			}
+
+		}
+
+
+
 	}
 	
 	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares){

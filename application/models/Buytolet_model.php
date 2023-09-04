@@ -2690,4 +2690,23 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 		
 	}
+
+	public function get_requests_without_certificate($userID){
+
+		$this->db->select('a.refID, a.unit_amount, b.*, c.property_name, c.address, c.city');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.userID', $userID);
+
+		$this->db->where('a.shares_certificate', NULL);
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID');
+
+		$this->db->join('buytolet_property as c', 'c.propertyID = a.propertyID');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
 }
