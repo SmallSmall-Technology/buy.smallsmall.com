@@ -184,14 +184,35 @@
 				<div class="home-properties-container">
 					
 					<?php if(isset($pool_properties) && !empty($pool_properties)){ ?>
+
+						
+
 						<?php foreach($pool_properties as $pool_property => $pool_value){ ?>
+
+							<?Php
+							$bucket = 'dev-rss-uploads'; // Your bucket name
+
+							// Include AWS SDK and create S3 client
+							require 'vendor/autoload.php';
+							$s3 = new Aws\S3\S3Client([
+								'version' => 'latest',
+								'region' => 'eu-west-1'
+							]);
+
+							?>
+							
+							
 							<a href="<?php echo base_url()."co-own/".$pool_value['propertyID']; ?>" class="home-card">
-								<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>")' class="top-section">
+
+								<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>')" class="top-section">
+								<!-- <div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $pool_value['type']; ?></div>
 									<?php if(@$pool_value['construction_lvl']){ ?>
 						            <div class="badge-bottom"><?php echo $pool_value['construction_lvl']; ?></div>
 						            <?php } ?>
 								</div>
+
+
 								<div class="bottom-section">
 								    <div class="sale-status <?php echo strtolower($pool_value['availability']); ?>"><?php echo ($pool_value['availability'] == 'Available')? 'Buy now' : 'Sold out'; ?></div>
 									
