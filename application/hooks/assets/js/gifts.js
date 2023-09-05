@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    var baseUrl = 'https://buy.smallsmall.com/';
+    var baseUrl = 'https://dev-buy.smallsmall.com/';
     
     $('.accept-shares').click(function(){
         

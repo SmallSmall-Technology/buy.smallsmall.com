@@ -89,7 +89,7 @@
     </div>
     <script>
         
-        var baseUrl = "https://buy.smallsmall.com/";
+        var baseUrl = "https://dev-buy.smallsmall.com/";
         
         let button = document.querySelector('.browse-btn');
         let input = document.querySelector('.input');
