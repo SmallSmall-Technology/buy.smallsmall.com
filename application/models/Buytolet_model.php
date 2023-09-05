@@ -2709,4 +2709,20 @@ class Buytolet_model extends CI_Model
 
 		return $query->result_array();
 	}
+
+	public function get_all_user_requests(){
+
+		$this->db->select('a.userID');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.shares_certificate', NULL);
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
 }
