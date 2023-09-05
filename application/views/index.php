@@ -205,7 +205,7 @@
 							<a href="<?php echo base_url()."co-own/".$pool_value['propertyID']; ?>" class="home-card">
 
 								<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>')" class="top-section">
-								<!-- <div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>")' class="top-section"> -->
+								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $pool_value['type']; ?></div>
 									<?php if(@$pool_value['construction_lvl']){ ?>
 						            <div class="badge-bottom"><?php echo $pool_value['construction_lvl']; ?></div>
@@ -307,7 +307,8 @@
 				<?php if(isset($buy_to_let_properties) && !empty($buy_to_let_properties)){ ?>
 						<?php foreach($buy_to_let_properties as $property => $value){ ?>
 							<a href="<?php echo base_url()."sole-own/".$value['propertyID']; ?>" class="home-card">
-								<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section">
+							<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$value['image_folder'].'/'.$value['featured_image']; ?>')" class="top-section">
+								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $value['construction_lvl']; ?></div>
 						            <div class="badge-bottom"><?php echo $value['type']; ?></div>
 								</div>
@@ -361,7 +362,10 @@
 				<?php if(isset($buy_to_live_properties) && !empty($buy_to_live_properties)){ ?>
 						<?php foreach($buy_to_live_properties as $property => $value){ ?>
 							<a href="<?php echo base_url()."sole-own/".$value['propertyID']; ?>" class="home-card">
-								<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section">
+
+							<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$value['image_folder'].'/'.$value['featured_image']; ?>')" class="top-section">
+
+								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $value['construction_lvl']; ?></div>
 						            <div class="badge-bottom"><?php echo $value['type']; ?></div>
 								</div>
