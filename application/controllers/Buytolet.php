@@ -4840,7 +4840,9 @@ class Buytolet extends CI_Controller
 		
 	}
 
-	public function send_certificate_to_user($userID){
+	public function send_certificate_to_user(){
+
+		$userID = '123456789';
 
 		$user = $this->buytolet_model->get_user($userID);
 
@@ -4867,6 +4869,10 @@ class Buytolet extends CI_Controller
 					if ($result['credential_url']) {
 						//Update shares certificate folder
 						$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
+					}else{
+
+						echo "No credential URL";
+
 					}
 
 					print_r($result);
@@ -4875,11 +4881,80 @@ class Buytolet extends CI_Controller
 
 				}
 
+			}else{
+
+				echo "No user request without certificate";
+
 			}
+
+		}else{
+
+			echo "User does not exist";
 
 		}
 
+	}
 
+	public function send_certificate_to_all_users(){
+
+		$request_users = $this->buytolet_model->get_all_user_requests();
+
+		if(count($request_users) > 0){
+
+			for($i = 0; $i < count($request_users); $i++){
+
+				$userID = $request_users['$i']['userID'];
+
+				$user = $this->buytolet_model->get_user($userID);
+
+				$user_request = $this->buytolet_model->get_requests_without_certificate($userID);
+
+				if($user){
+
+					$name = $user['firstName'].' '.$user['lastName'];
+
+					$email = $user['email'];
+
+					if(count($user_request) > 0){
+
+						for($i = 0; $i < count($user_request); $i++){
+
+							$propertyDets = $user_request[$i]['property_name'].' '.$user_request[$i]['address'].' '.$user_request[$i]['city'];
+
+							$amountOfShares = $user_request[$i]['unit_amount'];
+
+							$requestID = $user_request[$i]['refID'];
+
+							$result = certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
+
+							if ($result['credential_url']) {
+								//Update shares certificate folder
+								$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
+							}
+
+							print_r($result);
+
+							echo "<br /><br />";
+
+						}
+
+					}else{
+
+						echo "No user without certificate";
+
+					}
+
+				}else{
+
+					echo "User not found";
+
+				}
+
+			}
+
+		}else{
+			echo "No user(s)";
+		}
 
 	}
 	
