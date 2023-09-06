@@ -4842,7 +4842,7 @@ class Buytolet extends CI_Controller
 
 	public function send_certificate_to_user(){
 
-		$userID = '123456789';
+		$userID = '12345678';
 
 		$user = $this->buytolet_model->get_user($userID);
 
@@ -4864,7 +4864,7 @@ class Buytolet extends CI_Controller
 
 					$requestID = $user_request[$i]['refID'];
 
-					$result = certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
+					$result = $this->certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
 
 					if ($result['credential_url']) {
 						//Update shares certificate folder
@@ -4925,7 +4925,7 @@ class Buytolet extends CI_Controller
 
 							$requestID = $user_request[$i]['refID'];
 
-							$result = certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
+							$result = $this->certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
 
 							if ($result['credential_url']) {
 								//Update shares certificate folder
