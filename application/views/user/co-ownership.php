@@ -183,13 +183,13 @@
       <div class="col-md-6 col-12 d-flex align-items-start justify-content-between mb-2">
         <div class="d-flex flex-column justify-content-center">
           <p class="sub-heading-2">Auto-Purchase Frequency</p>
-          <p class="m-0" style="font-size: 30px">10 Weekly</p>
+          <p class="m-0" style="font-size: 30px"><?php echo $stp_details['unit_amount'].' '.$stp_details['frequency'] ?></p>
           <p class="sub-heading-3">shares</p>
         </div>
         <div class="stp-divider"></div>
         <div class="d-flex flex-column justify-content-center">
           <p class="sub-heading-2">Duration</p>
-          <p class="m-0" style="font-size: 30px">2 Years</p>
+          <p class="m-0" style="font-size: 30px"><?php echo $stp_details['duration']; ?> Year(s)</p>
         </div>
       </div>
       <div class="col-md-6 col-12m d-flex align-items-center">
@@ -208,7 +208,7 @@
     </div>
   </div>
 
-  <div class="primary-background py-md-4 px-md-5 p-2">
+  <!---<div class="primary-background py-md-4 px-md-5 p-2">
     <div class="text-center mb-5">
       <p>**Below shows the details of shares bought on your behalf according to your preference</p>
     </div>
@@ -224,129 +224,61 @@
       <div class="col-md-3 col-12 mb-3">
         <button type="" class="btn btn-custom-tertiary px-5 py-2">Liquidate</button>
       </div>
-    </div>
+    </div>--->
 
     <div class="divider mx-auto my-4" style="width: 90%;"></div>
 
     <div class="row mt-5">
-      <div class="col-md-4 col-12 mb-4">
-        <div class="property-card py-3 px-4">
-          <p class="" style="font-size: 22px; font-weight: 500;">2 br Maisonette B2 Olivia Court Lekki</p>
-          <p class="mb-3">Agungi, Lekki, Lagos</p>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Shares</p>
-              <p class="value-text-2">5</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Value</p>
-              <p class="value-text-2">&#8358;29,000</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Hold Period</p>
-              <p class="value-text-2">4 years</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Migration date</p>
-              <p class="value-text-2">Jun, 2024</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center mb-4">
-            <a href="property-stp.html" class="btn btn-custom-tertiary px-4">view</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-12 mb-4">
-        <div class="property-card py-3 px-4">
-          <p class="" style="font-size: 22px; font-weight: 500;">1 br Freedom Condo Lekki</p>
-          <p class="mb-3">Agungi, Lekki, Lagos</p>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Shares</p>
-              <p class="value-text-2">5</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Value</p>
-              <p class="value-text-2">&#8358;29,000</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Hold Period</p>
-              <p class="value-text-2">4 years</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Migration date</p>
-              <p class="value-text-2">Jun, 2024</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center mb-4">
-            <a href="property-stp.html" class="btn btn-custom-tertiary px-4">view</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-4 col-12 mb-4">
-        <div class="property-card py-3 px-4">
-          <p class="" style="font-size: 22px; font-weight: 500;">1 br Freedom Condo Lekki</p>
-          <p class="mb-3">Agungi, Lekki, Lagos</p>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Shares</p>
-              <p class="value-text-2">5</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Value</p>
-              <p class="value-text-2">&#8358;29,000</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Hold Period</p>
-              <p class="value-text-2">4 years</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Migration date</p>
-              <p class="value-text-2">Jun, 2024</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center mb-4">
-            <a href="property-stp.html" class="btn btn-custom-tertiary px-4">view</a>
-          </div>
-        </div>
-      </div>
+      <?php if(isset($stp_properties) && !empty($stp_properties)){ ?>
+        <?php foreach($stp_properties as $stp_property => $value){ ?>
+          <?php
+              $hold_period = '';
 
-      <div class="col-md-4 col-12 mb-4">
-        <div class="property-card py-3 px-4">
-          <p class="" style="font-size: 22px; font-weight: 500;">2 br Maisonette B2 Olivia Court Lekki</p>
-          <p class="mb-3">Agungi, Lekki, Lagos</p>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Shares</p>
-              <p class="value-text-2">5</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Value</p>
-              <p class="value-text-2">&#8358;29,000</p>
+              if (@$value['hold_period'] == 'One year') {
+                $hold_period = "1 year";
+              } elseif (@$value['hold_period'] == 'Two years') {
+                $hold_period = "2 years";
+              } elseif (@$value['hold_period'] == 'Three years') {
+                $hold_period = "3 years";
+              } elseif (@$value['hold_period'] == 'Four years') {
+                $hold_period = "4 years";
+              }  else {
+                $hold_period = @$value['hold_period'];
+              } 
+          ?>
+          <div class="col-md-4 col-12 mb-4">
+            <div class="property-card py-3 px-4">
+              <p class="" style="font-size: 22px; font-weight: 500;"><?php echo $value['property_name']; ?></p>
+              <p class="mb-3"><?php echo $value['city']; ?>, Lagos</p>
+              <div class="d-flex justify-content-between">
+                <div class="mb-3">
+                  <p class="sub-heading">Shares</p>
+                  <p class="value-text-2"><?php echo $value['unit_amount']; ?></p>
+                </div>
+                <div class="mb-3">
+                  <p class="sub-heading">Value</p>
+                  <p class="value-text-2">&#8358;<?php echo number_format((float)$buybackrate, 2, '.', ','); ?></p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="mb-3">
+                  <p class="sub-heading">Hold Period</p>
+                  <p class="value-text-2"><?php echo $hold_period ?></p>
+                </div>
+                <div class="mb-3">
+                  <p class="sub-heading">Migration date</p>
+                  <p class="value-text-2"><?php echo date('M, Y', strtotime($value['maturity_date'])); ?></p>
+                </div>
+              </div>
+              <!---<div class="d-flex justify-content-center mb-4">
+                <a href="property-stp.html" class="btn btn-custom-tertiary px-4">view</a>
+              </div>--->
             </div>
           </div>
-          <div class="d-flex justify-content-between">
-            <div class="mb-3">
-              <p class="sub-heading">Hold Period</p>
-              <p class="value-text-2">4 years</p>
-            </div>
-            <div class="mb-3">
-              <p class="sub-heading">Migration date</p>
-              <p class="value-text-2">Jun, 2024</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center mb-4">
-            <a href="property-stp.html" class="btn btn-custom-tertiary px-4">view</a>
-          </div>
-        </div>
-      </div>
+        <?php } ?>
+      <?php } ?>
+
     </div>
   </div>
   <?php } ?>

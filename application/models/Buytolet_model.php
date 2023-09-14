@@ -2725,4 +2725,38 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 
 	}
+
+	public function get_stp_properties($id){
+
+		$this->db->select('*');
+
+		$this->db->from('buytolet_request');
+
+		$this->db->where('method', 'Paystack Subscription');
+
+		$this->db->join('buytolet_property as b', 'b.propertyID = a.propertyID');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+
+	public function get_stp_details($id){
+
+		$this->db->select('a.*, b.unit_amount');
+
+		$this->db->from('target_options');
+
+		$this->db->where('userID', $id);
+
+		$this->db->where('active', 1);
+
+		$this->db->join('buytolet_request as b', 'b.refID = a.request_id');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+
+	}
 }
