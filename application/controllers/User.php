@@ -419,6 +419,14 @@ class User extends CI_Controller
 
 			$data['stp_exists'] = $this->buytolet_model->check_if_stp_exists($data['userID']);
 
+			$data['stp_details'] = $this->buytolet_model->get_stp_properties($data['userID']);
+
+			$worth_and_bbr = $this->getPropertyWorth($data['userID']);
+
+			$data['buybackrate'] = $worth_and_bbr['buybackrate'];
+
+			$data['stp_properties'] = $this->buytolet_model->get_stp_properties($data['userID']);
+
 			$data['profile_title'] = "Property Portfolio";
 
 			$data['title'] = "Property Portfolio"; 
