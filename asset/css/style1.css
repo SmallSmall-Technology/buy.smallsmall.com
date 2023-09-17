@@ -23,8 +23,7 @@
     align-items: center;
     width: 100%;
     /* background:green; */
-    /* justify-content: center; */
-    gap:1rem;
+    justify-content: center;
   }
   .nav-menu-links{
     display:flex;

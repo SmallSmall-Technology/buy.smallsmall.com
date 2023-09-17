@@ -1481,7 +1481,11 @@ class Buytolet extends CI_Controller
 		if ($search_crit['investment-type'] == 5) {
 
 			$slug = 'co-ownership';
-		} else if ($search_crit['investment-type'] == 2) {
+
+		} else if ($search_crit['investment-type'] == 6) {
+
+			$slug = 'onpl';
+		}else if ($search_crit['investment-type'] == 2) {
 
 			$slug = 'buy-to-let';
 		} else if ($search_crit['investment-type'] == 1) {
@@ -2120,6 +2124,8 @@ class Buytolet extends CI_Controller
 		$plan_amount = $this->input->post('plan_amount');
 
 		$duration = $this->input->post('duration');
+
+		$balance = $this->input->post('balance');
 
 		$coupon_code = $this->input->post('coupon_code');
 

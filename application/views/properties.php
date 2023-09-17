@@ -2,17 +2,34 @@
 	<div class="prop-option-head">
 		<div class="prop-option-top">
 			<span class="prop-class">
-				<?php if ($slug != 'co-ownership') { ?>
-					Sole Ownership
+				<?php if ($slug == 'co-ownership') { ?>
+					Co Ownership	
 				<?php } else { ?>
-					Co Ownership
+					Sole Ownership	
 				<?php } ?>
 			</span>
 		</div>
-		<?php if ($slug != 'co-ownership') { ?>
-			<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
-		<?php } else { ?>
+		<?php if ($slug == 'co-ownership') { ?>
 			<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
+			
+		<?php } elseif($slug == 'onpl') { ?>
+			<div class="property-hero-container">
+				<div class="property-hero-item">
+					<h2>Own now pay later</h2>
+					<div class="note">
+						<p>Powering a new generation of homeowners and landlords.</p>
+						<p>Introducing Own Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
+						<p>Gone are the days of waiting and saving for years to secure your interest in a property. Own Now Pay Later empowers you to lock down the price of your desired property today, giving you the peace of mind that it won't slip away and you won't pay a skyrocketed price.</p>
+						<p>Imagine the freedom of owning your second home without the upfront costs, knowing that its price is locked down, while having the freedom to prepare yourself financially before making your first payment.</p>
+						<p>Our innovative solution allows you to seize the perfect opportunity in the real estate market without the immediate financial burden. Say goodbye to the traditional constraints of homeownership for good!</p>
+						<p>It's time to make your move and embark on a path towards lifelong success as a homeowner or landlord.</p>
+					</div>
+				</div>
+				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="Own now pay later" /></div>
+			</div>
+
+		<?php } else { ?>
+			<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
 		<?php } ?>
 
 		<!-- Filter Section -->
