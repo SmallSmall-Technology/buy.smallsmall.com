@@ -37,8 +37,6 @@ $('.option-but').click(function(){
 	
 	var total_pool_units = 0;
 	
-	var pplan_repayment = $('#subsequent-payment').val();
-	
 	var property_name = $('#property_name').val();
 	
 	var payment_period = $('#repayment-period').val();
@@ -54,6 +52,8 @@ $('.option-but').click(function(){
 	var origination_fee = $('.one-percent').val();
 	
 	var transaction_fee = $('.four-percent').val();
+
+	var onpl_payable = $('#five-percent').val();
 	
 	var unit_amount = 0;
 	
@@ -93,6 +93,10 @@ $('.option-but').click(function(){
 	}else if(plan == 'outright'){
 
 		payable = property_cost;
+
+	}else if(plan == 'onpl'){
+
+		payable = onpl_payable;
 
 	}
 	

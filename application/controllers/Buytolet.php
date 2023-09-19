@@ -1361,7 +1361,7 @@ class Buytolet extends CI_Controller
 
 			$this->pagination->initialize($config);
 
-			$data['page_links'] = $this->pagination->create_links();
+			$data['page_links'] = $this->pagination->create_links(); 
 
 			$data['from_row'] = $offset + 1;
 
@@ -4972,7 +4972,7 @@ class Buytolet extends CI_Controller
 
 		$login_details = base64_encode( "tunde.b@smallsmall.com:player2023" );
 
-		$data = '{"name":"'.$name.'" , "template_ID":7382, "email": "'.$email.'", "text": "VP Quadralogics", "license_number": "TPR-1267Af23", "verify_mode": "Passport Number", "verify_code": "13678AJKJY678JHGP0", "Issue.Date" : "'.$today.'", "Unique.ID":"'.$requestID.'", "Recipients.Name":"'.$name.'", "Custom.NumOf.Shares": "'.$amountOfShares.'", "Custom.Property.Address":"'.$propertyDets.'" }';
+		$data = '{"name":"'.$name.'" , "template_ID":"7382", "email": "'.$email.'", "text": "Co Ownership Shares", "license_number": "TPR-1267Af23", "verify_mode": "Passport Number", "verify_code": "13678AJKJY678JHGP0", "Issue.Date" : "'.$today.'", "Unique.ID":"'.$requestID.'", "Recipients.Name":"'.$name.'", "Custom.NumOf.Shares": "'.$amountOfShares.'", "Custom.Property.Address":"'.$propertyDets.'" }';
         			
 		curl_setopt_array($curl, array(
 			
