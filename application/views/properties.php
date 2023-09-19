@@ -3,7 +3,9 @@
 		<div class="prop-option-top">
 			<span class="prop-class">
 				<?php if ($slug == 'co-ownership') { ?>
-					Co Ownership	
+					Co Ownership
+				<?php } elseif($slug == 'onpl') { ?>
+					Own now pay later
 				<?php } else { ?>
 					Sole Ownership	
 				<?php } ?>
@@ -15,7 +17,6 @@
 		<?php } elseif($slug == 'onpl') { ?>
 			<div class="property-hero-container">
 				<div class="property-hero-item">
-					<h2>Own now pay later</h2>
 					<div class="note">
 						<p>Powering a new generation of homeowners and landlords.</p>
 						<p>Introducing Own Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
@@ -94,7 +95,7 @@
 					</div>
 					<div class="bottom-section">
 						<div class="sale-status <?php echo strtolower($each_prop['availability']); ?>"><?php echo $each_prop['availability']; ?></div>
-						<span class="price-type down-payment">Down payment</span>
+						<span class="price-type down-payment"><?php echo ($slug == 'onpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
 						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'onpl')? number_format($each_prop['price'] * 0.05) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
 						<span class="price-type actual-price">Property price</span>
 						<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price']); ?></h3>
