@@ -270,7 +270,7 @@
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
-                                <div class="finance-desc">4% of property price</div>
+                                <div class="finance-desc">5% of property price</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
