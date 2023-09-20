@@ -291,9 +291,11 @@
                         </div>
                         <input type="hidden" id="repayment-period" value="6" />
                     <?php } ?>
-                    <div style="width:100%;text-align:center;">
-					    <div class="payment-btn option-but">Apply Now</div>
-					</div>
+                    <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
+                        <div style="width:100%;text-align:center;">
+                            <div class="payment-btn option-but">Apply Now</div>
+                        </div>
+                    <?php } ?>
                 </div>
 				<!--- Finance payment option ---->
                 
@@ -372,10 +374,11 @@
                         <div style="width:100%;text-align:center;font-family:'Cera Pro';font-size:14px;line-height:25px;">
                             Lockdown this property with a 5% payment and receive your offer letter and a contract of sale
                         </div>
-                        <div style="width:100%;text-align:center;">
-                            <button type="submit" class="payment-btn" onclick="payWithPaystack()">Pay Now</button>
-                        </div>
-    				    
+                        <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
+                            <div style="width:100%;text-align:center;">
+                                <button type="submit" class="payment-btn" onclick="payWithPaystack()">Pay Now</button>
+                            </div>
+    				    <?php } ?>
     				</form>
                 </div>
 				<!--- Outright payment option ---->
