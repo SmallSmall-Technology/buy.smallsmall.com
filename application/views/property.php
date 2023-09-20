@@ -59,6 +59,17 @@
                         <p>Payment tenure</p>
                         <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period']/12); ?> Years</h2>
                     </div>
+                    <div class="price-box">
+                        <p>Lockdown Fee</p>
+                        <h2 style="font-weight:bold">
+                            <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
+                            <div class="tooltip"><i class="fa fa-info"></i>
+                                <span class="tooltiptext">
+                                    Amount due in 11 months from day property is locked.
+                                </span>
+                            </div>
+                        </h2>
+                    </div>
                 </div>
                 <div class="price-discount-sect">
                     <div class="price-box">
@@ -280,9 +291,11 @@
                         </div>
                         <input type="hidden" id="repayment-period" value="6" />
                     <?php } ?>
-                    <div style="width:100%;text-align:center;">
-					    <div class="payment-btn option-but">Apply Now</div>
-					</div>
+                    <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
+                        <div style="width:100%;text-align:center;">
+                            <div class="payment-btn option-but">Apply Now</div>
+                        </div>
+                    <?php } ?>
                 </div>
 				<!--- Finance payment option ---->
                 
@@ -361,10 +374,11 @@
                         <div style="width:100%;text-align:center;font-family:'Cera Pro';font-size:14px;line-height:25px;">
                             Lockdown this property with a 5% payment and receive your offer letter and a contract of sale
                         </div>
-                        <div style="width:100%;text-align:center;">
-                            <button type="submit" class="payment-btn" onclick="payWithPaystack()">Pay Now</button>
-                        </div>
-    				    
+                        <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
+                            <div style="width:100%;text-align:center;">
+                                <button type="submit" class="payment-btn" onclick="payWithPaystack()">Pay Now</button>
+                            </div>
+    				    <?php } ?>
     				</form>
                 </div>
 				<!--- Outright payment option ---->

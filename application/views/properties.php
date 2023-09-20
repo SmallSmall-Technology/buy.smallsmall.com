@@ -56,11 +56,11 @@
 				</select>
 				<select name="location" class="properties-select" id="location_select">
 				<option value="0">Location</option>
-								<?php if(isset($locations) && !empty($locations)){ ?>
-									<?php foreach($locations as $location => $value){ ?>
-										<option value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
-									<?php } ?>
-								<?php } ?>
+					<?php if(isset($locations) && !empty($locations)){ ?>
+						<?php foreach($locations as $location => $value){ ?>
+							<option value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
+						<?php } ?>
+					<?php } ?>
 				</select>
 				<select name="property_type" class="properties-select" id="property_type_select">
 					<option value="0">Property Type</option>

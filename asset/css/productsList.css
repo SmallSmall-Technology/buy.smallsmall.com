@@ -60,6 +60,9 @@
 .sale-status.available{
     background:#18D31F;
 }
+.sale-status.locked{
+    background:#D32318;
+}
 .top-section{
     /* background-image:url("/public/img/Rectangle1.png"); */
     background-size:cover;
