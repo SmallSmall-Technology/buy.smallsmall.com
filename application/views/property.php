@@ -59,6 +59,17 @@
                         <p>Payment tenure</p>
                         <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period']/12); ?> Years</h2>
                     </div>
+                    <div class="price-box">
+                        <p>Lockdown Fee</p>
+                        <h2 style="font-weight:bold">
+                            <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
+                            <div class="tooltip"><i class="fa fa-info"></i>
+                                <span class="tooltiptext">
+                                    Amount due in 11 months from day property is locked.
+                                </span>
+                            </div>
+                        </h2>
+                    </div>
                 </div>
                 <div class="price-discount-sect">
                     <div class="price-box">

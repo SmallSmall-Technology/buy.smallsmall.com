@@ -2728,9 +2728,9 @@ class Buytolet_model extends CI_Model
 
 	public function get_stp_properties($id){
 
-		$this->db->select('*');
+		$this->db->select('a.*, a.id as req_id, b.*');
 
-		$this->db->from('buytolet_request');
+		$this->db->from('buytolet_request as a');
 
 		$this->db->where('method', 'Paystack Subscription');
 
@@ -2757,6 +2757,16 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
+
+	}
+
+	public function update_property_status($property_id, $status){
+
+		$insert = array('availability' => $status);
+
+		$this->db->where('propertyID', $property_id);
+
+		$this->db->update('buytolet_property', $insert);
 
 	}
 }

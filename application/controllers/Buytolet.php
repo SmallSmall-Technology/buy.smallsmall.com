@@ -2053,6 +2053,10 @@ class Buytolet extends CI_Controller
 
 		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details);
 
+		if($payment_plan == 'onpl'){
+			$this->buytolet_model->update_property_status($property_id, 'Locked');
+		}
+
 		if ($result) {
 
 			if ($prop['pool_buy'] == 'yes')
