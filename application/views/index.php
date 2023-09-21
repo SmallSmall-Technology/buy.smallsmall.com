@@ -432,23 +432,6 @@
 
   	</section>
 
-	<!-- intercom script -->
-
-<script>
-  window.intercomSettings = {
-    api_base: "https://api-iam.intercom.io",
-    app_id: "mh486ke6"
-  };
-</script>
-
-<script>
-// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/mh486ke6'
-(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/mh486ke6';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-</script>
-
-<!-- end intercom script -->
-
-
 	  <!-- hopscotch-script -->
 	  <script id="hopscotch-script" type="text/javascript">(function (w, d) {if (typeof w === "undefined") return;w.Hopscotch = w.Hopscotch || function () {(w.Hopscotch.q = w.Hopscotch.q || []).push(arguments);};var elm = d.createElement("div");elm.setAttribute("data-widget-host", "hopscotch");elm.setAttribute("data-props-api-key", "4db66c1c-9e8a-431b-b232-06c381199931");d.getElementsByTagName("body")[0].appendChild(elm);var s = d.createElement("script");s.src = "https://app.hopscotch.club/widget.js?";s.async = 1;s.defer = 1;d.getElementsByTagName("body")[0].appendChild(s);  })(window, document);</script>
 	<!-- end hopscotch-script -->
