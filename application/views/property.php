@@ -285,7 +285,7 @@
                             </div>
                             <div class="finance-right-options">
                                 <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.04); ?></div>
+                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.05); ?></div>
                                 </div>
                             </div>
                         </div>
