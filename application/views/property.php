@@ -52,24 +52,31 @@
                 <h1><?php echo $property['property_name']; ?></h1>
                 <div class="price-discount-sect">
                     <div class="price-box">
-                        <p>Minimum down payment</p>
-                        <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan']/100) * $property['price']); ?></h2>
+                        <p>Lockdown Fee</p>
+                        <h2 style="font-weight:bold">
+                            <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
+                            <div class="tooltip"><i class="fa fa-info"></i>
+                                <span class="tooltiptext">
+                                    LDF is a non-refundable fee. It subsitutes as transaction fee<br />
+                                    when you make a down-payment on or beore 11 months.
+                                </span>
+                            </div>
+                        </h2>
                     </div>
                     <div class="price-box">
                         <p>Payment tenure</p>
                         <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period']/12); ?> Years</h2>
                     </div>
                     <div class="price-box">
-                        <p>Lockdown Fee</p>
-                        <h2 style="font-weight:bold">
-                            <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
+                        <p>Minimum down payment</p>
+                        <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan']/100) * $property['price']); ?>
                             <div class="tooltip"><i class="fa fa-info"></i>
                                 <span class="tooltiptext">
                                     Amount due in 11 months from day property is locked.
                                 </span>
                             </div>
                         </h2>
-                    </div>
+                    </div>                    
                 </div>
                 <div class="price-discount-sect">
                     <div class="price-box">
@@ -111,7 +118,8 @@
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>--->
             <div class="features_description">
-                <p>Financial highlights</p>
+                <!---<p>Financial highlights</p>--->
+                <p>Projected rent</p>
                 <!---<div class="switch">
                     <div id="monthly" class="monthly period-selector active">Monthly</div>
                     <div id="annual" class="annual period-selector">Annual</div>
@@ -133,28 +141,28 @@
                             <td><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format((@$property['expected_rent'] + ((@$property['expected_rent'] * 0.18) * 5))/1000000)."M"; ?></td>
                             <td><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format((@$property['expected_rent'] + ((@$property['expected_rent'] * 0.18) * 10))/1000000)."M"; ?></td>
                         </tr>
-                        <tr>
+                        <!---<tr>
                             <th>Appreciation</th>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_0 = (@$property['marketValue']); echo number_format(@$asset_0/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_0 = (@$property['marketValue']); echo number_format(@$asset_0/1000000)."M"; ?>
                             </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_1 = (((@$property['asset_appreciation_1'] / 100) * $asset_0) + @$property['marketValue']); echo number_format($asset_1/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_1 = (((@$property['asset_appreciation_1'] / 100) * $asset_0) + @$property['marketValue']); echo number_format($asset_1/1000000)."M"; ?>
                             </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_2 = (((80 / 100) * $asset_1) + @$property['marketValue']); echo number_format($asset_2/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_2 = (((80 / 100) * $asset_1) + @$property['marketValue']); echo number_format($asset_2/1000000)."M"; ?>
                             </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_3 = (((100 / 100) * $asset_2) + @$property['marketValue']); echo number_format($asset_3/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_3 = (((100 / 100) * $asset_2) + @$property['marketValue']); echo number_format($asset_3/1000000)."M"; ?>
                             </td>
                         </tr>
                         <tr>
                             <th>Ann. returns</th>
-                            <td><?php echo number_format((pow(((@$asset_0 + @$property['expected_rent']) / @$property['marketValue']), "") - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_0 + @$property['expected_rent']) / @$property['marketValue']), "") - 1) * 100); ?>%
                             </td>
-                            <td><?php echo number_format((pow(((@$asset_1 + @$property['expected_rent']) / @$property['marketValue']), 1) - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_1 + @$property['expected_rent']) / @$property['marketValue']), 1) - 1) * 100); ?>%
                             </td>
-                            <td><?php echo number_format((pow(((@$asset_2 + ((@$property['expected_rent'] * 0.18) * 5)) / @$property['marketValue']), (1 / 5)) - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_2 + ((@$property['expected_rent'] * 0.18) * 5)) / @$property['marketValue']), (1 / 5)) - 1) * 100); ?>%
                             </td>
-                            <td><?php echo number_format((pow(((@$asset_3 + ((@$property['expected_rent'] * 0.18) * 10)) / @$property['marketValue']),(1 / 10)) - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_3 + ((@$property['expected_rent'] * 0.18) * 10)) / @$property['marketValue']),(1 / 10)) - 1) * 100); ?>%
                             </td>
-                        </tr>
+                        </tr>--->
                     </table>
                 </div>
 
@@ -170,11 +178,12 @@
                 </div>--->
             </div>
             <div class="features_description">
+            <?php if($property['investment_type'] != 6){ ?>
                 <div class="payment-box">
                     <h2>Buy now</h2>
                     <h1><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></h1>
 					
-                    <?php if($property['investment_type'] != 6){ ?>
+                    
                         <div class="financing-options-sect">
                             <div class="option-list1">
                                 <div class="finance-left-options">
@@ -187,10 +196,9 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
-                    
-                </div>
+                        </div>                    
+                    </div>
+                <?php } ?>
 
                 
 				<!--- Finance payment option ---->
@@ -277,7 +285,7 @@
                             </div>
                         </div> 
                     <?php }else{ ?>
-                        <h2>Buy now</h2>
+                        <h2>Start now</h2>
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
