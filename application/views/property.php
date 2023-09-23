@@ -289,11 +289,11 @@
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
-                                <div class="finance-desc">5% of property price</div>
+                                <div class="finance-desc"><?php echo $each_prop['lockdown_fee']; ?>% of property price</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.05); ?></div>
+                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * ($property['lockdown_fee']/100)); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
                     <?php } ?>
                     <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
                         <div style="width:100%;text-align:center;">
-                            <div class="payment-btn option-but">Apply Now</div>
+                            <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6)? 'Lockdown Now': 'Apply Now'; ?></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -380,7 +380,7 @@
                         <input type="hidden" id="amount" value="<?php echo (@$outright_price * 0.05); ?>" />
                         <input type="hidden" id="refID" value="<?php echo md5(date('YmdHis')); ?>" />
                         <div style="width:100%;text-align:center;font-family:'Cera Pro';font-size:14px;line-height:25px;">
-                            Lockdown this property with a 5% payment and receive your offer letter and a contract of sale
+                            Lockdown this property with a <?php echo $property['lockdown_fee']; ?>% payment and receive your offer letter and a contract of sale
                         </div>
                         <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
                             <div style="width:100%;text-align:center;">
@@ -497,6 +497,8 @@
 <input type="hidden" class="payment" id="payment" value="<?php echo (@$property['price'] * 0.40); ?>" />
 <?php if($property['investment_type'] == 6){ ?>
     <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+
+    <input type="hidden" class="onpl-payable" id="onpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
 <?php }else{ ?>
     <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
 <?php } ?>

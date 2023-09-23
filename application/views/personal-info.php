@@ -41,7 +41,7 @@
                 <div class="finance-form-elem-container">
                     <input class="verify-txt" type="text" id="phone" placeholder="Phone number" value="<?php echo $phone; ?>" />
                 </div>
-                <div class="finance-form-elem-container">
+                <div id="bvn-spc" class="finance-form-elem-container bvn-spc">
                     <input class="verify-txt" type="text" id="bvn" placeholder="BVN" maxlength="11" />
                 </div>
                  
@@ -69,6 +69,6 @@
             </div>
         </form>
         
-    </div>
+    </div> 
     <script src="<?php echo base_url(); ?>assets/js/payment.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/personal-page.js"></script>

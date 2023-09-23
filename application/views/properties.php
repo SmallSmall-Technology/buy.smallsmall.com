@@ -96,7 +96,7 @@
 					<div class="bottom-section">
 						<div class="sale-status <?php echo strtolower($each_prop['availability']); ?>"><?php echo $each_prop['availability']; ?></div>
 						<span class="price-type down-payment"><?php echo ($slug == 'onpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
-						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'onpl')? number_format($each_prop['price'] * 0.05) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
+						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'onpl')? number_format($each_prop['price'] * ($each_prop['lockdown_fee']/100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
 						<span class="price-type actual-price">Property price</span>
 						<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price']); ?></h3>
 						<p><?php echo $each_prop['property_name']; ?>, <?php echo $each_prop['city'] . ' ' . $each_prop['propState'] . '.'; ?></p>

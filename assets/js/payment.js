@@ -52,8 +52,6 @@ $('.option-but').click(function(){
 	var origination_fee = $('.one-percent').val();
 	
 	var transaction_fee = $('.four-percent').val();
-
-	var onpl_payable = $('#five-percent').val();
 	
 	var unit_amount = 0;
 	
@@ -62,6 +60,8 @@ $('.option-but').click(function(){
 	var promo_type = $('.promo-category').val();
 	
 	var promo_code = '';
+	
+	var onpl_payable = 0;
 
 	var down_payment = 0;
 	
@@ -93,8 +93,11 @@ $('.option-but').click(function(){
 	}else if(plan == 'outright'){
 
 		payable = property_cost;
+		
 
 	}else if(plan == 'onpl'){
+
+		onpl_payable = $('#onpl-payable').val();
 
 		payable = onpl_payable;
 
