@@ -5,6 +5,12 @@ function init(){
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
     
     var balance_percentage = (order.balance * 100) / order.property_cost;
+
+    if(order.paymentPlan == 'onpl'){
+        $('#summary-header').html('Lockdown Summary');
+        $('#summary-sub-head').html('Lockdown Summary');
+        $('.finance-spc').hide();
+    }
     
     $('#total-amount-payable').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.payable));
     

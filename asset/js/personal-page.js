@@ -16,8 +16,12 @@ function init(){
     	$("#email").val(order.personal_details[0]['email']);
     
     	$("#phone").val(order.personal_details[0]['phone']);
-    	
-    	$("#bvn").val(order.personal_details[0]['bvn']);
+
+		if(order.paymentPlan != 'onpl'){
+			$("#bvn").val(order.personal_details[0]['bvn']);
+		}else{
+			$('#bvn-spc').hide();
+		}
     	
     	$("#residential_address").val(order.personal_details[0]['residential_address']);
     	
@@ -28,6 +32,10 @@ function init(){
     	$('#finance-button').addClass('activated-button');
         		        
         $('#finance-button').prop('disabled', false);
+
+		if(order.paymentPlan == 'onpl'){
+			$('#persona').html('Lockdown Form');
+		}
     	
     }
     

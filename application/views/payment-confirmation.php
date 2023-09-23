@@ -1,8 +1,8 @@
     <div class="formContainer">
         <div style="width:100%">
             <div class="summary-container">
-                <div class="summary-header">Finance Application</div>
-                <div class="payment-summary">
+                <div id="summary-header" class="summary-header">Finance Application</div>
+                <div class="payment-summary"> 
                     <div class="summary-dets">
                         <div class="summary-sub-head align-left">Property information</div>
                         <div class="summary-prop-title" id="prop-title">**************</div>
@@ -11,9 +11,9 @@
                         <div class="summary-prop-dets" id="prop-size">********</div>
                     </div>
                     <div class="summary-dets">
-                        <div class="summary-sub-head align-left">Financing information</div>
+                        <div id="summary-sub-head" class="summary-sub-head align-left">Financing information</div>
                         <table class="summary-table" width="100%">
-                            <tr class="summary-tr">
+                            <tr class="summary-tr finance-spc">
                                 <td width="50%">
                                     <div class="summary-desc">Down payment</div>
                                     <div class="summary-info" id="down-payment">***********</div>
@@ -33,7 +33,7 @@
                                     <div class="summary-info" id="total-amount-payable">**************</div>
                                 </td>
                             </tr>
-                            <tr class="summary-tr">
+                            <tr class="summary-tr finance-spc">
                                 <td width="50%">
                                     <div class="summary-desc">Principal 80%</div>
                                     <div class="summary-info" id="property-cost">**************</div>
