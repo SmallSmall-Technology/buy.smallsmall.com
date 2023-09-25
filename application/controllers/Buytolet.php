@@ -1763,7 +1763,7 @@ class Buytolet extends CI_Controller
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				//Isert Record To Nector For Awward and Reward for Users Signing up newly
-				$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone, 'nga');
+				$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone);
 				
 				echo 1;
 
@@ -1826,7 +1826,7 @@ class Buytolet extends CI_Controller
 		// 	return ($response !== false);
 		// }
 
-		public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $country) {
+		public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone) {
 			// Prepare the data payload for Nector
 			$data = array(
 				"id" => $userID,
@@ -1834,7 +1834,7 @@ class Buytolet extends CI_Controller
 				"last_name" => $lname,
 				"email" => $email,
 				"mobile" => $phone,
-				"country" => $country
+				"country" => "nga"
 			);
 		
 			// Convert the data to JSON 
