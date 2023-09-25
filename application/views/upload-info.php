@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="info">
-        <h1> Financing Application</h1>
+        <h1 id="the-form-title"> Financing Application</h1>
         
         <div  class="form_elem">
             <h3 id="persona"> Upload Documents</h3>
@@ -38,7 +38,8 @@
                         <div id="dd-dir">Drag and Drop or <span class="browse-btn-2">Browse</span></div> 
                     </div>
                 </div>
-                <div class="finance-form-elem-container">
+
+                <div id="finance-form-elem" class="finance-form-elem-container">
                     <div class="uploadArea" id="dropzone-bank">
                         Upload 6 months<br /> bank statement minimum                 
                         <input type="file" class="input statement-inp" id="upload" hidden />

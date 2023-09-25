@@ -1,7 +1,7 @@
     <div class="form-wrapper">
         <Box class="form-input-container">
             <div class="form-title">
-                <h1>Finance application</h1>
+                <h1 id="the-form-title">Finance application</h1>
                 <!---<p>Create an investor profile to get started</p>--->
             </div>
             <form id="financeForm" method="POST">

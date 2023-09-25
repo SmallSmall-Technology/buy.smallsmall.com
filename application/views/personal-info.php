@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="info">
-        <h1> Financing Application</h1>
+        <h1 id="the-form-title"> Financing Application</h1>
         
         <div  class="form_elem">
             <h3 id="persona"> Personal information</h3>
