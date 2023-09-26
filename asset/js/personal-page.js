@@ -13,7 +13,7 @@ $(document).ready(function(){
         		        
          $('#finance-button').prop('disabled', false);
         		        
-         $('#bvn').val(0);
+         $('#bvn').val(1);
 	}
     
     if(order.personal_details.length){
