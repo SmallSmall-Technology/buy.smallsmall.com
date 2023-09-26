@@ -1698,7 +1698,7 @@ class Buytolet extends CI_Controller
 			//Isert Record To Nector For Awward and Reward for Users Signing up newly
 			$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone);
 
-			if ($registration) {
+			if ($registration && $sendUsersRecordToNector) {
 
 				require 'vendor/autoload.php'; //For Unione template authoload
 
@@ -1826,8 +1826,54 @@ class Buytolet extends CI_Controller
 		// 	return ($response !== false);
 		// }
 
+		// public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone) {
+		// 	// Prepare the data payload for Nector
+		// 	$data = array(
+		// 		"id" => $userID,
+		// 		"first_name" => $fname,
+		// 		"last_name" => $lname,
+		// 		"email" => $email,
+		// 		"mobile" => $phone,
+		// 		"country" => "nga"
+		// 	);
+		
+		// 	// Convert the data to JSON 
+		// 	$jsonPayload = json_encode($data);
+		
+		// 	// Endpoint URL for Nector to signup new subscriber to there Dashboard
+		// 	$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
+		
+		// 	// Initialize cURL session
+		// 	$ch = curl_init();
+		
+		// 	// Set cURL options
+		// 	curl_setopt($ch, CURLOPT_URL, $endpoint);
+		// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		// 		'Content-Type: application/json',
+		// 		'x-custom-website-topic: customer_created',
+		// 		'x-custom-website-delivery-id: bss12345678'
+		// 	));
+		// 	curl_setopt($ch, CURLOPT_POST, 1);
+		// 	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
+		// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		
+		// 	// Execute the cURL request
+		// 	$response = curl_exec($ch);
+		
+		// 	// Check for cURL errors
+		// 	if (curl_errno($ch)) {
+		// 		// Handle the error as needed
+		// 		// For example: echo 'cURL Error: ' . curl_error($ch);
+		// 	}
+		
+		// 	// Close cURL session
+		// 	curl_close($ch);
+				
+		// 	// Return true for success or false for failure
+		// 	return ($response !== false);
+		// }
+		
 		public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone) {
-			// Prepare the data payload for Nector
 			$data = array(
 				"id" => $userID,
 				"first_name" => $fname,
@@ -1837,42 +1883,40 @@ class Buytolet extends CI_Controller
 				"country" => "nga"
 			);
 		
-			// Convert the data to JSON 
 			$jsonPayload = json_encode($data);
 		
-			// Endpoint URL for Nector to signup new subscriber to there Dashboard
 			$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
 		
-			// Initialize cURL session
-			$ch = curl_init();
-		
-			// Set cURL options
-			curl_setopt($ch, CURLOPT_URL, $endpoint);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			$headers = array(
 				'Content-Type: application/json',
 				'x-custom-website-topic: customer_created',
 				'x-custom-website-delivery-id: bss12345678'
-			));
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			);
 		
-			// Execute the cURL request
-			$response = curl_exec($ch);
+			echo '<script type="text/javascript">
+					$.ajax({
+						type: "POST",
+						url: "' . $endpoint . '",
+						data: ' . $jsonPayload . ',
+						contentType: "application/json; charset=utf-8",
+						beforeSend: function (request) {
+							request.setRequestHeader("Content-Type", "application/json");
+							request.setRequestHeader("x-custom-website-topic", "customer_created");
+							request.setRequestHeader("x-custom-website-delivery-id", "bss12345678");
+						},
+						success: function(response) {
+							console.log("Nector Response: " + JSON.stringify(response));
+						},
+						error: function(xhr, status, error) {
+							console.error("Nector Request Error: " + error);
+						}
+					});
+				</script>';
 		
-			// Check for cURL errors
-			if (curl_errno($ch)) {
-				// Handle the error as needed
-				// For example: echo 'cURL Error: ' . curl_error($ch);
-			}
-		
-			// Close cURL session
-			curl_close($ch);
-				
-			// Return true for success or false for failure
-			return ($response !== false);
+			return true; // Assuming the request was sent successfully
 		}
 		
+
 
 	public function filter()
 	{
