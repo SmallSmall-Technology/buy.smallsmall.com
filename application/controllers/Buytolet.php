@@ -1695,6 +1695,9 @@ class Buytolet extends CI_Controller
 
 			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent']);
 
+			//Isert Record To Nector For Awward and Reward for Users Signing up newly
+			$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone);
+
 			if ($registration) {
 
 				require 'vendor/autoload.php'; //For Unione template authoload
@@ -1761,9 +1764,6 @@ class Buytolet extends CI_Controller
 
 				//Insert notification
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
-
-				//Isert Record To Nector For Awward and Reward for Users Signing up newly
-				$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone);
 				
 				echo 1;
 
