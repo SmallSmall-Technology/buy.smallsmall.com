@@ -12,6 +12,8 @@ $(document).ready(function(){
 		$('#finance-button').addClass('activated-button');
         		        
          $('#finance-button').prop('disabled', false);
+        		        
+         $('#bvn').val(0);
 	}
     
     if(order.personal_details.length){
