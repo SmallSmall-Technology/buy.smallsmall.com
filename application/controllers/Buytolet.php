@@ -1696,7 +1696,8 @@ class Buytolet extends CI_Controller
 			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent']);
 
 			//Isert Record To Nector For Awward and Reward for Users Signing up newly
-			$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone);
+			$nectorContry = "nga";
+			$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry);
 
 			if ($registration && $sendUsersRecordToNector) {
 
@@ -1779,55 +1780,60 @@ class Buytolet extends CI_Controller
 		}
 	}
 
+	public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry) {
+		$data = array(
+			"id" => $userID,
+			"first_name" => $fname,
+			"last_name" => $lname,
+			"email" => $email,
+			"mobile" => $phone,
+			"country" => $nectorContry
+		);
+	
+		$jsonPayload = json_encode($data);
+	
+		$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
+	
+		$headers = array(
+			'Content-Type: application/json',
+			'x-custom-website-topic: customer_created',
+			'x-custom-website-delivery-id: bss12345678'
+		);
+	
+		$ch = curl_init($endpoint);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	
+		$response = curl_exec($ch);
+	
+		if ($response === false) {
+			// Handle cURL error
+			$error = curl_error($ch);
+			curl_close($ch);
+			// You may log the error or handle it as needed
+			return false;
+		} else {
+			curl_close($ch);
+			// $response contains the response from the endpoint
+			// You can process the response as needed
+			// For example, you can log it or check for success
+			$responseData = json_decode($response, true);
+	
+			// Check if the response indicates success
+			if (isset($responseData['status']) && $responseData['status'] === 'success') {
+				return true;
+			} else {
+				// Handle a failed response
+				return false;
+			}
+		}
+	}
+	
 
-		// public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $country) {
-		// 	// Prepare the data payload for Nector
-		// 	$data = array(
-		// 		"id" => $userID,
-		// 		"first_name" => $fname,
-		// 		"last_name" => $lname,
-		// 		"email" => $email,
-		// 		"mobile" => $phone,
-		// 		"country" => $country
-		// 	);
-	
-		// 	// Convert the data to JSON
-		// 	$jsonPayload = json_encode($data);
-	
-		// 	// Endpoint URL
-		// 	$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
-	
-		// 	// Initialize cURL session 
-		// 	$ch = curl_init();
-	
-		// 	// Set cURL options
-		// 	curl_setopt($ch, CURLOPT_URL, $endpoint);
-		// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-		// 	curl_setopt($ch, CURLOPT_POST, 1);
-		// 	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
-		// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	
-		// 	// Execute the cURL request
-		// 	$response = curl_exec($ch);
-	
-		// 	// Check for cURL errors
-		// 	if (curl_errno($ch)) {
-		// 		// Handle the error as needed
-		// 		// For example: echo 'cURL Error: ' . curl_error($ch);
-		// 	}
-	
-		// 	// Close cURL session
-		// 	curl_close($ch);
-	
-		// 	// You may want to return or handle the response from the endpoint
-		// 	// For example: return $response;
-	
-		// 	// Return true for success or false for failure
-		// 	return ($response !== false);
-		// }
-
+		
 		// public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone) {
-		// 	// Prepare the data payload for Nector
 		// 	$data = array(
 		// 		"id" => $userID,
 		// 		"first_name" => $fname,
@@ -1837,85 +1843,41 @@ class Buytolet extends CI_Controller
 		// 		"country" => "nga"
 		// 	);
 		
-		// 	// Convert the data to JSON 
 		// 	$jsonPayload = json_encode($data);
 		
-		// 	// Endpoint URL for Nector to signup new subscriber to there Dashboard
 		// 	$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
 		
-		// 	// Initialize cURL session
-		// 	$ch = curl_init();
-		
-		// 	// Set cURL options
-		// 	curl_setopt($ch, CURLOPT_URL, $endpoint);
-		// 	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		// 	$headers = array(
 		// 		'Content-Type: application/json',
 		// 		'x-custom-website-topic: customer_created',
 		// 		'x-custom-website-delivery-id: bss12345678'
-		// 	));
-		// 	curl_setopt($ch, CURLOPT_POST, 1);
-		// 	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
-		// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// 	);
 		
-		// 	// Execute the cURL request
-		// 	$response = curl_exec($ch);
+		// 	echo '<script type="text/javascript">
+		// 			$.ajax({
+		// 				type: "POST",
+		// 				url: "' . $endpoint . '",
+		// 				data: ' . $jsonPayload . ',
+		// 				contentType: "application/json; charset=utf-8",
+		// 				beforeSend: function (request) {
+		// 					request.setRequestHeader("Content-Type", "application/json");
+		// 					request.setRequestHeader("x-custom-website-topic", "customer_created");
+		// 					request.setRequestHeader("x-custom-website-delivery-id", "bss12345678");
+		// 				},
+		// 				success: function(response) {
+		// 					console.log("Nector Response: " + JSON.stringify(response));
+		// 				},
+		// 				error: function(xhr, status, error) {
+		// 					console.error("Nector Request Error: " + error);
+		// 				}
+		// 			});
+		// 		</script>';
 		
-		// 	// Check for cURL errors
-		// 	if (curl_errno($ch)) {
-		// 		// Handle the error as needed
-		// 		// For example: echo 'cURL Error: ' . curl_error($ch);
-		// 	}
-		
-		// 	// Close cURL session
-		// 	curl_close($ch);
-				
-		// 	// Return true for success or false for failure
-		// 	return ($response !== false);
+		// 	return true; // Assuming the request was sent successfully
 		// }
 		
-		public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone) {
-			$data = array(
-				"id" => $userID,
-				"first_name" => $fname,
-				"last_name" => $lname,
-				"email" => $email,
-				"mobile" => $phone,
-				"country" => "nga"
-			);
-		
-			$jsonPayload = json_encode($data);
-		
-			$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
-		
-			$headers = array(
-				'Content-Type: application/json',
-				'x-custom-website-topic: customer_created',
-				'x-custom-website-delivery-id: bss12345678'
-			);
-		
-			echo '<script type="text/javascript">
-					$.ajax({
-						type: "POST",
-						url: "' . $endpoint . '",
-						data: ' . $jsonPayload . ',
-						contentType: "application/json; charset=utf-8",
-						beforeSend: function (request) {
-							request.setRequestHeader("Content-Type", "application/json");
-							request.setRequestHeader("x-custom-website-topic", "customer_created");
-							request.setRequestHeader("x-custom-website-delivery-id", "bss12345678");
-						},
-						success: function(response) {
-							console.log("Nector Response: " + JSON.stringify(response));
-						},
-						error: function(xhr, status, error) {
-							console.error("Nector Request Error: " + error);
-						}
-					});
-				</script>';
-		
-			return true; // Assuming the request was sent successfully
-		}
-		
+
+
 
 
 	public function filter()
