@@ -1685,6 +1685,10 @@ class Buytolet extends CI_Controller
 
 		//Check to see if email exists already
 
+		//Isert Record To Nector For Awward and Reward for Users Signing up newly
+		$nectorContry = "nga";
+		$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry);
+
 		$email_res = $this->buytolet_model->check_email($email);
 
 		if (!$email_res) {
@@ -1695,11 +1699,7 @@ class Buytolet extends CI_Controller
 
 			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent']);
 
-			//Isert Record To Nector For Awward and Reward for Users Signing up newly
-			$nectorContry = "nga";
-			$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry);
-
-			if ($registration && $sendUsersRecordToNector) {
+			if ($registration) {
 
 				require 'vendor/autoload.php'; //For Unione template authoload
 
