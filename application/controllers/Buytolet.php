@@ -1807,28 +1807,40 @@ class Buytolet extends CI_Controller
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	
 		$response = curl_exec($ch);
+
+		// Check for cURL errors
+            if (curl_errno($ch)) {
+                echo 'cURL Error: ' . curl_error($ch);
+            }
+//        		// Close cURL session
+            curl_close($ch);
+
+				// Output the response from the AJAX request
+
+            echo "AJAX Response: $response";
 	
-		if ($response === false) {
-			// Handle cURL error
-			$error = curl_error($ch);
-			curl_close($ch);
-			// You may log the error or handle it as needed
-			return false;
-		} else {
-			curl_close($ch);
-			// $response contains the response from the endpoint
-			// You can process the response as needed
-			// For example, you can log it or check for success
-			$responseData = json_decode($response, true);
+		// if ($response === false) {
+		// 	// Handle cURL error
+		// 	$error = curl_error($ch);
+		// 	curl_close($ch);
+		// 	// You may log the error or handle it as needed
+		// 	return false;
+
+		// } else {
+		// 	curl_close($ch);
+		// 	// $response contains the response from the endpoint
+		// 	// You can process the response as needed
+		// 	// For example, you can log it or check for success
+		// 	$responseData = json_decode($response, true);
 	
-			// Check if the response indicates success
-			if (isset($responseData['status']) && $responseData['status'] === 'success') {
-				return true;
-			} else {
-				// Handle a failed response
-				return false;
-			}
-		}
+		// 	// Check if the response indicates success
+		// 	if (isset($responseData['status']) && $responseData['status'] === 'success') {
+		// 		return true;
+		// 	} else {
+		// 		// Handle a failed response
+		// 		return false;
+		// 	}
+		// }
 	}
 	
 
