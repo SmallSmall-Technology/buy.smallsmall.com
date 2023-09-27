@@ -1,6 +1,4 @@
-$(init);
-
-function init(){
+$(document).ready(function(){
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
     
@@ -17,7 +15,7 @@ function init(){
         $('#payment-txt').html('Click the finish button to submit and pay now');
 
         $('#summary-desc').html('Lockdown Fee');
-        
+
     }
     
     $('#total-amount-payable').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.payable));
@@ -100,7 +98,7 @@ function init(){
 
     
     
-}
+});
 function numberWithCommas(x) {
 
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
