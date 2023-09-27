@@ -44,8 +44,6 @@ $(document).ready(function(){
     
     var payment = parseInt(order.transaction_fee) + parseInt(order.origination_fee);
     
-    //$('#due_amount').val(payment);
-    
     $('#due_amount').val(due_amount);
     
     $('#payment-output').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(due_amount));
