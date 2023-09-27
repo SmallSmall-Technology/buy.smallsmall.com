@@ -4,6 +4,10 @@ $(document).ready(function(){
     
     var balance_percentage = (order.balance * 100) / order.property_cost;
 
+    var transaction_fee = order.transaction_fee;
+
+    var due_amount = order.origination_fee;
+
     if(order.paymentPlan == 'onpl'){
 
         $('#summary-header').html('Lockdown Summary');
@@ -16,6 +20,10 @@ $(document).ready(function(){
 
         $('#summary-desc').html('Lockdown Fee');
 
+        transaction_fee = order.payable;
+
+        due_amount = order.payable;
+
     }
     
     $('#total-amount-payable').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.payable));
@@ -26,7 +34,7 @@ $(document).ready(function(){
 
     $('#property-cost').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.balance));
     
-    $('#transaction-fee').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.transaction_fee));
+    $('#transaction-fee').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(transaction_fee));
 
     $('#originating-fee').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.origination_fee));
 
@@ -36,11 +44,9 @@ $(document).ready(function(){
     
     var payment = parseInt(order.transaction_fee) + parseInt(order.origination_fee);
     
-    //$('#due_amount').val(payment);
+    $('#due_amount').val(due_amount);
     
-    $('#due_amount').val(order.origination_fee);
-    
-    $('#payment-output').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.origination_fee));
+    $('#payment-output').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(due_amount));
     
     $('#full-name').html(order.personal_details[0]['firstname']+' '+order.personal_details[0]['lastname']);
     
