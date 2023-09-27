@@ -23,7 +23,7 @@
         </div>
         <div style="width:100%">
             <div class="summary-container">
-                <div class="summary-header">Finance Application</div>
+                <div id="summary-header" class="summary-header">Finance Application</div>
                 <div class="payment-summary">
                     <div class="summary-dets">
                         <div class="summary-sub-head align-left">Property information</div>
@@ -33,10 +33,10 @@
                         <div class="summary-prop-dets" id="prop-size">********</div>
                     </div>
                     <div class="summary-dets">
-                        <div class="summary-sub-head align-left">Financing information</div>
+                        <div id="summary-sub-head" class="summary-sub-head align-left">Financing information</div>
                         <div class="finance-table-container">
-                            <table class="summary-table" width="100%">
-                                <tr class="summary-tr">
+                            <table class="summary-table finance-tbl" width="100%">
+                                <tr class="finance-spc summary-tr">
                                     <td width="50%">
                                         <div class="summary-desc">Down payment</div>
                                         <div class="summary-info" id="down-payment">***********</div>
@@ -48,7 +48,7 @@
                                 </tr>
                                 <tr class="summary-tr">
                                     <td width="50%">
-                                        <div class="summary-desc">Transaction fee</div>
+                                        <div id="summary-desc" class="summary-desc">Transaction fee</div>
                                         <div class="summary-info" id="transaction-fee">**************</div>
                                     </td>
                                     <td>
@@ -56,7 +56,7 @@
                                         <div class="summary-info" id="total-amount-payable">**************</div>
                                     </td>
                                 </tr>
-                                <tr class="summary-tr">
+                                <tr class="finance-spc summary-tr">
                                     <td width="50%">
                                         <div class="summary-desc">Principal <span id="actual-percentage">0%</span></div>
                                         <div class="summary-info" id="property-cost">**************</div>
@@ -186,7 +186,7 @@
                 <input type="hidden" id="refID" value="<?php echo md5(date('YmdHis')); ?>" />
                 
 			    
-                <div class="payment-txt">Click the finish button to submit and pay origination fee: <span id="payment-output">0</span></div>
+                <div id="payment-txt" class="payment-txt">Click the finish button to submit and pay origination fee: <span id="payment-output">0</span></div>
                 <button onclick="payWithPaystack()" type="submit" id="" class="doc-submit-btn">Finish</button>
 
             </form>
