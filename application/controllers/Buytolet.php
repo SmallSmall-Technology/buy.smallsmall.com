@@ -1645,9 +1645,13 @@ class Buytolet extends CI_Controller
 	public function signupForm()
 	{
 
-		$ua = $_SERVER['HTTP_USER_AGENT'];
+		if ($this->session->has_userdata('loggedIn')) {
 
-		$userID = $this->session->userdata('userID');
+			$userID = $this->session->userdata('userID');
+
+		}
+
+		$ua = $_SERVER['HTTP_USER_AGENT'];
 
 		$fname = trim($this->input->post("fname"));
 
