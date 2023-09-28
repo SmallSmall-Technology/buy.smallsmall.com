@@ -1879,9 +1879,9 @@ class Buytolet extends CI_Controller
 		curl_close($ch);
 	
 		// Include the $jsonPayload in the AJAX response
-		$ajaxResponse = "AJAX Response: $response\nJSON Payload: $jsonPayload";
+		// $ajaxResponse = "AJAX Response: $response\nJSON Payload: $jsonPayload";
 	
-		echo $ajaxResponse;
+		// echo $ajaxResponse;
 	
 		// Return true or false based on your response handling logic
 	}
