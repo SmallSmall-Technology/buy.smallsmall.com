@@ -1648,8 +1648,6 @@ class Buytolet extends CI_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-
-
 	public function signupForm()
 	{
 
@@ -1702,6 +1700,11 @@ class Buytolet extends CI_Controller
 			$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
 
 			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
+
+			//Isert Record To Nector For Awward and Reward for Users Signing up newly
+			$nectorContry = "nga";
+
+			$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
 
 			if ($registration) {
 
@@ -1807,6 +1810,52 @@ class Buytolet extends CI_Controller
 			echo "User email exists already";
 		}
 	}
+
+	public function insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry) {
+		$data = array(
+			"id" => $id,
+			"first_name" => $fname,
+			"last_name" => $lname,
+			"email" => $email,
+			"mobile" => $phone,
+			"country" => $nectorContry
+		);
+	
+		$jsonPayload = json_encode($data);
+	
+		$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
+	
+		$headers = array(
+			'Content-Type: application/json',
+			'x-custom-website-topic: customer_created',
+			'x-custom-website-delivery-id: bss12345678'
+		);
+	
+		$ch = curl_init($endpoint);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	
+		$response = curl_exec($ch);
+	
+		// Check for cURL errors
+
+		if (curl_errno($ch)) {
+			echo 'cURL Error: ' . curl_error($ch);
+		}
+	
+		// Close cURL session
+		curl_close($ch);
+	
+		// Include the $jsonPayload in the AJAX response for error deburging
+
+		// $ajaxResponse = "AJAX Response: $response\nJSON Payload: $jsonPayload";
+	
+		// echo $ajaxResponse;
+	
+	}
+	
 
 	public function filter()
 	{
