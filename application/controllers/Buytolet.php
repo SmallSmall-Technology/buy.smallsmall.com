@@ -1645,12 +1645,6 @@ class Buytolet extends CI_Controller
 	public function signupForm()
 	{
 
-		if ($this->session->has_userdata('loggedIn')) {
-
-			$userID = $this->session->userdata('userID');
-
-		}
-
 		$ua = $_SERVER['HTTP_USER_AGENT'];
 
 		$fname = trim($this->input->post("fname"));
@@ -1689,10 +1683,6 @@ class Buytolet extends CI_Controller
 
 		//Check to see if email exists already
 
-		//Isert Record To Nector For Awward and Reward for Users Signing up newly
-		$nectorContry = "nga";
-		$sendUsersRecordToNector = $this->insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry);
-
 		$email_res = $this->buytolet_model->check_email($email);
 
 		if (!$email_res) {
@@ -1702,6 +1692,11 @@ class Buytolet extends CI_Controller
 			$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
 
 			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent']);
+
+			//Isert Record To Nector For Awward and Reward for Users Signing up newly
+			$nectorContry = "nga";
+
+			$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
 
 			if ($registration) {
 
