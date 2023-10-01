@@ -93,6 +93,9 @@ header{
     margin-top:20px;
     text-align:center;
 }
+#add-onpl-agreement{
+    display:none;
+}
 .form__one{
     margin:30px;
     align-items: center;

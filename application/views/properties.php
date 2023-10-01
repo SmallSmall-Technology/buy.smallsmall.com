@@ -109,22 +109,44 @@
 												echo 0;
 											} ?> sqm</li>
 						</ul>
-						<div class="key-values">
-							<div>
-								<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
-								<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$each_prop['expected_rent'] / 1000000; ?>M</h3>
+						<?php if($slug == 'onpl'){ ?>
+							<div class="key-values">
+								<div>
+									<span>Lockdown Period</span>
+									<h3>11 Months</h3>
+								</div>
+								<div>
+									<span>Down Payment</span>
+									<h3><?php echo number_format(($each_prop['minimum_payment_plan']/100) * $each_prop['price']); ?>
+									</h3>
+								</div>
+								<div>
+									<span>Instalment Period</span>
+									<h3>5 Years</h3>
+								</div>
+								<div>
+									<span>Fixed interest rate</span>
+									<h3>9% p.a</h3>
+								</div>
 							</div>
-							<div>
-								<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
-								<h3><?php echo number_format((pow((($asset_1 + $each_prop['expected_rent']) / $each_prop['marketValue']), 1) - 1) * 100); ?>%
-								</h3>
+						<?php }else{ ?>
+							<div class="key-values">
+								<div>
+									<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
+									<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$each_prop['expected_rent'] / 1000000; ?>M</h3>
+								</div>
+								<div>
+									<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
+									<h3><?php echo number_format((pow((($asset_1 + $each_prop['expected_rent']) / $each_prop['marketValue']), 1) - 1) * 100); ?>%
+									</h3>
+								</div>
+								<div>
+									<span>Appreciation</span>
+									<h3><?php $asset_1 = ((($each_prop['asset_appreciation_1'] / 100) * $each_prop['marketValue']) + $each_prop['marketValue']);
+										echo $each_prop['asset_appreciation_1']; ?>%
+								</div>
 							</div>
-							<div>
-								<span>Appreciation</span>
-								<h3><?php $asset_1 = ((($each_prop['asset_appreciation_1'] / 100) * $each_prop['marketValue']) + $each_prop['marketValue']);
-									echo $each_prop['asset_appreciation_1']; ?>%
-							</div>
-						</div>
+						<?php } ?>
 					</div>
 				</a>
 

@@ -776,9 +776,13 @@ class Buytolet extends CI_Controller
 
 			$this->load->view('templates/header', $data);
 
+			$this->load->view('templates/breadcrumb-finance', $data);
+
 			$this->load->view('personal-info', $data);
 
 			$this->load->view('templates/footer', $data);
+
+			$data['progress'] = 25;
 		} else {
 
 			redirect(base_url() . "login", 'refresh');
@@ -806,11 +810,15 @@ class Buytolet extends CI_Controller
 
 			$data['interest'] = $this->session->userdata('interest');
 
+			$data['progress'] = 50;
+
 			//Check login status
 
 			$data['title'] = "Employment Details Form";
 
 			$this->load->view('templates/header', $data);
+
+			$this->load->view('templates/breadcrumb-finance', $data);
 
 			$this->load->view('employment-info', $data);
 
@@ -842,11 +850,15 @@ class Buytolet extends CI_Controller
 
 			$data['interest'] = $this->session->userdata('interest');
 
+			$data['progress'] = 75;
+
 			//Check login status
 
 			$data['title'] = "Upload Documents";
 
 			$this->load->view('templates/header', $data);
+
+			$this->load->view('templates/breadcrumb-finance', $data);
 
 			$this->load->view('upload-info', $data);
 
@@ -878,15 +890,20 @@ class Buytolet extends CI_Controller
 
 			$data['interest'] = $this->session->userdata('interest');
 
+			$data['progress'] = 100;
+
 			//Check login status
 
 			$data['title'] = "Finance Confirmation :: Buy2Let";
 
 			$this->load->view('templates/header', $data);
 
+			$this->load->view('templates/breadcrumb-finance', $data);
+
 			$this->load->view('finance-confirmation', $data);
 
 			$this->load->view('templates/footer', $data);
+
 		} else {
 
 			redirect(base_url() . "login", 'refresh');

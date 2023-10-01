@@ -1,26 +1,4 @@
-    <div class="formContainer">
-        <div class="header__image">
-            <div class='header__img'>
-                <img src="<?php echo base_url(); ?>asset/images/personalinfo.svg" alt="personal information"  /><br/>personal info<br/>
-                <input id="personal__headinfo" type="text" />
-            </div>
-    
-    
-            <div class='header__img' >
-                <img src="<?php echo base_url(); ?>asset/images/purpbriefcase.svg" alt="employment information"   /><br/>Employment info<br/>
-                <input id="personal__headinfo" type="text" />
-            </div>
-    
-            <div class='header__img'>
-                <img src="<?php echo base_url(); ?>asset/images/accountstatecolour.svg" alt="account information" /><br/>Bank statement & ID<br/>
-                <input id="personal__headinfo" type="text" />
-            </div>
-    
-            <div class='header__img'>
-                <img src="<?php echo base_url(); ?>asset/images/summarycolor.svg" alt="summary" /><br/>summary<br/>
-                <input id="personal__headinfo" type="text" />
-            </div>
-        </div>
+
         <div style="width:100%">
             <div class="summary-container">
                 <div id="summary-header" class="summary-header">Finance Application</div>

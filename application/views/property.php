@@ -50,7 +50,9 @@
            
             <div class="property-left-word-sect">
                 <h1><?php echo $property['property_name']; ?></h1>
+                
                 <div class="price-discount-sect">
+                    <?php if($property['investment_type'] == 6){ ?>
                     <div class="price-box">
                         <p>Lockdown Fee</p>
                         <h2 style="font-weight:bold">
@@ -63,6 +65,7 @@
                             </div>
                         </h2>
                     </div>
+                    <?php } ?>
                     <div class="price-box">
                         <p>Payment tenure</p>
                         <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period']/12); ?> Years</h2>
