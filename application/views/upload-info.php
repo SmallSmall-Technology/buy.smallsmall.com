@@ -1,26 +1,5 @@
-    <div class="header__image">
+    <!---<div class="header__image">--->
 
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/personalinfo.svg" alt="personal information"  /><br/>personal info<br/>
-            <input id="personal__headinfo" type="text" />
-        </div>
-
-
-        <div class='header__img' >
-            <img src="<?php echo base_url(); ?>asset/images/purpbriefcase.svg" alt="employment information"   /><br/>Employment info<br/>
-            <input id="personal__headinfo" type="text" />
-        </div>
-
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/accountstatecolour.svg" alt="account information" /><br/>Account statement & ID<br/>
-            <input id="personal__headinfo" type="text" />
-        </div>
-
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/summary.svg" alt="summary" /><br/>summary<br/>
-            <input class="header__info" type="text" />
-        </div>
-    </div>
     <div class="info">
         <h1 id="the-form-title"> Financing Application</h1>
         
@@ -60,6 +39,9 @@
                 </div>
                 <div class="finance-form-elem-container">
                     <p><input type="checkbox" id="agreement" />I have read the <a href="<?php echo base_url('faq'); ?>" target="_blank">financing Terms and Condition.</a> </p>
+                    
+                    <p id="add-onpl-agreement"><input type="checkbox" id="onpl-agreement" />I agree that 5% transaction fee will be forfeited when subscriber fails to make downpayment at the end off 11 months</p>
+
                     <div id="btn__tags">
                        <div id="back__btn">Back</div>
                    

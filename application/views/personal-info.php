@@ -1,24 +1,4 @@
-    
-    <div class="header__image">
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/personalinfo.svg" alt="personal information"  /><br/>personal info<br/>
-            <input id="personal__headinfo" type="text" />
-        </div>
-        <div class='header__img' >
-            <img src="<?php echo base_url(); ?>asset/images/employment.svg" alt="employment information"   /><br/>Employment info<br/>
-            <input class="header__info" type="text" />
-        </div>
 
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/accountstatement.svg" alt="account information" /><br/>Bank statement & ID<br/>
-            <input class="header__info" type="text" />
-        </div>
-
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/summary.svg" alt="summary" /><br/>summary<br/>
-            <input class="header__info" type="text" />
-        </div>
-    </div>
     <div class="info">
         <h1 id="the-form-title"> Financing Application</h1>
         
