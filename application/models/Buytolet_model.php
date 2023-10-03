@@ -2524,8 +2524,6 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-<<<<<<< HEAD
-=======
 	public function get_single_stp_user($id){
 
 		$this->db->select('a.*, b.*, c.*, a.amount as purchase_amount, d.lastName, d.email as user_email');
@@ -2568,7 +2566,6 @@ class Buytolet_model extends CI_Model
 		return $query->row_array();
 	}*/
 
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 	public function update_with_plan_code($plan_code, $userid){
 
 		$update = array('plan_code' => $plan_code);
