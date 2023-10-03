@@ -1723,11 +1723,6 @@ class Buytolet extends CI_Controller
 
 			$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
 
-			//Isert Record To Nector For Awward and Reward for Users Signing up newly
-			$nectorContry = "nga";
-
-			$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
-
 			if ($registration) {
 
 				require 'vendor/autoload.php'; //For Unione template authoload
@@ -1756,6 +1751,7 @@ class Buytolet extends CI_Controller
 				try {
 					$response = $client->request('POST', 'template/get.json', array(
 						'headers' => $headers,
+						
 						'json' => $requestBody,
 					));
 
@@ -1770,31 +1766,54 @@ class Buytolet extends CI_Controller
 					$htmlBody = str_replace('{{link}}', $link, $htmlBody);
 
 					$data['response'] = $htmlBody;
+
+					// Prepare the email data
+					$emailData = [
+						"message" => [
+							"recipients" => [
+								["email" => $email],
+							],
+							"body" => ["html" => $htmlBody],
+
+							"subject" => "Email Confirmation BuySmallsmall",
+
+							"from_email" => "donotreply@smallsmall.com",
+
+							"from_name" => "Smallsmall",
+						],
+					];
+
+					// Send the email using the Unione API
+					$responseEmail = $client->request('POST', 'email/send.json', [
+						'headers' => $headers,
+						'json' => $emailData,
+					]);
+
 				} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 					$data['response'] = $e->getMessage();
 				}
-				$this->email->from('donotreply@smallsmall.com', 'Small Small');
+				// $this->email->from('donotreply@smallsmall.com', 'Small Small');
 
-				$this->email->to($email);
+				// $this->email->to($email);
 
-				$this->email->subject("Confirm your email");
+				// $this->email->subject("Confirm your email");
 
-				$this->email->set_mailtype("html");
+				// $this->email->set_mailtype("html");
 
-				$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+				// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
 				// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
-				$this->email->message($message);
+				// $this->email->message($message);
 
-				$emailRes = $this->email->send();
+				// $emailRes = $this->email->send();
 
 				// End Of Unione
 
 				//Insert notification
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
-				
+
 				echo 1;
 
 			} else {
@@ -1809,78 +1828,9 @@ class Buytolet extends CI_Controller
 		}
 	}
 
-<<<<<<< HEAD
-// 	public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry) {
-// 		$data = array(
-// 			"id" => $userID,
-// 			"first_name" => $fname,
-// 			"last_name" => $lname,
-// 			"email" => $email,
-// 			"mobile" => $phone,
-// 			"country" => $nectorContry
-// 		);
-	
-// 		$jsonPayload = json_encode($data);
-	
-// 		$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
-	
-// 		$headers = array(
-// 			'Content-Type: application/json',
-// 			'x-custom-website-topic: customer_created',
-// 			'x-custom-website-delivery-id: bss12345678'
-// 		);
-	
-// 		$ch = curl_init($endpoint);
-// 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// 		curl_setopt($ch, CURLOPT_POST, true);
-// 		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
-// 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	
-// 		$response = curl_exec($ch);
-
-// 		// Check for cURL errors
-//             if (curl_errno($ch)) {
-//                 echo 'cURL Error: ' . curl_error($ch);
-//             }
-// //        		// Close cURL session
-//             curl_close($ch);
-
-// 				// Output the response from the AJAX request
-
-//             echo "AJAX Response: $response";
-	
-// 		// if ($response === false) {
-// 		// 	// Handle cURL error
-// 		// 	$error = curl_error($ch);
-// 		// 	curl_close($ch);
-// 		// 	// You may log the error or handle it as needed
-// 		// 	return false;
-
-// 		// } else {
-// 		// 	curl_close($ch);
-// 		// 	// $response contains the response from the endpoint
-// 		// 	// You can process the response as needed
-// 		// 	// For example, you can log it or check for success
-// 		// 	$responseData = json_decode($response, true);
-	
-// 		// 	// Check if the response indicates success
-// 		// 	if (isset($responseData['status']) && $responseData['status'] === 'success') {
-// 		// 		return true;
-// 		// 	} else {
-// 		// 		// Handle a failed response
-// 		// 		return false;
-// 		// 	}
-// 		// }
-// 	}
-	
-	public function insertToNectorDashboard($userID, $fname, $lname, $email, $phone, $nectorContry) {
-		$data = array(
-			"id" => $userID,
-=======
 	public function insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry) {
 		$data = array(
 			"id" => $id,
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 			"first_name" => $fname,
 			"last_name" => $lname,
 			"email" => $email,
@@ -1907,10 +1857,7 @@ class Buytolet extends CI_Controller
 		$response = curl_exec($ch);
 	
 		// Check for cURL errors
-<<<<<<< HEAD
-=======
 
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 		if (curl_errno($ch)) {
 			echo 'cURL Error: ' . curl_error($ch);
 		}
@@ -1918,20 +1865,12 @@ class Buytolet extends CI_Controller
 		// Close cURL session
 		curl_close($ch);
 	
-<<<<<<< HEAD
-		// Include the $jsonPayload in the AJAX response
-=======
 		// Include the $jsonPayload in the AJAX response for error deburging
 
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 		// $ajaxResponse = "AJAX Response: $response\nJSON Payload: $jsonPayload";
 	
 		// echo $ajaxResponse;
 	
-<<<<<<< HEAD
-		// Return true or false based on your response handling logic
-=======
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 	}
 	
 
@@ -2951,12 +2890,16 @@ class Buytolet extends CI_Controller
 
 			$headers = array(
 				'Content-Type' => 'application/json',
+
 				'Accept' => 'application/json',
+
 				'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
 			);
 
 			$client = new \GuzzleHttp\Client([
+
 				'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+
 			]);
 
 			$requestBody = [
@@ -2968,7 +2911,9 @@ class Buytolet extends CI_Controller
 			try {
 				$response = $client->request('POST', 'template/get.json', array(
 					'headers' => $headers,
+
 					'json' => $requestBody,
+
 				));
 
 				$jsonResponse = $response->getBody()->getContents();
@@ -2984,26 +2929,53 @@ class Buytolet extends CI_Controller
 				$htmlBody = str_replace('{{Name}}', $name, $htmlBody);
 
 				$data['response'] = $htmlBody;
+
+				// Prepare the email data
+				$emailData = [
+					"message" => [
+						"recipients" => [
+							["email" => $username],
+						],
+						"body" => ["html" => $htmlBody],
+
+						"subject" => "Password Reset Link",
+
+						"from_email" => "donotreply@smallsmall.com",
+
+						"from_name" => "BuySmallSmall Password Reset",
+
+					],
+				];
+
+				// Send the email using the Unione API
+
+				$responseEmail = $client->request('POST', 'email/send.json', [
+					'headers' => $headers,
+
+					'json' => $emailData,
+				]);
+
 			} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 				$data['response'] = $e->getMessage();
 			}
 
-			$this->email->from('donotreply@smallsmall.com', 'Small Small');
+			// $this->email->from('donotreply@smallsmall.com', 'Small Small');
 
-			$this->email->to($username);
+			// $this->email->to($username);
 
-			$this->email->subject("Password Reset Link");
+			// $this->email->subject("Password Reset Link");
 
-			$this->email->set_mailtype("html");
+			// $this->email->set_mailtype("html");
 
-			$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+			// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
 
-			$this->email->message($message);
+			// $this->email->message($message);
 
-			$emailRes = $this->email->send();
+			// $emailRes = $this->email->send();
 
 			echo 1;
+			
 		} else {
 
 			echo "Email doesn't not exist";
@@ -3247,13 +3219,10 @@ class Buytolet extends CI_Controller
 
 		if ($result) {
 
-<<<<<<< HEAD
-=======
 			if($target_option)
 
 				$this->create_target_option_plan($userID);
 
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 			$notificationRes = 0;
 
 			$subject = 'Property Offer Update';
@@ -3275,6 +3244,7 @@ class Buytolet extends CI_Controller
 
 				// Send notification message to user at dashboard
 				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+
 			} else if ($this->input->post('plan') == 'Financing') {
 
 				$request = $this->buytolet_model->getRequest($ref_id);
@@ -3324,16 +3294,13 @@ class Buytolet extends CI_Controller
 				$this->self_shares_email($subject, $email, $unit_amount, $property_name, $payable, $prop['finish_date'], $returns, $hold_period, $prop['maturity_date'], $lastname);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+				//$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 
 				if ($request['purchase_beneficiary'] == 'Self') {
 
-					$user_certificate = $this->shares_certificate($userID,  $request['refID'], $name, $email, $request['unit_amount'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
+					//$user_certificate = $this->shares_certificate($userID,  $request['refID'], $name, $email, $request['unit_amount'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
 
-<<<<<<< HEAD
-					$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
-=======
 					//$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
 
 					//Send certificate
@@ -3343,7 +3310,6 @@ class Buytolet extends CI_Controller
 						//Update shares certificate folder
 						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $certificate['credential_image'], $ref_id, $user_id);
 					}
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
 
@@ -3363,21 +3329,17 @@ class Buytolet extends CI_Controller
 						//$email_res = $this->notification_letter($beneficiary[$i]['email'], $message, $beneficiary[$i]['lastname']);
 						$name = $beneficiary[$i]['firstname'] . ' ' . $beneficiary[$i]['lastname'];
 
-<<<<<<< HEAD
-						$certificate = $this->shares_certificate($beneficiary[$i]['receiverID'],  $beneficiary[$i]['requestID'], $name, $beneficiary[$i]['email'], $beneficiary[$i]['no_of_units'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
-=======
 						$certificate = $this->certify_me($name, $beneficiary[$i]['email'], $beneficiary[$i]['requestID'],$property_details, $beneficiary[$i]['no_of_units']);
 						
 						//$this->shares_certificate($beneficiary[$i]['receiverID'],  $beneficiary[$i]['requestID'], $name, $beneficiary[$i]['email'], $beneficiary[$i]['no_of_units'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 
 						// Send notification message to user at dashboard
-						$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+						//$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 
-						if (!empty($certificate)) {
+						if ($certificate['credential_url']) {
 							//Update shares certificate folder
-							$this->buytolet_model->updateSharesCertificateFieldB($certificate['filename'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
+							$this->buytolet_model->updateSharesCertificateFieldB($certificate['credential_url'], $certificate['credential_image'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
 						}
 					}
 				}
@@ -4527,6 +4489,8 @@ class Buytolet extends CI_Controller
 
 		$amount = number_format($amount);
 
+		require 'vendor/autoload.php';
+
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
@@ -4539,7 +4503,6 @@ class Buytolet extends CI_Controller
 
 		$requestBody = [
 			"id" => "c67f2132-f3dd-11ed-ad01-dabfde6df242"
-			//"id" => '"'.$template_id.'"'
 		];
 
 		// end Unione Template
@@ -4575,27 +4538,40 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = str_replace('{{rate}}', $rate, $htmlBody);
 
-
-
 			$data['response'] = $htmlBody;
+
+			// Prepare the email data
+			$emailDetails = [
+				"message" => [
+					"recipients" => [
+						["email" => $email]
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Payment Successful",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "BuySmallSmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$response = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailDetails,
+			]);
+
+			$result = json_decode($response, true);
+
+			if($result['status'] == 'success'){
+				return 1;
+			}else{
+				return 0;
+			}
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
 
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-		$this->email->to($email);
-
-		$this->email->subject("Payment Successful");
-
-		$this->email->set_mailtype("html");
-
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-		$this->email->message($message);
-
-		$emailRes = $this->email->send();
 	}
 
 	public function get_eligible_users()
@@ -4650,9 +4626,6 @@ class Buytolet extends CI_Controller
 		//print_r($users);
 	}
 
-<<<<<<< HEAD
-	function subscription_email($name = 'Crowther', $subscription_amount = 1000000, $subscription_date = '2023-07-27 10:00:00', $plan_name = 'PLN_seuncrowther', $duration = 2, $auth_url = 'https://www.google.com', $email = 'seuncrowther@yahoo.com'){
-=======
 	public function create_target_option_plan($userID){
 
 		$user = $this->buytolet_model->get_single_stp_user($userID);
@@ -4859,7 +4832,6 @@ class Buytolet extends CI_Controller
 
 
 	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 		
 		require 'vendor/autoload.php';
 
@@ -4890,11 +4862,13 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = $responseData['template']['body']['html'];
 
-			$htmlBody = str_replace('{{name}}', $name, $htmlBody);
+			$htmlBody = str_replace('{{Name}}', $name, $htmlBody);
 
-			$htmlBody = str_replace('{{amount}}', $subscription_amount, $htmlBody);
+			$htmlBody = str_replace('{{Amount}}', $subscription_amount, $htmlBody);
 
 			$htmlBody = str_replace('{{subscriptionAmount}}', $subscription_amount, $htmlBody);
+
+			$htmlBody = str_replace('{{DueDate}}', $subscription_date, $htmlBody);
 
 			$htmlBody = str_replace('{{subscriptionDate}}', $subscription_date, $htmlBody);
 
@@ -4906,14 +4880,39 @@ class Buytolet extends CI_Controller
 
 			$data['response'] = $htmlBody;
 
+			// Prepare the email data
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "subject",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "Buysmallsmall",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+
+			$emailRes = json_decode($responseEmail->getBody()->getContents(), true);
+
+			if($emailRes['status'] == 'success')
+				return 1;
+			else
+				return $emailRes['status'];
+
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 
+			return $data['response'];
+
 		}
-<<<<<<< HEAD
-		$this->email->from('donotreply@smallsmall.com', 'Small Small');
-=======
 		
 	}
 
@@ -5038,32 +5037,36 @@ class Buytolet extends CI_Controller
 	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares){
 		
 		$curl = curl_init();
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 
-		$this->email->to($email);
+		$today = date('Y-m-d H:i:s');
 
-		$this->email->subject("BuySmallsmall Property Shares Subscription");
+		$login_details = base64_encode( "tunde.b@smallsmall.com:player2023" );
 
-<<<<<<< HEAD
-		$this->email->set_mailtype("html");
-=======
 		$data = '{"name":"'.$name.'" , "template_ID":"7382", "email": "'.$email.'", "text": "Co Ownership Shares", "license_number": "TPR-1267Af23", "verify_mode": "Passport Number", "verify_code": "13678AJKJY678JHGP0", "Issue.Date" : "'.$today.'", "Unique.ID":"'.$requestID.'", "Recipients.Name":"'.$name.'", "Custom.NumOf.Shares": "'.$amountOfShares.'", "Custom.Property.Address":"'.$propertyDets.'" }';
         			
 		curl_setopt_array($curl, array(
 			
 		  	CURLOPT_URL => "https://my.certifyme.online/api/v1/credential",
->>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 
-		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+		  	CURLOPT_RETURNTRANSFER => true,
 
-		$this->email->message($message);
+			CURLOPT_POSTFIELDS => $data,
 
-		$emailRes = json_decode($this->email->send(), true);
+		  	CURLOPT_HTTPHEADER => [
+				"Authorization: Basic $login_details",
 
-		if($emailRes['status'] == 'success')
-			echo 1;
-		else
-			print_r($emailRes);
+				"Accept: application/json",
+
+				"content-type: application/json"
+		  	]
+		));
+
+		$response = curl_exec($curl);
+
+		$result = json_decode($response, true);
+		
+		return $result;
+
 	}
 
 	public function refer_and_earn(){
@@ -5124,5 +5127,3 @@ class Buytolet extends CI_Controller
 
 }
 }
-
-
