@@ -1,10 +1,20 @@
-$(init);
-
-function init(){
+$(document).ready(function(){
     
     var baseUrl = 'https://dev-buy.smallsmall.com/';
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
+
+	if(order.paymentPlan == 'onpl'){
+		$('#bvn-spc').hide();
+		
+		$('#the-form-title').html('Lockdown Form');
+
+		$('#finance-button').addClass('activated-button');
+        		        
+         $('#finance-button').prop('disabled', false);
+        		        
+         $('#bvn').val(1);
+	}
     
     if(order.personal_details.length){
         //Fill up the fields
@@ -16,8 +26,10 @@ function init(){
     	$("#email").val(order.personal_details[0]['email']);
     
     	$("#phone").val(order.personal_details[0]['phone']);
-    	
-    	$("#bvn").val(order.personal_details[0]['bvn']);
+
+		if(order.paymentPlan != 'onpl'){
+			$("#bvn").val(order.personal_details[0]['bvn']);
+		}
     	
     	$("#residential_address").val(order.personal_details[0]['residential_address']);
     	
@@ -87,4 +99,4 @@ function init(){
         
     });
     
-}
+});

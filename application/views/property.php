@@ -50,15 +50,36 @@
            
             <div class="property-left-word-sect">
                 <h1><?php echo $property['property_name']; ?></h1>
+                
                 <div class="price-discount-sect">
+                    <?php if($property['investment_type'] == 6){ ?>
                     <div class="price-box">
-                        <p>Minimum down payment</p>
-                        <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan']/100) * $property['price']); ?></h2>
+                        <p>Lockdown Fee</p>
+                        <h2 style="font-weight:bold">
+                            <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
+                            <div class="tooltip"><i class="fa fa-info"></i>
+                                <span class="tooltiptext">
+                                    LDF is a non-refundable fee. It subsitutes as transaction fee<br />
+                                    when you make a down-payment on or beore 11 months.
+                                </span>
+                            </div>
+                        </h2>
                     </div>
+                    <?php } ?>
                     <div class="price-box">
                         <p>Payment tenure</p>
                         <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period']/12); ?> Years</h2>
                     </div>
+                    <div class="price-box">
+                        <p>Minimum down payment</p>
+                        <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan']/100) * $property['price']); ?>
+                            <div class="tooltip"><i class="fa fa-info"></i>
+                                <span class="tooltiptext">
+                                    Amount due in 11 months from day property is locked.
+                                </span>
+                            </div>
+                        </h2>
+                    </div>                    
                 </div>
                 <div class="price-discount-sect">
                     <div class="price-box">
@@ -100,7 +121,8 @@
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>--->
             <div class="features_description">
-                <p>Financial highlights</p>
+                <!---<p>Financial highlights</p>--->
+                <p>Projected rent</p>
                 <!---<div class="switch">
                     <div id="monthly" class="monthly period-selector active">Monthly</div>
                     <div id="annual" class="annual period-selector">Annual</div>
@@ -122,28 +144,28 @@
                             <td><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format((@$property['expected_rent'] + ((@$property['expected_rent'] * 0.18) * 5))/1000000)."M"; ?></td>
                             <td><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format((@$property['expected_rent'] + ((@$property['expected_rent'] * 0.18) * 10))/1000000)."M"; ?></td>
                         </tr>
-                        <tr>
+                        <!---<tr>
                             <th>Appreciation</th>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_0 = (@$property['marketValue']); echo number_format(@$asset_0/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_0 = (@$property['marketValue']); echo number_format(@$asset_0/1000000)."M"; ?>
                             </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_1 = (((@$property['asset_appreciation_1'] / 100) * $asset_0) + @$property['marketValue']); echo number_format($asset_1/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_1 = (((@$property['asset_appreciation_1'] / 100) * $asset_0) + @$property['marketValue']); echo number_format($asset_1/1000000)."M"; ?>
                             </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_2 = (((80 / 100) * $asset_1) + @$property['marketValue']); echo number_format($asset_2/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_2 = (((80 / 100) * $asset_1) + @$property['marketValue']); echo number_format($asset_2/1000000)."M"; ?>
                             </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php $asset_3 = (((100 / 100) * $asset_2) + @$property['marketValue']); echo number_format($asset_3/1000000)."M"; ?>
+                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_3 = (((100 / 100) * $asset_2) + @$property['marketValue']); echo number_format($asset_3/1000000)."M"; ?>
                             </td>
                         </tr>
                         <tr>
                             <th>Ann. returns</th>
-                            <td><?php echo number_format((pow(((@$asset_0 + @$property['expected_rent']) / @$property['marketValue']), "") - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_0 + @$property['expected_rent']) / @$property['marketValue']), "") - 1) * 100); ?>%
                             </td>
-                            <td><?php echo number_format((pow(((@$asset_1 + @$property['expected_rent']) / @$property['marketValue']), 1) - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_1 + @$property['expected_rent']) / @$property['marketValue']), 1) - 1) * 100); ?>%
                             </td>
-                            <td><?php echo number_format((pow(((@$asset_2 + ((@$property['expected_rent'] * 0.18) * 5)) / @$property['marketValue']), (1 / 5)) - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_2 + ((@$property['expected_rent'] * 0.18) * 5)) / @$property['marketValue']), (1 / 5)) - 1) * 100); ?>%
                             </td>
-                            <td><?php echo number_format((pow(((@$asset_3 + ((@$property['expected_rent'] * 0.18) * 10)) / @$property['marketValue']),(1 / 10)) - 1) * 100); ?>%
+                            <td><?php //echo number_format((pow(((@$asset_3 + ((@$property['expected_rent'] * 0.18) * 10)) / @$property['marketValue']),(1 / 10)) - 1) * 100); ?>%
                             </td>
-                        </tr>
+                        </tr>--->
                     </table>
                 </div>
 
@@ -159,161 +181,147 @@
                 </div>--->
             </div>
             <div class="features_description">
+            <?php if($property['investment_type'] != 6){ ?>
                 <div class="payment-box">
                     <h2>Buy now</h2>
-                    <!---<h4>Down Payment</h4>--->
-                    <!---<p>What do you have?</p>--->
                     <h1><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></h1>
-										
-                    <!---<div class="percentage-values-mobile">
-                        <div class="single-span-col-input">
-                            <select class="minimal">
-                                <option>option1</option>
-                                <option>option2</option>
-                                <option>option3</option>
+					
+                    
+                        <div class="financing-options-sect">
+                            <div class="option-list1">
+                                <div class="finance-left-options">
+                                    <div class="finance">Payment options</div>
+                                </div>
+                                <div class="finance-right-options"> 
+                                    <select id="payment-option" class="minimal payment-option">
+                                        <option value="finance">BuySmallSmall Finance</option>
+                                        <option value="outright">Outright Payment</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                <?php } ?>
+
+                
+				<!--- Finance payment option ---->
+                
+				<div class="payment-box payment-boxes mortgage-finance-payment">
+                    <?php if($property['investment_type'] != 6){ ?>
+                        <h2>Financing</h2>
+                        <h4>Down Payment</h4>
+                        <p>What do you have?</p>
+                        <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
+                        <!---- Range selector ---->
+                        <div class="range-container">
+                            <div class="percentage-container"><?php echo $property['minimum_payment_plan']; ?>%</div>
+                            <input type="range" min="<?php echo ((@$property['minimum_payment_plan']/100) * $property['price']); ?>" max="<?php echo $property['price']; ?>" step="<?php echo (0.05 * $property['price']); ?>" value="<?php echo ((@$property['minimum_payment_plan']/100) * $property['price']); ?>" class="sliders" id="myRange"> 
+                            
+                        </div>
+                        <!---- Range selector ---->
+                        <div class="single-span-col-input year-selector-container">
+                            <select id="repayment-period" class="minimal year-selector">
+                                <option value="">Payback period</option>
+                                <?php if($property['payment_plan_period'] >= 12){ ?>
+                                    <option value="1">1 Year</option>
+                                <?php } ?>
+                                <?php if($property['payment_plan_period'] > 12){ ?>
+                                    <option value="2">2 Years</option>
+                                <?php } ?>
+                                <?php if($property['payment_plan_period'] > 24){ ?>
+                                    <option value="3">3 Years</option>
+                                <?php } ?>
+                                <?php if($property['payment_plan_period'] > 36){ ?>
+                                    <option value="4">4 Years</option>
+                                <?php } ?>
+                                <?php if($property['payment_plan_period'] > 48){ ?>
+                                    <option value="5">5 Years</option>
+                                <?php } ?>
+                                <?php if($property['payment_plan_period'] > 60){ ?>
+                                    <option value="6">6 Years</option>
+                                <?php } ?>
                             </select>
                         </div>
-                    </div>--->
-                    <div class="financing-options-sect">
-                        <!--<p>Payment options</p>-->
-                        <div class="option-list1">
-                            <div class="finance-left-options">
-                                <div class="finance">Payment options</div>
+                        <div class="financing-options-sect">
+                            <div class="option-list1">
+                                <div class="finance-left-options">
+                                    <div class="finance">Down payment</div>
+                                </div>
+                                <div class="finance-right-options">
+                                    <div>
+                                        <div id="down-payment" class="price finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="finance-right-options"> 
-								<select id="payment-option" class="minimal payment-option">
-                                    <option value="finance">BuySmallSmall Finance</option>
-                                    <option value="outright">Outright Payment</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <!---<div class="financing-options-sect">
-                        <p>Payment options</p>
-                        <div class="option-list1">
-                            <div class="finance-left-options">
-                                <div class="finance">Finance</div>
-                            </div>
-                            <div class="finance-right-options"> 
-								<div>
-                                    <p>Spread your payments for<br />up to 6 years</p>
-                                </div>                               
-                                <button id="mortgage-finance-option">Choose</button>
-                            </div>
-                        </div>
 
-                        <div class="option-list1">
-                            <div class="finance-left-options">
-                                <div class="finance">Outright </div>
-                            </div>
-                            <div class="finance-right-options">
-                                <div>
-                                    <p>Pay in full and get a discount</p>
+                            <div class="option-list2">
+                                <div class="finance-left-options">
+                                    <div class="finance">Origination fee</div>
+                                    <div class="finance-desc">1% of property price</div>
                                 </div>
-                                <button id="outright-option">Choose</button>
-                            </div>
-                        </div>
-                        
-                    </div>--->
-                </div>
-				<!--- Finance payment option ---->
-				<div class="payment-box payment-boxes mortgage-finance-payment">
-                    <h2>Financing</h2>
-                    <h4>Down Payment</h4>
-                    <p>What do you have?</p>
-                    <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
-					<!---- Range selector ---->
-					<div class="range-container">
-                        <div class="percentage-container"><?php echo $property['minimum_payment_plan']; ?>%</div>
-						<input type="range" min="<?php echo ((@$property['minimum_payment_plan']/100) * $property['price']); ?>" max="<?php echo $property['price']; ?>" step="<?php echo (0.05 * $property['price']); ?>" value="<?php echo ((@$property['minimum_payment_plan']/100) * $property['price']); ?>" class="sliders" id="myRange"> 
-						
-					</div>
-					<!---- Range selector ---->
-                    <div class="single-span-col-input year-selector-container">
-                        <select id="repayment-period" class="minimal year-selector">
-                            <option value="">Payback period</option>
-                            <?php if($property['payment_plan_period'] >= 12){ ?>
-                                <option value="1">1 Year</option>
-                            <?php } ?>
-                            <?php if($property['payment_plan_period'] > 12){ ?>
-                                <option value="2">2 Years</option>
-                            <?php } ?>
-                            <?php if($property['payment_plan_period'] > 24){ ?>
-                                <option value="3">3 Years</option>
-                            <?php } ?>
-                            <?php if($property['payment_plan_period'] > 36){ ?>
-                                <option value="4">4 Years</option>
-                            <?php } ?>
-                            <?php if($property['payment_plan_period'] > 48){ ?>
-                                <option value="5">5 Years</option>
-                            <?php } ?>
-                            <?php if($property['payment_plan_period'] > 60){ ?>
-                                <option value="6">6 Years</option>
-                            <?php } ?>
-                        </select>
-                    </div>
-					<div class="financing-options-sect">
-                        <div class="option-list1">
-                            <div class="finance-left-options">
-                                <div class="finance">Down payment</div>
-                            </div>
-                            <div class="finance-right-options">
-                                <div>
-                                    <div id="down-payment" class="price finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></div>
+                                <div class="finance-right-options">
+                                    <div>
+                                        <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.01); ?></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="option-list2">
-                            <div class="finance-left-options">
-                                <div class="finance">Origination fee</div>
-								<div class="finance-desc">1% of property price</div>
-                            </div>
-                            <div class="finance-right-options">
-                                <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.01); ?></div>
+                            <div class="option-list3">
+                                <div class="finance-left-options">
+                                    <div class="finance">Transaction fee</div>
+                                    <div class="finance-desc">4% of property price</div>
+                                </div>
+                                <div class="finance-right-options">
+                                    <div>
+                                        <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.04); ?></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="option-list3">
+                                <div class="finance-left-options">
+                                    <div class="finance">Total initial payment</div>
+                                </div>
+                                <div class="finance-right-options">
+                                    <div>
+                                        <div class="total_desc finance-numbers" id="total-output"><span style="font-family:helvetica;">&#x20A6;</span>0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    <?php }else{ ?>
+                        <h2>Start now</h2>
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
-								<div class="finance-desc">4% of property price</div>
+                                <div class="finance-desc"><?php echo $each_prop['lockdown_fee']; ?>% of property price</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.04); ?></div>
+                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * ($property['lockdown_fee']/100)); ?></div>
                                 </div>
                             </div>
                         </div>
-						<div class="option-list3">
-                            <div class="finance-left-options">
-                                <div class="finance">Total initial payment</div>
-                            </div>
-                            <div class="finance-right-options">
-                                <div>
-                                    <div class="total_desc finance-numbers" id="total-output"><span style="font-family:helvetica;">&#x20A6;</span>0</div>
-                                </div>
-                            </div>
+                        <input type="hidden" id="repayment-period" value="6" />
+                    <?php } ?>
+                    <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
+                        <div style="width:100%;text-align:center;">
+                            <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6)? 'Lockdown Now': 'Apply Now'; ?></div>
                         </div>
-                    </div>
-                    <div style="width:100%;text-align:center;">
-					    <div class="payment-btn option-but">Apply Now</div>
-					</div>
-
+                    <?php } ?>
                 </div>
 				<!--- Finance payment option ---->
+                
 
 				<!--- Outright payment option ---->
 				<div class="payment-box payment-boxes outright-payment">
 				    <?php $outright_price = $property['price'] - $property['outrightDiscount']; ?>
 				    <?php $saved_price = $property['outrightDiscount'] + ($outright_price * 0.05); ?>
+                    
                     <h2>Outright Purchase</h2>
                     <!--<h4>Down Payment</h4>
                     <p>What do you have?</p>
                     <h1>N35,000,000</h1>--->
-					<!---- Range selector ---->
-					<div class="financing-options-sect">
+                    <!---- Range selector ---->
+                    <div class="financing-options-sect">
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Subtotal</div>
@@ -328,16 +336,16 @@
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
-								<div class="finance-desc">5% of property price</div>
+                                <div class="finance-desc">5% of property price</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
                                     <div class="finance-numbers" style="text-decoration:line-through;text-decoration-color:#F00;text-decoration-thickness:3px;"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($outright_price * 0.05); ?></div>
-									<div style="text-align:right" class="finance-desc">Waived for outright buyers</div>
+                                    <div style="text-align:right" class="finance-desc">Waived for outright buyers</div>
                                 </div>
                             </div>
                         </div>
-						<div class="option-list1">
+                        <div class="option-list1">
                             <div class="finance-left-options">
                                 <div class="finance">Discount</div>
                             </div>
@@ -350,12 +358,12 @@
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Amount saved</div>
-								<!---<div class="finance-desc">5% of property price</div>--->
+                                <!---<div class="finance-desc">5% of property price</div>--->
                             </div>
                             <div class="finance-right-options">
                                 <div>
                                     <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($saved_price); ?></div>
-									
+                                    
                                 </div>
                             </div>
                         </div>
@@ -369,18 +377,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                     <form id="outrightPaymentForm" method="POST">
                         <input type="hidden" id="email" value="<?php echo $email; ?>" />
                         <input type="hidden" id="amount" value="<?php echo (@$outright_price * 0.05); ?>" />
                         <input type="hidden" id="refID" value="<?php echo md5(date('YmdHis')); ?>" />
-                        <div style="width:100%;text-align:center;font-family:'Cera Medium';font-size:14px;line-height:25px;">
-                            Lockdown this property with a 5%<br />payment and receive your<br />offer letter and a contract of sale
+                        <div style="width:100%;text-align:center;font-family:'Cera Pro';font-size:14px;line-height:25px;">
+                            Lockdown this property with a <?php echo $property['lockdown_fee']; ?>% payment and receive your offer letter and a contract of sale
                         </div>
-                        <div style="width:100%;text-align:center;">
-                            <button type="submit" class="payment-btn" onclick="payWithPaystack()">Lockdown Property</button>
-                        </div>
-    				    
+                        <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
+                            <div style="width:100%;text-align:center;">
+                                <button type="submit" class="payment-btn" onclick="payWithPaystack()">Pay Now</button>
+                            </div>
+    				    <?php } ?>
     				</form>
                 </div>
 				<!--- Outright payment option ---->
@@ -466,7 +475,7 @@
             </form>
         </div>
     </div>
-<input type="hidden" id="option-but" value="finance" />
+<input type="hidden" id="option-but" value="<?php echo ($property['investment_type'] == 6)? 'onpl' : 'finance'; ?>" />
 <input type="hidden" id="userID" value="<?php echo @$userID; ?>" />
 <input type="hidden" class="prop-id" value="<?php echo $property['propertyID']; ?>" />
 <input type="hidden" class="pool_check" value="<?php echo $property['pool_buy']; ?>" />
@@ -478,16 +487,24 @@
 <input type="hidden" class="payment-plan-option" id="payment-plan-option" value="<?php echo @$property['payment_plan']; ?>" />
 <input type="hidden" class="payment-plan-period" id="payment-plan-period" value="<?php echo @$property['payment_plan_period']; ?>" />
 <?php if(@$property['minimum_payment_plan']){ $minimum = $property['minimum_payment_plan']; } ?>
-	
+
 <input type="hidden" class="payment-plan-minimum" id="payment-plan-minimum" value="<?php echo $property['minimum_payment_plan']/100; //if(@$property['promo_category'] == 'payment-plan'){ echo @$property['promo_price'] * (@$minimum / 100); }else{ echo @$property['price'] * (@$minimum / 100); } ?>" />
 
 <input type="hidden" class="pool_units" id="pool_units" value="<?php echo @$property['pool_units']; ?>" />
 <input type="hidden" class="pool-total-cost" value="" />
-
+<!---Own now pay later--->
+<input type="hidden" class="onpl-property" id="onpl-property" value="<?php ($property['investment_type'] == 6)? 1 : ''; ?>" />
+<!---Own now pay later--->
 <input type="hidden" class="expected-rent" id="expected-rent" value="<?php echo @$property['expected_rent']; ?>" />
 <input type="hidden" class="total-cost" id="total-cost" value="<?php echo @$property['price']; ?>" />
 <input type="hidden" class="payment" id="payment" value="<?php echo (@$property['price'] * 0.40); ?>" />
-<input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+<?php if($property['investment_type'] == 6){ ?>
+    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+
+    <input type="hidden" class="onpl-payable" id="onpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
+<?php }else{ ?>
+    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+<?php } ?>
 <input type="hidden" class="subsequent-payment" id="subsequent-payment" value="0" />
 <input type="hidden" class="repayment-period" id="repayment-period" value="0" />
 <input type="hidden" class="total-amount" value="<?php echo @$property['price']; ?>" />
@@ -751,15 +768,13 @@
     
         let handler = PaystackPop.setup({
         
-        key: 'pk_live_34a3561ac7f3d3e35d118e3e4bf3777065d92f62', // Replace with your public key
+        key: 'pk_live_34a3561ac7f3d3e35d118e3e4bf3777065d92f62', 
         
         amount: document.getElementById("amount").value * 100,
         
-        ref: document.getElementById("refID").value, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        ref: document.getElementById("refID").value, 
         
         email: email,
-        
-        // label: "Optional string that replaces customer email"
         
         onClose: function(){
             

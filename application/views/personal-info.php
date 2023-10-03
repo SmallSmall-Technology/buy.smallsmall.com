@@ -1,26 +1,6 @@
-    
-    <div class="header__image">
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/personalinfo.svg" alt="personal information"  /><br/>personal info<br/>
-            <input id="personal__headinfo" type="text" />
-        </div>
-        <div class='header__img' >
-            <img src="<?php echo base_url(); ?>asset/images/employment.svg" alt="employment information"   /><br/>Employment info<br/>
-            <input class="header__info" type="text" />
-        </div>
 
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/accountstatement.svg" alt="account information" /><br/>Bank statement & ID<br/>
-            <input class="header__info" type="text" />
-        </div>
-
-        <div class='header__img'>
-            <img src="<?php echo base_url(); ?>asset/images/summary.svg" alt="summary" /><br/>summary<br/>
-            <input class="header__info" type="text" />
-        </div>
-    </div>
     <div class="info">
-        <h1> Financing Application</h1>
+        <h1 id="the-form-title"> Financing Application</h1>
         
         <div  class="form_elem">
             <h3 id="persona"> Personal information</h3>
@@ -41,8 +21,8 @@
                 <div class="finance-form-elem-container">
                     <input class="verify-txt" type="text" id="phone" placeholder="Phone number" value="<?php echo $phone; ?>" />
                 </div>
-                <div class="finance-form-elem-container">
-                    <input class="verify-txt" type="text" id="bvn" placeholder="BVN" maxlength="11" />
+                <div id="bvn-spc" class="finance-form-elem-container bvn-spc">
+                    <input class="" type="text" id="bvn" placeholder="BVN" maxlength="11" />
                 </div>
                  
                 <!-- <input type="text" id="dob" placeholder="Date of birth" type="text"name="date of birth"><br/> -->
@@ -69,6 +49,6 @@
             </div>
         </form>
         
-    </div>
+    </div> 
     <script src="<?php echo base_url(); ?>assets/js/payment.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/personal-page.js"></script>

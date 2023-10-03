@@ -103,6 +103,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['test/sub-email'] = 'buytolet/subscription_email';
 //Manually sign users up for subscription
+<<<<<<< HEAD
+=======
+$route['generate/all-manual-certificates'] = 'buytolet/send_certificate_to_all_users';
+
+$route['generate/manual-certificate'] = 'buytolet/send_certificate_to_user';
+
+$route['generate/stp-email/(:any)'] = 'buytolet/generate_subscription_email/$1';
+
+>>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 $route['paystack/paystack-api'] = 'paystackwebhook/get_paystack_event';
 
 $route['admin/generate-sub-email'] = 'buytolet/generate_subscription_email';

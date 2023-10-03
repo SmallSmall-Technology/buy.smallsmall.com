@@ -139,12 +139,12 @@
 
 	<!-- Nector Reward Widget -->
 
-	<script>var nector_params = { customer_id: window.localStorage.getItem("nector-customer-id") }</script>
+	<!-- <script>var nector_params = { customer_id: window.localStorage.getItem("nector-customer-id") }</script>
 <script async src="https://cdn.nector.io/nector-static/no-cache/reward-widget/mainloader.min.js"
 	data-op="widget"
 	data-api_key="ca91f88601fb02c3c90db6bbd20da779dbb3f5d07827db9df99e290617d7d63e"
 	data-platform="custom_website"
-></script>
+></script> -->
 
 </head>
 
@@ -189,6 +189,10 @@
 							<a class="NavLink" href="<?php echo base_url('properties/co-ownership'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
 								Co-Own
+							</a>
+							<a class="NavLink" href="<?php echo base_url('properties/onpl'); ?>" onclick='closeMobileMenu()'>
+							    <span style='font-size:9px;'>&nbsp;</span>
+								Own Now Pay Later
 							</a>
 						</div>
 

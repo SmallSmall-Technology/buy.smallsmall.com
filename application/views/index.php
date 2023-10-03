@@ -410,13 +410,12 @@
 
 		<div>
 <!-- Nector Script -->
-<script>var nector_params = { customer_id: window.localStorage.getItem("nector-customer-id") }</script>
+<!-- <script>var nector_params = { customer_id: window.localStorage.getItem("nector-customer-id") }</script>
 <script async src="https://cdn.nector.io/nector-static/no-cache/reward-widget/mainloader.min.js"
 	data-op="referral"
 	data-api_key="ca91f88601fb02c3c90db6bbd20da779dbb3f5d07827db9df99e290617d7d63e"
 	data-platform="custom_website"
-></script>
-
+></script> -->
 		</div>
 
 		<div class="stats-wrapper">
@@ -454,9 +453,11 @@
 			</div>
         </div>
 
-		
-
   	</section>
+
+	  <!-- hopscotch-script -->
+	  <script id="hopscotch-script" type="text/javascript">(function (w, d) {if (typeof w === "undefined") return;w.Hopscotch = w.Hopscotch || function () {(w.Hopscotch.q = w.Hopscotch.q || []).push(arguments);};var elm = d.createElement("div");elm.setAttribute("data-widget-host", "hopscotch");elm.setAttribute("data-props-api-key", "4db66c1c-9e8a-431b-b232-06c381199931");d.getElementsByTagName("body")[0].appendChild(elm);var s = d.createElement("script");s.src = "https://app.hopscotch.club/widget.js?";s.async = 1;s.defer = 1;d.getElementsByTagName("body")[0].appendChild(s);  })(window, document);</script>
+	<!-- end hopscotch-script -->
 
   	<!-- main/middle section ends here -->
   	<script src="<?php echo base_url(); ?>asset/js/responsiveslides.js"></script>

@@ -177,12 +177,12 @@ class Buytolet_model extends CI_Model
 
 		return $this->db->insert('buytolet_users', $this);
 	}
-	public function register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $referral, $user_type, $interest, $rc, $gender, $user_agent)
+	public function register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $referral, $user_type, $interest, $rc, $gender, $user_agent, $country)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$user_insert = array("userID" => $id, "firstName" => $fname, "lastName" => $lname, "email" => $email, "password" => $password, "phone" => $phone, "income" => $income, "referral" => $referral, "gender" => $gender, "referral_code" => $rc, "user_type" => $user_type, "interest" => $interest, "verified" => 'no', "points" => 0, "status" => 'Active', "platform" => 'Web', "user_agent" => $user_agent, "regDate" => $today);
+		$user_insert = array("userID" => $id, "firstName" => $fname, "lastName" => $lname, "email" => $email, "password" => $password, "phone" => $phone, "income" => $income, "referral" => $referral, "gender" => $gender, "referral_code" => $rc, "user_type" => $user_type, "interest" => $interest, "verified" => 'no', "points" => 0, "status" => 'Active', "platform" => 'Web', "user_agent" => $user_agent, "regDate" => $today, "country" => $country);
 
 		if ($this->db->insert('user_tbl', $user_insert)) {
 
@@ -2382,7 +2382,7 @@ class Buytolet_model extends CI_Model
 		return $this->db->count_all_results();
 	}
 
-	public function checkTargetOptionStatus($id)
+	public function checkTargetOptionStatus($id, $ref)
 	{
 
 		$this->db->select('*');
@@ -2390,6 +2390,8 @@ class Buytolet_model extends CI_Model
 		$this->db->from('target_options');
 
 		$this->db->where('userID', $id);
+
+		$this->db->where('request_id', $ref);
 
 		$this->db->where('active', 1);
 
@@ -2399,22 +2401,22 @@ class Buytolet_model extends CI_Model
 
 	}
 
-	public function insertTargetOptions($userID, $frequency, $duration, $ref)
+	public function insertTargetOptions($userID, $frequency, $duration, $ref, $plan_amount)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today, 'request_id' => $ref);
+		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'amount' => $plan_amount, 'userID' => $userID, 'active' => 0, 'date_subscribed' => $today, 'updated_at' => $today, 'request_id' => $ref);
 
 		return $this->db->insert('target_options', $targetOptions);
 	}
 
-	public function updateTargetOptions($userID, $frequency, $duration)
+	public function updateTargetOptions($userID, $frequency, $duration, $plan_amount)
 	{
 
 		$today = date('Y-m-d H:i:s');
 
-		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'updated_at' => $today);
+		$targetOptions = array('frequency' => $frequency, 'duration' => $duration, 'amount' => $plan_amount, 'updated_at' => $today);
 
 		$this->db->where('userID', $userID);
 
@@ -2439,7 +2441,7 @@ class Buytolet_model extends CI_Model
 		return $this->db->insert('buytolet_sent_emails', $email_dets);
 	}
 
-	public function getActivePromo()
+	public function getActivePromo($promo_type = 'Free')
 	{
 
 		$today = date('Y-m-d');
@@ -2449,6 +2451,8 @@ class Buytolet_model extends CI_Model
 		$this->db->from('buytolet_promos');
 
 		$this->db->where('status', 1);
+
+		$this->db->where('type', $promo_type);
 
 		$this->db->where('end_date >=', $today);
 
@@ -2520,6 +2524,51 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
+<<<<<<< HEAD
+=======
+	public function get_single_stp_user($id){
+
+		$this->db->select('a.*, b.*, c.*, a.amount as purchase_amount, d.lastName, d.email as user_email');
+
+		$this->db->from('target_options as a');
+
+		$this->db->where('a.active', 1);
+
+		$this->db->where('a.userID', $id);
+
+		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
+
+		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
+
+		$this->db->join('user_tbl as d', 'd.userID = b.userID');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
+
+	/*public function get_single_stp_user($userID){
+
+		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName, d.email as user_email');
+
+		$this->db->from('target_options as a');
+
+		$this->db->where('a.active', 1);
+
+		$this->db->where('a.userID', $userID);
+
+		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
+
+		$this->db->join('buytolet_transactions as c', 'c.transaction_id = b.refID');
+
+		$this->db->join('user_tbl as d', 'd.userID = b.userID');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}*/
+
+>>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 	public function update_with_plan_code($plan_code, $userid){
 
 		$update = array('plan_code' => $plan_code);
@@ -2573,4 +2622,112 @@ class Buytolet_model extends CI_Model
 
 		return $query->row_array();
 	}
+<<<<<<< HEAD
+=======
+
+	public function check_if_stp_exists($id){
+
+		$this->db->from('target_options');
+
+		$this->db->where('userID', $id);
+
+		$this->db->where('active', 1);
+
+		$query = $this->db->count_all_results();
+
+		return $query;
+
+	}
+
+	public function get_countries(){
+		
+		$this->db->select('*');
+
+		$this->db->from('countries');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+		
+	}
+
+	public function get_requests_without_certificate($userID){
+
+		$this->db->select('a.refID, a.unit_amount, b.*, c.property_name, c.address, c.city');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.userID', $userID);
+
+		$this->db->where('a.shares_certificate', NULL);
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID');
+
+		$this->db->join('buytolet_property as c', 'c.propertyID = a.propertyID');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
+	public function get_all_user_requests(){
+
+		$this->db->select('a.userID');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.shares_certificate', NULL);
+
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+
+	public function get_stp_properties($id){
+
+		$this->db->select('a.*, a.id as req_id, b.*');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('method', 'Paystack Subscription');
+
+		$this->db->join('buytolet_property as b', 'b.propertyID = a.propertyID');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+
+	public function get_stp_details($id){
+
+		$this->db->select('a.*, b.unit_amount');
+
+		$this->db->from('target_options');
+
+		$this->db->where('userID', $id);
+
+		$this->db->where('active', 1);
+
+		$this->db->join('buytolet_request as b', 'b.refID = a.request_id');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+
+	}
+
+	public function update_property_status($property_id, $status){
+
+		$insert = array('availability' => $status);
+
+		$this->db->where('propertyID', $property_id);
+
+		$this->db->update('buytolet_property', $insert);
+
+	}
+>>>>>>> 78ef07fd61405cc10978fe8cd1ff4f9693d01a5c
 }

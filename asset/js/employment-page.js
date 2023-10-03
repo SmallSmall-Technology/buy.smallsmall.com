@@ -5,6 +5,11 @@ function init(){
     var baseUrl = 'https://dev-buy.smallsmall.com/';
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
+
+    
+	if(order.paymentPlan == 'onpl'){		
+		$('#the-form-title').html('Lockdown Form');
+	}
     
     if(order.employment_details.length){
         //Fill up the fields

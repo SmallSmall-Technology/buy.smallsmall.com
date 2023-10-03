@@ -2,17 +2,35 @@
 	<div class="prop-option-head">
 		<div class="prop-option-top">
 			<span class="prop-class">
-				<?php if ($slug != 'co-ownership') { ?>
-					Sole Ownership
-				<?php } else { ?>
+				<?php if ($slug == 'co-ownership') { ?>
 					Co Ownership
+				<?php } elseif($slug == 'onpl') { ?>
+					Own now pay later
+				<?php } else { ?>
+					Sole Ownership	
 				<?php } ?>
 			</span>
 		</div>
-		<?php if ($slug != 'co-ownership') { ?>
-			<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
-		<?php } else { ?>
+		<?php if ($slug == 'co-ownership') { ?>
 			<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
+			
+		<?php } elseif($slug == 'onpl') { ?>
+			<div class="property-hero-container">
+				<div class="property-hero-item">
+					<div class="note">
+						<p>Powering a new generation of homeowners and landlords.</p>
+						<p>Introducing Own Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
+						<p>Gone are the days of waiting and saving for years to secure your interest in a property. Own Now Pay Later empowers you to lock down the price of your desired property today, giving you the peace of mind that it won't slip away and you won't pay a skyrocketed price.</p>
+						<p>Imagine the freedom of owning your second home without the upfront costs, knowing that its price is locked down, while having the freedom to prepare yourself financially before making your first payment.</p>
+						<p>Our innovative solution allows you to seize the perfect opportunity in the real estate market without the immediate financial burden. Say goodbye to the traditional constraints of homeownership for good!</p>
+						<p>It's time to make your move and embark on a path towards lifelong success as a homeowner or landlord.</p>
+					</div>
+				</div>
+				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="Own now pay later" /></div>
+			</div>
+
+		<?php } else { ?>
+			<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
 		<?php } ?>
 
 		<!-- Filter Section -->
@@ -38,11 +56,11 @@
 				</select>
 				<select name="location" class="properties-select" id="location_select">
 				<option value="0">Location</option>
-								<?php if(isset($locations) && !empty($locations)){ ?>
-									<?php foreach($locations as $location => $value){ ?>
-										<option value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
-									<?php } ?>
-								<?php } ?>
+					<?php if(isset($locations) && !empty($locations)){ ?>
+						<?php foreach($locations as $location => $value){ ?>
+							<option value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
+						<?php } ?>
+					<?php } ?>
 				</select>
 				<select name="property_type" class="properties-select" id="property_type_select">
 					<option value="0">Property Type</option>
@@ -77,8 +95,8 @@
 					</div>
 					<div class="bottom-section">
 						<div class="sale-status <?php echo strtolower($each_prop['availability']); ?>"><?php echo $each_prop['availability']; ?></div>
-						<span class="price-type down-payment">Down payment</span>
-						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
+						<span class="price-type down-payment"><?php echo ($slug == 'onpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
+						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'onpl')? number_format($each_prop['price'] * ($each_prop['lockdown_fee']/100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
 						<span class="price-type actual-price">Property price</span>
 						<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price']); ?></h3>
 						<p><?php echo $each_prop['property_name']; ?>, <?php echo $each_prop['city'] . ' ' . $each_prop['propState'] . '.'; ?></p>
@@ -91,22 +109,44 @@
 												echo 0;
 											} ?> sqm</li>
 						</ul>
-						<div class="key-values">
-							<div>
-								<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
-								<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$each_prop['expected_rent'] / 1000000; ?>M</h3>
+						<?php if($slug == 'onpl'){ ?>
+							<div class="key-values">
+								<div>
+									<span>Lockdown Period</span>
+									<h3>11 Months</h3>
+								</div>
+								<div>
+									<span>Down Payment</span>
+									<h3><?php echo number_format(($each_prop['minimum_payment_plan']/100) * $each_prop['price']); ?>
+									</h3>
+								</div>
+								<div>
+									<span>Instalment Period</span>
+									<h3>5 Years</h3>
+								</div>
+								<div>
+									<span>Fixed interest rate</span>
+									<h3>9% p.a</h3>
+								</div>
 							</div>
-							<div>
-								<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
-								<h3><?php echo number_format((pow((($asset_1 + $each_prop['expected_rent']) / $each_prop['marketValue']), 1) - 1) * 100); ?>%
-								</h3>
+						<?php }else{ ?>
+							<div class="key-values">
+								<div>
+									<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
+									<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$each_prop['expected_rent'] / 1000000; ?>M</h3>
+								</div>
+								<div>
+									<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
+									<h3><?php echo number_format((pow((($asset_1 + $each_prop['expected_rent']) / $each_prop['marketValue']), 1) - 1) * 100); ?>%
+									</h3>
+								</div>
+								<div>
+									<span>Appreciation</span>
+									<h3><?php $asset_1 = ((($each_prop['asset_appreciation_1'] / 100) * $each_prop['marketValue']) + $each_prop['marketValue']);
+										echo $each_prop['asset_appreciation_1']; ?>%
+								</div>
 							</div>
-							<div>
-								<span>Appreciation</span>
-								<h3><?php $asset_1 = ((($each_prop['asset_appreciation_1'] / 100) * $each_prop['marketValue']) + $each_prop['marketValue']);
-									echo $each_prop['asset_appreciation_1']; ?>%
-							</div>
-						</div>
+						<?php } ?>
 					</div>
 				</a>
 

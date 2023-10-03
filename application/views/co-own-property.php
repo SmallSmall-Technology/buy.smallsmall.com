@@ -145,16 +145,8 @@
                 </ul>
                 <a class="migration-lnk" href="https://smallsmall.zendesk.com/hc/en-us/articles/10765826974877-Sole-ownership-Migration" target="_blank" >Learn more about migration <i class="fa fa-angle-double-right"></i></a>
             </div>
-            <!---<div class="features_description">
-                <p>Floor plan</p>
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            </div>--->
             <div class="features_description">
                 <p>Buyback highlights</p>
-                <!---<div class="switch">
-                    <div id="monthly" class="monthly period-selector active">Monthly</div>
-                    <div id="annual" class="annual period-selector">Annual</div>
-                </div>--->
                 <label class="toggle-switch">
                   <input class="toggle-checkbox" type="checkbox">
                   <span class="toggle-slider toggle-slider-percent round"></span>
@@ -174,44 +166,7 @@
                             <th>Year 6</th>
                             <?php } ?>
                         </tr>
-                        <!---<tr>
-                            <th>Rent 
-                                <div class="tooltip"><i class="fa fa-info"></i>
-                                    <span class="tooltiptext">
-                                        Yearly Rental Rate up to maturity date
-                                    </span>
-                                </div>
-                            </th>
-                            <td>
-                                <div class="naira-wrapper"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo round(($property['marketValue'] * ($property['co_rent_1']/100)/1000000), 1); ?>M</div>
-                                <div class="percentage-wrapper"><?php //echo $property['co_rent_1']; ?>%</div>
-                            </td>
-                            <td>
-                                <div class="naira-wrapper"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo round(($property['marketValue'] * ($property['co_rent_2']/100)/1000000), 1); ?>M</div>
-                                <div class="percentage-wrapper"><?php //echo $property['co_rent_2']; ?>%</div>
-                            </td>
-                            <td>
-                                <div class="naira-wrapper"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo round(($property['marketValue'] * ($property['co_rent_3']/100)/1000000), 1); ?>M</div>
-                                <div class="percentage-wrapper"><?php //echo $property['co_rent_3']; ?>%</div>
-                            </td>
-                            <td>
-                                <div class="naira-wrapper"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo round(($property['marketValue'] * ($property['co_rent_4']/100)/1000000), 1); ?>M</div>
-                                <div class="percentage-wrapper"><?php //echo $property['co_rent_4']; ?>%</div>
-                            </td>
-                            <?php //if($property['hold_period'] == 'Five years' || $property['hold_period'] == 'Six years'){ ?>
-                                <td>
-                                    <div class="naira-wrapper"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo round(($property['marketValue'] * ($property['co_rent_5']/100)/1000000), 1); ?>M</div>
-                                    <div class="percentage-wrapper"><?php //echo $property['co_rent_5']; ?>%</div>
-                                </td>
-                                
-                            <?php //} ?>
-                            <?php //if($property['hold_period'] == 'Six years'){ ?>
-                                <td>
-                                    <div class="naira-wrapper"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo round(($property['marketValue'] * ($property['co_rent_6']/100)/1000000), 1); ?>M</div>
-                                    <div class="percentage-wrapper"><?php //echo $property['co_rent_6']; ?>%</div>
-                                </td>
-                            <?php //} ?>
-                        </tr>--->
+                        
                         <tr>
                             <th>
                                 Buyback rate

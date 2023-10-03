@@ -37,8 +37,6 @@ $('.option-but').click(function(){
 	
 	var total_pool_units = 0;
 	
-	var pplan_repayment = $('#subsequent-payment').val();
-	
 	var property_name = $('#property_name').val();
 	
 	var payment_period = $('#repayment-period').val();
@@ -62,6 +60,8 @@ $('.option-but').click(function(){
 	var promo_type = $('.promo-category').val();
 	
 	var promo_code = '';
+	
+	var onpl_payable = 0;
 
 	var down_payment = 0;
 	
@@ -93,6 +93,13 @@ $('.option-but').click(function(){
 	}else if(plan == 'outright'){
 
 		payable = property_cost;
+		
+
+	}else if(plan == 'onpl'){
+
+		onpl_payable = $('#onpl-payable').val();
+
+		payable = onpl_payable;
 
 	}
 	
@@ -344,76 +351,85 @@ $('#financeEmploymentInformation').submit(function(e){
 $('#uploadForm').submit(function(e){
     
     e.preventDefault();
+	
+	var order = JSON.parse(localStorage.getItem('buytolet_basket'));
     
-    if($('#agreement').is(":checked")){
-    
-        var statement_state = $('#statement-state').val();
-    	
-    	var id_state = $('#id-state').val();
-    	
-    	if(statement_state == 0 || id_state == 0){
-    
-    		alert('You need to upload a bank statement and valid ID card');
-    		
-    		$('.finance-form-btn').html("Proceed");
-    
-    		return false;
-    	}
-    	
-    	var statement_path = $('#statement').val();	
-    
-    	var id_path = $('#idcard').val();
-    	
-    	var order = JSON.parse(localStorage.getItem('buytolet_basket'));
-    	
-    	var data = {"balance" : order.balance, "payment_plan" : order.paymentPlan, "property_id" : order.property_id, "cost" : order.cost, "payable" : order.payable, "method_of_payment" : "paystack", "payment_period" : order.payment_period, "promo_code" : order.promo_code, "id_path" : id_path, "statement_path" : statement_path, "personal_details" : order.personal_details, "employment_details" : order.employment_details};
-    	
-    	$.ajaxSetup ({ cache: false });
-    	$.ajax({			
-    
-    		url: baseUrl+"buytolet/insertRequest/",
-    
-    		type: "POST",
-    
-    		data: data,
-    
-    		success: function(data){
-    
-    			if(data == 1){
-    				
-    				window.location.href = baseUrl+"finance-confirmation";
-    
-    				$('.finance-form-btns').html("Proceed");
-    				
-    				return false;
-    
-    			}else{
-    
-    				alert("Error!!!"); 
-    
-    				$('.finance-form-btns').html("Proceed");
-    
-    				return false;
-    
-    			}				
-    
-    		},
-    		
-    		error: function(){
-    			
-    			$('.finance-form-btn').val("Finish");
-    			
-    			return false;
-    			
-    		}
-    
-    	});
-    }else{
-        
-        alert("You need to agree to BuySmallSmall Terms and Conditions to proceed");
+    if(!$('#agreement').is(":checked")){
+
+		alert("You need to agree to our Terms and Conditions to proceed");
+		
         return false;
-        
-    }    
+
+	}
+
+	if(order.paymentPlan == 'onpl' && !$('#add-onpl-agreement').is(":checked")){
+
+		alert("You need to agree to the ONPL Terms and Conditions to proceed");
+
+        return false;
+
+	}
+    
+	var statement_state = $('#statement-state').val();
+	
+	var id_state = $('#id-state').val();
+	
+	if(statement_state == 0 || id_state == 0){
+
+		alert('You need to upload a bank statement and valid ID card');
+		
+		$('.finance-form-btn').html("Proceed");
+
+		return false;
+	}
+	
+	var statement_path = $('#statement').val();	
+
+	var id_path = $('#idcard').val();
+	
+	var data = {"balance" : order.balance, "payment_plan" : order.paymentPlan, "property_id" : order.property_id, "cost" : order.cost, "payable" : order.payable, "method_of_payment" : "paystack", "payment_period" : order.payment_period, "promo_code" : order.promo_code, "id_path" : id_path, "statement_path" : statement_path, "personal_details" : order.personal_details, "employment_details" : order.employment_details};
+	
+	$.ajaxSetup ({ cache: false });
+	$.ajax({			
+
+		url: baseUrl+"buytolet/insertRequest/",
+
+		type: "POST",
+
+		data: data,
+
+		success: function(data){
+
+			if(data == 1){
+				
+				window.location.href = baseUrl+"finance-confirmation";
+
+				$('.finance-form-btns').html("Proceed");
+				
+				return false;
+
+			}else{
+
+				alert("Error!!!"); 
+
+				$('.finance-form-btns').html("Proceed");
+
+				return false;
+
+			}				
+
+		},
+		
+		error: function(){
+			
+			$('.finance-form-btn').val("Finish");
+			
+			return false;
+			
+		}
+
+	});
+       
 });
 
 $('#financeForm').submit(function(e){
@@ -720,6 +736,8 @@ $('.co-own-option-but').click(function(){
 						"share_cost" : share_cost,
 						
 						"purchase_frequency" : '',
+
+						"plan_amount" : 0,
 						
 						"duration" : '',
 						
@@ -750,6 +768,8 @@ $('.co-own-option-but').click(function(){
 						"share_cost" : share_cost,
 						
 						"purchase_frequency" : '',
+
+						"plan_amount" : 0,
 						
 						"duration" : '',
 						
@@ -838,6 +858,8 @@ $('#targetProgramForm').submit(function(e){
     	    
     	    
     	}
+
+		co_own_order.plan_amount = $("#plan-amount").val();
 
     	co_own_order.purchase_frequency = $("#purchase-frequency").val();
     	
