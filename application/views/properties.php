@@ -19,8 +19,8 @@
 				<div class="property-hero-item">
 					<div class="note">
 						<p>Powering a new generation of homeowners and landlords.</p>
-						<p>Introducing Own Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
-						<p>Gone are the days of waiting and saving for years to secure your interest in a property. Own Now Pay Later empowers you to lock down the price of your desired property today, giving you the peace of mind that it won't slip away and you won't pay a skyrocketed price.</p>
+						<p>Introducing Buy Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
+						<p>Gone are the days of waiting and saving for years to secure your interest in a property. Buy Now Pay Later empowers you to lock down the price of your desired property today, giving you the peace of mind that it won't slip away and you won't pay a skyrocketed price.</p>
 						<p>Imagine the freedom of owning your second home without the upfront costs, knowing that its price is locked down, while having the freedom to prepare yourself financially before making your first payment.</p>
 						<p>Our innovative solution allows you to seize the perfect opportunity in the real estate market without the immediate financial burden. Say goodbye to the traditional constraints of homeownership for good!</p>
 						<p>It's time to make your move and embark on a path towards lifelong success as a homeowner or landlord.</p>
