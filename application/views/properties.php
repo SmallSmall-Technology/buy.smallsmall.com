@@ -5,7 +5,7 @@
 				<?php if ($slug == 'co-ownership') { ?>
 					Co Ownership
 				<?php } elseif($slug == 'onpl') { ?>
-					Own now pay later
+					Buy now pay later
 				<?php } else { ?>
 					Sole Ownership	
 				<?php } ?>
@@ -26,7 +26,7 @@
 						<p>It's time to make your move and embark on a path towards lifelong success as a homeowner or landlord.</p>
 					</div>
 				</div>
-				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="Own now pay later" /></div>
+				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="buy now pay later" /></div>
 			</div>
 
 		<?php } else { ?>

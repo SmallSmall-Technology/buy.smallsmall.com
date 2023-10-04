@@ -305,7 +305,7 @@
 							</a>
 							<a class="NavLink" href="<?php echo base_url('properties/onpl'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
-								Own Now Pay Later
+								Buy Now Pay Later
 							</a>
 						</div>
 
