@@ -44,7 +44,7 @@
 				<div class="footer-grid-box">
 					<a class="link-header" href="/">Products</a>
 					<a class="link-text" target="_blank" href="https://rent.smallsmall.com">Rent</a>
-					<!-- <a class="link-text" target="_blank" href="https://stay.smallsmall.com">Nightly stay</a> -->
+<!-- 					<a class="link-text" target="_blank" href="https://stay.smallsmall.com">Nightly stay</a> -->
 					<a class="link-text" href="<?php echo base_url(); ?>">Buy</a>
 					<a class="link-text" href="<?php echo base_url('refer-and-earn'); ?>">Referal</a>
 					<a class="link-text" href="<?php echo base_url('reward'); ?>">Reward & Loyalty</a>
