@@ -1501,7 +1501,7 @@ class Buytolet extends CI_Controller
 
 		} else if ($search_crit['investment-type'] == 6) {
 
-			$slug = 'onpl';
+			$slug = 'bnpl';
 		}else if ($search_crit['investment-type'] == 2) {
 
 			$slug = 'buy-to-let';
@@ -2119,7 +2119,7 @@ class Buytolet extends CI_Controller
 
 		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details);
 
-		if($payment_plan == 'onpl'){
+		if($payment_plan == 'bnpl'){
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
 		}
 

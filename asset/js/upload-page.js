@@ -10,12 +10,12 @@ $(document).ready(function(){
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
 
-	if(order.paymentPlan == 'onpl'){		
+	if(order.paymentPlan == 'bnpl'){		
 		$('#the-form-title').html('Lockdown Form');
         $('#finance-form-elem').hide();
         $('#statement-state').val(1);        
         $('#statement').val('https://buy.smallsmall.com/');
-        $('#agreement').html('I have read the <a href="'+baseUrl+'faq" target="_blank">ONPL Terms and Condition.</a>');
+        $('#agreement').html('I have read the <a href="'+baseUrl+'faq" target="_blank">BNPL Terms and Condition.</a>');
         $('#add-onpl-agreement').show();
 	}
     

@@ -4,7 +4,7 @@
 			<span class="prop-class">
 				<?php if ($slug == 'co-ownership') { ?>
 					Co Ownership
-				<?php } elseif($slug == 'onpl') { ?>
+				<?php } elseif($slug == 'bnpl') { ?>
 					Buy now pay later
 				<?php } else { ?>
 					Sole Ownership	
@@ -14,7 +14,7 @@
 		<?php if ($slug == 'co-ownership') { ?>
 			<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
 			
-		<?php } elseif($slug == 'onpl') { ?>
+		<?php } elseif($slug == 'bnpl') { ?>
 			<div class="property-hero-container">
 				<div class="property-hero-item">
 					<div class="note">
@@ -95,8 +95,8 @@
 					</div>
 					<div class="bottom-section">
 						<div class="sale-status <?php echo strtolower($each_prop['availability']); ?>"><?php echo $each_prop['availability']; ?></div>
-						<span class="price-type down-payment"><?php echo ($slug == 'onpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
-						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'onpl')? number_format($each_prop['price'] * ($each_prop['lockdown_fee']/100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
+						<span class="price-type down-payment"><?php echo ($slug == 'bnpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
+						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'bnpl')? number_format($each_prop['price'] * ($each_prop['lockdown_fee']/100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
 						<span class="price-type actual-price">Property price</span>
 						<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price']); ?></h3>
 						<p><?php echo $each_prop['property_name']; ?>, <?php echo $each_prop['city'] . ' ' . $each_prop['propState'] . '.'; ?></p>
@@ -109,7 +109,7 @@
 												echo 0;
 											} ?> sqm</li>
 						</ul>
-						<?php if($slug == 'onpl'){ ?>
+						<?php if($slug == 'bnpl'){ ?>
 							<div class="key-values">
 								<div>
 									<span>Lockdown Period</span>
