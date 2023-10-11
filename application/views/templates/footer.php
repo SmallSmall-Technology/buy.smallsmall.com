@@ -56,7 +56,9 @@
 					<!-- <a target="_blank" class="link-text" href="https://rent.smallsmall.com/blog">Blog</a> -->
 					<a target="_blank" class="link-text" href="https://blog.smallsmall.com/">Blog</a>
 					<a class="link-text" href="#">Careers</a>
-					<a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>
+					<!-- <a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>		 -->
+					<a class="link-text" href="https://intercom.help/BuySmallsmall/en/" target="_blank">Knowledge base</a>
+
 				</div>
           		<div class="footer-grid-box">
             		<a class="link-header" href="<?php echo base_url('faq'); ?>">Legal</a>
