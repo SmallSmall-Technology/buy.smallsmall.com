@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
 
-	if(order.paymentPlan == 'onpl'){
+	if(order.paymentPlan == 'bnpl'){
 		$('#bvn-spc').hide();
 		
 		$('#the-form-title').html('Lockdown Form');
@@ -27,7 +27,7 @@ $(document).ready(function(){
     
     	$("#phone").val(order.personal_details[0]['phone']);
 
-		if(order.paymentPlan != 'onpl'){
+		if(order.paymentPlan != 'bnpl'){
 			$("#bvn").val(order.personal_details[0]['bvn']);
 		}
     	

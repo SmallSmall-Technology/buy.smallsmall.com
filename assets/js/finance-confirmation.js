@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     var due_amount = order.origination_fee;
 
-    if(order.paymentPlan == 'onpl'){
+    if(order.paymentPlan == 'bnpl'){
 
         $('#summary-header').html('Lockdown Summary');
 

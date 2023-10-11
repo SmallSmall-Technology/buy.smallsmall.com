@@ -475,7 +475,7 @@
             </form>
         </div>
     </div>
-<input type="hidden" id="option-but" value="<?php echo ($property['investment_type'] == 6)? 'onpl' : 'finance'; ?>" />
+<input type="hidden" id="option-but" value="<?php echo ($property['investment_type'] == 6)? 'bnpl' : 'finance'; ?>" />
 <input type="hidden" id="userID" value="<?php echo @$userID; ?>" />
 <input type="hidden" class="prop-id" value="<?php echo $property['propertyID']; ?>" />
 <input type="hidden" class="pool_check" value="<?php echo $property['pool_buy']; ?>" />

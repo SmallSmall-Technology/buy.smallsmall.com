@@ -303,7 +303,7 @@
 								<span style='font-size:9px;'>&nbsp;</span>
 								Co-Own
 							</a>
-							<a class="NavLink" href="<?php echo base_url('properties/onpl'); ?>" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="<?php echo base_url('properties/bnpl'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
 								Buy Now Pay Later
 							</a>

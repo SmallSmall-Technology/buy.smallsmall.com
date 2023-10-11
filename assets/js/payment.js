@@ -95,7 +95,7 @@ $('.option-but').click(function(){
 		payable = property_cost;
 		
 
-	}else if(plan == 'onpl'){
+	}else if(plan == 'bnpl'){
 
 		onpl_payable = $('#onpl-payable').val();
 
@@ -362,9 +362,9 @@ $('#uploadForm').submit(function(e){
 
 	}
 
-	if(order.paymentPlan == 'onpl' && !$('#onpl-agreement').is(":checked")){
+	if(order.paymentPlan == 'bnpl' && $('#onpl-agreement').prop("checked") != true){
 
-		alert("You need to agree to the ONPL Terms and Conditions to proceed");
+		alert("You need to agree to the BNPL Terms and Conditions to proceed");
 
         return false;
 
