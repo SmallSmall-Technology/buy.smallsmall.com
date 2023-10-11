@@ -362,7 +362,7 @@ $('#uploadForm').submit(function(e){
 
 	}
 
-	if(order.paymentPlan == 'onpl' && !$('#add-onpl-agreement').is(":checked")){
+	if(order.paymentPlan == 'onpl' && !$('#onpl-agreement').is(":checked")){
 
 		alert("You need to agree to the ONPL Terms and Conditions to proceed");
 
