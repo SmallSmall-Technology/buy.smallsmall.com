@@ -113,7 +113,7 @@
 							<div class="key-values">
 								<div>
 									<span>Lockdown Period</span>
-									<h3>11 Months</h3>
+									<h3><?php echo ($each_prop['lockdown_period'])? $each_prop['lockdown_period'] : 0; ?> Months</h3>
 								</div>
 								<div>
 									<span>Down Payment</span>
@@ -121,8 +121,8 @@
 									</h3>
 								</div>
 								<div>
-									<span>Instalment Period</span>
-									<h3>5 Years</h3>
+									<span>Installment Period</span>
+									<h3><?php echo $each_prop['payment_plan_period']/12; ?> Years</h3>
 								</div>
 								<div>
 									<span>Fixed interest rate</span>
