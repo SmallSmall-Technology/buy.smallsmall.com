@@ -149,9 +149,13 @@ $route['user/send-a-gift/(:any)'] = 'user/send_gift/$1';
 
 $route['user/co-ownership-property/(:any)'] = 'user/co_ownership_property/$1';
 
+$route['user/bnpl-property/(:any)'] = 'user/bnpl_property/$1';
+
 $route['user/champions-basket/(:any)'] = 'user/single_champions_basket/$1';
 
 $route['user/co-ownership'] = 'user/co_ownership';
+
+$route['user/bnpl'] = 'user/bnpl';
 
 $route['user/property-portfolio'] = 'user/property_portfolio';
 
