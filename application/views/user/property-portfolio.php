@@ -27,14 +27,14 @@
                   <img class="img-fluid" src="<?php echo base_url(); ?>assets/user-assets/images/portfolio-bag2.svg" alt="">
                 </div>
                 <p class="card-text">Buy Now Pay Later</p>
-                <p class="card-text font-weight-light"><?php echo count($bpnl); ?> Property</p>
+                <p class="card-text font-weight-light"><?php echo count($bnpl); ?> Property</p>
                 <?php
-                $bpnltotal = 0;
-                for ($i = 0; $i < count($bpnl); $i++) {
-                  $bpnltotal = ($bpnl[$i]['price'] + $bpnltotal) / 1000000;
+                $bnpltotal = 0;
+                for ($i = 0; $i < count($bnpl); $i++) {
+                  $bnpltotal = ($bnpl[$i]['price'] + $bnpltotal) / 1000000;
                 }
                 ?>
-                <p class="card-text font-weight-light">Value: &#8358;<?php echo $bpnltotal; ?>m</p>
+                <p class="card-text font-weight-light">Value: &#8358;<?php echo $bnpltotal; ?>m</p>
                 <div class=" mt-5">
                   <a href="<?php echo base_url(); ?>user/bnpl" class="btn tertiary-background px-5">view</a>
                 </div>

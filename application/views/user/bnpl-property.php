@@ -36,7 +36,7 @@
           <div class="row my-5">
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Lockdown fee</p>
-              <p style="font-size: 26px;">&#8358;<?php echo $bnpl['lockdown_fee']/1000000 ?>m</p>
+              <p style="font-size: 26px;">&#8358;<?php echo (($bnpl['lockdown_fee']/100) * $bnpl['price'])/1000000 ?>m</p>
               <p
                 style="text-align: center; font-size: 8px; background-color: #138E3D; border-radius: 4px; color: #ffffff; width: 100px; padding: 5px 7px">
                 Paid&Locked</p>

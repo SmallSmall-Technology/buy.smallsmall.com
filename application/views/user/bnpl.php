@@ -17,30 +17,31 @@
       </div>
 
       <!-- Property Portfolio  -->
-      <?php if(isset($all_bnpl_properties) && !empty($all_bnpl_properties)): ?>
-      <?php foreach( $all_bnpl_properties as $all_bnpl_prop => $value){ ?>
+      
       <div class="col-12 mt-5 collapse show" id="myPortfolio">
         <div class="p-md-5 p-2 primary-background">
           <div class="row">
+          <?php if(isset($all_bnpl_properties) && !empty($all_bnpl_properties)): ?>
+          <?php foreach( $all_bnpl_properties as $all_bnpl_prop => $value){ ?>
             <div class="col-md-4 col-12  mb-4">
               <div class="card border-0 default-background h-100">
                 <div class="card-body">
                   <div class="d-flex justify-content-between my-2">
-                    <img class="img-fluid" src="assets/images/portfolio-bag2.svg" alt="">
+                    <img class="img-fluid" src="<?php echo base_url(); ?>assets/images/portfolio-bag2.svg" alt="">
                     <p><?php echo date('M Y', strtotime($value['request_date'])); ?><br><small class="font-weight-lighter">BNPL</small></p>
                   </div>
                   <p class="card-text"><?php echo $value['property_name']; ?></p>
                   <div class=" mt-5">
-                    <a href="<?php echo base_url(); ?>user/bpnl-property/<?php echo $value['reqID']; ?>" class="btn tertiary-background btn-custom-tertiary px-5">view</a>
+                    <a href="<?php echo base_url(); ?>user/bnpl-property/<?php echo $value['reqID']; ?>" class="btn tertiary-background btn-custom-tertiary px-5">view</a>
                   </div>
                 </div>
               </div>
             </div>
+            <?php } ?>
+            <?php endif; ?>
           </div>
         </div>
       </div>
-      <?php } ?>
-      <?php endif; ?>
       <!-- Champions baskets  -->
       <div class="col-12 mt-5 collapse" id="champion">
         <div class="p-md-5 p-2 primary-background">
