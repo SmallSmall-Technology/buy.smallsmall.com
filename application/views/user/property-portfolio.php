@@ -36,7 +36,7 @@
                 ?>
                 <p class="card-text font-weight-light">Value: &#8358;<?php echo $bpnltotal; ?>m</p>
                 <div class=" mt-5">
-                  <a href="<?php echo base_url(); ?>user/bpnl" class="btn tertiary-background px-5">view</a>
+                  <a href="<?php echo base_url(); ?>user/bnpl" class="btn tertiary-background px-5">view</a>
                 </div>
               </div>
             </div>
