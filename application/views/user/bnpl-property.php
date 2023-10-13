@@ -1,6 +1,6 @@
 <div class="row">
       <div class="col-12 mt-5">
-        <p style="font-size: 22px;">Buy now pay later - 2 br Maisonette B2 Olivia Court Lekki</p>
+        <p style="font-size: 22px;">Buy now pay later - <?php echo $bnpl['property_name'] ?></p>
       </div>
       <div class="col-12">
         <nav class="nav">
@@ -23,12 +23,12 @@
 
           <div class="row">
             <div class="col-12">
-              <h3 class="address-title">2 br Maisonette B2 Olivia Court Lekki</h3>
-              <p>Agungi, Lekki, Lagos</p>
+              <h3 class="address-title"><?php echo $bnpl['property_name'] ?></h3>
+              <p><?php echo $bnpl['city'] ?>, <?php echo $bnpl['name'] ?></p>
               <div class="bnpl-features">
-                <p>2 bed</p>
-                <p>2 bed</p>
-                <p>105sqm</p>
+                <p><?php echo $bnpl['bed'] ?> bed</p>
+                <p><?php echo $bnpl['bath'] ?> bath</p>
+                <p><?php echo $bnpl['property_size'] ?>sqm</p>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
           <div class="row my-5">
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Lockdown fee</p>
-              <p style="font-size: 26px;">&#8358;2.52m</p>
+              <p style="font-size: 26px;">&#8358;<?php echo $bnpl['lockdown_fee']/1000000 ?>m</p>
               <p
                 style="text-align: center; font-size: 8px; background-color: #138E3D; border-radius: 4px; color: #ffffff; width: 100px; padding: 5px 7px">
                 Paid&Locked</p>
@@ -46,15 +46,15 @@
             </div>
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Minimum downpayment</p>
-              <p style="font-size: 26px;">&#8358;24.52m</p>
+              <p style="font-size: 26px;">&#8358;<?php echo ($bnpl['price'] * ($bnpl['minimum_payment_plan']/100))/1000000 ?>m</p>
             </div>
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Instalment period</p>
-              <p style="font-size: 26px;">5 years</p>
+              <p style="font-size: 26px;"><?php echo $bnpl['payment_plan_period']/12 ?> years</p>
             </div>
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Property Value</p>
-              <p style="font-size: 26px;" class="d-flex align-items-center">&#8358;77,480,000</p>
+              <p style="font-size: 26px;" class="d-flex align-items-center">&#8358;<?php echo number_format($bnpl['price'] - $bnpl['lockdown_fee']) ?></p>
             </div>
           </div>
 
@@ -63,11 +63,11 @@
               <p style="font-size: 14px;" class="font-weight-light">Pending fees</p>
               <p
                 style="font-size: 26px; background-color: #E8091E; border-radius: 4px; color: #ffffff; width: 117px; padding: 5px 7px">
-                &#8358;2.52m</p>
+                &#8358;0 m</p>
             </div>
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Lockdown period</p>
-              <p style="font-size: 26px;">11 months</p>
+              <p style="font-size: 26px;"><?php echo $bnpl['lockdown_period'] ?> months</p>
             </div>
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Fixed interest rate</p>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-3 col-6 my-2 my-md-0">
               <p style="font-size: 14px;" class="font-weight-light">Balance Payment</p>
-              <p style="font-size: 26px;" class="d-flex align-items-center">&#8358;0.00</p>
+              <p style="font-size: 26px;" class="d-flex align-items-center">&#8358;<?php echo number_format($bnpl['finance_balance']) ?>.00</p>
             </div>
           </div>
 
