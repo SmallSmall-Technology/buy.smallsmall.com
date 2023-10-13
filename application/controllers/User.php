@@ -146,6 +146,8 @@ class User extends CI_Controller
 
 			$data['buy_to_live'] = $this->buytolet_model->getUserProperties($data['userID'], 1);
 
+			$data['bnpl'] = $this->buytolet_model->getUserProperties($data['userID'], 6);
+
 			$data['gifts'] = $this->buytolet_model->get_gifts($data['userID']);
 
 			$data['profile_title'] = "Property Portfolio";
@@ -376,6 +378,59 @@ class User extends CI_Controller
 		}
 	}
 
+	public function bnpl_property($id)
+	{
+
+		if (!file_exists(APPPATH . 'views/user/bnpl-property.php')) {
+
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+
+		if ($this->session->has_userdata('userID')) {
+
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['email'] = $this->session->userdata('email');
+
+			$data['refCode'] = $this->session->userdata('referral_code');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['profile'] = $this->buytolet_model->get_user($data['userID']);
+
+			$data['profile_pic'] = $this->buytolet_model->get_user_pic($data['userID']);
+
+			$data['verification_status'] = $this->session->userdata('verified');
+
+			$data['bnpl'] = $this->buytolet_model->get_bnpl_property($id);
+
+			$data['profile_title'] = "Property Portfolio";
+
+			$data['title'] = "Property Portfolio";
+
+
+			$this->load->view('user/templates/header', $data);
+
+			$this->load->view('user/templates/property-portfolio-submenu', $data);
+
+			$this->load->view('user/templates/verification-bar', $data);
+
+			$this->load->view('user/bnpl-property', $data);
+
+			$this->load->view('user/templates/js-files', $data);
+
+			$this->load->view('user/templates/footer');
+		} else {
+
+			redirect(base_url() . "login", 'refresh');
+		}
+	}
+
 	public function co_ownership()
 	{
 
@@ -438,6 +493,69 @@ class User extends CI_Controller
 			$this->load->view('user/templates/verification-bar', $data);
 
 			$this->load->view('user/co-ownership', $data);
+
+			$this->load->view('user/templates/js-files', $data);
+
+			$this->load->view('user/templates/footer');
+		} else {
+
+			redirect(base_url() . "login", 'refresh');
+		}
+	}
+
+	public function bnpl()
+	{
+
+		if (!file_exists(APPPATH . 'views/user/bnpl.php')) {
+
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+
+		if ($this->session->has_userdata('userID')) {
+
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['email'] = $this->session->userdata('email');
+
+			$data['refCode'] = $this->session->userdata('referral_code');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['profile'] = $this->buytolet_model->get_user($data['userID']);
+
+			$data['profile_pic'] = $this->buytolet_model->get_user_pic($data['userID']);
+
+			$data['verification_status'] = $this->session->userdata('verified');
+
+			$data['all_bnpl_properties'] = $this->buytolet_model->get_all_bnpl_properties($data['userID']);
+
+
+			//$data['stp_exists'] = $this->buytolet_model->check_if_stp_exists($data['userID']);
+
+			//$data['stp_details'] = $this->buytolet_model->get_stp_properties($data['userID']);
+
+			//$worth_and_bbr = $this->getPropertyWorth($data['userID']);
+
+			//$data['buybackrate'] = $worth_and_bbr['buybackrate'];
+
+			//$data['stp_properties'] = $this->buytolet_model->get_stp_properties($data['userID']);
+
+			$data['profile_title'] = "Property Portfolio";
+
+			$data['title'] = "Property Portfolio"; 
+
+			$this->load->view('user/templates/header', $data);
+
+			$this->load->view('user/templates/property-portfolio-submenu', $data);
+
+			$this->load->view('user/templates/verification-bar', $data);
+
+			$this->load->view('user/bnpl', $data);
 
 			$this->load->view('user/templates/js-files', $data);
 
