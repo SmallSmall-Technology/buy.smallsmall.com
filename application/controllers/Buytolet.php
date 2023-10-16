@@ -176,11 +176,38 @@ class Buytolet extends CI_Controller
 			$data['interest'] = $this->session->userdata('interest');
 		}
 
-		$data['title'] = "Co-ownership Terms and Conditions :: Buy2Let";
+		$data['title'] = "Co-ownership Terms and Conditions";
 
 		$this->load->view('templates/header', $data);
 
 		$this->load->view('co-own-tandc', $data);
+
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function bnpl_tandc()
+	{
+
+		if ($this->session->has_userdata('loggedIn')) {
+
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['loggedIn'] = $this->session->userdata('loggedIn');
+
+			$data['interest'] = $this->session->userdata('interest');
+		}
+
+		$data['title'] = "BNPL Terms and Conditions";
+
+		$this->load->view('templates/header', $data);
+
+		$this->load->view('bnpl-tandc', $data);
 
 		$this->load->view('templates/footer', $data);
 	}
@@ -5125,7 +5152,8 @@ class Buytolet extends CI_Controller
 
 		$this->load->view('templates/footer', $data);
 
-}
+	}
+	
 }
 
 

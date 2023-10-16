@@ -300,6 +300,8 @@ $route['terms-and-conditions'] = 'buytolet/terms_and_conditions';
 
 $route['co-own-tandc'] = 'buytolet/co_own_tandc';
 
+$route['bnpl-terms-and-conditions'] = 'buytolet/bnpl_tandc';
+
 $route['about-us'] = 'buytolet/about_us';
 
 $route['home-test'] = 'buytolet/home_test';
