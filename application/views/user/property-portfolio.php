@@ -20,6 +20,27 @@
       <div class="p-md-5 p-2 primary-background">
         <div class="row">
 
+          <div class="col-md-4 col-12  mb-4">
+            <div class="card border-0 default-background h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between my-2">
+                  <img class="img-fluid" src="<?php echo base_url(); ?>assets/user-assets/images/portfolio-bag2.svg" alt="">
+                </div>
+                <p class="card-text">Buy Now Pay Later</p>
+                <p class="card-text font-weight-light"><?php echo count($bnpl); ?> Property</p>
+                <?php
+                $bnpltotal = 0;
+                for ($i = 0; $i < count($bnpl); $i++) {
+                  $bnpltotal = ($bnpl[$i]['price'] + $bnpltotal) / 1000000;
+                }
+                ?>
+                <p class="card-text font-weight-light">Value: &#8358;<?php echo $bnpltotal; ?>m</p>
+                <div class=" mt-5">
+                  <a href="<?php echo base_url(); ?>user/bnpl" class="btn tertiary-background px-5">view</a>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="col-md-4 col-12  mb-4">
             <div class="card border-0 default-background h-100">

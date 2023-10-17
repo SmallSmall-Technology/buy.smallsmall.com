@@ -44,7 +44,7 @@
 				<div class="footer-grid-box">
 					<a class="link-header" href="/">Products</a>
 					<a class="link-text" target="_blank" href="https://rent.smallsmall.com">Rent</a>
-					<a class="link-text" target="_blank" href="https://stay.smallsmall.com">Nightly stay</a>
+<!-- 					<a class="link-text" target="_blank" href="https://stay.smallsmall.com">Nightly stay</a> -->
 					<a class="link-text" href="<?php echo base_url(); ?>">Buy</a>
 					<a class="link-text" href="<?php echo base_url('refer-and-earn'); ?>">Referal</a>
 					<a class="link-text" href="<?php echo base_url('reward'); ?>">Reward & Loyalty</a>
@@ -56,7 +56,9 @@
 					<!-- <a target="_blank" class="link-text" href="https://rent.smallsmall.com/blog">Blog</a> -->
 					<a target="_blank" class="link-text" href="https://blog.smallsmall.com/">Blog</a>
 					<a class="link-text" href="#">Careers</a>
-					<a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>
+					<!-- <a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>		 -->
+					<a class="link-text" href="https://intercom.help/BuySmallsmall/en/" target="_blank">Knowledge base</a>
+
 				</div>
           		<div class="footer-grid-box">
             		<a class="link-header" href="<?php echo base_url('faq'); ?>">Legal</a>

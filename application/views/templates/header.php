@@ -190,9 +190,9 @@
 							    <span style='font-size:9px;'>&nbsp;</span>
 								Co-Own
 							</a>
-							<a class="NavLink" href="<?php echo base_url('properties/onpl'); ?>" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="<?php echo base_url('properties/bnpl'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
-								Own Now Pay Later
+								Buy Now Pay Later
 							</a>
 						</div>
 
@@ -201,10 +201,10 @@
 								<span style='font-size:9px'>Rent monthly</span>
 								<span>RentSmallsmall</span>
 							</a>
-							<a class="NavLink" href="https://stay.smallsmall.com" onclick='closeMobileMenu()'>
+<!-- 							<a class="NavLink" href="https://stay.smallsmall.com" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>Nightly stay</span>
 								<span>StaySmallsmall</span>
-							</a>
+							</a> -->
 						</div>
 					</div>
 					<div class="navBtn NavBtn">
@@ -236,6 +236,11 @@
   	</nav>
   	<!-- Nav bar ends here -->
 	<?php
+	//$CI =& get_instance();
+
+	//$property = $CI->insert_stats(); 	
+	?>
+
     	//$CI =& get_instance();
     
     	//$property = $CI->insert_stats(); 	

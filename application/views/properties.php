@@ -4,8 +4,8 @@
 			<span class="prop-class">
 				<?php if ($slug == 'co-ownership') { ?>
 					Co Ownership
-				<?php } elseif($slug == 'onpl') { ?>
-					Own now pay later
+				<?php } elseif($slug == 'bnpl') { ?>
+					Buy now pay later
 				<?php } else { ?>
 					Sole Ownership	
 				<?php } ?>
@@ -14,19 +14,19 @@
 		<?php if ($slug == 'co-ownership') { ?>
 			<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
 			
-		<?php } elseif($slug == 'onpl') { ?>
+		<?php } elseif($slug == 'bnpl') { ?>
 			<div class="property-hero-container">
 				<div class="property-hero-item">
 					<div class="note">
 						<p>Powering a new generation of homeowners and landlords.</p>
-						<p>Introducing Own Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
-						<p>Gone are the days of waiting and saving for years to secure your interest in a property. Own Now Pay Later empowers you to lock down the price of your desired property today, giving you the peace of mind that it won't slip away and you won't pay a skyrocketed price.</p>
+						<p>Introducing Buy Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
+						<p>Gone are the days of waiting and saving for years to secure your interest in a property. Buy Now Pay Later empowers you to lock down the price of your desired property today, giving you the peace of mind that it won't slip away and you won't pay a skyrocketed price.</p>
 						<p>Imagine the freedom of owning your second home without the upfront costs, knowing that its price is locked down, while having the freedom to prepare yourself financially before making your first payment.</p>
 						<p>Our innovative solution allows you to seize the perfect opportunity in the real estate market without the immediate financial burden. Say goodbye to the traditional constraints of homeownership for good!</p>
 						<p>It's time to make your move and embark on a path towards lifelong success as a homeowner or landlord.</p>
 					</div>
 				</div>
-				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="Own now pay later" /></div>
+				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="buy now pay later" /></div>
 			</div>
 
 		<?php } else { ?>
@@ -95,8 +95,8 @@
 					</div>
 					<div class="bottom-section">
 						<div class="sale-status <?php echo strtolower($each_prop['availability']); ?>"><?php echo $each_prop['availability']; ?></div>
-						<span class="price-type down-payment"><?php echo ($slug == 'onpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
-						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'onpl')? number_format($each_prop['price'] * ($each_prop['lockdown_fee']/100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
+						<span class="price-type down-payment"><?php echo ($slug == 'bnpl')? 'Lockdown Fee' : 'Down payment'; ?></span>
+						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'bnpl')? number_format($each_prop['price'] * ($each_prop['lockdown_fee']/100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
 						<span class="price-type actual-price">Property price</span>
 						<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price']); ?></h3>
 						<p><?php echo $each_prop['property_name']; ?>, <?php echo $each_prop['city'] . ' ' . $each_prop['propState'] . '.'; ?></p>
@@ -109,11 +109,11 @@
 												echo 0;
 											} ?> sqm</li>
 						</ul>
-						<?php if($slug == 'onpl'){ ?>
+						<?php if($slug == 'bnpl'){ ?>
 							<div class="key-values">
 								<div>
 									<span>Lockdown Period</span>
-									<h3>11 Months</h3>
+									<h3><?php echo ($each_prop['lockdown_period'])? $each_prop['lockdown_period'] : 0; ?> Months</h3>
 								</div>
 								<div>
 									<span>Down Payment</span>
@@ -121,8 +121,8 @@
 									</h3>
 								</div>
 								<div>
-									<span>Instalment Period</span>
-									<h3>5 Years</h3>
+									<span>Installment Period</span>
+									<h3><?php echo $each_prop['payment_plan_period']/12; ?> Years</h3>
 								</div>
 								<div>
 									<span>Fixed interest rate</span>

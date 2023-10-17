@@ -176,11 +176,38 @@ class Buytolet extends CI_Controller
 			$data['interest'] = $this->session->userdata('interest');
 		}
 
-		$data['title'] = "Co-ownership Terms and Conditions :: Buy2Let";
+		$data['title'] = "Co-ownership Terms and Conditions";
 
 		$this->load->view('templates/header', $data);
 
 		$this->load->view('co-own-tandc', $data);
+
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function bnpl_tandc()
+	{
+
+		if ($this->session->has_userdata('loggedIn')) {
+
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['loggedIn'] = $this->session->userdata('loggedIn');
+
+			$data['interest'] = $this->session->userdata('interest');
+		}
+
+		$data['title'] = "BNPL Terms and Conditions";
+
+		$this->load->view('templates/header', $data);
+
+		$this->load->view('bnpl-tandc', $data);
 
 		$this->load->view('templates/footer', $data);
 	}
@@ -1501,7 +1528,7 @@ class Buytolet extends CI_Controller
 
 		} else if ($search_crit['investment-type'] == 6) {
 
-			$slug = 'onpl';
+			$slug = 'bnpl';
 		}else if ($search_crit['investment-type'] == 2) {
 
 			$slug = 'buy-to-let';
@@ -2119,7 +2146,7 @@ class Buytolet extends CI_Controller
 
 		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details);
 
-		if($payment_plan == 'onpl'){
+		if($payment_plan == 'bnpl'){
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
 		}
 
@@ -5125,5 +5152,13 @@ class Buytolet extends CI_Controller
 
 		$this->load->view('templates/footer', $data);
 
+<<<<<<< HEAD
 }
 }
+=======
+	}
+	
+}
+
+
+>>>>>>> 0134d1a3946b1bb9b6e16655b2c860cfb836f942

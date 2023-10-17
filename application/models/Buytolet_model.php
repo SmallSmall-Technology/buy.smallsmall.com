@@ -1529,6 +1529,26 @@ class Buytolet_model extends CI_Model
 
 		return $query->row_array();
 	}
+	public function get_bnpl_property($id){
+
+		$this->db->select('a.*, a.status as request_status, a.id as reqID, a.propertyID as propID, b.*, c.*, c.amount as transaction_amount, d.*');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.id', $id);
+
+		$this->db->where('a.plan', 'bnpl');
+
+		$this->db->join('buytolet_property as b', 'b.propertyID = a.propertyID', 'LEFT OUTER');
+
+		$this->db->join('buytolet_transactions as c', 'c.transaction_id = a.refID', 'LEFT OUTER');
+
+		$this->db->join('states as d', 'd.id = b.state', 'LEFT OUTER');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
 
 	public function get_finance_property()
 	{
@@ -1587,6 +1607,28 @@ class Buytolet_model extends CI_Model
 		$this->db->join('states as d', 'd.id = b.state');
 
 		//$this->db->group_by('a.propertyID');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
+	public function get_all_bnpl_properties($userID)
+	{
+
+		$this->db->select('a.*, a.id as reqID, b.*, c.*, d.*');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.plan', 'bnpl');
+
+		$this->db->where('a.userID', $userID);
+
+		$this->db->join('buytolet_property as b', 'b.propertyID = a.propertyID');
+
+		$this->db->join('buytolet_transactions as c', 'c.transaction_id = a.refID', 'LEFT OUTER');
+
+		$this->db->join('states as d', 'd.id = b.state');
 
 		$query = $this->db->get();
 
