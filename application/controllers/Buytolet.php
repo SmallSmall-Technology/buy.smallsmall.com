@@ -5152,13 +5152,5 @@ class Buytolet extends CI_Controller
 
 		$this->load->view('templates/footer', $data);
 
-<<<<<<< HEAD
-}
-}
-=======
 	}
-	
 }
-
-
->>>>>>> 0134d1a3946b1bb9b6e16655b2c860cfb836f942
