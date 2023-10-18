@@ -240,8 +240,3 @@
 
 	//$property = $CI->insert_stats(); 	
 	?>
-
-    	//$CI =& get_instance();
-    
-    	//$property = $CI->insert_stats(); 	
-    ?>
