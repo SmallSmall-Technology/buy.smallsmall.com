@@ -64,6 +64,7 @@
             		<a class="link-header" href="<?php echo base_url('faq'); ?>">Legal</a>
             		<a class="link-text" href="<?php echo base_url('privacy-policy'); ?>">Privacy policy</a>
             		<a class="link-text" href="<?php echo base_url('terms-and-condition'); ?>">Terms & Conditions</a>
+            		<a class="link-text" href="<?php echo base_url('bnpl-terms-and-conditions'); ?>">BNPL Terms & Conditions</a>
             		<a class="link-text" href="<?php echo base_url('faq'); ?>">FAQ</a>
           		</div>
           		<div class="footer-grid-box">
