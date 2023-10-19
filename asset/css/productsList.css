@@ -257,6 +257,15 @@
     height:100%;
     object-fit:cover;
 }
+
+@media screen and (min-width: 576px) {
+
+    .property-hero-container{
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+}
+
 @media(max-width:900px){
     .card{
         width:48%;
@@ -300,7 +309,7 @@
         margin:1%;
     }
     .property-hero-item:first-child{
-        display:none;
+        /* display:none; */
     }
     .property-hero-item:nth-child(2){
         width:100%;
