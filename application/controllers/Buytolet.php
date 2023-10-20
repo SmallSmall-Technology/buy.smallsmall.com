@@ -1433,7 +1433,9 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		$data['title'] = "Properties :: Buy2Let";
+		$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
+
+		$data['title'] = $title;
 
 		$this->load->view('templates/header', $data);
 
@@ -1606,7 +1608,9 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		$data['title'] = "Properties :: Buy2Let";
+		$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
+
+		$data['title'] = $title;
 
 		$this->load->view('templates/header', $data);
 
@@ -4740,7 +4744,6 @@ class Buytolet extends CI_Controller
 				echo "Error : ".$err;
 			}
 		}	
-		//$err = curl_error($curl);
 
 	}
 
@@ -4856,7 +4859,6 @@ class Buytolet extends CI_Controller
 
 		//}	
 	}
-
 
 	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
 		
@@ -5151,6 +5153,7 @@ class Buytolet extends CI_Controller
 		$this->load->view('reward', $data);
 
 		$this->load->view('templates/footer', $data);
-
 	}
+	
 }
+
