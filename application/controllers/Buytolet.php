@@ -1433,7 +1433,21 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		$data['title'] = "Properties :: Buy2Let";
+		// $data['title'] = "Properties :: Buy2Let";
+
+		// Title based on slugs - requirement from Cx Manager
+
+		if ($slug === "bnpl") {
+
+			$title = " Properties :: Buy Now Pay Later";
+		
+		} else {
+		
+			$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
+		
+		}
+
+		$data['title'] = $title;
 
 		$this->load->view('templates/header', $data);
 
@@ -1606,7 +1620,19 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		$data['title'] = "Properties :: Buy2Let";
+		// $data['title'] = "Properties :: Buy2Let";
+
+		if ($slug === "bnpl") {
+
+			$title = " Properties :: Buy Now Pay Later";
+		
+		} else {
+		
+			$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
+		
+		}
+
+		$data['title'] = $title;
 
 		$this->load->view('templates/header', $data);
 
