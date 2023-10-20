@@ -258,61 +258,51 @@
     object-fit:cover;
 }
 
-@media screen and (min-width: 576px) {
+/* Added mobile-responsive adjustments for bss*/
+@media (max-width: 900px) {
+    .card {
+        width: 48%;
+        margin: 1%;
+    }
 
-    .property-hero-container{
+    .home-card,
+    .home-card-3 {
+        width: 300px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 5px 0px;
+        height: 470px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #000;
+        margin: 1%;
+        flex-shrink: 0;
+    }
+
+    .property-hero-container {
         flex-direction: column;
-        margin-bottom: 10px;
+        align-items: center;
+    }
+
+    .property-hero-item:first-child {
+        width: 100%;
+        padding: 0;
+    }
+
+    .property-hero-item:nth-child(2) {
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .property-hero-item .note {
+        font-size: 14px;
+        line-height: 20px;
+        text-align: justify; /* Text Justify on mobile  */
     }
 }
 
-@media(max-width:900px){
-    .card{
-        width:48%;
-        margin:1%;
-    }
-    .home-card{
-        width:300px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 5px 0px;
-        height:470px;
-        border-radius:10px;
-        text-decoration: none;
-        color: #000;
-        margin:1%;
-        flex-shrink:0;
-    }
-    .home-card-3{
-        width:300px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 5px 0px;
-        height:470px;
-        border-radius:10px;
-        text-decoration: none;
-        color: #000;
-        margin:1%;
-        flex-shrink:0;
-    }
-    .property-hero-item:first-child{
-        width:calc(60% - 10px);
-    }
-    .property-hero-item .note{
-        font-size:14px;
-        line-height:20px;
-    }
-    .property-hero-item:nth-child(2){
-        width:40%;
-        border-radius:15px;
-    }
-}
-@media(max-width:700px){
-    .card{
-        width:100%;
-        margin:1%;
-    }
-    .property-hero-item:first-child{
-        /* display:none; */
-    }
-    .property-hero-item:nth-child(2){
-        width:100%;
-        border-radius:15px;
+/* Further adjustment for smaller screens/ phone*/
+@media (max-width: 700px) {
+    .card {
+        width: 100%;
+        margin: 1%;
     }
 }

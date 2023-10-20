@@ -279,7 +279,7 @@
 						<span class="prop-class">Buy2let</span>
 						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-let'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
 				</div>
 				<div class="home-properties-container">
 					
@@ -333,7 +333,7 @@
 						<span class="prop-class">Buy2live</span>
 						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-live'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
 				</div>
 				<div class="home-properties-container">
         					
