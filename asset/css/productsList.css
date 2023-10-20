@@ -307,7 +307,6 @@
         border-radius:15px;
     }
 } */
-
 /* Add mobile-responsive adjustments */
 @media (max-width: 900px) {
     .card {
@@ -345,7 +344,7 @@
     .property-hero-item .note {
         font-size: 14px;
         line-height: 20px;
-        text-align: center; /* Center-align the text on mobile */
+        text-align: justify; /* Justify the text on mobile */
     }
 }
 
