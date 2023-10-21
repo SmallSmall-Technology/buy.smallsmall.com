@@ -1112,7 +1112,7 @@ class Buytolet_model extends CI_Model
 	public function getPropWithRef($ref)
 	{
 
-		$this->db->select('propertyID');
+		$this->db->select('propertyID, plan');
 
 		$this->db->from('buytolet_request');
 
