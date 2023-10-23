@@ -61,10 +61,12 @@
 
 				</div>
           		<div class="footer-grid-box">
-            		<a class="link-header" href="<?php echo base_url('faq'); ?>">Legal</a>
+            		<a class="link-header" href="<?php echo base_url('/'); ?>">Legal</a>
             		<a class="link-text" href="<?php echo base_url('privacy-policy'); ?>">Privacy policy</a>
             		<a class="link-text" href="<?php echo base_url('terms-and-condition'); ?>">Terms & Conditions</a>
-            		<a class="link-text" href="<?php echo base_url('faq'); ?>">FAQ</a>
+            		<a class="link-text" href="<?php echo base_url('bnpl-terms-and-conditions'); ?>">BNPL Terms & Conditions</a>
+					<!-- <a class="link-text" href="</?php echo base_url('faq'); ?>">FAQ</a> -->
+            		<a class="link-text" href="https://intercom.help/BuySmallsmall/en/">FAQ</a>
           		</div>
           		<div class="footer-grid-box">
             		<a class="link-header" href="/">Contact Us</a>

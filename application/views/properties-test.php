@@ -10,7 +10,7 @@
 				</span>
 			</div>
 			<?php if($slug != 'co-ownership'){ ?>
-		        <div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
+		        <div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
 		    <?php }else{ ?>
 		        <div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
 		    <?php } ?>
