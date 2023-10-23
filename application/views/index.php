@@ -77,7 +77,7 @@
 				<div class="bottom-section">
 					<h1>Buy2Live</h1>
 					<div class="text-section">
-						Acquire your dream home today and pay for it conviniently in 6 years.
+						Acquire your dream home today and pay for it conviniently in 5 years.
 					</div>
 					<a class="learn-more-btn" href="<?php echo base_url('faq'); ?>"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
 				</div>
