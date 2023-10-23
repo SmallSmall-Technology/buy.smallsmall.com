@@ -27,6 +27,7 @@
     							<option value="2">Buy2let</option>
     							<option value="1">Buy2live</option>
     							<option value="5">Co-ownership</option>
+    							<option value="6">Buy Now Pay Later</option>
 							</select>
 						</div>
 
