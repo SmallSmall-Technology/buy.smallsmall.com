@@ -14,7 +14,7 @@
 			            <li>
 			                <h1>Buy a home</h1>
             				<h1>in Lagos</h1>
-            				<h1>and pay in 6 years?</h1>
+            				<h1>and pay in 5 years?</h1>
             				<p>We have a deal for you.</p>
 			            </li>
     				</ul>
