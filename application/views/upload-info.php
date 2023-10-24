@@ -40,7 +40,6 @@
                 <div class="finance-form-elem-container">
                     <!-- <p><input type="checkbox" id="agreement" />I have read the <a href="</?php echo base_url('faq'); ?>" target="_blank">financing Terms and Condition.</a> </p> -->
                     <p><input type="checkbox" id="agreement" />I have read the <a href="https://buy.smallsmall.com/bnpl-terms-and-conditions" target="_blank">BuyNowPaylater Terms and Conditions.</a> </p>
-                    
                     <p id="add-onpl-agreement"><input type="checkbox" id="onpl-agreement" />I agree that 5% transaction fee will be forfeited when subscriber fails to make downpayment at the end off 11 months</p>
 
                     <div id="btn__tags">
