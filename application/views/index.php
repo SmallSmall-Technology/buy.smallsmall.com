@@ -14,7 +14,7 @@
 			            <li>
 			                <h1>Buy a home</h1>
             				<h1>in Lagos</h1>
-            				<h1>and pay in 6 years?</h1>
+            				<h1>and pay in 5 years?</h1>
             				<p>We have a deal for you.</p>
 			            </li>
     				</ul>
@@ -27,6 +27,7 @@
     							<option value="2">Buy2let</option>
     							<option value="1">Buy2live</option>
     							<option value="5">Co-ownership</option>
+    							<option value="6">Buy Now Pay Later</option>
 							</select>
 						</div>
 
@@ -76,7 +77,7 @@
 				<div class="bottom-section">
 					<h1>Buy2Live</h1>
 					<div class="text-section">
-						Acquire your dream home today and pay for it conviniently in 6 years.
+						Acquire your dream home today and pay for it conviniently in 5 years.
 					</div>
 					<a class="learn-more-btn" href="<?php echo base_url('faq'); ?>"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
 				</div>
@@ -300,7 +301,7 @@
 						<span class="prop-class">Buy2let</span>
 						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-let'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
 				</div>
 				<div class="home-properties-container">
 					
@@ -355,7 +356,7 @@
 						<span class="prop-class">Buy2live</span>
 						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-live'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 6 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
 				</div>
 				<div class="home-properties-container">
         					

@@ -1433,7 +1433,19 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
+		// $data['title'] = "Properties :: Buy2Let";
+
+		// Title based on slugs - requirement from Cx Manager
+
+		if ($slug === "bnpl") {
+
+			$title = " Properties :: Buy Now Pay Later";
+		
+		} else {
+		
+			$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
+		
+		}
 
 		$data['title'] = $title;
 
@@ -1608,9 +1620,7 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
-
-		$data['title'] = $title;
+		$data['title'] = "Properties :: Buy2Let";
 
 		$this->load->view('templates/header', $data);
 
@@ -2149,10 +2159,6 @@ class Buytolet extends CI_Controller
 		$prop = $this->buytolet_model->getProperty($property_id);
 
 		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details);
-
-		if($payment_plan == 'bnpl'){
-			$this->buytolet_model->update_property_status($property_id, 'Locked');
-		}
 
 		if ($result) {
 
@@ -3234,6 +3240,8 @@ class Buytolet extends CI_Controller
 		//Get propertty ID using reference ID
 		$prop = $this->buytolet_model->getPropWithRef($ref_id);
 
+		$payment_plan = $prop['plan'];
+
 		$property_id = $prop['propertyID'];
 
 		$propdata = array("property_id" => $property_id, "amount" => $payable);
@@ -3245,6 +3253,10 @@ class Buytolet extends CI_Controller
 		$prop = $this->buytolet_model->getProperty($property_id);
 
 		$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref_id);
+
+		if($payment_plan == 'bnpl' || $payment_plan == 'onpl'){
+			$this->buytolet_model->update_property_status($property_id, 'Locked');
+		}
  
 		require 'vendor/autoload.php';
 

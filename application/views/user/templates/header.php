@@ -105,30 +105,30 @@
               <a href="<?php echo base_url(); ?>user/property-portfolio" class=" text-dark" style="text-decoration: none;">Portfolio</a>
             </div>
           </li>
-          <li class="nav-item d-flex align-items-center">
+          <!-----<li class="nav-item d-flex align-items-center">
             <a class="nav-link p-0" href="#" tabindex="-1" aria-disabled="true">
               <div class="menu-logo mr-2">
-                <img class="img-fluid" src="<?php echo base_url(); ?>assets/user-assets/images/wallet-icon.svg" alt="">
+                <img class="img-fluid" src="<?php //echo base_url(); ?>assets/user-assets/images/wallet-icon.svg" alt="">
               </div>
             </a>
           </li>
-          <li class="nav-item d-flex align-items-center mr-4  <?php echo ($profile_title == 'Wallet')? 'dashboard-active' : '' ; ?>">
+          <li class="nav-item d-flex align-items-center mr-4  <?php //echo ($profile_title == 'Wallet')? 'dashboard-active' : '' ; ?>">
             <div class="menu-text">
-              <a href="<?php echo base_url('user/wallet'); ?>" class=" text-dark" style="text-decoration: none;">Wallet</a>
+              <a href="<?php //echo base_url('user/wallet'); ?>" class=" text-dark" style="text-decoration: none;">Wallet</a>
             </div>
-          </li>
-          <li class="nav-item d-flex align-items-center">
+          </li>--->
+          <!---<li class="nav-item d-flex align-items-center">
             <a class="nav-link p-0" href="#" tabindex="-1" aria-disabled="true">
               <div class="menu-logo mr-2">
-                <img class="img-fluid" src="<?php echo base_url(); ?>assets/user-assets/images/financing-icon.svg" alt="">
+                <img class="img-fluid" src="<?php //echo base_url(); ?>assets/user-assets/images/financing-icon.svg" alt="">
               </div>
             </a>
           </li>
-          <li class="nav-item d-flex align-items-center mr-4 <?php echo ($profile_title == 'Financing')? 'dashboard-active' : '' ; ?>">
+          <li class="nav-item d-flex align-items-center mr-4 <?php //echo ($profile_title == 'Financing')? 'dashboard-active' : '' ; ?>">
             <div class="menu-text">
-              <a href="<?php echo base_url('user/financing'); ?>" class=" text-dark" style="text-decoration: none;">Financing</a>
+              <a href="<?php //echo base_url('user/financing'); ?>" class=" text-dark" style="text-decoration: none;">Financing</a>
             </div>
-          </li>
+          </li>--->
             <li class="nav-item d-flex align-items-center">
             <a class="nav-link p-0" href="#" tabindex="-1" aria-disabled="true">
               <div class="menu-logo mr-2 position-relative">
@@ -242,10 +242,10 @@
           </p>
         </div>
 
-        <div class="mb-5 pl-2">
+        <!---<div class="mb-5 pl-2">
           <p>
-            <a href="<?php echo base_url('user/wallet'); ?>" class=" text-dark" style="text-decoration: none;">
-              <img class="img-fluid" src="<?php echo base_url(); ?>assets/user-assets/images/wallet-icon.svg" alt="">
+            <a href="<?php //echo base_url('user/wallet'); ?>" class=" text-dark" style="text-decoration: none;">
+              <img class="img-fluid" src="<?php //echo base_url(); ?>assets/user-assets/images/wallet-icon.svg" alt="">
               &nbsp;&nbsp; Wallet
             </a>
           </p>
@@ -253,12 +253,12 @@
 
         <div class="mb-5 pl-2">
           <p>
-            <a href="<?php echo base_url('user/financing'); ?>" class=" text-dark" style="text-decoration: none;">
-              <img class="img-fluid" src="<?php echo base_url(); ?>assets/user-assets/images/financing-icon.svg" alt="">
+            <a href="<?php //echo base_url('user/financing'); ?>" class=" text-dark" style="text-decoration: none;">
+              <img class="img-fluid" src="<?php //echo base_url(); ?>assets/user-assets/images/financing-icon.svg" alt="">
               &nbsp;&nbsp; Financing
             </a>
           </p>
-        </div>
+        </div>--->
         
         <div class="mb-5 pl-2">
           <p>
