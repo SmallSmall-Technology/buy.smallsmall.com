@@ -135,8 +135,8 @@
 					<div class="single-span-col-input">
 						<select id="country-code" class="minimal country-code verify-txt">
 							<option value="">Select Country</option>
-							<?php foreach($countries as $country => $value){ ?>
-								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] .' - '. $value['sortname'] ?></option>
+							<?php foreach ($countries as $country => $value) { ?>
+								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] . ' - ' . $value['sortname'] ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -177,6 +177,11 @@
 		</fieldset>
 	</form>
 	</div>
+
+	<!-- Tracking code for bss - Start of HubSpot Embed Code -->
+	<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/143441522.js"></script>
+	<!-- End of HubSpot Embed Code -->
+
 </body>
 
 </html>
@@ -190,9 +195,6 @@
 	data-api_key="ca91f88601fb02c3c90db6bbd20da779dbb3f5d07827db9df99e290617d7d63e"
 	data-platform="custom_website"
 ></script> -->
-
-
-
 
 
 <script>
