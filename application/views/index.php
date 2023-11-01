@@ -9,7 +9,7 @@
 			                <h1>Home ownership</h1>
             				<h1>is not a birthright</h1> 
             				<h1>of a few.</h1>
-            				<p>Get 80% financing from us today.</p>
+            				<p>&nbsp;</p>
 			            </li>
 			            <li>
 			                <h1>Buy a home</h1>
@@ -24,10 +24,9 @@
 						<div class="custom-select">
 							<select name="investment-type" class="investment-type">
     							<option value="">How do you want to start?</option>
-    							<option value="2">Buy2let</option>
-    							<option value="1">Buy2live</option>
     							<option value="5">Co-ownership</option>
-    							<option value="6">Buy Now Pay Later</option>
+    							<option value="6">BuyNowPayLater</option>
+    							<option value="7">OwnNowPayLater</option>
 							</select>
 						</div>
 
@@ -52,8 +51,8 @@
 		</header>
 
 		<div class="section-word">
-			<h1 style='text-align:center; padding-top:30px;'>There's a better way of financing a home.</h1>
-			<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall we want people to own a home whether as investment to earn rental income, or own to live.</div>
+			<h1 style='text-align:center; padding-top:30px;'>The best mortgage alternative in Nigeria.</h1>
+			<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall buying a home is as strightforward as ordering your favorite food at a nice restaurant.</div>
 		</div>
 		<section class="product-card-container">
 
@@ -177,10 +176,10 @@
 			<div class="feat-prop-wrapper">
 				<div class="prop-option-head">
 					<div class="prop-option-top">
-						<span class="prop-class">Co-own</span>
+						<span class="prop-class">Buy2Co-own</span>
 						<span class="all-prop-btn"><a href="<?php echo base_url('properties/co-ownership'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Accumulate shares and become a sole-owner of a property in 4 years.</div>
+					<div class="prop-option-below">Stack up shares and become a sole-owner in 1 to 6 years.</div>
 				</div>
 				<div class="home-properties-container">
 					
@@ -298,10 +297,10 @@
 			<div class="feat-prop-wrapper">
 				<div class="prop-option-head">
 					<div class="prop-option-top">
-						<span class="prop-class">Buy2let</span>
-						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-let'); ?>">Explore all</a></span>
+						<span class="prop-class">BuyNowPayLater</span>
+						<span class="all-prop-btn"><a href="<?php echo base_url('properties/bnpl'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Lock with just 5% fee, get 9% single interest rate for 5 years.</div>
 				</div>
 				<div class="home-properties-container">
 					
@@ -326,19 +325,24 @@
 										<li>&bullet; <?php echo $value['bath']; ?> bathroom</li>
 										<li>&bullet; <?php if(@$value['property_size']){ echo number_format($value['property_size']); } else { echo 0; } ?> sqm</li>
 									</ul>
+
 									<div class="key-values">
 										<div>
-											<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
-											<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$value['expected_rent'] / 1000000; ?>M</h3>
-										</div>
-										
-										<div>
-											<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
-											<h3><?php echo number_format((pow((($asset_1 + $value['expected_rent']) / $value['marketValue']), 1) - 1) * 100); ?>%</h3>
+											<span>Lockdown Period</span>
+											<h3><?php echo ($value['lockdown_period'])? $value['lockdown_period'] : 0; ?> Months</h3>
 										</div>
 										<div>
-											<span>Appreciation</span>
-											<h3><?php $asset_1 = ((($value['asset_appreciation_1'] / 100) * $value['marketValue']) + $value['marketValue']); echo $value['asset_appreciation_1']; ?>%</h3>
+											<span>Down Payment</span>
+											<h3><?php echo number_format(($value['minimum_payment_plan']/100) * $value['price']); ?>
+											</h3>
+										</div>
+										<div>
+											<span>Installment Period</span>
+											<h3><?php echo $value['payment_plan_period']/12; ?> Years</h3>
+										</div>
+										<div>
+											<span>Fixed interest rate</span>
+											<h3>9% p.a</h3>
 										</div>
 									</div>
 								</div>
@@ -353,10 +357,10 @@
 			<div class="feat-prop-wrapper">
 				<div class="prop-option-head">
 					<div class="prop-option-top">
-						<span class="prop-class">Buy2live</span>
-						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-live'); ?>">Explore all</a></span>
+						<span class="prop-class">OwnNowPayLater</span>
+						<span class="all-prop-btn"><a href="<?php echo base_url('properties/onpl'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Pay 40% down-payment, spread balance across 3 years at 0% interest.</div>
 				</div>
 				<div class="home-properties-container">
         					
@@ -385,17 +389,20 @@
 									</ul>
 									<div class="key-values">
 										<div>
-											<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
-											<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$value['expected_rent'] / 1000000; ?>M</h3>
-										</div>
-										
-										<div>
-											<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
-											<h3><?php echo number_format((pow((($asset_1 + $value['expected_rent']) / $value['marketValue']), 1) - 1) * 100); ?>%</h3>
+											<span>Down Payment</span>
+											<h3>40%</h3>
 										</div>
 										<div>
-											<span>Appreciation</span>
-											<h3><?php $asset_1 = ((($value['asset_appreciation_1'] / 100) * $value['marketValue']) + $value['marketValue']); echo $value['asset_appreciation_1']; ?>%</h3>
+											<span>Installment Period</span>
+											<h3>3 Years</h3>
+										</div>
+										<div>
+											<span>Interest rate</span>
+											<h3>0% p.a</h3>
+										</div>
+										<div>
+											<span>Assured rent</span>
+											<h3>4m p.a</h3>
 										</div>
 									</div>
 								</div>
