@@ -6,6 +6,8 @@
 					Co Ownership
 				<?php } elseif($slug == 'bnpl') { ?>
 					Buy now pay later
+				<?php } elseif($slug == 'onpl') { ?>
+					Own now pay later
 				<?php } else { ?>
 					Sole Ownership	
 				<?php } ?>
@@ -14,9 +16,10 @@
 		<?php if ($slug == 'co-ownership') { ?>
 			<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
 			
-		<?php } elseif($slug == 'bnpl') { ?>
+		<?php } elseif($slug == 'bnpl' || $slug == 'onpl') { ?>
 			<div class="property-hero-container">
 				<div class="property-hero-item">
+					<?php if($slug == 'bnpl'){ ?>
 					<div class="note">
 						<p>Powering a new generation of homeowners and landlords.</p>
 						<p>Introducing Buy Now Pay Later, the groundbreaking homeownership product designed to empower the new generation of homeowners in building their real estate portfolio effortlessly.</p>
@@ -25,6 +28,15 @@
 						<p>Our innovative solution allows you to seize the perfect opportunity in the real estate market without the immediate financial burden. Say goodbye to the traditional constraints of homeownership for good!</p>
 						<p>It's time to make your move and embark on a path towards lifelong success as a homeowner or landlord.</p>
 					</div>
+					<?php }elseif($slug == 'onpl'){ ?>
+					<div class="note">
+						<p>Welcome to Own now pay later, the revolutionary home ownership product designed for the new generation of homeowners. With this innovative package, you can finally achieve your dream of owning a property without having to worry about high interest rates and financial constraints. Our mission is simple - to empower individuals in building their real estate portfolio effortlessly.</p>
+
+						<p>Own now pay later allows you to lock down the price of your desired property today with just a 40% down payment. Say goodbye to worrying about fluctuating prices and bidding wars in the real estate market. By securing your property at its current value, you can have peace of mind knowing that it will be yours when you are ready.</p>
+
+						<p>But what truly sets us apart from other home ownership programs is our interest-free installment plan. We understand that buying a house is a huge investment and we don't want it to become an overwhelming burden on your finances. That's why we offer flexible payment options over a period of 3 years, giving you enough time and breathing space while still being able to call yourself a homeowner.</p>						
+					</div>
+					<?php } ?>
 				</div>
 				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="buy now pay later" /></div>
 			</div>
@@ -127,6 +139,25 @@
 								<div>
 									<span>Fixed interest rate</span>
 									<h3>9% p.a</h3>
+								</div>
+							</div>
+						<?php }elseif($slug == 'onpl'){ ?>
+							<div class="key-values">
+								<div>
+									<span>Down Payment</span>
+									<h3>40%</h3>
+								</div>
+								<div>
+									<span>Installment Period</span>
+									<h3>3 Years</h3>
+								</div>
+								<div>
+									<span>Interest rate</span>
+									<h3>0% p.a</h3>
+								</div>
+								<div>
+									<span>Assured rent</span>
+									<h3>4m p.a</h3>
 								</div>
 							</div>
 						<?php }else{ ?>
