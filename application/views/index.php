@@ -304,9 +304,9 @@
 				</div>
 				<div class="home-properties-container">
 					
-				<?php if(isset($buy_to_let_properties) && !empty($buy_to_let_properties)){ ?>
-						<?php foreach($buy_to_let_properties as $property => $value){ ?>
-							<a href="<?php echo base_url()."sole-own/".$value['propertyID']; ?>" class="home-card">
+				<?php if(isset($bnpl_properties) && !empty($bnpl_properties)){ ?>
+						<?php foreach($bnpl_properties as $property => $value){ ?>
+							<a href="<?php echo base_url()."property/".$value['propertyID']; ?>" class="home-card">
 							<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$value['image_folder'].'/'.$value['featured_image']; ?>')" class="top-section">
 								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $value['construction_lvl']; ?></div>
@@ -364,9 +364,9 @@
 				</div>
 				<div class="home-properties-container">
         					
-				<?php if(isset($buy_to_live_properties) && !empty($buy_to_live_properties)){ ?>
-						<?php foreach($buy_to_live_properties as $property => $value){ ?>
-							<a href="<?php echo base_url()."sole-own/".$value['propertyID']; ?>" class="home-card">
+				<?php if(isset($onpl_properties) && !empty($onpl_properties)){ ?>
+						<?php foreach($onpl_properties as $property => $value){ ?>
+							<a href="<?php echo base_url()."property/".$value['propertyID']; ?>" class="home-card">
 
 							<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$value['image_folder'].'/'.$value['featured_image']; ?>')" class="top-section">
 

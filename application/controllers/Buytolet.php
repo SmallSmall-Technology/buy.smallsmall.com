@@ -23,9 +23,9 @@ class Buytolet extends CI_Controller
 
 		$states = array('2648', '2671');
 
-		$data['buy_to_live_properties'] = $this->buytolet_model->getHomeProps(1, 4);
+		$data['bnpl_properties'] = $this->buytolet_model->getHomeProps(6, 4);
 
-		$data['buy_to_let_properties'] = $this->buytolet_model->getHomeProps(2, 4);
+		$data['onpl_properties'] = $this->buytolet_model->getHomeProps(7, 4);
 
 		$data['pool_properties'] = $this->buytolet_model->getPoolHomeProps();
 
