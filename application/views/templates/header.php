@@ -178,14 +178,14 @@
 							<a class="NavLinkHome" href="/#" onclick='closeMobileMenu()'>
 								Home
 							</a>
-							<a class="NavLink" href="<?php echo base_url('properties/buy-to-let'); ?>" onclick='closeMobileMenu()'>
+							<a class="NavLink" href="<?php echo base_url('properties/onpl'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
-								Buy2let
+								Own Now Pay Later
 							</a>
-							<a class="NavLink" href="<?php echo base_url('properties/buy-to-live'); ?>" onclick='closeMobileMenu()'>
+							<!---<a class="NavLink" href="<?php //echo base_url('properties/buy-to-live'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
 								Buy2live
-							</a>
+							</a>--->
 							<a class="NavLink" href="<?php echo base_url('properties/co-ownership'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
 								Co-Own

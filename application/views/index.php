@@ -52,7 +52,7 @@
 
 		<div class="section-word">
 			<h1 style='text-align:center; padding-top:30px;'>The best mortgage alternative in Nigeria.</h1>
-			<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall buying a home is as strightforward as ordering your favorite food at a nice restaurant.</div>
+			<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall buying a home is as straightforward as ordering your favorite food at a nice restaurant.</div>
 		</div>
 		<section class="product-card-container">
 
