@@ -2,12 +2,12 @@ $(init);
 
 function init(){
     
-    var baseUrl = 'https://buy.smallsmall.com/';
+    var baseUrl = 'https://dev-buy.smallsmall.com/';
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
 
     
-	if(order.paymentPlan == 'bnpl'){		
+	if(order.paymentPlan == 'bnpl' || order.paymentPlan == 'onpl'){		
 		$('#the-form-title').html('Lockdown Form');
 	}
     

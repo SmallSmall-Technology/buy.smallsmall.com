@@ -23,9 +23,9 @@ class Buytolet extends CI_Controller
 
 		$states = array('2648', '2671');
 
-		$data['buy_to_live_properties'] = $this->buytolet_model->getHomeProps(1, 4);
+		$data['bnpl_properties'] = $this->buytolet_model->getHomeProps(6, 4);
 
-		$data['buy_to_let_properties'] = $this->buytolet_model->getHomeProps(2, 4);
+		$data['onpl_properties'] = $this->buytolet_model->getHomeProps(7, 4);
 
 		$data['pool_properties'] = $this->buytolet_model->getPoolHomeProps();
 
@@ -1620,19 +1620,7 @@ class Buytolet extends CI_Controller
 
 		//Check login status
 
-		// $data['title'] = "Properties :: Buy2Let";
-
-		if ($slug === "bnpl") {
-
-			$title = " Properties :: Buy Now Pay Later";
-		
-		} else {
-		
-			$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
-		
-		}
-
-		$data['title'] = $title;
+		$data['title'] = "Properties :: Buy2Let";
 
 		$this->load->view('templates/header', $data);
 
@@ -4768,7 +4756,6 @@ class Buytolet extends CI_Controller
 				echo "Error : ".$err;
 			}
 		}	
-		//$err = curl_error($curl);
 
 	}
 
@@ -4884,7 +4871,6 @@ class Buytolet extends CI_Controller
 
 		//}	
 	}
-
 
 	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
 		
@@ -5179,9 +5165,7 @@ class Buytolet extends CI_Controller
 		$this->load->view('reward', $data);
 
 		$this->load->view('templates/footer', $data);
-
 	}
 	
 }
-
 

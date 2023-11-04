@@ -1,10 +1,10 @@
 $(document).ready(function(){
     
-    var baseUrl = 'https://buy.smallsmall.com/';
+    var baseUrl = 'https://dev-buy.smallsmall.com/';
 
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
 
-	if(order.paymentPlan == 'bnpl'){
+	if(order.paymentPlan == 'bnpl' || order.paymentPlan == 'onpl'){
 		$('#bvn-spc').hide();
 		
 		$('#the-form-title').html('Lockdown Form');
@@ -27,7 +27,7 @@ $(document).ready(function(){
     
     	$("#phone").val(order.personal_details[0]['phone']);
 
-		if(order.paymentPlan != 'bnpl'){
+		if(order.paymentPlan != 'bnpl' && order.paymentPlan != 'onpl'){
 			$("#bvn").val(order.personal_details[0]['bvn']);
 		}
     	

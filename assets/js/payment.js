@@ -1,5 +1,5 @@
 //Javascript document
-var baseUrl = "https://buy.smallsmall.com/";
+var baseUrl = "https://dev-buy.smallsmall.com/";
 
 //window.localStorage.removeItem('co_own_basket');
 
@@ -62,6 +62,8 @@ $('.option-but').click(function(){
 	var promo_code = '';
 	
 	var onpl_payable = 0;
+	
+	var bnpl_payable = 0;
 
 	var down_payment = 0;
 	
@@ -97,9 +99,15 @@ $('.option-but').click(function(){
 
 	}else if(plan == 'bnpl'){
 
-		onpl_payable = $('#onpl-payable').val();
+		onpl_payable = $('#bnpl-payable').val();
 
 		payable = onpl_payable;
+
+	}else if(plan == 'onpl'){
+
+		bnpl_payable = $('#onpl-payable').val();
+
+		payable = bnpl_payable;
 
 	}
 	
@@ -118,7 +126,15 @@ $('.option-but').click(function(){
 	
 	if(plan != 'finance'){
 		
-		payment_period = 0;
+		if(plan == 'bnpl'){
+		
+			payment_period = 5;
+			
+		}else if(plan == 'onpl'){
+		
+			payment_period = 3;
+			
+		}
 		
 	}
 	
