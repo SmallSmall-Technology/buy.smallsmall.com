@@ -106,28 +106,28 @@
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
     								<span class="stat-sub-head">Choose a property</span>
-    								<span class="stat-note">Browse and select any of our pre-vetted properties that match your investment appetite.</span>
+    								<span class="stat-note">Select from our list of premium properties that match your investment apetite.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Get financing approval</span>
-    								<span class="stat-note">Apply for financing in 5mins and get approval in 24hrs. 5% of the downpayment is required as origination fee, and it's fully refundable if you're not approved.</span>
+    								<span class="stat-sub-head">Choose a Payment Plan</span>
+    								<span class="stat-note">Select from the 3 payment plans available - BuyNowPayLater, OwnNow Pay Later, and OutrightBuy.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Complete documentation</span>
-    								<span class="stat-note">Review all documents once approved, pay all required balance, and sign all documents.</span>
+    								<span class="stat-sub-head">Complete KYC form</span>
+    								<span class="stat-note">We want tpo serve you better, but we need to know you better first.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Take ownership</span>
-    								<span class="stat-note">Property title will be transferred to you once payback is completed. You can buyout/sell anytime.</span>
+    								<span class="stat-sub-head">Make Payment</span>
+    								<span class="stat-note">Use our payment gateway or make a direct transfer.</span>
     							</td>
     						</tr>
     					</table>
@@ -139,28 +139,28 @@
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
     								<span class="stat-sub-head">Choose a property</span>
-    								<span class="stat-note">Browse and select any of our pre-vetted properties that match your investment appetite. Just like sole ownership</span>
+    								<span class="stat-note">Select from our list of best priced properties that are active</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Buy shares</span>
-    								<span class="stat-note">Review all terms, pay for your shares & get shares certificate</span>
+    								<span class="stat-sub-head">Choose a subscription plan</span>
+    								<span class="stat-note">Stack up your regular shares at your own pace or subscribe to our Shares Target Plans.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Grow your shares</span>
-    								<span class="stat-note">Accumulate shares as you go or subscribe to our Shares Target Program.</span>
+    								<span class="stat-sub-head">Make Payment</span>
+    								<span class="stat-note">Review all terms and make payment using our online payment gateway.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Become a sole-owner</span>
-    								<span class="stat-note">Easily migrate your shares to sole-ownership before or at the end of a hold period.</span>
+    								<span class="stat-sub-head">Migrate to Sole Ownership</span>
+    								<span class="stat-note">Convert your stacked shares as down-payment and become a sole-owner.</span>
     							</td>
     						</tr>
     					</table>

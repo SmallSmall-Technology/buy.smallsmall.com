@@ -5,9 +5,9 @@
 				<?php if ($slug == 'co-ownership') { ?>
 					Co Ownership
 				<?php } elseif($slug == 'bnpl') { ?>
-					Buy now pay later
+					Buy Now Pay Later
 				<?php } elseif($slug == 'onpl') { ?>
-					Own now pay later
+					Own Now Pay Later
 				<?php } else { ?>
 					Sole Ownership	
 				<?php } ?>
@@ -38,7 +38,13 @@
 					</div>
 					<?php } ?>
 				</div>
-				<div class="property-hero-item"><img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="buy now pay later" /></div>
+				<div class="property-hero-item">
+					<?php if($slug == 'bnpl'){ ?>
+						<img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="buy now pay later image" />
+					<?php }elseif($slug == 'onpl'){ ?>
+						<img src="<?php echo base_url(); ?>asset/images/bnpl-image.jpg" alt="Own now pay later image" />
+					<?php } ?>
+					</div>
 			</div>
 
 		<?php } else { ?>
