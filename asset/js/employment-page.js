@@ -7,7 +7,7 @@ function init(){
     var order = JSON.parse(localStorage.getItem('buytolet_basket'));
 
     
-	if(order.paymentPlan == 'bnpl'){		
+	if(order.paymentPlan == 'bnpl' || order.paymentPlan == 'onpl'){		
 		$('#the-form-title').html('Lockdown Form');
 	}
     
