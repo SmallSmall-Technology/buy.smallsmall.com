@@ -9,7 +9,7 @@
 			                <h1>Home ownership</h1>
             				<h1>is not a birthright</h1> 
             				<h1>of a few.</h1>
-            				<p>Get 80% financing from us today.</p>
+            				<p>&nbsp;</p>
 			            </li>
 			            <li>
 			                <h1>Buy a home</h1>
@@ -24,10 +24,9 @@
 						<div class="custom-select">
 							<select name="investment-type" class="investment-type">
     							<option value="">How do you want to start?</option>
-    							<option value="2">Buy2let</option>
-    							<option value="1">Buy2live</option>
     							<option value="5">Co-ownership</option>
-    							<option value="6">Buy Now Pay Later</option>
+    							<option value="6">BuyNowPayLater</option>
+    							<option value="7">OwnNowPayLater</option>
 							</select>
 						</div>
 
@@ -52,8 +51,8 @@
 		</header>
 
 		<div class="section-word">
-			<h1 style='text-align:center; padding-top:30px;'>There's a better way of financing a home.</h1>
-			<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall we want people to own a home whether as investment to earn rental income, or own to live.</div>
+			<h1 style='text-align:center; padding-top:30px;'>The best mortgage alternative in Nigeria.</h1>
+			<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall buying a home is as straightforward as ordering your favorite food at a nice restaurant.</div>
 		</div>
 		<section class="product-card-container">
 
@@ -107,28 +106,28 @@
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
     								<span class="stat-sub-head">Choose a property</span>
-    								<span class="stat-note">Browse and select any of our pre-vetted properties that match your investment appetite.</span>
+    								<span class="stat-note">Select from our list of premium properties that match your investment apetite.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Get financing approval</span>
-    								<span class="stat-note">Apply for financing in 5mins and get approval in 24hrs. 5% of the downpayment is required as origination fee, and it's fully refundable if you're not approved.</span>
+    								<span class="stat-sub-head">Choose a Payment Plan</span>
+    								<span class="stat-note">Select from the 3 payment plans available - BuyNowPayLater, OwnNow Pay Later, and OutrightBuy.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Complete documentation</span>
-    								<span class="stat-note">Review all documents once approved, pay all required balance, and sign all documents.</span>
+    								<span class="stat-sub-head">Complete KYC form</span>
+    								<span class="stat-note">We want tpo serve you better, but we need to know you better first.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Take ownership</span>
-    								<span class="stat-note">Property title will be transferred to you once payback is completed. You can buyout/sell anytime.</span>
+    								<span class="stat-sub-head">Make Payment</span>
+    								<span class="stat-note">Use our payment gateway or make a direct transfer.</span>
     							</td>
     						</tr>
     					</table>
@@ -140,28 +139,28 @@
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
     								<span class="stat-sub-head">Choose a property</span>
-    								<span class="stat-note">Browse and select any of our pre-vetted properties that match your investment appetite. Just like sole ownership</span>
+    								<span class="stat-note">Select from our list of best priced properties that are active</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Buy shares</span>
-    								<span class="stat-note">Review all terms, pay for your shares & get shares certificate</span>
+    								<span class="stat-sub-head">Choose a subscription plan</span>
+    								<span class="stat-note">Stack up your regular shares at your own pace or subscribe to our Shares Target Plans.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Grow your shares</span>
-    								<span class="stat-note">Accumulate shares as you go or subscribe to our Shares Target Program.</span>
+    								<span class="stat-sub-head">Make Payment</span>
+    								<span class="stat-note">Review all terms and make payment using our online payment gateway.</span>
     							</td>
     						</tr>
     						<tr class="stat-tr">
     							<td class="stat-td" valign="top">&bull;</td>
     							<td class="stat-td" valign="top">
-    								<span class="stat-sub-head">Become a sole-owner</span>
-    								<span class="stat-note">Easily migrate your shares to sole-ownership before or at the end of a hold period.</span>
+    								<span class="stat-sub-head">Migrate to Sole Ownership</span>
+    								<span class="stat-note">Convert your stacked shares as down-payment and become a sole-owner.</span>
     							</td>
     						</tr>
     					</table>
@@ -177,22 +176,43 @@
 			<div class="feat-prop-wrapper">
 				<div class="prop-option-head">
 					<div class="prop-option-top">
-						<span class="prop-class">Co-own</span>
+						<span class="prop-class">Buy2Co-own</span>
 						<span class="all-prop-btn"><a href="<?php echo base_url('properties/co-ownership'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Accumulate shares and become a sole-owner of a property in 4 years.</div>
+					<div class="prop-option-below">Stack up shares and become a sole-owner in 1 to 6 years.</div>
 				</div>
 				<div class="home-properties-container">
 					
 					<?php if(isset($pool_properties) && !empty($pool_properties)){ ?>
+
+						
+
 						<?php foreach($pool_properties as $pool_property => $pool_value){ ?>
+
+							<?Php
+							$bucket = 'dev-rss-uploads'; // Your bucket name
+
+							// Include AWS SDK and create S3 client
+							require 'vendor/autoload.php';
+							$s3 = new Aws\S3\S3Client([
+								'version' => 'latest',
+								'region' => 'eu-west-1'
+							]);
+
+							?>
+							
+							
 							<a href="<?php echo base_url()."co-own/".$pool_value['propertyID']; ?>" class="home-card">
-								<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>")' class="top-section">
+
+								<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>')" class="top-section">
+								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $pool_value['image_folder'].'/'.$pool_value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $pool_value['type']; ?></div>
 									<?php if(@$pool_value['construction_lvl']){ ?>
 						            <div class="badge-bottom"><?php echo $pool_value['construction_lvl']; ?></div>
 						            <?php } ?>
 								</div>
+
+
 								<div class="bottom-section">
 								    <div class="sale-status <?php echo strtolower($pool_value['availability']); ?>"><?php echo ($pool_value['availability'] == 'Available')? 'Buy now' : 'Sold out'; ?></div>
 									
@@ -277,17 +297,18 @@
 			<div class="feat-prop-wrapper">
 				<div class="prop-option-head">
 					<div class="prop-option-top">
-						<span class="prop-class">Buy2let</span>
-						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-let'); ?>">Explore all</a></span>
+						<span class="prop-class">BuyNowPayLater</span>
+						<span class="all-prop-btn"><a href="<?php echo base_url('properties/bnpl'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Lock with just 5% fee, get 9% single interest rate for 5 years.</div>
 				</div>
 				<div class="home-properties-container">
 					
-				<?php if(isset($buy_to_let_properties) && !empty($buy_to_let_properties)){ ?>
-						<?php foreach($buy_to_let_properties as $property => $value){ ?>
-							<a href="<?php echo base_url()."sole-own/".$value['propertyID']; ?>" class="home-card">
-								<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section">
+				<?php if(isset($bnpl_properties) && !empty($bnpl_properties)){ ?>
+						<?php foreach($bnpl_properties as $property => $value){ ?>
+							<a href="<?php echo base_url()."property/".$value['propertyID']; ?>" class="home-card">
+							<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$value['image_folder'].'/'.$value['featured_image']; ?>')" class="top-section">
+								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $value['construction_lvl']; ?></div>
 						            <div class="badge-bottom"><?php echo $value['type']; ?></div>
 								</div>
@@ -304,19 +325,24 @@
 										<li>&bullet; <?php echo $value['bath']; ?> bathroom</li>
 										<li>&bullet; <?php if(@$value['property_size']){ echo number_format($value['property_size']); } else { echo 0; } ?> sqm</li>
 									</ul>
+
 									<div class="key-values">
 										<div>
-											<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
-											<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$value['expected_rent'] / 1000000; ?>M</h3>
-										</div>
-										
-										<div>
-											<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
-											<h3><?php echo number_format((pow((($asset_1 + $value['expected_rent']) / $value['marketValue']), 1) - 1) * 100); ?>%</h3>
+											<span>Lockdown Period</span>
+											<h3><?php echo ($value['lockdown_period'])? $value['lockdown_period'] : 0; ?> Months</h3>
 										</div>
 										<div>
-											<span>Appreciation</span>
-											<h3><?php $asset_1 = ((($value['asset_appreciation_1'] / 100) * $value['marketValue']) + $value['marketValue']); echo $value['asset_appreciation_1']; ?>%</h3>
+											<span>Down Payment</span>
+											<h3><?php echo number_format(($value['minimum_payment_plan']/100) * $value['price']); ?>
+											</h3>
+										</div>
+										<div>
+											<span>Installment Period</span>
+											<h3><?php echo $value['payment_plan_period']/12; ?> Years</h3>
+										</div>
+										<div>
+											<span>Fixed interest rate</span>
+											<h3>9% p.a</h3>
 										</div>
 									</div>
 								</div>
@@ -331,17 +357,20 @@
 			<div class="feat-prop-wrapper">
 				<div class="prop-option-head">
 					<div class="prop-option-top">
-						<span class="prop-class">Buy2live</span>
-						<span class="all-prop-btn"><a href="<?php echo base_url('properties/buy-to-live'); ?>">Explore all</a></span>
+						<span class="prop-class">OwnNowPayLater</span>
+						<span class="all-prop-btn"><a href="<?php echo base_url('properties/onpl'); ?>">Explore all</a></span>
 					</div>
-					<div class="prop-option-below">Get a 5 years payback period and enjoy 10 years guaranteed rent.</div>
+					<div class="prop-option-below">Pay 40% down-payment, spread balance across 3 years at 0% interest.</div>
 				</div>
 				<div class="home-properties-container">
         					
-				<?php if(isset($buy_to_live_properties) && !empty($buy_to_live_properties)){ ?>
-						<?php foreach($buy_to_live_properties as $property => $value){ ?>
-							<a href="<?php echo base_url()."sole-own/".$value['propertyID']; ?>" class="home-card">
-								<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section">
+				<?php if(isset($onpl_properties) && !empty($onpl_properties)){ ?>
+						<?php foreach($onpl_properties as $property => $value){ ?>
+							<a href="<?php echo base_url()."property/".$value['propertyID']; ?>" class="home-card">
+
+							<div style="background-image: url('<?php echo 'https://'.$bucket.'.s3.amazonaws.com/uploads/buytolet/'.$value['image_folder'].'/'.$value['featured_image']; ?>')" class="top-section">
+
+								<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $value['image_folder'].'/'.$value['featured_image']; ?>")' class="top-section"> -->
 									<div class="badge"><?php echo $value['construction_lvl']; ?></div>
 						            <div class="badge-bottom"><?php echo $value['type']; ?></div>
 								</div>
@@ -360,17 +389,20 @@
 									</ul>
 									<div class="key-values">
 										<div>
-											<span>Rent P.A <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Rent per annum.</span></div></span>
-											<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo @$value['expected_rent'] / 1000000; ?>M</h3>
-										</div>
-										
-										<div>
-											<span>Ann. return <div class="tooltip"><i class="fa fa-info"></i><span class="propstooltiptext">Annualized return.</span></div></span>
-											<h3><?php echo number_format((pow((($asset_1 + $value['expected_rent']) / $value['marketValue']), 1) - 1) * 100); ?>%</h3>
+											<span>Down Payment</span>
+											<h3>40%</h3>
 										</div>
 										<div>
-											<span>Appreciation</span>
-											<h3><?php $asset_1 = ((($value['asset_appreciation_1'] / 100) * $value['marketValue']) + $value['marketValue']); echo $value['asset_appreciation_1']; ?>%</h3>
+											<span>Installment Period</span>
+											<h3>3 Years</h3>
+										</div>
+										<div>
+											<span>Interest rate</span>
+											<h3>0% p.a</h3>
+										</div>
+										<div>
+											<span>Assured rent</span>
+											<h3>4m p.a</h3>
 										</div>
 									</div>
 								</div>
@@ -482,3 +514,5 @@
   <script>
       amplitude.getInstance().logEvent('Homepage');
   </script>
+
+
