@@ -106,8 +106,26 @@
 
 			<?php foreach ($properties as $property => $each_prop) { ?>
 
+				<!-- //aws client -->
+				<?Php
+							$bucket = 'dev-rss-uploads'; // Your bucket name
+
+							// Include AWS SDK and create S3 client
+							require 'vendor/autoload.php';
+							$s3 = new Aws\S3\S3Client([
+								'version' => 'latest',
+								'region' => 'eu-west-1'
+							]);
+
+							?>
+
+
 				<a href="<?php echo base_url() . "property/" . $each_prop['propertyID']; ?>" class="card">
-					<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section">
+
+					<div style="background-image:url('<?php echo base_url() . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
+
+					<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section"> -->
+
 						<div class="badge"><?php echo $each_prop['construction_lvl']; ?></div>
 						<div class="badge-bottom"><?php echo $each_prop['type']; ?></div>
 					</div>
@@ -194,7 +212,10 @@
 			<?php foreach ($properties as $property => $each_prop) { ?>
 
 				<a href="<?php echo base_url() . "co-own/" . $each_prop['propertyID']; ?>" class="card">
-					<div style='background-image:url("<?php echo base_url(); ?>uploads/buytolet/<?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section">
+
+					<div style="background-image:url('<?php echo base_url() . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
+
+					<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section"> -->
 						<?php if (@$each_prop['construction_lvl']) { ?>
 							<div class="badge"><?php echo $each_prop['construction_lvl']; ?></div>
 						<?php } ?>
