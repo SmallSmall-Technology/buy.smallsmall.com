@@ -102,20 +102,20 @@
 
 	<?php if (isset($properties) && !empty($properties)) { ?>
 
+		<?Php
+		$bucket = 'bss-prod-uploads'; // Bucket name
+		// Include AWS SDK and create S3 client
+		require 'vendor/autoload.php';
+		$s3 = new Aws\S3\S3Client([
+			'version' => 'latest',
+			'region' => 'eu-west-1'
+		]);
+
+		?>
+
 		<?php if ($slug != 'co-ownership') { ?>
 
 			<?php foreach ($properties as $property => $each_prop) { ?>
-
-				<?Php
-				$bucket = 'bss-prod-uploads'; // Bucket name
-				// Include AWS SDK and create S3 client
-				require 'vendor/autoload.php';
-				$s3 = new Aws\S3\S3Client([
-					'version' => 'latest',
-					'region' => 'eu-west-1'
-				]);
-
-				?>
 
 				<a href="<?php echo base_url() . "property/" . $each_prop['propertyID']; ?>" class="card">
 					<div style="background-image: url('<?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
