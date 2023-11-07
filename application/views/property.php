@@ -207,7 +207,7 @@
 				<!--- Finance payment option ---->
                 
 				<div class="payment-box payment-boxes mortgage-finance-payment">
-                    <?php if($property['investment_type'] != 6 || $property['investment_type'] != 7){ ?>
+                    <?php if($property['investment_type'] != 6 && $property['investment_type'] != 7){ ?>
                         <h2>Financing</h2>
                         <h4>Down Payment</h4>
                         <p>What do you have?</p>
