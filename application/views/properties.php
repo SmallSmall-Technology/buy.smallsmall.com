@@ -122,7 +122,7 @@
 
 				<a href="<?php echo base_url() . "property/" . $each_prop['propertyID']; ?>" class="card">
 
-					<div style="background-image:url('<?php echo base_url() . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
+					<div style="background-image:url('<?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
 
 					<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section"> -->
 
@@ -213,7 +213,7 @@
 
 				<a href="<?php echo base_url() . "co-own/" . $each_prop['propertyID']; ?>" class="card">
 
-					<div style="background-image:url('<?php echo base_url() . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
+					<div style="background-image:url('<?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section">
 
 					<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section"> -->
 						<?php if (@$each_prop['construction_lvl']) { ?>
