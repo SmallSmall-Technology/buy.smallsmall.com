@@ -185,13 +185,10 @@
 					
 					<?php if(isset($pool_properties) && !empty($pool_properties)){ ?>
 
-						
-
 						<?php foreach($pool_properties as $pool_property => $pool_value){ ?>
 
 							<?Php
-							$bucket = 'dev-rss-uploads'; // Your bucket name
-
+							$bucket = 'bss-prod-uploads'; // Bucket name
 							// Include AWS SDK and create S3 client
 							require 'vendor/autoload.php';
 							$s3 = new Aws\S3\S3Client([
