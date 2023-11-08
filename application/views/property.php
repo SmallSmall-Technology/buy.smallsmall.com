@@ -60,7 +60,7 @@
                             <div class="tooltip"><i class="fa fa-info"></i>
                                 <span class="tooltiptext">
                                     LDF is a non-refundable fee. It subsitutes as transaction fee<br />
-                                    when you make a down-payment on or beore 11 months.
+                                    when you make a down-payment on or beore 9 months.
                                 </span>
                             </div>
                         </h2>
@@ -75,7 +75,7 @@
                         <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan']/100) * $property['price']); ?>
                             <div class="tooltip"><i class="fa fa-info"></i>
                                 <span class="tooltiptext">
-                                    Amount due in 11 months from day property is locked.
+                                    Amount due in 9 months from day property is locked.
                                 </span>
                             </div>
                         </h2>
@@ -304,7 +304,7 @@
                     <?php } ?>
                     <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
                         <div style="width:100%;text-align:center;">
-                            <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6 || $property['investment_type'] == 7)? 'Lockdown Now': 'Apply Now'; ?></div>
+                            <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6)? 'Lockdown Now': 'Apply Now'; ?></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -502,15 +502,19 @@
 <input type="hidden" class="total-cost" id="total-cost" value="<?php echo @$property['price']; ?>" />
 <input type="hidden" class="payment" id="payment" value="<?php echo (@$property['price'] * 0.40); ?>" />
 <?php if($property['investment_type'] == 6){ ?>
-    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+    
+        <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+        <input type="hidden" class="bnpl-payable" id="bnpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
 
-    <input type="hidden" class="bnpl-payable" id="bnpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
 <?php }elseif($property['investment_type'] == 7){ ?>
-    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
 
-    <input type="hidden" class="onpl-payable" id="onpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
+        <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+        <input type="hidden" class="onpl-payable" id="onpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
+
 <?php }else{ ?>
-    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+
+        <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+
 <?php } ?>
 <input type="hidden" class="subsequent-payment" id="subsequent-payment" value="0" />
 <input type="hidden" class="repayment-period" id="repayment-period" value="0" />
