@@ -29,7 +29,7 @@ $('.option-but').click(function(){
 
 		}
 	    
-	}
+	} 
 
 	var plan = $('#option-but').val();
 	
@@ -62,6 +62,8 @@ $('.option-but').click(function(){
 	var promo_code = '';
 	
 	var onpl_payable = 0;
+	
+	var bnpl_payable = 0;
 
 	var down_payment = 0;
 	
@@ -96,6 +98,12 @@ $('.option-but').click(function(){
 		
 
 	}else if(plan == 'bnpl'){
+
+		bnpl_payable = $('#bnpl-payable').val();
+
+		payable = bnpl_payable;
+
+	}else if(plan == 'onpl'){
 
 		onpl_payable = $('#onpl-payable').val();
 
