@@ -143,7 +143,7 @@
                     <li>i. Migrate and switch your shares to another co-ownership property.</li>
                     <li>ii. Migrate and exit with cash through our buyback program.</li>
                 </ul>
-                <a class="migration-lnk" href="https://smallsmall.zendesk.com/hc/en-us/articles/10765826974877-Sole-ownership-Migration" target="_blank" >Learn more about migration <i class="fa fa-angle-double-right"></i></a>
+                <a class="migration-lnk" href="https://intercom.help/BuySmallsmall/en/" target="_blank" >Learn more about migration <i class="fa fa-angle-double-right"></i></a>
             </div>
             <div class="features_description">
                 <p>Buyback highlights</p>

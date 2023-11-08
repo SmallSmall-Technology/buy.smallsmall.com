@@ -60,7 +60,7 @@
                             <div class="tooltip"><i class="fa fa-info"></i>
                                 <span class="tooltiptext">
                                     LDF is a non-refundable fee. It subsitutes as transaction fee<br />
-                                    when you make a down-payment on or beore 11 months.
+                                    when you make a down-payment on or beore 9 months.
                                 </span>
                             </div>
                         </h2>
@@ -75,7 +75,7 @@
                         <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan']/100) * $property['price']); ?>
                             <div class="tooltip"><i class="fa fa-info"></i>
                                 <span class="tooltiptext">
-                                    Amount due in 11 months from day property is locked.
+                                    Amount due in 9 months from day property is locked.
                                 </span>
                             </div>
                         </h2>
@@ -304,7 +304,7 @@
                     <?php } ?>
                     <?php if($property['availability'] != 'Sold' && $property['availability'] != 'Locked'){ ?>
                         <div style="width:100%;text-align:center;">
-                            <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6 || $property['investment_type'] == 7)? 'Lockdown Now': 'Apply Now'; ?></div>
+                            <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6)? 'Lockdown Now': 'Apply Now'; ?></div>
                         </div>
                     <?php } ?>
                 </div>
