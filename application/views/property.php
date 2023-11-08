@@ -502,15 +502,19 @@
 <input type="hidden" class="total-cost" id="total-cost" value="<?php echo @$property['price']; ?>" />
 <input type="hidden" class="payment" id="payment" value="<?php echo (@$property['price'] * 0.40); ?>" />
 <?php if($property['investment_type'] == 6){ ?>
-    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+    
+        <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+        <input type="hidden" class="bnpl-payable" id="bnpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
 
-    <input type="hidden" class="bnpl-payable" id="bnpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
 <?php }elseif($property['investment_type'] == 7){ ?>
-    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
 
-    <input type="hidden" class="onpl-payable" id="onpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
+        <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price']) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+        <input type="hidden" class="onpl-payable" id="onpl-payable" value="<?php echo (@$property['price'] * ($property['lockdown_fee']/100)); ?>" />
+
 <?php }else{ ?>
-    <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+
+        <input type="hidden" class="finance-payment" id="finance-payment" value="<?php echo (@$property['price'] * 0.40) + (@$property['price'] * 0.01) + (@$property['price'] * 0.04); ?>" />
+
 <?php } ?>
 <input type="hidden" class="subsequent-payment" id="subsequent-payment" value="0" />
 <input type="hidden" class="repayment-period" id="repayment-period" value="0" />
