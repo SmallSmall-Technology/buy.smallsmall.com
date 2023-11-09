@@ -1,50 +1,123 @@
 <div class="property-page-wrapper">
         <div class="property-left-section">
+            
 
             <div class="property-slide-image">
                 <!----Start of Slider ---->
 				<div id="slider">
 					<ul class="rslides" id="slider1">
-					<?php
 
-						$dir = './uploads/buytolet/'.$property['image_folder'].'/';
+					<!-- </?php
+
+						// $dir = './uploads/buytolet/'.$property['image_folder'].'/';
 					
-						$url = "uploads/buytolet/".$property['image_folder'].'/';
+						// $url = "uploads/buytolet/".$property['image_folder'].'/';
 
-						if (file_exists($dir) == false) {
+						// if (file_exists($dir) == false) {
 
-							echo 'Directory \'', $dir, '\' not found!'; 
+							// echo 'Directory \'', $dir, '\' not found!'; 
 
-						} else {
+						// } else {
 
-							$dir_contents = scandir($dir); 
+							// $dir_contents = scandir($dir); 
 
-							$count = 0;
+							// $count = 0;
 
-							$content_size = count($dir_contents);
+							// $content_size = count($dir_contents);
 
-							foreach ($dir_contents as $file) {
+							// foreach ($dir_contents as $file) {
 
-								//$file_type = strtolower(end(explode('.', $file)));
+							// 	$file_type = strtolower(end(explode('.', $file)));
 
-								if ( $file !== '.' && $file !== '..'&& $count <= ($content_size - 2) ){ 
+							// 	if ( $file !== '.' && $file !== '..'&& $count <= ($content_size - 2) ){ 
 
-						?>
-									<li>
-										<img src="<?php echo base_url().$url.$file; ?>" alt=" buy smallsmall property">										
-									</li>
-						<?php		
+						?/>  -->
+									<!-- <li> -->
+										<!-- <img src="</?php echo base_url().$url.$file; ?>" alt=" buy smallsmall property">										 -->
+									<!-- </li> -->
+						<!-- </?php		 -->
 
-								}  
-								$count++;
+								<!-- }   -->
+								<!-- $count++; -->
 
-							}
+							<!-- } -->
 
-						}
+						<!-- } -->
 
-						?>
-					</ul>
-				</div>
+						<!-- ?> -->
+					<!-- </ul> -->
+				<!-- </div> -->
+
+
+
+                <!-- // Testing-->
+
+                <?php
+
+                // Include AWS SDK and create S3 client
+                require 'vendor/autoload.php';
+
+                $s3 = new Aws\S3\S3Client([
+
+                  'version' => 'latest',
+
+                  'region' => 'eu-west-1'
+                ]);
+
+                try {
+
+                    $bucket = 'dev-bss-uploads';// my bucket name
+
+                    $objects = $s3->listObjectsV2([
+
+                        'Bucket' => $bucket,
+
+                        'Prefix' => 'uploads/buytolet/' . $property['image_folder'] . '/',
+                    ]);
+
+                    $content_size = count($objects['Contents']);
+
+                    $count = 0;
+
+                    foreach ($objects['Contents'] as $object) {
+
+                        $file_type = strtolower(pathinfo($object['Key'], PATHINFO_EXTENSION)); // Get the file extension
+
+                        if ($file_type !== '' && $count <= ($content_size - 2)) {
+
+                            $url = $s3->getObjectUrl($bucket, $object['Key']);
+
+                ?>
+
+                    <li>
+
+                        <img src="<?php echo $url; ?>" alt="buy small small property">
+
+                    </li>
+
+                <?php
+                
+                    }
+
+                    $count++;
+
+                }
+
+
+                } catch (Aws\S3\Exception\S3Exception $e) {
+
+                    echo 'An error occurred: ' . $e->getMessage();
+
+                }
+                
+                ?>
+            </ul>
+        </div>
+
+
+                <!-- Ending of testing -->
+
+
 				<!----End of Slider ---->
             </div>
            
