@@ -3,7 +3,7 @@
 		<div class="prop-option-top">
 			<span class="prop-class">
 				<?php if ($slug == 'co-ownership') { ?>
-					Co Ownership
+					Buy2Co-own
 				<?php } elseif ($slug == 'bnpl') { ?>
 					Buy Now Pay Later
 				<?php } elseif ($slug == 'onpl') { ?>
@@ -14,7 +14,22 @@
 			</span>
 		</div>
 		<?php if ($slug == 'co-ownership') { ?>
-			<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>
+			<div class="property-hero-container">
+				<div class="property-hero-item">
+					<div class="note">
+						<p>Welcome to Buy2Co-own - the new and innovative way to make property ownership more accessible and affordable for everyone! Have you always dreamed of owning a property but struggled with the high costs? Or maybe you're looking to start a small property portfolio and grow it into something bigger? Look no further, because Buy2Co-own is here to help you achieve your goals.</p>
+
+						<p>Buy2Co-own allows you to buy shares in a property,this not only lowers the barrier to home ownership, but also gives you the opportunity to invest in multiple properties without breaking the bank. With Buy2yCo-own, you can hold onto your property shares until you are ready to migrate into sole ownership or continue growing your portfolio.</p>
+
+						<p>With as little as N4,000, you can start buying property shares at your own pace. As these shares grow in value over time, you can choose to use them as down payment towards a property of your choice. This flexible option allows anyone above the age of 18 to become a co-owner in no time.</p>
+					
+					</div>
+				</div>
+				<div class="property-hero-item">
+					<img src="<?php echo base_url(); ?>asset/images/co-own-image.jpg" alt="Co-ownership image" />
+				</div>
+			</div>
+			<!--<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>--->
 
 		<?php } elseif ($slug == 'bnpl' || $slug == 'onpl') { ?>
 			<div class="property-hero-container">
