@@ -17,7 +17,7 @@
                     </ul> 
                 </div>
 
-                <div class="panel-body about-pockets" id="RGO">
+                <!-- <div class="panel-body about-pockets" id="RGO">
 					<div class="panel-head">Administrative Fee Payment:</div>
                     
                     The Subscriber hereby subscribes to purchase the Units of shares in the BuySmallSmall Co-Ownership product as provided in the shares certificate and agree to pay unto SST the purchase price sum only representing the number of units of shares purchased.
@@ -28,8 +28,7 @@
                         <li>The administrative fee is non-refundable</li>
                         
                     </ul>
-                </div>
-
+                </div> -->
 
                 <div class="panel-body about-pockets" id="RGO">
 					<div class="panel-head">Deferred Down Payment:</div>
