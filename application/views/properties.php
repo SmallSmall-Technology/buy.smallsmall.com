@@ -108,7 +108,7 @@
 
 				<!-- //aws client -->
 				<?Php
-							$bucket = 'dev-rss-uploads'; // Your bucket name
+							$bucket = 'dev-bss-uploads'; // Your bucket name
 
 							// Include AWS SDK and create S3 client
 							require 'vendor/autoload.php';
