@@ -2703,12 +2703,14 @@ class Buytolet extends CI_Controller
 	// 	echo $image_result;
 	// }
 
+	
 	public function get_all_images($folder, $featuredImg)
 	{
 
 		require 'vendor/autoload.php';
 
 		// Create an AWS S3 client
+
 		$s3 = new Aws\S3\S3Client([
 
 			'version' => 'latest',
@@ -2753,12 +2755,15 @@ class Buytolet extends CI_Controller
 			// Encode the result as JSON and echo it
 
 			echo json_encode($imageResult);
+
 		} catch (Aws\S3\Exception\S3Exception $e) {
 
 			// Handle any AWS SDK exceptions, e.g., S3 access error
 			echo json_encode(['error' => $e->getMessage()]);
 		}
+
 	}
+
 
 
 	public function activate($code)
