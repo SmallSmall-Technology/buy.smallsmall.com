@@ -930,7 +930,6 @@ class Buytolet extends CI_Controller
 			$this->load->view('finance-confirmation', $data);
 
 			$this->load->view('templates/footer', $data);
-
 		} else {
 
 			redirect(base_url() . "login", 'refresh');
@@ -1405,7 +1404,7 @@ class Buytolet extends CI_Controller
 
 			$this->pagination->initialize($config);
 
-			$data['page_links'] = $this->pagination->create_links(); 
+			$data['page_links'] = $this->pagination->create_links();
 
 			$data['from_row'] = $offset + 1;
 
@@ -1440,11 +1439,9 @@ class Buytolet extends CI_Controller
 		if ($slug === "bnpl") {
 
 			$title = " Properties :: Buy Now Pay Later";
-		
 		} else {
-		
+
 			$title = " Properties :: " . ucwords(str_replace("-", " ", $slug));
-		
 		}
 
 		$data['title'] = $title;
@@ -1539,11 +1536,10 @@ class Buytolet extends CI_Controller
 		if ($search_crit['investment-type'] == 5) {
 
 			$slug = 'co-ownership';
-
 		} else if ($search_crit['investment-type'] == 6) {
 
 			$slug = 'bnpl';
-		}else if ($search_crit['investment-type'] == 2) {
+		} else if ($search_crit['investment-type'] == 2) {
 
 			$slug = 'buy-to-let';
 		} else if ($search_crit['investment-type'] == 1) {
@@ -1792,7 +1788,7 @@ class Buytolet extends CI_Controller
 				try {
 					$response = $client->request('POST', 'template/get.json', array(
 						'headers' => $headers,
-						
+
 						'json' => $requestBody,
 					));
 
@@ -1829,7 +1825,6 @@ class Buytolet extends CI_Controller
 						'headers' => $headers,
 						'json' => $emailData,
 					]);
-
 				} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 					$data['response'] = $e->getMessage();
@@ -1856,7 +1851,6 @@ class Buytolet extends CI_Controller
 				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
-
 			} else {
 
 				//Unsuccessful insert
@@ -1869,7 +1863,8 @@ class Buytolet extends CI_Controller
 		}
 	}
 
-	public function insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry) {
+	public function insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry)
+	{
 		$data = array(
 			"id" => $id,
 			"first_name" => $fname,
@@ -1878,42 +1873,42 @@ class Buytolet extends CI_Controller
 			"mobile" => $phone,
 			"country" => $nectorContry
 		);
-	
+
 		$jsonPayload = json_encode($data);
-	
+
 		$endpoint = "https://platform.nector.io/api/open/integrations/customwebsitewebhook/92978931-b347-4c72-9b22-35587cdc7203";
-	
+
 		$headers = array(
 			'Content-Type: application/json',
 			'x-custom-website-topic: customer_created',
 			'x-custom-website-delivery-id: bss12345678'
 		);
-	
+
 		$ch = curl_init($endpoint);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	
+
 		$response = curl_exec($ch);
-	
+
 		// Check for cURL errors
 
 		if (curl_errno($ch)) {
 			echo 'cURL Error: ' . curl_error($ch);
 		}
-	
+
 		// Close cURL session
 		curl_close($ch);
-	
+
 		// Include the $jsonPayload in the AJAX response for error deburging
 
 		// $ajaxResponse = "AJAX Response: $response\nJSON Payload: $jsonPayload";
-	
+
 		// echo $ajaxResponse;
-	
+
 	}
-	
+
 
 	public function filter()
 	{
@@ -2251,7 +2246,6 @@ class Buytolet extends CI_Controller
 			if ($promo['type'] == 'Coupon') {
 
 				$promo_details = $this->promo_offer($unit_amount, $promo, $coupon_code);
-
 			} elseif ($promo['type'] == 'Free') {
 
 				$promo_details = $this->promo_offer($unit_amount, $promo);
@@ -2411,40 +2405,106 @@ class Buytolet extends CI_Controller
 		}
 	}
 
+	// public function upload_images($file_name, $md5_file_name, $folder)
+	// {
+	// 	// ----- Site 2, pullfile.php -----
+
+	// 	// This script will pull a file from site 1 and
+	// 	// place it in '/uploaded'
+
+	// 	// used to cross-check the uploaded file
+	// 	$fileMd5 = $md5_file_name;
+	// 	$fileName = $file_name;
+
+	// 	// we need to pull the file from the './tmp/' dir on site 1
+	// 	$pulledFile = file_get_contents('https://www.rentsmallsmall.com/tmp/' . $file_name);
+
+	// 	// save that file to disk
+	// 	$result = file_put_contents('./uploads/buytolet/' . $folder . '/' . $fileName, $pulledFile);
+	// 	if (!$result) {
+	// 		echo 'Error: problem writing file to disk';
+	// 		exit;
+	// 	}
+
+	// 	$pulledMd5 = md5_file('./' . $folder . '/' . $fileName);
+	// 	if ($pulledMd5 != $fileMd5) {
+	// 		echo 'Error: md5 mis-match';
+	// 		exit;
+	// 	}
+
+	// 	// At this point, everything should be right.
+	// 	// We pass back 'done' to site 1, so we know 
+	// 	// everything went smooth. This way, a 'blank'
+	// 	// return can be treated as an error too.
+	// 	echo 1;
+	// 	exit;
+	// }
+
 	public function upload_images($file_name, $md5_file_name, $folder)
 	{
-		// ----- Site 2, pullfile.php -----
+		// This script will pull a file from site 1 and place it in '/uploaded' also used to cross-check the uploaded file
 
-		// This script will pull a file from site 1 and
-		// place it in '/uploaded'
+		$bucket = 'dev-bss-uploads'; // S3 bucket name
 
-		// used to cross-check the uploaded file
-		$fileMd5 = $md5_file_name;
-		$fileName = $file_name;
+		$fileMd5 = $md5_file_name; // Get the MD5 hash of the file
+
+		$fileName = $file_name; // Extract the file name
 
 		// we need to pull the file from the './tmp/' dir on site 1
-		$pulledFile = file_get_contents('https://www.rentsmallsmall.com/tmp/' . $file_name);
+		$source_url = 'https://www.rentsmallsmall.com/tmp/' . $file_name;
 
-		// save that file to disk
-		$result = file_put_contents('./uploads/buytolet/' . $folder . '/' . $fileName, $pulledFile);
-		if (!$result) {
-			echo 'Error: problem writing file to disk';
+		try {
+
+			// Include the AWS SDK and create an S3 client
+			require 'vendor/autoload.php';
+
+			$s3 = new Aws\S3\S3Client([
+
+				'version' => 'latest',
+
+				'region' => 'eu-west-1',
+
+			]);
+
+			// Fetch the file's contents from the source URL Site 1
+			$file_contents = file_get_contents($source_url);
+
+			// Specify the S3 key, including the desired path within the bucket
+			$s3Key = 'uploads/buytolet/' . $folder . '/' . $fileName;
+
+			// Upload the file to S3 bucket (save that file to disk)
+			$s3->putObject([
+
+				'Bucket' => $bucket,
+
+				'Key' => $s3Key,
+
+				'Body' => $file_contents,
+			]);
+
+			// Verify the MD5 hash of the uploaded file
+			$pulledMd5 = md5($file_contents);
+
+			if ($pulledMd5 != $fileMd5) {
+				// If the MD5 hashes do not match, indicate an error
+				echo 'Error: MD5 hash mismatch';
+
+				exit;
+			}
+
+			// If the code reaches this point, the file has been successfully uploaded to the S3 bucket
+			// We pass back 'done' to site 1, so we know everything went smooth. This way, a 'blank' return can be treated as an error too.
+			echo 1;
+
 			exit;
-		}
+			
+		} catch (Aws\S3\Exception\S3Exception $e) {
 
-		$pulledMd5 = md5_file('./' . $folder . '/' . $fileName);
-		if ($pulledMd5 != $fileMd5) {
-			echo 'Error: md5 mis-match';
-			exit;
+			// Handle any AWS SDK exceptions
+			echo 'Error: ' . $e->getMessage();
 		}
-
-		// At this point, everything should be right.
-		// We pass back 'done' to site 1, so we know 
-		// everything went smooth. This way, a 'blank'
-		// return can be treated as an error too.
-		echo 1;
-		exit;
 	}
+
 
 	public function upload_fp_image($file_name, $md5_file_name, $folder, $fp)
 	{
@@ -2991,7 +3051,6 @@ class Buytolet extends CI_Controller
 
 					'json' => $emailData,
 				]);
-
 			} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 				$data['response'] = $e->getMessage();
@@ -3012,7 +3071,6 @@ class Buytolet extends CI_Controller
 			// $emailRes = $this->email->send();
 
 			echo 1;
-			
 		} else {
 
 			echo "Email doesn't not exist";
@@ -3254,15 +3312,15 @@ class Buytolet extends CI_Controller
 
 		$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref_id);
 
-		if($payment_plan == 'bnpl' || $payment_plan == 'onpl'){
+		if ($payment_plan == 'bnpl' || $payment_plan == 'onpl') {
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
 		}
- 
+
 		require 'vendor/autoload.php';
 
 		if ($result) {
 
-			if($target_option)
+			if ($target_option)
 
 				$this->create_target_option_plan($userID);
 
@@ -3287,7 +3345,6 @@ class Buytolet extends CI_Controller
 
 				// Send notification message to user at dashboard
 				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
-
 			} else if ($this->input->post('plan') == 'Financing') {
 
 				$request = $this->buytolet_model->getRequest($ref_id);
@@ -3372,8 +3429,8 @@ class Buytolet extends CI_Controller
 						//$email_res = $this->notification_letter($beneficiary[$i]['email'], $message, $beneficiary[$i]['lastname']);
 						$name = $beneficiary[$i]['firstname'] . ' ' . $beneficiary[$i]['lastname'];
 
-						$certificate = $this->certify_me($name, $beneficiary[$i]['email'], $beneficiary[$i]['requestID'],$property_details, $beneficiary[$i]['no_of_units']);
-						
+						$certificate = $this->certify_me($name, $beneficiary[$i]['email'], $beneficiary[$i]['requestID'], $property_details, $beneficiary[$i]['no_of_units']);
+
 						//$this->shares_certificate($beneficiary[$i]['receiverID'],  $beneficiary[$i]['requestID'], $name, $beneficiary[$i]['email'], $beneficiary[$i]['no_of_units'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
 
 						// Send notification message to user at dashboard
@@ -4604,17 +4661,15 @@ class Buytolet extends CI_Controller
 
 			$result = json_decode($response, true);
 
-			if($result['status'] == 'success'){
+			if ($result['status'] == 'success') {
 				return 1;
-			}else{
+			} else {
 				return 0;
 			}
-
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 		}
-
 	}
 
 	public function get_eligible_users()
@@ -4669,23 +4724,24 @@ class Buytolet extends CI_Controller
 		//print_r($users);
 	}
 
-	public function create_target_option_plan($userID){
+	public function create_target_option_plan($userID)
+	{
 
 		$user = $this->buytolet_model->get_single_stp_user($userID);
 
-		if($user){
+		if ($user) {
 
 			$frequency = '';
 
-			if($user['frequency'] == 'Monthly'){
+			if ($user['frequency'] == 'Monthly') {
 				$frequency = 'monthly';
-			}elseif($user['frequency'] == 'Daily'){
+			} elseif ($user['frequency'] == 'Daily') {
 				$frequency = 'daily';
-			}elseif($user['frequency'] == 'Weekly'){
+			} elseif ($user['frequency'] == 'Weekly') {
 				$frequency = 'weekly';
 			}
 
-			$plan_name = $user['frequency']. ' STP Plan';
+			$plan_name = $user['frequency'] . ' STP Plan';
 
 			$frequency = $frequency;
 
@@ -4695,7 +4751,9 @@ class Buytolet extends CI_Controller
 
 			$curl = curl_init();
 
-			curl_setopt_array($curl, array(
+			curl_setopt_array(
+				$curl,
+				array(
 
 					CURLOPT_URL => "https://api.paystack.co/plan",
 
@@ -4713,7 +4771,7 @@ class Buytolet extends CI_Controller
 
 					CURLOPT_POSTFIELDS => array(
 
-						"name" => '"'.$plan_name.'"',
+						"name" => '"' . $plan_name . '"',
 
 						"interval" => $frequency,
 
@@ -4725,7 +4783,7 @@ class Buytolet extends CI_Controller
 
 					CURLOPT_HTTPHEADER => array(
 
-						"Authorization: Bearer ".PAYSTACK_SECRET_KEY,
+						"Authorization: Bearer " . PAYSTACK_SECRET_KEY,
 
 						"Cache-Control: no-cache"
 
@@ -4737,41 +4795,40 @@ class Buytolet extends CI_Controller
 
 			$response = json_decode(curl_exec($curl), true);
 
-			if($response['status']){
+			if ($response['status']) {
 				//Update table with plan code from Paystack
 				$plan_code = $response['data']['plan_code'];
 
 				$result = $this->buytolet_model->update_with_plan_code($plan_code, $userID);
 
-				if($result){
+				if ($result) {
 					//Subscribe user
-					if($this->subscribe_user($amount, $plan_code, $user))
+					if ($this->subscribe_user($amount, $plan_code, $user))
 						return 1;
 					else
 						return 0;
-					
 				}
-			}else{
+			} else {
 				$err = curl_error($curl);
-				echo "Error : ".$err;
+				echo "Error : " . $err;
 			}
-		}	
-
+		}
 	}
 
-	public function subscribe_user($amount, $plan_code, $user){
+	public function subscribe_user($amount, $plan_code, $user)
+	{
 
 		$email = $user['user_email'];
 
 		$name = $user['lastName'];
 
 		$subscription_amount = $amount;
-		
+
 		$subscription_date = date("Y-m-d");
-		
-		$plan_name = $user['frequency']. 'STP Plan';
-		
-		$duration = $user['duration']. ' '. $user['frequency'];
+
+		$plan_name = $user['frequency'] . 'STP Plan';
+
+		$duration = $user['duration'] . ' ' . $user['frequency'];
 
 		$url = "https://api.paystack.co/transaction/initialize";
 
@@ -4789,91 +4846,90 @@ class Buytolet extends CI_Controller
 
 		$ch = curl_init();
 
-		curl_setopt($ch,CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $url);
 
-		curl_setopt($ch,CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POST, true);
 
-		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
-			"Authorization: Bearer ".PAYSTACK_SECRET_KEY,
+			"Authorization: Bearer " . PAYSTACK_SECRET_KEY,
 
 			"Cache-Control: no-cache",
 
 		));
 
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		$result = json_decode(curl_exec($ch), true);
 
 		print_r($result);
 
-		if($result['status']){
+		if ($result['status']) {
 
 			$auth_url = $result['data']['authorization_url'];
 
-			if($this->buytolet_model->update_with_authorization_url($auth_url, $user['userID']))
+			if ($this->buytolet_model->update_with_authorization_url($auth_url, $user['userID']))
 
 				return $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
 
 			else
 
 				return 0;
-
-		}else{
+		} else {
 
 			return 0;
-
 		}
 	}
 
-	public function generate_subscription_email($id){
+	public function generate_subscription_email($id)
+	{
 
 		$users = $this->buytolet_model->get_single_stp_user($id);
 
 		//if(count($users) > 0){
-			//for($i = 0; $i < count($users); $i++){
+		//for($i = 0; $i < count($users); $i++){
 
-				$user = $this->buytolet_model->get_user($id);
+		$user = $this->buytolet_model->get_user($id);
 
-				if($user){
+		if ($user) {
 
-					$name = $users['lastName'];
+			$name = $users['lastName'];
 
-					$subscription_amount = $users['purchase_amount'];
+			$subscription_amount = $users['purchase_amount'];
 
-					$subscription_date = date('Y-m-d H:i:s');
+			$subscription_date = date('Y-m-d H:i:s');
 
-					$plan_name = $users['plan_code'];
+			$plan_name = $users['plan_code'];
 
-					$duration = $users['frequency'];
+			$duration = $users['frequency'];
 
-					$auth_url = $users['authorization_url'];
+			$auth_url = $users['authorization_url'];
 
-					$email = $user['email'];
-					
-					$res = $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
+			$email = $user['email'];
 
-					if($res == 1){
-						echo "Done <br />";
-					}else{
-						echo "Not completed : ".$res." <br />";
-					}
+			$res = $this->subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email);
 
-				}	
-			//}
+			if ($res == 1) {
+				echo "Done <br />";
+			} else {
+				echo "Not completed : " . $res . " <br />";
+			}
+		}
+		//}
 		//}else{
 
-			//echo "0 Users";
+		//echo "0 Users";
 
-			//exit;
+		//exit;
 
 		//}	
 	}
 
-	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email){
-		
+	function subscription_email($name, $subscription_amount, $subscription_date, $plan_name, $duration, $auth_url, $email)
+	{
+
 		require 'vendor/autoload.php';
 
 		$headers = array(
@@ -4942,22 +4998,20 @@ class Buytolet extends CI_Controller
 
 			$emailRes = json_decode($responseEmail->getBody()->getContents(), true);
 
-			if($emailRes['status'] == 'success')
+			if ($emailRes['status'] == 'success')
 				return 1;
 			else
 				return $emailRes['status'];
-
 		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
 			$data['response'] = $e->getMessage();
 
 			return $data['response'];
-
 		}
-		
 	}
 
-	public function send_certificate_to_user(){
+	public function send_certificate_to_user()
+	{
 
 		$userID = '12345678';
 
@@ -4965,17 +5019,17 @@ class Buytolet extends CI_Controller
 
 		$user_request = $this->buytolet_model->get_requests_without_certificate($userID);
 
-		if($user){
+		if ($user) {
 
-			$name = $user['firstName'].' '.$user['lastName'];
+			$name = $user['firstName'] . ' ' . $user['lastName'];
 
 			$email = $user['email'];
 
-			if(count($user_request) > 0){
+			if (count($user_request) > 0) {
 
-				for($i = 0; $i < count($user_request); $i++){
+				for ($i = 0; $i < count($user_request); $i++) {
 
-					$propertyDets = $user_request[$i]['property_name'].' '.$user_request[$i]['address'].' '.$user_request[$i]['city'];
+					$propertyDets = $user_request[$i]['property_name'] . ' ' . $user_request[$i]['address'] . ' ' . $user_request[$i]['city'];
 
 					$amountOfShares = $user_request[$i]['unit_amount'];
 
@@ -4986,39 +5040,33 @@ class Buytolet extends CI_Controller
 					if ($result['credential_url']) {
 						//Update shares certificate folder
 						$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
-					}else{
+					} else {
 
 						echo "No credential URL";
-
 					}
 
 					print_r($result);
 
 					echo "<br /><br />";
-
 				}
-
-			}else{
+			} else {
 
 				echo "No user request without certificate";
-
 			}
-
-		}else{
+		} else {
 
 			echo "User does not exist";
-
 		}
-
 	}
 
-	public function send_certificate_to_all_users(){
+	public function send_certificate_to_all_users()
+	{
 
 		$request_users = $this->buytolet_model->get_all_user_requests();
 
-		if(count($request_users) > 0){
+		if (count($request_users) > 0) {
 
-			for($i = 0; $i < count($request_users); $i++){
+			for ($i = 0; $i < count($request_users); $i++) {
 
 				$userID = $request_users['$i']['userID'];
 
@@ -5026,17 +5074,17 @@ class Buytolet extends CI_Controller
 
 				$user_request = $this->buytolet_model->get_requests_without_certificate($userID);
 
-				if($user){
+				if ($user) {
 
-					$name = $user['firstName'].' '.$user['lastName'];
+					$name = $user['firstName'] . ' ' . $user['lastName'];
 
 					$email = $user['email'];
 
-					if(count($user_request) > 0){
+					if (count($user_request) > 0) {
 
-						for($i = 0; $i < count($user_request); $i++){
+						for ($i = 0; $i < count($user_request); $i++) {
 
-							$propertyDets = $user_request[$i]['property_name'].' '.$user_request[$i]['address'].' '.$user_request[$i]['city'];
+							$propertyDets = $user_request[$i]['property_name'] . ' ' . $user_request[$i]['address'] . ' ' . $user_request[$i]['city'];
 
 							$amountOfShares = $user_request[$i]['unit_amount'];
 
@@ -5052,94 +5100,87 @@ class Buytolet extends CI_Controller
 							print_r($result);
 
 							echo "<br /><br />";
-
 						}
-
-					}else{
+					} else {
 
 						echo "No user without certificate";
-
 					}
-
-				}else{
+				} else {
 
 					echo "User not found";
-
 				}
-
 			}
-
-		}else{
+		} else {
 			echo "No user(s)";
 		}
-
 	}
-	
-	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares){
-		
+
+	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares)
+	{
+
 		$curl = curl_init();
 
 		$today = date('Y-m-d H:i:s');
 
-		$login_details = base64_encode( "tunde.b@smallsmall.com:player2023" );
+		$login_details = base64_encode("tunde.b@smallsmall.com:player2023");
 
-		$data = '{"name":"'.$name.'" , "template_ID":"7382", "email": "'.$email.'", "text": "Co Ownership Shares", "license_number": "TPR-1267Af23", "verify_mode": "Passport Number", "verify_code": "13678AJKJY678JHGP0", "Issue.Date" : "'.$today.'", "Unique.ID":"'.$requestID.'", "Recipients.Name":"'.$name.'", "Custom.NumOf.Shares": "'.$amountOfShares.'", "Custom.Property.Address":"'.$propertyDets.'" }';
-        			
+		$data = '{"name":"' . $name . '" , "template_ID":"7382", "email": "' . $email . '", "text": "Co Ownership Shares", "license_number": "TPR-1267Af23", "verify_mode": "Passport Number", "verify_code": "13678AJKJY678JHGP0", "Issue.Date" : "' . $today . '", "Unique.ID":"' . $requestID . '", "Recipients.Name":"' . $name . '", "Custom.NumOf.Shares": "' . $amountOfShares . '", "Custom.Property.Address":"' . $propertyDets . '" }';
+
 		curl_setopt_array($curl, array(
-			
-		  	CURLOPT_URL => "https://my.certifyme.online/api/v1/credential",
 
-		  	CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_URL => "https://my.certifyme.online/api/v1/credential",
+
+			CURLOPT_RETURNTRANSFER => true,
 
 			CURLOPT_POSTFIELDS => $data,
 
-		  	CURLOPT_HTTPHEADER => [
+			CURLOPT_HTTPHEADER => [
 				"Authorization: Basic $login_details",
 
 				"Accept: application/json",
 
 				"content-type: application/json"
-		  	]
+			]
 		));
 
 		$response = curl_exec($curl);
 
 		$result = json_decode($response, true);
-		
+
 		return $result;
-
 	}
 
-	public function refer_and_earn(){
+	public function refer_and_earn()
+	{
 
-			if ($this->session->has_userdata('loggedIn')) {
-	
-				$data['userID'] = $this->session->userdata('userID');
-	
-				$data['fname'] = $this->session->userdata('fname');
-	
-				$data['lname'] = $this->session->userdata('lname');
-	
-				$data['user_type'] = $this->session->userdata('user_type');
-	
-				$data['loggedIn'] = $this->session->userdata('loggedIn');
-	
-				$data['interest'] = $this->session->userdata('interest');
-			}
-	
-			$data['title'] = "Referals :: BuySmallSmall";
-	
-			//$data['content'] = $this->buytolet_model->get_faq();
-	
-			$this->load->view('templates/header', $data);
-	
-			$this->load->view('refer-and-earn', $data);
-	
-			$this->load->view('templates/footer', $data);
+		if ($this->session->has_userdata('loggedIn')) {
 
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['loggedIn'] = $this->session->userdata('loggedIn');
+
+			$data['interest'] = $this->session->userdata('interest');
+		}
+
+		$data['title'] = "Referals :: BuySmallSmall";
+
+		//$data['content'] = $this->buytolet_model->get_faq();
+
+		$this->load->view('templates/header', $data);
+
+		$this->load->view('refer-and-earn', $data);
+
+		$this->load->view('templates/footer', $data);
 	}
 
-	public function reward(){
+	public function reward()
+	{
 
 		if ($this->session->has_userdata('loggedIn')) {
 
@@ -5166,6 +5207,4 @@ class Buytolet extends CI_Controller
 
 		$this->load->view('templates/footer', $data);
 	}
-	
 }
-
