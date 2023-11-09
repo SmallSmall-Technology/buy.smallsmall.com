@@ -2497,7 +2497,6 @@ class Buytolet extends CI_Controller
 			echo 1;
 
 			exit;
-			
 		} catch (Aws\S3\Exception\S3Exception $e) {
 
 			// Handle any AWS SDK exceptions
@@ -2662,48 +2661,105 @@ class Buytolet extends CI_Controller
 		closedir($dir2);
 	}
 
+	// public function get_all_images($folder, $featuredImg)
+	// {
+
+	// 	$images = "";
+	// 	$featImg = "";
+	// 	$image_result = "";
+
+	// 	//Get all images from folder and return
+	// 	$dir = './uploads/buytolet/' . $folder . '/';
+
+	// 	if (file_exists($dir) == false) {
+
+	// 		$image_result = 'Directory \'' . $dir . '\' not found!';
+	// 	} else {
+
+	// 		$dir_contents = scandir($dir);
+
+	// 		$count = 0;
+
+	// 		$content_size = count($dir_contents);
+
+	// 		//print_r($dir_contents);
+
+	// 		foreach ($dir_contents as $file) {
+
+	// 			if ($file !== '.' && $file !== '..' && $count <= ($content_size - 2)) {
+
+	// 				if ($count == ($content_size - 2)) {
+
+	// 					$image_result .= '"' . $file . '"';
+	// 				} else {
+
+	// 					$image_result .= '"' . $file . '",';
+	// 				}
+	// 			}
+	// 			$count++;
+	// 		}
+	// 	}
+
+	// 	echo $image_result;
+	// }
+
 	public function get_all_images($folder, $featuredImg)
 	{
 
+		require 'vendor/autoload.php';
 
-		$images = "";
-		$featImg = "";
-		$image_result = "";
+		// Create an AWS S3 client
+		$s3 = new Aws\S3\S3Client([
 
-		//Get all images from folder and return
-		$dir = './uploads/buytolet/' . $folder . '/';
+			'version' => 'latest',
 
-		if (file_exists($dir) == false) {
+			'region' => 'eu-west-1',
 
-			$image_result = 'Directory \'' . $dir . '\' not found!';
-		} else {
+		]);
 
-			$dir_contents = scandir($dir);
+		$bucket = 'dev-bss-uploads'; // bucket name
+
+		try {
+
+			// List objects in the specified S3 folder
+			$s3KeyPrefix = 'uploads/buytolet/' . $folder . '/';
+
+			$objects = $s3->listObjects([
+
+				'Bucket' => $bucket,
+
+				'Prefix' => $s3KeyPrefix,
+
+			]);
+
+			$content_size = count($objects['Contents']);
 
 			$count = 0;
 
-			$content_size = count($dir_contents);
+			$imageResult = [];
 
-			//print_r($dir_contents);
+			foreach ($objects['Contents'] as $object) {
 
-			foreach ($dir_contents as $file) {
+				$file_type = strtolower(pathinfo($object['Key'], PATHINFO_EXTENSION)); // Get the file extension
 
-				if ($file !== '.' && $file !== '..' && $count <= ($content_size - 2)) {
+				if ($file_type !== '' && $count <= ($content_size - 2)) {
 
-					if ($count == ($content_size - 2)) {
-
-						$image_result .= '"' . $file . '"';
-					} else {
-
-						$image_result .= '"' . $file . '",';
-					}
+					$imageResult[] = $object['Key'];
 				}
+
 				$count++;
 			}
-		}
 
-		echo $image_result;
+			// Encode the result as JSON and echo it
+
+			echo json_encode($imageResult);
+		} catch (Aws\S3\Exception\S3Exception $e) {
+
+			// Handle any AWS SDK exceptions, e.g., S3 access error
+			echo json_encode(['error' => $e->getMessage()]);
+		}
 	}
+
 
 	public function activate($code)
 	{
