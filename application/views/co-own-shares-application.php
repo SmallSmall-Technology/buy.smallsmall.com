@@ -2,18 +2,24 @@
         <Box class="form-input-container">
             <div class="form-title">
                 <h1>Co-Ownership Shares Application</h1>
-                <!---<p>Create an investor profile to get started</p>--->
             </div>
-            <form id="targetProgramForm" method="POST">
+            <!---- Co Own STP application form ---->
+            <form class="stp-app-form" id="targetProgramForm" method="POST">
                 <div>
                     <div class="purchased-shares-info">
                         <span class="shares-txt-info small">You are about to purchase</span>
                         <span class="shares-txt-info large colored"><span id="shares-amount">0</span> Shares</span>
                         <div class="share-quantity share-quantity-target">
-    				        <input id="unit-amount" class="unit-amount" min="" value="" type="number">
-    					</div>
+    				              <input id="unit-amount" class="unit-amount" min="" value="" type="number">
+    					          </div>
                         <span class="shares-txt-info small">add more shares</span>
-                        <span class="shares-txt-info small"><input class="target-option" type="checkbox" /> Subscribe to our Co-ownership Shares Target Program </span>
+                        <?php if($targetOption){ ?>
+                          <span class="shares-txt-info small">
+                            Hi <?php echo $fname; ?><br /><br />
+                            You are already on an STP plan, if you would like to subscribe to another plan you can do so by clicking the checkbox below.
+                          </span>
+                        <?php } ?>
+                        <span class="shares-txt-info small"><input class="target-option" type="checkbox" /> Subscribe to <?php echo ($targetOption)? 'another' : 'our'; ?> Co-ownership Shares Target Program </span>
                     </div>
                     
                     <a id="shares-target-link" href="https://smallsmall.zendesk.com/hc/en-us/categories/10765648854429-Shares-Target-Program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a>
@@ -66,6 +72,7 @@
                 </div>
             
             </form>
+            <!---- Co Own STP application form ---->
         </Box>
         
     </div>

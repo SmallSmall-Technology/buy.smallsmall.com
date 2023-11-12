@@ -791,11 +791,11 @@ $('.co-own-option-but').click(function(){
 	
 	//console.log("Error doesnt seem to afftect anything");
 	//redirect to co own form page
-	if(t_option){
-	    window.location.href = baseUrl+"co-own-form";
-	}else{
+	//if(t_option){
+	    //window.location.href = baseUrl+"co-own-form";
+	//}else{
 	    window.location.href = baseUrl+"co-own-application";
-	}
+	//}
 	
 });
 $('.target-option').change(function() {

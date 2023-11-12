@@ -761,6 +761,8 @@ class Buytolet extends CI_Controller
 
 			$data['interest'] = $this->session->userdata('interest');
 
+			$data['targetOption'] = $this->buytolet_model->getTargetOptions($data['userID']);
+
 			//Check login status
 
 			$data['title'] = "Co Own Applications Form";
@@ -2284,21 +2286,23 @@ class Buytolet extends CI_Controller
 			$this->buytolet_model->insert_user_info($data['userID'], $company_name, $position, $occupation, $income_range, $company_address, $id_path);
 		}
 
-		$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID'], $ref);
+		//$toStatus = $this->buytolet_model->checkTargetOptionStatus($data['userID'], $ref);
 
-		if (!empty($toStatus)) {
+		//if (!empty($toStatus)) {
 
-			if ($purchase_frequency && $duration) {
-				$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration, $plan_amount);
-			}
-			$target_option = 1;
-		} else {
+			//if ($purchase_frequency && $duration) {
+				//$this->buytolet_model->updateTargetOptions($data['userID'], $purchase_frequency, $duration, $plan_amount);
+			//}
+			//$target_option = 1;
+		//} else {
 
-			if ($purchase_frequency && $duration) {
-				$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref, $plan_amount);
-			}
+		if ($purchase_frequency && $duration) {
+			$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref, $plan_amount);
+			
 			$target_option = 1;
 		}
+			
+		//}
 
 		if ($result) {
 
