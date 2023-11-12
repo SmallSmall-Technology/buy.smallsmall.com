@@ -301,7 +301,7 @@
 							</a>--->
 							<a class="NavLink" href="<?php echo base_url('properties/co-ownership'); ?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
-								Co-Own
+								BuyCo-Own
 							</a>
 							<a class="NavLink" href="<?php echo base_url('properties/bnpl'); ?>" onclick='closeMobileMenu()'>
 							    <span style='font-size:9px;'>&nbsp;</span>
