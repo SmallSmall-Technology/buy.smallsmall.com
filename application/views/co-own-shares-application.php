@@ -27,15 +27,15 @@
                     <div class="single-span-col-input btm-spc user-target-options">
                         <span id="field-label">Select a plan</span>
                         <select name="plan-amount" class="minimal plan-amount verify-txt" id="plan-amount">
-                              <option value="16000">16,000</option>
-                              <option value="30000">30,000</option>
-                              <option value="70000">70,000</option>
-                              <option value="100000">100,000</option>
-                              <option value="150000">150,000</option>
-                              <option value="200000">200,000</option>
-                              <option value="250000">250,000</option>
-                              <option value="500000">500,000</option>
-                              <option value="1000000">1,000,000</option>
+                              <option value="20000">20,000 (5 Shares)</option>
+                              <option value="40000">40,000 (10 Shares)</option>
+                              <option value="60000">60,000 (15 Shares)</option>
+                              <option value="80000">80,000 (20 Shares)</option>
+                              <option value="100000">100,000 (25 Shares)</option>
+                              <option value="120000">120,000 (30 Shares)</option>
+                              <option value="140000">140,000 (35 Shares)</option>
+                              <option value="160000">160,000 (40 Shares)</option>
+                              <option value="180000">180,000 (45 Shares)</option>
                         </select>
                     </div>
                     
