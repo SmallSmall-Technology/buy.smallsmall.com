@@ -149,7 +149,7 @@
                     <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan'] / 100) * $property['price']); ?>
                         <div class="tooltip"><i class="fa fa-info"></i>
                             <span class="tooltiptext">
-                                Amount due in 9 months from day property is locked.
+                                Initial down-payment due in 9 months from day property is locked.
                             </span>
                         </div>
                     </h2>
