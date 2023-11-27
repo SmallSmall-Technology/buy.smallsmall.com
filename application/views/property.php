@@ -83,6 +83,8 @@
 
                                 $url = $s3->getObjectUrl($bucket, $object['Key']);
 
+                                $url = rtrim($url, '/');
+
                     ?>
 
                                 <li>
