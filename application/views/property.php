@@ -71,6 +71,8 @@
                             'Prefix' => 'uploads/buytolet/' . $property['image_folder'] . '/',
                         ]);
 
+                        var_dump($property['image_folder']) ;
+
                         $content_size = count($objects['Contents']);
 
                         $count = 0;
@@ -84,6 +86,8 @@
                                 $url = $s3->getObjectUrl($bucket, $object['Key']);
 
                                 $url = rtrim($url, '/');
+
+                                var_dump($url);
 
                     ?>
 
