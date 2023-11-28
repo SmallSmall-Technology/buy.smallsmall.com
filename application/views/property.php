@@ -6,6 +6,14 @@
             <div id="slider">
                 <ul class="rslides" id="slider1">
 
+                <?php 
+                
+
+                // var_dump($url);
+                
+                ?>
+                
+
                     <!-- 
 					</?php
 
@@ -71,7 +79,7 @@
                             'Prefix' => 'uploads/buytolet/' . $property['image_folder'] . '/',
                         ]);
 
-                        var_dump($property['image_folder']) ;
+                        // var_dump($property['image_folder']) ;
 
                         $content_size = count($objects['Contents']);
 
@@ -87,7 +95,7 @@
 
                                 $url = rtrim($url, '/');
 
-                                var_dump($url);
+                                // var_dump($url);
 
                     ?>
 
