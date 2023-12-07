@@ -119,9 +119,6 @@
 
 			<?php foreach ($properties as $property => $each_prop) { ?>
 
-
-
-
 				<a href="<?php echo base_url() . "property/" . $each_prop['propertyID']; ?>" class="card">
 
 				<?php
