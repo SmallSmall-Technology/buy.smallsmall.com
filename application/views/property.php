@@ -166,7 +166,7 @@
                     <h3 style="font-family:'Cera Medium'"><?php echo $property['bed']; ?> bedroom apartment</h3>
                     <div class="location-sect">
                         <i class="fa fa-map-marker"></i>
-                        <p><?php echo $property['city']; ?>, Lagos</p>
+                        <p><?php echo $property['city']; ?>, <?php echo $property['propState']; ?></p>
                     </div>
                 </div>
                 <div class="half-disp">
@@ -866,7 +866,7 @@
     });
 </script>
 <script>
-    var baseURL = "https://dev-buy.smallsmall.com/";
+    var baseURL = "https://buy.smallsmall.com/";
 
     const paymentForm = document.getElementById('outrightPaymentForm');
 
