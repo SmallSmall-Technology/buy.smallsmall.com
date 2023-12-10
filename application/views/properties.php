@@ -22,7 +22,7 @@
 						<p>Buy2Co-own allows you to buy shares in a property,this not only lowers the barrier to home ownership, but also gives you the opportunity to invest in multiple properties without breaking the bank. With Buy2yCo-own, you can hold onto your property shares until you are ready to migrate into sole ownership or continue growing your portfolio.</p>
 
 						<p>With as little as N4,000, you can start buying property shares at your own pace. As these shares grow in value over time, you can choose to use them as down payment towards a property of your choice. This flexible option allows anyone above the age of 18 to become a co-owner in no time.</p>
-					
+
 					</div>
 				</div>
 				<div class="property-hero-item">
