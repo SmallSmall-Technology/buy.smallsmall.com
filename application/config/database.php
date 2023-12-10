@@ -79,7 +79,6 @@ $db['default'] = array(
 
 	'hostname' => 'rss-new.cbhrg1lzyru7.eu-west-1.rds.amazonaws.com',
 	'username' => 'rentsmallsmall_b',
-
 	'password' => 'Buytolet!2021',
  	'database' => 'rentsmallsmall_furnisure_buytolet_database',
 	'dbdriver' => 'mysqli',
@@ -97,6 +96,8 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+
 /*$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
