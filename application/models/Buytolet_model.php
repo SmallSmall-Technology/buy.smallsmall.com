@@ -2218,10 +2218,55 @@ class Buytolet_model extends CI_Model
 
 
 	// To save data message to notification table
-	public function insertNotification($subject, $message, $userID, $name)
-	{
+	// public function insertNotification($subject, $message, $userID, $name)
+	// {
 
-		$this->name = $name;
+	// 	$this->name = $name;
+
+	// 	$this->subject = $subject;
+
+	// 	$this->details = $message;
+
+	// 	$this->userID = $userID;
+
+	// 	$this->status = 0; // set the status as unread by default
+
+	// 	return $this->db->insert('buytolet_notification_tbl', $this);
+	// }
+
+	public function insertNotification($inspDate, $inspTime, $inspPeriod, $propID, $subject, $message, $userID, $fname)
+	{
+		
+		$digits = 5;
+
+		$randomNumber = '';
+
+		$count = 0;
+
+		while ($count < $digits) {
+
+			$randomDigit = mt_rand(0, 9);
+
+			$randomNumber .= $randomDigit;
+
+			$count++;
+		}
+
+		$id = $randomNumber;
+
+		$this->inspection_date = $inspDate;
+
+		$this->inspection_time = $inspTime;
+
+		$this->inspection_period = $inspPeriod;
+
+		$this->propertyID = $propID;
+
+		$this->inspectionID = $id;
+
+		$this->date_of_entry = date("Y-m-d H:i:s");
+
+		$this->name = $fname;
 
 		$this->subject = $subject;
 

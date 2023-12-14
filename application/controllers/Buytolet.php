@@ -2024,8 +2024,9 @@ class Buytolet extends CI_Controller
 
 			$subject = "New Inspection Request!";
 			$message = "This is to notify you that you have been schedule for inspection on '$inspPeriod'";
-			$notification_data_sent_to_db = $this->buytolet_model->insertNotification($subject, $message, $userID, $fname);
 
+			// $notification_data_sent_to_db = $this->buytolet_model->insertNotification($subject, $message, $userID, $fname);
+			$notification_data_sent_to_db = $this->buytolet_model->insertNotification($inspDate, $inspTime, $inspPeriod, $propID, $subject, $message, $userID, $fname);
 
 			$data['name'] = $fname . ' ' . $lname;
 
