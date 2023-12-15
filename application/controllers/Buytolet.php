@@ -2098,8 +2098,7 @@ class Buytolet extends CI_Controller
 					$message = "We noticed a new sign-in to your account at $date. If you signed in recently, no 
 					need to worry, you can disregards this message.";
 
-					$this->buytolet_model->insertNotification($subject, $message, $user['userID'], $user['firstName']);
-
+					$this->buytolet_model->insertNotification('', '', '', '', $subject, $message, $user['userID'], $user['firstName']);
 
 					echo 1;
 				} else {
