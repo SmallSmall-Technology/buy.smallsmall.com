@@ -1849,7 +1849,7 @@ class Buytolet extends CI_Controller
 
 				//Insert notification
 
-				$notificationDataSentToDb = $this->buytolet_model->insertNotification('', '', '', '', 'SmallSmall Confirmation', "Successful Registration", $id, $fname);
+				// -- $notificationDataSentToDb = $this->buytolet_model->insertNotification('', '', '', '', 'SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
 			} else {
@@ -2099,7 +2099,7 @@ class Buytolet extends CI_Controller
 					$message = "We noticed a new sign-in to your account at $date. If you signed in recently, no 
 					need to worry, you can disregards this message.";
 
-					$this->buytolet_model->insertNotification('', '', '', '', $subject, $message, $user['userID'], $user['firstName']);
+					// -- $this->buytolet_model->insertNotification('', '', '', '', $subject, $message, $user['userID'], $user['firstName']);
 
 					echo 1;
 				} else {
@@ -3406,7 +3406,7 @@ class Buytolet extends CI_Controller
 				$email_result = $this->outright_offer_letter($ref_id, $email, $phone, $prop['property_name'], $name, $prop['address'], $prop['city'], $prop['propState'], $cost, $payable, $prop['bed'], $prop['type']);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification('', '', '', '', $subject, $message, $userID, $name);
+				// -- $notificationRes = $this->insertNotification('', '', '', '', $subject, $message, $userID, $name);
 			} else if ($this->input->post('plan') == 'Financing') {
 
 				$request = $this->buytolet_model->getRequest($ref_id);
