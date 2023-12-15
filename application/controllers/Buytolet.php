@@ -1848,7 +1848,8 @@ class Buytolet extends CI_Controller
 				// End Of Unione
 
 				//Insert notification
-				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
+
+				$notificationDataSentToDb = $this->buytolet_model->insertNotification('', '', '', '', 'SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
 			} else {
@@ -3405,7 +3406,7 @@ class Buytolet extends CI_Controller
 				$email_result = $this->outright_offer_letter($ref_id, $email, $phone, $prop['property_name'], $name, $prop['address'], $prop['city'], $prop['propState'], $cost, $payable, $prop['bed'], $prop['type']);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+				$notificationRes = $this->insertNotification('', '', '', '', $subject, $message, $userID, $name);
 			} else if ($this->input->post('plan') == 'Financing') {
 
 				$request = $this->buytolet_model->getRequest($ref_id);
@@ -3419,7 +3420,7 @@ class Buytolet extends CI_Controller
 				$email_result = $this->finance_offer_letter($ref_id, $email, $phone, $prop['property_name'], $name, $prop['address'], $prop['city'], $prop['propState'], $cost, $payable, $prop['bed'], $prop['type'], $request['finance_balance'], $request['payable'], $request['amount'], $request['payment_period'], $transaction_fee);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+				$notificationRes = $this->insertNotification('', '', '', '', $subject, $message, $userID, $name);
 
 				$this->payment_email($name, $property_details, 0, $payable, $email);
 			} else if ($this->input->post('plan') == 'Co-own') {
