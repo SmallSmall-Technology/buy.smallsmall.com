@@ -1,13 +1,13 @@
 /* Tooltip container */
 .tooltip {
-    font-size:12px;
+  font-size:12px;
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 .tooltip i{
-    width:15px;
-    line-height:15px;
+    width:12px;
+    line-height:12px;
     color:#000;
     display:inline-block;
     border-radius:50%;
