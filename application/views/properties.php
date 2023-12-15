@@ -74,18 +74,18 @@
 				<input type="hidden" name="slug" value="<?php echo $slugValue; ?>">
 				<select name="list_price" class="properties-select" id="list_price_select">
 					<option value=""> List Price</option>
-					<option value="500000">Under N500,000</option>
-					<option value="1000000">N500,000 - N1,000,000</option>
-					<option value="2500000">N1,100,000 - N2,500,000</option>
-					<option value="5000000">N2,600,000 - N5,000,000</option>
-					<option value="7500000">N5,100,000 - N7,500,000</option>
-					<option value="10000000">N7,600,000 - N10,000,000</option>
-					<option value="15000000">N10,100,000 - N15,000,000</option>
-					<option value="20000000">N15,100,000 - N20,000,000</option>
-					<option value="30000000">N21,000,000 - N30,000,000</option>
-					<option value="40000000">N31,000,000 - N40,000,000</option>
-					<option value="50000000">N41,000,000 - N50,000,000</option>
-					<option value="51000000">N51,000,000 + </option>
+					<option value="50000000">Under N50,000,000</option>
+					<option value="100000000">N50,000,000 - N100,000,000</option>
+					<option value="150000000">N100,000,000 - N150,000,000</option>
+					<option value="200000000">N150,000,000 - N200,000,000</option>
+					<option value="250000000">N200,000,000 - N250,000,000</option>
+					<option value="300000000">N250,000,000 - N300,000,000</option>
+					<option value="350000000">N300,000,000 - N350,000,000</option>
+					<option value="400000000">N350,000,000 - N400,000,000</option>
+					<option value="450000000">N400,000,000 - N450,000,000</option>
+					<option value="500000000">N450,000,000 - N500,000,000</option>
+					<option value="550000000">N500,000,000 - N550,000,000</option>
+					<option value="550000000">N550,000,000 + </option>
 				</select>
 				<select name="location" class="properties-select" id="location_select">
 					<option value="0">Location</option>
