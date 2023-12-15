@@ -1855,7 +1855,7 @@ class Buytolet extends CI_Controller
 				// End Of Unione
 
 				//Insert notification
-				$notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
+				//to-do $notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
 
@@ -2104,7 +2104,7 @@ class Buytolet extends CI_Controller
 					$message = "We noticed a new sign-in to your account at $date. If you signed in recently, no 
 					need to worry, you can disregards this message.";
 
-					$this->buytolet_model->insertNotification($subject, $message, $user['userID'], $user['firstName']);
+					//to-do $this->buytolet_model->insertNotification($subject, $message, $user['userID'], $user['firstName']);
 
 
 					echo 1;
@@ -3290,7 +3290,7 @@ class Buytolet extends CI_Controller
 				$email_result = $this->outright_offer_letter($ref_id, $email, $phone, $prop['property_name'], $name, $prop['address'], $prop['city'], $prop['propState'], $cost, $payable, $prop['bed'], $prop['type']);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+				//to-do $notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 			} else if ($this->input->post('plan') == 'Financing') {
 
@@ -3305,7 +3305,7 @@ class Buytolet extends CI_Controller
 				$email_result = $this->finance_offer_letter($ref_id, $email, $phone, $prop['property_name'], $name, $prop['address'], $prop['city'], $prop['propState'], $cost, $payable, $prop['bed'], $prop['type'], $request['finance_balance'], $request['payable'], $request['amount'], $request['payment_period'], $transaction_fee);
 
 				// Send notification message to user at dashboard
-				$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
+				//to-do $notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 				$this->payment_email($name, $property_details, 0, $payable, $email);
 			} else if ($this->input->post('plan') == 'Co-own') {
