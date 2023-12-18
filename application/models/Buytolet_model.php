@@ -1013,6 +1013,23 @@ class Buytolet_model extends CI_Model
 			return 0;
 		}
 	}
+	public function get_states($ids)
+	{
+		$this->db->select('a.state, b.*');
+
+		$this->db->from('buytolet_property as a');
+
+		$this->db->join('states as b', 'b.id = a.state');
+
+		$this->db->group_by('a.state');
+
+		$this->db->order_by('a.state', 'ASC');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
 	public function get_locations($ids)
 	{
 
@@ -2841,5 +2858,19 @@ class Buytolet_model extends CI_Model
 
 		$this->db->update('buytolet_property', $insert);
 
+	}
+
+	public function get_cities($state_code){
+
+		$this->db->select('name');
+
+		$this->db->from('cities');
+
+		$this->db->where('state_id', $state_code);
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+		
 	}
 }
