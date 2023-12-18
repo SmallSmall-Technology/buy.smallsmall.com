@@ -29,6 +29,8 @@ class Buytolet extends CI_Controller
 
 		$data['pool_properties'] = $this->buytolet_model->getPoolHomeProps();
 
+		$data['states'] = $this->buytolet_model->get_states($states);
+
 		$data['locations'] = $this->buytolet_model->get_locations($states);
 
 		if ($this->session->has_userdata('loggedIn')) {
@@ -5169,6 +5171,16 @@ class Buytolet extends CI_Controller
 		$this->load->view('reward', $data);
 
 		$this->load->view('templates/footer', $data);
+	}
+
+	public function get_cities(){
+
+		$state_code = $this->input->post('states');
+
+		$cities = $this->buytolet_model->get_cities($state_code);
+
+		echo json_encode(array('status' => 'success', 'msg' => $cities));
+
 	}
 	
 }
