@@ -114,6 +114,7 @@
 				<!-- Input fields for list_price, location, and property_type -->
 				<input type="hidden" id="list_price" name="list_price" />
 				<input type="hidden" id="location" name="location" />
+				<input type="hidden" id="state" name="state" />
 				<input type="hidden" id="property_type" name="property_type" />
 				<input type="submit" class="properties-button" value="Filter"></input>
 			</form>
