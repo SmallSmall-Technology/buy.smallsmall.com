@@ -72,14 +72,39 @@
 					<option value="50000000">N41,000,000 - N50,000,000</option>
 					<option value="51000000">N51,000,000 + </option>
 				</select>
-				<select name="location" class="properties-select" id="location_select">
+
+				
+				<!-- <select name="location" class="properties-select" id="location_select">
 					<option value="0">Location</option>
 					<?php if (isset($locations) && !empty($locations)) { ?>
 						<?php foreach ($locations as $location => $value) { ?>
 							<option value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
 						<?php } ?>
 					<?php } ?>
+				</select> -->
+
+				<!-- Adding state and loading locations base on state -->
+
+				<select name="location" class="properties-select" id="state_select">
+					<option value="0">State</option>
+					<?php if (isset($states) && !empty($states)) { ?>
+						<?php foreach ($states as $state => $value) { ?>
+							<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+						<?php } ?>
+					<?php } ?>
 				</select>
+				<select name="location" class="properties-select" id="location_select">
+					<option value="0">Location</option>
+					<?php //if (isset($locations) && !empty($locations)) { ?>
+						<?php //foreach ($locations as $location => $value) { ?>
+							<!---<option value="<?php //echo $value['name'] ?>"><?php //echo $value['name'] ?></option>--->
+						<?php //} ?>
+					<?php //} ?>
+				</select>
+
+				<!-- End Adding state and loading locations base on state -->
+
+
 				<select name="property_type" class="properties-select" id="property_type_select">
 					<option value="0">Property Type</option>
 					<?php if (isset($apts) && !empty($apts)) { ?>
@@ -88,6 +113,8 @@
 						<?php } ?>
 					<?php } ?>
 				</select>
+
+
 				<!-- Input fields for list_price, location, and property_type -->
 				<input type="hidden" id="list_price" name="list_price" />
 				<input type="hidden" id="location" name="location" />
@@ -356,3 +383,56 @@
 		document.getElementById('property_type').value = propertyType;
 	}
 </script>
+
+
+<!-- Script added to load locations and fetch cities -->
+
+<script>
+	$('#state_select').on('change', function(){
+
+		"use strict";
+
+		var states = $(this).val();
+
+		var cities = "<option selected='selected'>Select city</option>";
+
+		$('#location_select').html("<option selected='selected'>Loading...</option>");
+
+		var data = {"states" : states};
+
+		$.ajaxSetup ({ cache: false });
+
+		$.ajax({
+
+			url: <?php echo base_url(); ?>"buytolet/get_cities/",
+
+			secureuri : false,
+
+			type: "POST",
+
+			dataType : 'json',
+
+			data: data,
+
+			beforeSend: function() {
+
+			},
+
+			success: function(data, status, msg) {
+
+				for(let i = 0; i < data.msg.length; i++){
+
+					cities += '<option value="'+data.msg[i].name+'">'+data.msg[i].name+'</option>';
+
+				}
+
+				$('#location_select').html(cities);
+
+			}
+
+		});
+
+		});
+</script>
+
+<!-- End Script added to load locations and fetch cities -->
