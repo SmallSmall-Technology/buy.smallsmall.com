@@ -29,7 +29,7 @@ class Buytolet extends CI_Controller
 
 		$data['pool_properties'] = $this->buytolet_model->getPoolHomeProps();
 
-		$data['states'] = $this->buytolet_model->get_states($states);
+		$data['states'] = $this->buytolet_model->get_states();
 
 		$data['locations'] = $this->buytolet_model->get_locations($states);
 
@@ -1384,6 +1384,8 @@ class Buytolet extends CI_Controller
 		$data['cities'] = $this->buytolet_model->getCities(2671);
 
 		$data['apts'] = $this->buytolet_model->getAptypes($types);
+		
+		$data['states'] = $this->buytolet_model->get_states();
 
 		$data['locations'] = $this->buytolet_model->get_locations($states);
 

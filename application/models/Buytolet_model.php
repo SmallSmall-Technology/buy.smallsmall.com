@@ -1013,7 +1013,7 @@ class Buytolet_model extends CI_Model
 			return 0;
 		}
 	}
-	public function get_states($ids)
+	public function get_states()
 	{
 		$this->db->select('a.state, b.*');
 
