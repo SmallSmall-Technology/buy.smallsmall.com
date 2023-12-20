@@ -73,6 +73,7 @@ $('#state_select').on('change', function() {
         },
         error: function(xhr, status, error) {
             console.error("AJAX Error:", error);
+            console.log("Response Text:", xhr.responseText); // Log the entire response content
         }
     });
 });
