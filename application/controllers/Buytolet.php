@@ -1382,7 +1382,7 @@ class Buytolet extends CI_Controller
 
 		$data['locations'] = $this->buytolet_model->get_locations($states);
 
-		$data['states'] = $this->buytolet_model->get_states($states); // Added to fetch base on state.
+		$data['states'] = $this->buytolet_model->get_states(); // Added to fetch base on state.
 
 		if ($config['total_rows'] > 0) {
 
@@ -3947,7 +3947,7 @@ class Buytolet extends CI_Controller
 		{
 			$states = ['2648', '2671'];
 
-			$types = ['1', '6', '4', '7'];
+			$types = ['1', '6', '5', '4', '7'];
 
 			$slug = '';
 
@@ -3963,15 +3963,18 @@ class Buytolet extends CI_Controller
 				'slug' => $this->input->post('slug'),
 				'list_price' => $this->input->post('list_price'),
 				'location' => $this->input->post('location'),
+				'state' => $this->input->post('state'),
 				'property_type' => $this->input->post('property_type')
 			];
 
 			if ($search_crit['slug'] == 5) {
 
 				$slug = 'co-ownership';
+
 			} else if ($search_crit['slug'] == 2) {
 
 				$slug = 'buy-to-let';
+				
 			} else {
 
 				$slug = 'buy-to-live';
@@ -4000,6 +4003,8 @@ class Buytolet extends CI_Controller
 			$config['suffix'] = '';
 
 			$data['locations'] = $this->buytolet_model->get_locations($states);
+
+			$data['states'] = $this->buytolet_model->get_states(); // Added to fetch base on state.
 
 			// Get cities
 			if (!empty($search_crit['location'])) {
