@@ -350,7 +350,10 @@
 
 	<?php } ?>
 </div>
-<script>
+
+<script src="<?php echo base_url('asset\js\properties-page.js'); ?>"></script>
+
+<!-- <script>
 	function fbShare(url, title, descr, image, winWidth, winHeight) {
 		var winTop = (screen.height / 2) - (winHeight / 2);
 		var winLeft = (screen.width / 2) - (winWidth / 2);
@@ -362,6 +365,7 @@
 		window.open(href, "Twitter", "height=285,width=550,resizable=1");
 	});
 </script>
+
 <script>
 	// Add event listeners to the select elements
 	document.getElementById('list_price_select').addEventListener('change', updateHiddenListPrice);
@@ -384,11 +388,11 @@
 		document.getElementById('property_type').value = propertyType;
 	}
 </script>
-
+ -->
 
 <!-- Script added to load locations and fetch cities -->
 
-<script>
+<!-- <script>
 	$('#state_select').on('change', function(){
 
 		"use strict";
@@ -438,5 +442,5 @@
 
 		});
 </script>
-
+ -->
 <!-- End Script added to load locations and fetch cities -->
