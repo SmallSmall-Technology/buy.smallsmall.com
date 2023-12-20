@@ -29,8 +29,6 @@ class Buytolet extends CI_Controller
 
 		$data['pool_properties'] = $this->buytolet_model->getPoolHomeProps();
 
-		$data['states'] = $this->buytolet_model->get_states(); // Added to fetch base on state.
-
 		$data['locations'] = $this->buytolet_model->get_locations($states);
 
 		if ($this->session->has_userdata('loggedIn')) {
@@ -1383,6 +1381,8 @@ class Buytolet extends CI_Controller
 		$data['apts'] = $this->buytolet_model->getAptypes($types);
 
 		$data['locations'] = $this->buytolet_model->get_locations($states);
+
+		$data['states'] = $this->buytolet_model->get_states($states); // Added to fetch base on state.
 
 		if ($config['total_rows'] > 0) {
 
