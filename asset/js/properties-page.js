@@ -1,3 +1,4 @@
+var baseUrl = 'https://buy.smallsmall.com/';
 // Function for social media sharing
 function fbShare(url, title, descr, image, winWidth, winHeight) {
     var winTop = (screen.height / 2) - (winHeight / 2);
@@ -52,7 +53,7 @@ $('#state_select').on('change', function () {
 
     $.ajax({
 
-        url: "<?php echo base_url(); ?>buytolet/get_cities/",
+        url: baseUrl+"buytolet/get_cities/",
 
         secureuri: false,
 
