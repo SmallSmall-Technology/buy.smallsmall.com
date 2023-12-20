@@ -1084,14 +1084,14 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_state_locations($id)
+	public function get_state_locations($ids)
 	{
 
 		$this->db->select('a.city, b.name, b.id, b.state_id');
 
 		$this->db->from('buytolet_property as a');
 
-		$this->db->where_in('b.state_id', $id);
+		$this->db->where_in('b.state_id', $ids);
 
 		$this->db->join('cities as b', 'b.name = a.city', 'left');
 
