@@ -85,7 +85,8 @@
 
 				<!-- Adding state and loading locations base on state -->
 
-				<select name="location" class="properties-select" id="state_select">
+				<!-- <select name="location" class="properties-select" id="state_select"> -->
+				<select name="state" class="properties-select" id="state_select">
 					<option value="0">State</option>
 					<?php if (isset($states) && !empty($states)) { ?>
 						<?php foreach ($states as $state => $value) { ?>
@@ -394,7 +395,7 @@
 
 		var states = $(this).val();
 
-		var cities = "<option selected='selected'>Select city</option>";
+		var cities = "<option selected='selected'>Location</option>";
 
 		$('#location_select').html("<option selected='selected'>Loading...</option>");
 
@@ -404,7 +405,7 @@
 
 		$.ajax({
 
-			url: <?php echo base_url(); ?>"buytolet/get_cities/",
+			url: "<?php echo base_url(); ?>buytolet/get_cities/",
 
 			secureuri : false,
 
@@ -413,10 +414,6 @@
 			dataType : 'json',
 
 			data: data,
-
-			beforeSend: function() {
-
-			},
 
 			success: function(data, status, msg) {
 
@@ -428,7 +425,14 @@
 
 				$('#location_select').html(cities);
 
-			}
+				$('#state').val(states);
+
+			},
+
+			error: function(xhr, status, error) {
+					// Handle any errors that may occur during the AJAX request
+					console.error("AJAX Error:", error);
+				}
 
 		});
 
