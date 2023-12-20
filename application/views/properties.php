@@ -78,7 +78,7 @@
 					<option value="0">Location</option>
 					</?php if (isset($locations) && !empty($locations)) { ?>
 						</?php foreach ($locations as $location => $value) { ?>
-							<option value="</?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
+							<option value="</?php echo $value['name'] ?>"></?php echo $value['name'] ?></option>
 						</?php } ?>
 					</?php } ?>
 				</select> -->
@@ -94,7 +94,7 @@
 						<?php } ?>
 					<?php } ?>
 				</select>
-				
+
 				<select name="location" class="properties-select" id="location_select">
 					<option value="0">Location</option>
 					<?php //if (isset($locations) && !empty($locations)) { ?>
@@ -106,7 +106,6 @@
 
 				<!-- End Adding state and loading locations base on state -->
 
-
 				<select name="property_type" class="properties-select" id="property_type_select">
 					<option value="0">Property Type</option>
 					<?php if (isset($apts) && !empty($apts)) { ?>
@@ -115,7 +114,6 @@
 						<?php } ?>
 					<?php } ?>
 				</select>
-
 
 				<!-- Input fields for list_price, location, and property_type -->
 				<input type="hidden" id="list_price" name="list_price" />

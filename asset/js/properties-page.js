@@ -40,7 +40,6 @@ function updateHiddenPropertyType() {
 $('#state_select').on('change', function() {
 
     "use strict";
-    var baseUrl = 'https://dev-buy.smallsmall.com/';
 
     var states = $(this).val();
     var cities = "<option selected='selected'>Location</option>";
@@ -48,7 +47,6 @@ $('#state_select').on('change', function() {
     var data = { "states": states };
     $.ajaxSetup({ cache: false });
     $.ajax({
-        // url: baseUrl+"buytolet/get_cities/",
         url: "<?php echo base_url(); ?>buytolet/get_cities/",
         secureuri: false,
         type: "POST",
@@ -68,8 +66,8 @@ $('#state_select').on('change', function() {
             $('#location_select').html(cities);
 
             // Update the hidden fields with selected values
-            $('#location').val($('#location_select').val());
-            $('#state').val(states);
+            // $('#location').val($('#location_select').val());
+            // $('#state').val(states);
 
             // Deburging: Logging values to console to see
             console.log("location:", $('#location').val());
@@ -86,8 +84,8 @@ $('#state_select').on('change', function() {
 
 });
 
-// Update hidden 'location' input field based on selection 
-$('#location_select').on('change', function() {
-    updateHiddenLocation(); // Call the function to update the hidden field
-});
+// // Update hidden 'location' input field based on selection 
+// $('#location_select').on('change', function() {
+//     updateHiddenLocation(); // Call the function to update the hidden field
+// });
 
