@@ -247,19 +247,45 @@ class Buytolet_model extends CI_Model
 
 	}*/
 
-	public function getCities($id)
+	public function getCities($ids)
 	{
 
 		$this->db->select('id, name, state_id');
 
 		$this->db->from('cities');
 
-		$this->db->where('state_id', $id);
+		$this->db->where('state_id', $ids);
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+
+	//
+	public function getAptypes($ids)
+	{
+
+		$this->db->select('a.*, b.id, b.type, b.slug');
+
+		$this->db->from('buytolet_property as a');
+
+		$this->db->where('a.active', 1);
+
+		$this->db->where_in('b.id', $ids);
+
+		$this->db->join('apt_type_tbl as b', 'b.id = a.apartment_type', 'LEFT');
+
+		$this->db->group_by('a.apartment_type');
+
+		$this->db->order_by('b.type', 'ASC');
 
 		$query = $this->db->get();
 
 		return $query->result_array();
 	}
+
+	//
 	
 	public function getApt()
 	{
@@ -1017,6 +1043,7 @@ class Buytolet_model extends CI_Model
 
 	public function get_states()
 	{
+
 		$this->db->select('a.state, b.*');
 
 		$this->db->from('buytolet_property as a');
@@ -1030,6 +1057,7 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->result_array();
+
 	}
 
 	// End Fetch Cities base on state selected
@@ -1055,6 +1083,27 @@ class Buytolet_model extends CI_Model
 
 		return $query->result_array();
 	}
+
+	public function getLocations($id)
+	{
+
+		$this->db->select('a.city, b.name, b.id, b.state_id');
+
+		$this->db->from('buytolet_property as a');
+
+		$this->db->where_in('b.state_id', $id);
+
+		$this->db->join('cities as b', 'b.name = a.city', 'left');
+
+		$this->db->group_by('a.city');
+
+		$this->db->order_by('b.name', 'ASC');
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
 
 	public function insertPayment($propertyID, $userID, $payable, $mop, $ref_id)
 	{

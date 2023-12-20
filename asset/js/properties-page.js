@@ -1,3 +1,4 @@
+
 // Function for social media sharing
 function fbShare(url, title, descr, image, winWidth, winHeight) {
     var winTop = (screen.height / 2) - (winHeight / 2);
@@ -14,8 +15,8 @@ $('.js-share-twitter-link').click(function(e) {
 
 // Event listeners for select elements to update hidden input fields for filter section
 document.getElementById('list_price_select').addEventListener('change', updateHiddenListPrice);
-// document.getElementById('location_select').addEventListener('change', updateHiddenLocation);
-document.getElementById('state_select').addEventListener('change', updateHiddenState);
+document.getElementById('location_select').addEventListener('change', updateHiddenLocation);
+// document.getElementById('state_select').addEventListener('change', updateHiddenState);
 document.getElementById('property_type_select').addEventListener('change', updateHiddenPropertyType);
 
 // Function to update the hidden 'list_price' input field in filter section
@@ -25,16 +26,16 @@ function updateHiddenListPrice() {
 }
 
 // Function to update the hidden 'location' input field 
-// function updateHiddenLocation() {
-//     var location = document.getElementById('location_select').value;
-//     document.getElementById('location').value = location;
-// }
+function updateHiddenLocation() {
+    var location = document.getElementById('location_select').value;
+    document.getElementById('location').value = location;
+}
 
 // Function to update the hidden 'state' input field 
-function updateHiddenState() {
-    var state = document.getElementById('state_select').value;
-    document.getElementById('state').value = state;
-}
+// function updateHiddenState() {
+//     var state = document.getElementById('state_select').value;
+//     document.getElementById('state').value = state;
+// }
 
 // Function to update the hidden 'property_type' input field in filter section
 function updateHiddenPropertyType() {
@@ -44,14 +45,18 @@ function updateHiddenPropertyType() {
 
 // AJAX request to load locations and fetch cities based on the selected state in the filter section
 $('#state_select').on('change', function() {
+
     "use strict";
+    var baseUrl = 'https://dev-buy.smallsmall.com/';
     var states = $(this).val();
     var cities = "<option selected='selected'>Location</option>";
     $('#location_select').html("<option selected='selected'>Loading...</option>");
     var data = { "states": states };
     $.ajaxSetup({ cache: false });
     $.ajax({
-        url: "<?php echo base_url(); ?>buytolet/get_cities/",
+
+        url: baseUrl+"buytolet/get_cities/",
+        // url: "<?php echo base_url(); ?>buytolet/get_cities/",
         secureuri: false,
         type: "POST",
         dataType: 'json',
@@ -69,7 +74,7 @@ $('#state_select').on('change', function() {
 
             $('#location_select').html(cities);
 
-            // Update hidden fields with selected values
+            // Update the hidden fields with selected values
             $('#location').val($('#location_select').val());
             $('#state').val(states);
 
@@ -78,6 +83,11 @@ $('#state_select').on('change', function() {
             console.log("location:", $('#location').val());
             console.log("state:", states);
             console.log("property_type:", $('#property_type').val());
+
+            // Update hidden 'location' input field based on selection 
+            $('#location_select').on('change', function() {
+            updateHiddenLocation(); // Call the function to update the hidden field
+    });
 
         },
         error: function(xhr, status, error) {

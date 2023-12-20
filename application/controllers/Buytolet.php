@@ -1376,11 +1376,11 @@ class Buytolet extends CI_Controller
 
 		$config['suffix'] = '';
 
-		$data['cities'] = $this->buytolet_model->getCities(2671);
+		// $data['cities'] = $this->buytolet_model->getCities(2671);
 
-		$data['apts'] = $this->buytolet_model->getAptypes($types);
+		$data['apts'] = $this->buytolet_model->getAptypes($types); 
 
-		$data['locations'] = $this->buytolet_model->get_locations($states);
+		$data['locations'] = $this->buytolet_model->get_locations($states); // List all locations (ajah, mushin, leki etc)
 
 		$data['states'] = $this->buytolet_model->get_states(); // Added to fetch base on state.
 
@@ -5286,7 +5286,7 @@ class Buytolet extends CI_Controller
 
 		// $cities = $this->buytolet_model->getCities($state_code);
 
-		$cities = $this->buytolet_model->get_locations($state_code);
+		$cities = $this->buytolet_model->getLocations($state_code);
 
 		echo json_encode(array('status' => 'success', 'msg' => $cities));
 
