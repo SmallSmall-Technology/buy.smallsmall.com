@@ -5284,7 +5284,7 @@ class Buytolet extends CI_Controller
 
 		$state_code = $this->input->post('states');
 
-		$cities = $this->buytolet_model->get_states($state_code);
+		$cities = $this->buytolet_model->getCities($state_code);
 
 		echo json_encode(array('status' => 'success', 'msg' => $cities));
 

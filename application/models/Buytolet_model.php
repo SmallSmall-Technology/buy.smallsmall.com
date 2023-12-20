@@ -260,6 +260,7 @@ class Buytolet_model extends CI_Model
 
 		return $query->result_array();
 	}
+	
 	public function getApt()
 	{
 
