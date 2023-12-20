@@ -1084,7 +1084,7 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function getLocations($id)
+	public function get_state_locations($id)
 	{
 
 		$this->db->select('a.city, b.name, b.id, b.state_id');

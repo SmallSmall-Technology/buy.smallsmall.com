@@ -16,7 +16,6 @@ $('.js-share-twitter-link').click(function(e) {
 // Event listeners for select elements to update hidden input fields for filter section
 document.getElementById('list_price_select').addEventListener('change', updateHiddenListPrice);
 document.getElementById('location_select').addEventListener('change', updateHiddenLocation);
-// document.getElementById('state_select').addEventListener('change', updateHiddenState);
 document.getElementById('property_type_select').addEventListener('change', updateHiddenPropertyType);
 
 // Function to update the hidden 'list_price' input field in filter section
@@ -31,12 +30,6 @@ function updateHiddenLocation() {
     document.getElementById('location').value = location;
 }
 
-// Function to update the hidden 'state' input field 
-// function updateHiddenState() {
-//     var state = document.getElementById('state_select').value;
-//     document.getElementById('state').value = state;
-// }
-
 // Function to update the hidden 'property_type' input field in filter section
 function updateHiddenPropertyType() {
     var propertyType = document.getElementById('property_type_select').value;
@@ -48,6 +41,7 @@ $('#state_select').on('change', function() {
 
     "use strict";
     var baseUrl = 'https://dev-buy.smallsmall.com/';
+
     var states = $(this).val();
     var cities = "<option selected='selected'>Location</option>";
     $('#location_select').html("<option selected='selected'>Loading...</option>");
@@ -84,10 +78,10 @@ $('#state_select').on('change', function() {
             console.log("state:", states);
             console.log("property_type:", $('#property_type').val());
 
-            // Update hidden 'location' input field based on selection 
-            $('#location_select').on('change', function() {
-            updateHiddenLocation(); // Call the function to update the hidden field
-    });
+            // // Update hidden 'location' input field based on selection 
+            // $('#location_select').on('change', function() {
+            // updateHiddenLocation(); // Call the function to update the hidden field
+            // });
 
         },
         error: function(xhr, status, error) {
@@ -95,4 +89,10 @@ $('#state_select').on('change', function() {
             console.log("Response Text:", xhr.responseText); // Log the entire response content
         }
     });
+
+     // Update hidden 'location' input field based on selection 
+     $('#location_select').on('change', function() {
+        updateHiddenLocation(); // Call the function to update the hidden field
+        });
+        
 });
