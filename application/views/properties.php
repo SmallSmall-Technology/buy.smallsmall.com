@@ -97,11 +97,17 @@
 				</select>
 				<select name="location" class="properties-select" id="location_select">
 					<option value="0">Location</option>
-					<?php //if (isset($locations) && !empty($locations)) { ?>
-						<?php //foreach ($locations as $location => $value) { ?>
-							<!---<option value="<?php //echo $value['name'] ?>"><?php //echo $value['name'] ?></option>--->
-						<?php //} ?>
-					<?php //} ?>
+					<?php //if (isset($locations) && !empty($locations)) { 
+					?>
+					<?php //foreach ($locations as $location => $value) { 
+					?>
+					<!---<option value="<?php //echo $value['name'] 
+										?>"><?php //echo $value['name'] 
+											?></option>--->
+					<?php //} 
+					?>
+					<?php //} 
+					?>
 				</select>
 				<select name="property_type" class="properties-select" id="property_type_select">
 					<option value="0">Property Type</option>
@@ -319,82 +325,5 @@
 
 	<?php } ?>
 </div>
-<script>
-	function fbShare(url, title, descr, image, winWidth, winHeight) {
-		var winTop = (screen.height / 2) - (winHeight / 2);
-		var winLeft = (screen.width / 2) - (winWidth / 2);
-		window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-	}
-	$('.js-share-twitter-link').click(function(e) {
-		e.preventDefault();
-		var href = $(this).attr('href');
-		window.open(href, "Twitter", "height=285,width=550,resizable=1");
-	});
-</script>
-<script>
-	// Add event listeners to the select elements
-	document.getElementById('list_price_select').addEventListener('change', updateHiddenListPrice);
-	document.getElementById('location_select').addEventListener('change', updateHiddenLocation);
-	document.getElementById('property_type_select').addEventListener('change', updateHiddenPropertyType);
 
-	// Function to update the hidden list_price input field
-	function updateHiddenListPrice() {
-		var listPrice = document.getElementById('list_price_select').value;
-		document.getElementById('list_price').value = listPrice;
-	}
-
-	function updateHiddenLocation() {
-		var location = document.getElementById('location_select').value;
-		document.getElementById('location').value = location;
-	}
-
-	function updateHiddenPropertyType() {
-		var propertyType = document.getElementById('property_type_select').value;
-		document.getElementById('property_type').value = propertyType;
-	}
-</script>
-<script>
-	$('#state_select').on('change', function(){
-
-		"use strict";
-
-		var states = $(this).val();
-
-		var cities = "<option selected='selected'>Location</option>";
-
-		$('#location_select').html("<option selected='selected'>Loading...</option>");
-
-		var data = {"states" : states};
-
-		$.ajaxSetup ({ cache: false });
-
-		$.ajax({
-
-			url: "<?php echo base_url(); ?>buytolet/get_cities/",
-
-			secureuri : false,
-
-			type: "POST",
-
-			dataType : 'json',
-
-			data: data,
-
-			success: function(data, status, msg) {
-
-				for(let i = 0; i < data.msg.length; i++){
-
-					cities += '<option value="'+data.msg[i].name+'">'+data.msg[i].name+'</option>';
-
-				}
-
-				$('#location_select').html(cities);
-
-				
-				$('#state').val(states);
-			}
-
-		});
-
-	});
-</script>
+<script src="<?php echo base_url('asset\js\properties-page.js'); ?>"></script>
