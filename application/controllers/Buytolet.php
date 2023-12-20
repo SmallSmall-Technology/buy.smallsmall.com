@@ -1368,7 +1368,7 @@ class Buytolet extends CI_Controller
 	{
 		$states = ['2648', '2671'];
 
-		$types = ['1', '6', '4', '7'];
+		$types = ['1', '6', '5', '4', '7'];
 
 		$config['total_rows'] = $this->buytolet_model->getAllPropCount($slug);
 
