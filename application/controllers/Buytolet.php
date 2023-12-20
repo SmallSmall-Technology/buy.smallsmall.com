@@ -1376,7 +1376,7 @@ class Buytolet extends CI_Controller
 
 		$config['suffix'] = '';
 
-		$data['cities'] = $this->buytolet_model->getCities(2671);
+		$data['cities'] = $this->buytolet_model->getCities($states);
 
 		$data['apts'] = $this->buytolet_model->getAptypes($types);
 

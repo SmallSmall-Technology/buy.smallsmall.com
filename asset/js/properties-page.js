@@ -14,7 +14,7 @@ $('.js-share-twitter-link').click(function(e) {
 
 // Event listeners for select elements to update hidden input fields for filter section
 document.getElementById('list_price_select').addEventListener('change', updateHiddenListPrice);
-document.getElementById('location_select').addEventListener('change', updateHiddenLocation);
+// document.getElementById('location_select').addEventListener('change', updateHiddenLocation);
 document.getElementById('state_select').addEventListener('change', updateHiddenState);
 document.getElementById('property_type_select').addEventListener('change', updateHiddenPropertyType);
 
@@ -25,10 +25,10 @@ function updateHiddenListPrice() {
 }
 
 // Function to update the hidden 'location' input field 
-function updateHiddenLocation() {
-    var location = document.getElementById('location_select').value;
-    document.getElementById('location').value = location;
-}
+// function updateHiddenLocation() {
+//     var location = document.getElementById('location_select').value;
+//     document.getElementById('location').value = location;
+// }
 
 // Function to update the hidden 'state' input field 
 function updateHiddenState() {
@@ -56,12 +56,21 @@ $('#state_select').on('change', function() {
         type: "POST",
         dataType: 'json',
         data: data,
+
+        beforeSend: function(xhr) {
+            // Log the state value before sending the request
+            console.log("State before sending request:", states);
+        },
+
         success: function(data, status, msg) {
             for (let i = 0; i < data.msg.length; i++) {
                 cities += '<option value="' + data.msg[i].name + '">' + data.msg[i].name + '</option>';
             }
+
             $('#location_select').html(cities);
 
+            // Update hidden fields with selected values
+            $('#location').val($('#location_select').val());
             $('#state').val(states);
 
             // Deburging: Logging values to console to see
