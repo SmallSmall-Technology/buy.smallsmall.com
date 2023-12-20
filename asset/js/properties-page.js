@@ -48,9 +48,8 @@ $('#state_select').on('change', function() {
     var data = { "states": states };
     $.ajaxSetup({ cache: false });
     $.ajax({
-
-        url: baseUrl+"buytolet/get_cities/",
-        // url: "<?php echo base_url(); ?>buytolet/get_cities/",
+        // url: baseUrl+"buytolet/get_cities/",
+        url: "<?php echo base_url(); ?>buytolet/get_cities/",
         secureuri: false,
         type: "POST",
         dataType: 'json',
@@ -73,26 +72,22 @@ $('#state_select').on('change', function() {
             $('#state').val(states);
 
             // Deburging: Logging values to console to see
-            console.log("list_price:", $('#list_price').val());
             console.log("location:", $('#location').val());
             console.log("state:", states);
-            console.log("property_type:", $('#property_type').val());
-
-            // // Update hidden 'location' input field based on selection 
-            // $('#location_select').on('change', function() {
-            // updateHiddenLocation(); // Call the function to update the hidden field
-            // });
 
         },
+
         error: function(xhr, status, error) {
             console.error("AJAX Error:", error);
             console.log("Response Text:", xhr.responseText); // Log the entire response content
         }
+
     });
 
-     // Update hidden 'location' input field based on selection 
-     $('#location_select').on('change', function() {
-        updateHiddenLocation(); // Call the function to update the hidden field
-        });
-        
 });
+
+// Update hidden 'location' input field based on selection 
+$('#location_select').on('change', function() {
+    updateHiddenLocation(); // Call the function to update the hidden field
+});
+
