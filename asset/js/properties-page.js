@@ -73,19 +73,20 @@ $('#state_select').on('change', function () {
 
             $('#location_select').html(cities);
 
-            $('#state').val(states); // Update the hidden state input fied to the selected state
+            // Update the hidden state input fied to the selected state
+
+            $('#state').val(states); 
+           
+            $('#location').val($('#location_select').val());
 
             // Deburging: Logging values to console to see so as to capture in properties-filter page
-            // console.log("list_price:", $('#list_price').val());
             // console.log("location:", $('#location').val());
             // console.log("state:", states);
-            // console.log("property_type:", $('#property_type').val());
-
         },
 
         error: function (xhr, status, error) {
             console.error("AJAX Error:", error); // Errors during Ajax call
-            console.log("Response Text:", xhr.responseText); // Log the entire response content
+            // console.log("Response Text:", xhr.responseText); // Log the entire response content
         }
 
     });
