@@ -1,4 +1,4 @@
-
+var baseUrl = 'https://dev-buy.smallsmall.com/';
 // Function for social media sharing
 function fbShare(url, title, descr, image, winWidth, winHeight) {
     var winTop = (screen.height / 2) - (winHeight / 2);
@@ -36,6 +36,8 @@ function updateHiddenPropertyType() {
     document.getElementById('property_type').value = propertyType;
 }
 
+
+
 // AJAX request to load locations and fetch cities based on the selected state in the filter section
 $('#state_select').on('change', function() {
 
@@ -47,7 +49,7 @@ $('#state_select').on('change', function() {
     var data = { "states": states };
     $.ajaxSetup({ cache: false });
     $.ajax({
-        url: "<?php echo base_url(); ?>buytolet/get_cities/",
+        url: baseUrl+"buytolet/get_cities/",
         secureuri: false,
         type: "POST",
         dataType: 'json',

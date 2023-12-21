@@ -262,31 +262,6 @@ class Buytolet_model extends CI_Model
 
 	}
 
-	//
-	public function getAptypes($ids)
-	{
-
-		$this->db->select('a.*, b.id, b.type, b.slug');
-
-		$this->db->from('buytolet_property as a');
-
-		$this->db->where('a.active', 1);
-
-		$this->db->where_in('b.id', $ids);
-
-		$this->db->join('apt_type_tbl as b', 'b.id = a.apartment_type', 'LEFT');
-
-		$this->db->group_by('a.apartment_type');
-
-		$this->db->order_by('b.type', 'ASC');
-
-		$query = $this->db->get();
-
-		return $query->result_array();
-	}
-
-	//
-	
 	public function getApt()
 	{
 
@@ -1084,14 +1059,14 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_state_locations($ids)
+	public function get_state_locations($id)
 	{
 
 		$this->db->select('a.city, b.name, b.id, b.state_id');
 
 		$this->db->from('buytolet_property as a');
 
-		$this->db->where_in('b.state_id', $ids);
+		$this->db->where_in('b.state_id', $id);
 
 		$this->db->join('cities as b', 'b.name = a.city', 'left');
 
