@@ -3848,16 +3848,16 @@ class Buytolet extends CI_Controller
 
 			];
 
-			if ($search_crit['slug'] == 5) {
-
-				$slug = 'co-ownership';
-			} else if ($search_crit['slug'] == 2) {
-
-				$slug = 'buy-to-let';
-			} else {
-
-				$slug = 'buy-to-live';
-			}
+			$slugValues = [
+				5 => 'co-ownership',
+				6 => 'bnpl',
+				7 => 'onpl'
+			];
+			
+			$defaultSlug = 'Buy2let';
+			
+			$slug = $slugValues[$search_crit['slug']] ?? $defaultSlug;
+			
 			// echo $slug;
 
 			// 			if (@$search_crit['slug'] === null && @$search_crit['list_price'] === null && @$search_crit['location'] === null && @$search_crit['property_type'] === null) {

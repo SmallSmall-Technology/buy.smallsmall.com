@@ -69,7 +69,17 @@
 		<!-- Filter Section -->
 		<div class="form-properties">
 			<form method="POST" action="<?php echo base_url() . "properties-filter"; ?>">
-				<?php $slugValue = $slug != 'co-ownership' ? 2 : 5 ?>
+				<?php //$slugValue = $slug != 'co-ownership' ? 2 : 5 ?>
+
+				<?php
+					$slugValues = [
+					    'bnpl' => 6,
+					    'onpl' => 7,
+					    'co-ownership' => 5
+					];
+
+					$slugValue = $slugValues[$slug] ?? 2;
+				?>
 
 				<input type="hidden" name="slug" value="<?php echo $slugValue; ?>">
 				<select name="list_price" class="properties-select" id="list_price_select">
