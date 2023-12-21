@@ -86,7 +86,7 @@ $('#state_select').on('change', function () {
 
         error: function (xhr, status, error) {
             console.error("AJAX Error:", error); // Errors during Ajax call
-            console.log("Response Text:", xhr.responseText); // Log the entire response content
+            // console.log("Response Text:", xhr.responseText); // Log the entire response content
         }
 
     });
