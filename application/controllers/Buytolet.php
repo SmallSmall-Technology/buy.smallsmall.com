@@ -3967,17 +3967,34 @@ class Buytolet extends CI_Controller
 				'property_type' => $this->input->post('property_type')
 			];
 
+			// if ($search_crit['slug'] == 5) {
+
+			// 	$slug = 'co-ownership';
+
+			// } else if ($search_crit['slug'] == 2) {
+
+			// 	$slug = 'buy-to-let';
+				
+			// } else {
+
+			// 	$slug = 'buy-to-live';
+			// }
+
 			if ($search_crit['slug'] == 5) {
 
 				$slug = 'co-ownership';
 
-			} else if ($search_crit['slug'] == 2) {
+			} else if ($search_crit['slug'] == 6) {
 
-				$slug = 'buy-to-let';
+				$slug = 'bnpl';
+
+			} else if ($search_crit['slug'] == 7) {
+
+				$slug = 'onpl';
 				
 			} else {
 
-				$slug = 'buy-to-live';
+				$slug = 'Buy2let';
 			}
 			// echo $slug;
 
@@ -3994,7 +4011,6 @@ class Buytolet extends CI_Controller
 			} else {
 				$this->session->set_userdata('filter', $search_crit);
 			}
-
 
 			$config['total_rows'] = $this->buytolet_model->getFilterPropertiesCount($search_crit);
 

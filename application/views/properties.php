@@ -55,7 +55,19 @@
 		<div class="form-properties">
 			<form method="POST" action="<?php echo base_url() . "properties-filter"; ?>">
 				<?php //$slugValue = $slug != 'co-ownership' ? 2 : 5 ?>
-				<?php $slugValue = $slug != 'co-ownership' ? ($slug == 'bnpl' || $slug == 'onpl' ? 2 : 5) : 5; ?>
+				<?php //$slugValue = $slug != 'co-ownership' ? ($slug == 'bnpl' || $slug == 'onpl' ? 2 : 5) : 5; ?>
+
+				<?php
+            		if ($slug == 'bnpl') {
+            		    $slugValue = 6;
+            		} elseif ($slug == 'onpl') {
+            		    $slugValue = 7;
+            		} elseif ($slug == 'co-ownership') {
+            		    $slugValue = 5;
+            		} else {
+            		    $slugValue = 2;
+            		}
+            	?>
 
 				<input type="hidden" name="slug" value="<?php echo $slugValue; ?>">
 				<select name="list_price" class="properties-select" id="list_price_select">
