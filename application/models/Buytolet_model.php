@@ -1066,7 +1066,6 @@ class Buytolet_model extends CI_Model
 			$this->db->update('target_options', $targetOptions);
 
 			return 1;
-
 		} else {
 
 			return 0;
@@ -1358,21 +1357,21 @@ class Buytolet_model extends CI_Model
 
 		$this->db->select('a.refID');
 
-		$this->db->from('buytolet_request as a');		
+		$this->db->from('buytolet_request as a');
 
 		$this->db->where('a.plan', 'co-own');
-		
+
 		$this->db->group_start();
 
-			$this->db->where('a.purchase_beneficiary', 'Self');
+		$this->db->where('a.purchase_beneficiary', 'Self');
 
-			$this->db->where('a.userID', $userID);
+		$this->db->where('a.userID', $userID);
 
-			$this->db->or_group_start();
+		$this->db->or_group_start();
 
-				$this->db->where('c.receiverID', $userID);
+		$this->db->where('c.receiverID', $userID);
 
-			$this->db->group_end();
+		$this->db->group_end();
 
 		$this->db->group_end();
 
@@ -1402,15 +1401,15 @@ class Buytolet_model extends CI_Model
 
 		$this->db->group_start();
 
-			$this->db->where('a.purchase_beneficiary', 'Self');
+		$this->db->where('a.purchase_beneficiary', 'Self');
 
-			$this->db->where('a.userID', $userID);
+		$this->db->where('a.userID', $userID);
 
-			$this->db->or_group_start();
+		$this->db->or_group_start();
 
-				$this->db->where('c.receiverID', $userID);
+		$this->db->where('c.receiverID', $userID);
 
-			$this->db->group_end();
+		$this->db->group_end();
 
 		$this->db->group_end();
 
@@ -1548,7 +1547,8 @@ class Buytolet_model extends CI_Model
 
 		return $query->row_array();
 	}
-	public function get_bnpl_property($id){
+	public function get_bnpl_property($id)
+	{
 
 		$this->db->select('a.*, a.status as request_status, a.id as reqID, a.propertyID as propID, b.*, c.*, c.amount as transaction_amount, d.*');
 
@@ -1611,9 +1611,9 @@ class Buytolet_model extends CI_Model
 
 		$this->db->group_start();
 
-			$this->db->where('a.userID', $userID);
+		$this->db->where('a.userID', $userID);
 
-			$this->db->or_where('e.receiverID', $userID);
+		$this->db->or_where('e.receiverID', $userID);
 
 		$this->db->group_end();
 
@@ -1709,9 +1709,9 @@ class Buytolet_model extends CI_Model
 
 		$this->db->group_start();
 
-			$this->db->where('a.userID', $userID);
+		$this->db->where('a.userID', $userID);
 
-			$this->db->or_where('e.receiverID', $userID);
+		$this->db->or_where('e.receiverID', $userID);
 
 		$this->db->group_end();
 
@@ -2074,22 +2074,21 @@ class Buytolet_model extends CI_Model
 		if ($rID) {
 
 			$this->db->where('a.id', $rID);
-			
 		}
 
 		$this->db->where('a.plan', 'co-own');
-		
+
 		$this->db->group_start();
-			
-			$this->db->or_where('e.receiverID', $user_id);
 
-			$this->db->or_group_start();
+		$this->db->or_where('e.receiverID', $user_id);
 
-				$this->db->where('a.userID', $user_id);
+		$this->db->or_group_start();
 
-				$this->db->where_in('a.purchase_beneficiary', $options);
+		$this->db->where('a.userID', $user_id);
 
-			$this->db->group_end();
+		$this->db->where_in('a.purchase_beneficiary', $options);
+
+		$this->db->group_end();
 
 		$this->db->group_end();
 
@@ -2239,7 +2238,7 @@ class Buytolet_model extends CI_Model
 	// To save data message to notification table
 	public function insertNotification($inspDate, $inspTime, $inspPeriod, $propID, $subject, $message, $userID, $fname)
 	{
-		
+
 		$digits = 5;
 
 		$randomNumber = '';
@@ -2533,7 +2532,6 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
-
 	}
 
 	public function insertTargetOptions($userID, $frequency, $duration, $ref, $plan_amount)
@@ -2638,7 +2636,8 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_stp_users(){
+	public function get_stp_users()
+	{
 
 		$this->db->select('a.*, b.*, c.*, c.amount as purchase_amount, d.lastName');
 
@@ -2659,7 +2658,8 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_single_stp_user($id){
+	public function get_single_stp_user($id)
+	{
 
 		$this->db->select('a.*, b.*, c.*, a.amount as purchase_amount, d.lastName, d.email as user_email');
 
@@ -2701,27 +2701,28 @@ class Buytolet_model extends CI_Model
 		return $query->row_array();
 	}*/
 
-	public function update_with_plan_code($plan_code, $userid){
+	public function update_with_plan_code($plan_code, $userid)
+	{
 
 		$update = array('plan_code' => $plan_code);
 
 		$this->db->where('userID', $userid);
 
 		return $this->db->update('target_options', $update);
-
 	}
 
-	public function update_with_authorization_url($authorization_url, $userid){
+	public function update_with_authorization_url($authorization_url, $userid)
+	{
 
 		$update = array('authorization_url' => $authorization_url);
 
 		$this->db->where('userID', $userid);
 
 		return $this->db->update('target_options', $update);
-
 	}
 
-	public function update_with_request_id($refID, $userID){
+	public function update_with_request_id($refID, $userID)
+	{
 
 		$update = array('request_id' => $refID);
 
@@ -2730,17 +2731,18 @@ class Buytolet_model extends CI_Model
 		return $this->db->update('target_options', $update);
 	}
 
-	public function subscription_created($event){
+	public function subscription_created($event)
+	{
 
 		$next_payment_date = date('Y-m-d H:i:s', strtotime($event['data']['next_payment_date']));
 
 		$inserts = array('plan_code' => $event['data']['plan']['plan_code'], 'subscription_code' => $event['data']['subscription_code'], 'next_payment_date' => $next_payment_date, 'authorization_code' => $event['data']['authorization']['authorization_code'], 'bin' => $event['data']['authorization']['bin'], 'last_4' => $event['data']['authorization']['last4'], 'expiry_year' => $event['data']['authorization']['exp_year'], 'expiry_month' => $event['data']['authorization']['exp_month'], 'card_type' => $event['data']['authorization']['card_type'], 'card_brand' => $event['data']['authorization']['brand'], 'bank' => $event['data']['authorization']['bank'], 'country_code' => $event['data']['authorization']['country_code'], 'account_name' => $event['data']['authorization']['account_name'], 'customer_code' => $event['data']['customer']['customer_code'], 'entry_date' => date('Y-m-d H:i:s'));
 
 		return $this->db->insert('subscription_payment_tbl', $inserts);
-
 	}
 
-	public function get_request_details_by_plan_code($plan_code){
+	public function get_request_details_by_plan_code($plan_code)
+	{
 
 		$this->db->select('a.*, b.*');
 
@@ -2755,7 +2757,8 @@ class Buytolet_model extends CI_Model
 		return $query->row_array();
 	}
 
-	public function check_if_stp_exists($id){
+	public function check_if_stp_exists($id)
+	{
 
 		$this->db->from('target_options');
 
@@ -2766,11 +2769,11 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->count_all_results();
 
 		return $query;
-
 	}
 
-	public function get_countries(){
-		
+	public function get_countries()
+	{
+
 		$this->db->select('*');
 
 		$this->db->from('countries');
@@ -2778,10 +2781,10 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->result_array();
-		
 	}
 
-	public function get_requests_without_certificate($userID){
+	public function get_requests_without_certificate($userID)
+	{
 
 		$this->db->select('a.refID, a.unit_amount, b.*, c.property_name, c.address, c.city');
 
@@ -2800,7 +2803,8 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_all_user_requests(){
+	public function get_all_user_requests()
+	{
 
 		$this->db->select('a.userID');
 
@@ -2813,10 +2817,10 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->result_array();
-
 	}
 
-	public function get_stp_properties($id){
+	public function get_stp_properties($id)
+	{
 
 		$this->db->select('a.*, a.id as req_id, b.*');
 
@@ -2829,10 +2833,10 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->result_array();
-
 	}
 
-	public function get_stp_details($id){
+	public function get_stp_details($id)
+	{
 
 		$this->db->select('a.*, b.unit_amount');
 
@@ -2847,20 +2851,20 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
-
 	}
 
-	public function update_property_status($property_id, $status){
+	public function update_property_status($property_id, $status)
+	{
 
 		$insert = array('availability' => $status);
 
 		$this->db->where('propertyID', $property_id);
 
 		$this->db->update('buytolet_property', $insert);
-
 	}
 
-	public function get_cities($state_code){
+	public function get_cities($state_code)
+	{
 
 		$this->db->select('name');
 
@@ -2871,6 +2875,30 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->result_array();
-		
+	}
+
+	public function fetchNotification()
+	{
+
+		$today = date('Y-m-d');
+
+		$this->db->select('*');
+
+		$this->db->from('notification_tbl');
+
+		$this->db->where('start_date <=', $today);
+
+		$this->db->where('end_date >=', $today);
+
+		// Adding a condition to filter by notification_platform, either BSS or All
+		$this->db->where_in('notification_platform', array('BSS', 'All'));
+
+		$this->db->order_by('end_date', 'DESC');
+
+		$this->db->limit(1);
+
+		$query = $this->db->get();
+
+		return $query->row_array();
 	}
 }
