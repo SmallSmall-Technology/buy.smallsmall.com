@@ -149,9 +149,9 @@ h1{
     padding:15px 10px;
     border-radius:200px;
     position:absolute;
-    top:190px;
+    top:106px;
     left:9%;
-    background:#007aff;
+    background:#63318a;
     overflow-x:hidden;
     /*display:flex;
     flex-direction:row;
@@ -176,7 +176,7 @@ h1{
     border-radius:20px;
     float:left;
     background:#FFF;
-    color:#007aff;
+    color:#63318a;
     text-transform:uppercase;
     font-weight:bold;
     font-size:10px;
@@ -222,7 +222,7 @@ h1{
     .notification-bar-home {
       width: 90%; 
       left: 5%; 
-      top: 50px; 
+      top: 52px; 
       padding: 10px; 
       border-radius: 10px; 
      
@@ -232,6 +232,12 @@ h1{
       width: 90%; 
      
     }
+
+    #notification-details {
+        width: 60%; 
+        font-size: 12px;
+        line-height: 18px;
+      }
   
   }
   
