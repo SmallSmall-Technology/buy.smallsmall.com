@@ -31,6 +31,8 @@ class Buytolet extends CI_Controller
 
 		$data['locations'] = $this->buytolet_model->get_locations($states);
 
+		$data['notifications'] = $this->buytolet_model->fetchNotification(); // Notification tab for announcement
+
 		if ($this->session->has_userdata('loggedIn')) {
 
 			$data['userID'] = $this->session->userdata('userID');

@@ -2906,4 +2906,31 @@ class Buytolet_model extends CI_Model
 		$this->db->update('buytolet_property', $insert);
 
 	}
+
+	// Notification tab
+
+	public function fetchNotification(){
+	    
+	    $today = date('Y-m-d');
+	    
+	    $this->db->select('*');
+	    
+	    $this->db->from('notification_tbl');
+	    
+	    $this->db->where('start_date <=', $today);
+	    
+	    $this->db->where('end_date >=', $today);
+
+		// Adding a condition to filter by notification_platform, either BSS or when both
+		$this->db->where_in('notification_platform', array('BSS', 'All'));
+	    
+	    $this->db->order_by('end_date', 'DESC');
+
+		$this->db->limit(1);
+	    
+	    $query = $this->db->get();
+	    
+	    return $query->row_array();
+	}
+
 }
