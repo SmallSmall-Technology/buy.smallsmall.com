@@ -214,22 +214,26 @@ h1{
     .notification-bar-home {
         width: 90%;
         left: 5%;
-        top: 73px;
+        top: 87px;
         padding: 10px;
         border-radius: 10px;
 
     }
 
-    #notification-container {
+    /* #notification-container {
         width: 90%;
 
-    }
+    } */
 
     #notification-details {
         width: 60%;
         font-size: 12px;
         line-height: 18px;
     }
+
+    /* #notification-lnk {
+        margin-left: 41px;
+    } */
 
 }
 
@@ -430,6 +434,7 @@ h1{
     .left-section{
         padding-top: 70px;
     }
+
     .left-section h1{
         font-family: 'Cera Pro';
         font-style: normal;
@@ -439,7 +444,9 @@ h1{
         display:flex;
         align-items:center;
         padding:0 80px;
+        transform: translateY(34px); /* Move the content down by 34 pixels for mobile view */
     }
+
     .left-section > p{
         padding:0 90px;
         font-family: 'Cera Pro';
@@ -533,11 +540,16 @@ h1{
     .text-slider{
         width:100%;
     }
+
     .left-section .text-slider ul li > p{
+
         padding:0 20px;
         font-size: 15px;
         line-height: 23px;
+        margin-top:52px; 
+        
     }
+
     .partner-wrapper{
         margin:50px 0;
     }
