@@ -237,16 +237,14 @@ h1 {
     .notification-bar-home {
         width: 90%;
         left: 5%;
-        top: 73px;
+        top: 87px;
         padding: 10px;
         border-radius: 10px;
-
     }
 
-    #notification-container {
+    /* #notification-container {
         width: 90%;
-
-    }
+    } */
 
     #notification-details {
         width: 60%;
@@ -491,6 +489,7 @@ h1 {
         display: flex;
         align-items: center;
         padding: 0 80px;
+        transform: translateY(34px); /* Move the content down by 34 pixels for mobile view */
     }
 
     .left-section>p {
@@ -547,6 +546,7 @@ h1 {
     h1 {
         font-size: 22px;
         line-height: 35px;
+        transform: translateY(34px); 
     }
 
     .left-section {
@@ -601,10 +601,11 @@ h1 {
         width: 100%;
     }
 
-    .left-section .text-slider ul li>p {
+    .left-section .text-slider ul li>p { 
         padding: 0 20px;
         font-size: 15px;
         line-height: 23px;
+        margin-top:52px; 
     }
 
     .partner-wrapper {
