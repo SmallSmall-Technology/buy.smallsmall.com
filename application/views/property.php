@@ -133,7 +133,7 @@
 
             <div class="price-discount-sect">
                 <?php if ($property['investment_type'] == 6) { ?>
-                    <div class="price-box">
+                    <!-- <div class="price-box">
                         <p>Lockdown Fee</p>
                         <h2 style="font-weight:bold">
                             <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
@@ -144,7 +144,22 @@
                                 </span>
                             </div>
                         </h2>
+                    </div> -->
+
+                    <div class="price-box">
+                        <p>Lockdown Fee</p>
+                        <h2 style="font-weight:bold; display: inline-block;">
+                            <span style="font-family: helvetica;">&#x20A6;</span><?php echo number_format(0.05 * $property['price']); ?>
+                            <div class="tooltip" style="display: inline-block; vertical-align: middle;">
+                                <i class="fa fa-info"></i>
+                                <span class="tooltiptext">
+                                    LDF is a non-refundable fee. It substitutes as a transaction fee<br />
+                                    when you make a down-payment on or before 11 months.
+                                </span>
+                            </div>
+                        </h2>
                     </div>
+
                 <?php } ?>
                 <div class="price-box">
                     <p>Payment tenure</p>
