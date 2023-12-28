@@ -259,6 +259,35 @@
 	data-platform="custom_website"
 ></script> -->
 
+
+	<!-- Partnero Universal -->
+	<script>
+		(function(p, t, n, e, r, o) {
+			p['__partnerObject'] = r;
+
+			function f() {
+				var c = {
+					a: arguments,
+					q: []
+				};
+				var r = this.push(c);
+				return "number" != typeof r ? r : f.bind(c.q);
+			}
+			f.q = f.q || [];
+			p[r] = p[r] || f.bind(f.q);
+			p[r].q = p[r].q || f.q;
+			o = t.createElement(n);
+			var _ = t.getElementsByTagName(n)[0];
+			o.async = 1;
+			o.src = e + '?v' + (~~(new Date().getTime() / 1e6));
+			_.parentNode.insertBefore(o, _);
+		})(window, document, 'script', 'https://app.partnero.com/js/universal.js', 'po');
+		po('settings', 'assets_host', 'https://assets.partnero.com');
+		po('program', 'C6APLXAJ', 'load');
+	</script>
+	<!-- End Partnero Universal -->
+
+
 </head>
 
 <body>
@@ -295,7 +324,8 @@
 								<span style='font-size:9px;'>&nbsp;</span>
 								Own Now Pay Later
 							</a>
-							<!---<a class="NavLink" href="<?php //echo base_url('properties/buy-to-live'); ?>" onclick='closeMobileMenu()'>
+							<!---<a class="NavLink" href="<?php //echo base_url('properties/buy-to-live'); 
+															?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
 								Buy2live
 							</a>--->
@@ -304,7 +334,7 @@
 								Buy2Co-Own
 							</a>
 							<a class="NavLink" href="<?php echo base_url('properties/bnpl'); ?>" onclick='closeMobileMenu()'>
-							    <span style='font-size:9px;'>&nbsp;</span>
+								<span style='font-size:9px;'>&nbsp;</span>
 								Buy Now Pay Later
 							</a>
 						</div>
@@ -314,7 +344,7 @@
 								<span style='font-size:9px'>Rent monthly</span>
 								<span>RentSmallsmall</span>
 							</a>
-<!-- 							<a class="NavLink" href="https://stay.smallsmall.com" onclick='closeMobileMenu()'>
+							<!-- 							<a class="NavLink" href="https://stay.smallsmall.com" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>Nightly stay</span>
 								<span>StaySmallsmall</span>
 							</a> -->
