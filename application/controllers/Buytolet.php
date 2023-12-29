@@ -1380,7 +1380,7 @@ class Buytolet extends CI_Controller
 
 		$data['cities'] = $this->buytolet_model->getCities(2671);
 
-		$data['apts'] = $this->buytolet_model->getAptypes($types); 
+		$data['apts'] = $this->buytolet_model->getAptypes($types);
 
 		$data['locations'] = $this->buytolet_model->get_locations($states); // List all locations (ajah, mushin, leki etc)
 
@@ -1768,6 +1768,9 @@ class Buytolet extends CI_Controller
 
 				require 'vendor/autoload.php'; //For Unione template authoload
 
+				// Execute the Partnero script after successful registration
+				$this->executePartneroScript($id, $fname, $email);
+
 				//Unione Template
 				$headers = array(
 					'Content-Type' => 'application/json',
@@ -1912,6 +1915,25 @@ class Buytolet extends CI_Controller
 
 		// echo $ajaxResponse;
 
+	}
+
+	public function executePartneroScript($id, $fname, $email)
+	{
+		// Partnero script content
+		$partneroScript = "
+        <script>
+            po('customers', 'signup', {
+                data: {
+                    key: '{$id}', // User Id
+                    name: '{$fname}', // Customer Name
+                    email: '{$email}' // Customer Email
+                }
+            });
+        </script>
+    ";
+
+		// Echo the Partnero script
+		echo $partneroScript;
 	}
 
 
@@ -2708,7 +2730,7 @@ class Buytolet extends CI_Controller
 	// 	echo $image_result;
 	// }
 
-	
+
 	public function get_all_images($folder, $featuredImg)
 	{
 
@@ -2760,13 +2782,11 @@ class Buytolet extends CI_Controller
 			// Encode the result as JSON and echo it
 
 			echo json_encode($imageResult);
-
 		} catch (Aws\S3\Exception\S3Exception $e) {
 
 			// Handle any AWS SDK exceptions, e.g., S3 access error
 			echo json_encode(['error' => $e->getMessage()]);
 		}
-
 	}
 
 
@@ -3976,7 +3996,7 @@ class Buytolet extends CI_Controller
 			// } else if ($search_crit['slug'] == 2) {
 
 			// 	$slug = 'buy-to-let';
-				
+
 			// } else {
 
 			// 	$slug = 'buy-to-live';
@@ -3985,15 +4005,12 @@ class Buytolet extends CI_Controller
 			if ($search_crit['slug'] == 5) {
 
 				$slug = 'co-ownership';
-
 			} else if ($search_crit['slug'] == 6) {
 
 				$slug = 'bnpl';
-
 			} else if ($search_crit['slug'] == 7) {
 
 				$slug = 'onpl';
-				
 			} else {
 
 				$slug = 'Buy2let';
@@ -5298,7 +5315,8 @@ class Buytolet extends CI_Controller
 
 	// Get Cities function 
 
-	public function get_cities(){
+	public function get_cities()
+	{
 
 		$state_code = $this->input->post('states');
 
@@ -5307,7 +5325,6 @@ class Buytolet extends CI_Controller
 		$cities = $this->buytolet_model->get_state_locations($state_code);
 
 		echo json_encode(array('status' => 'success', 'msg' => $cities));
-
 	}
 
 	// End of get cities function 
