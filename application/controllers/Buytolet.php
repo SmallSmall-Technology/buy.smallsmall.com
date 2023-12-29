@@ -1764,12 +1764,13 @@ class Buytolet extends CI_Controller
 
 			$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
 
+			// Execute the Partnero script after successful registration
+			$sendUsersRecordToPartneroForTracking = $this->executePartneroScript($id, $fname, $email);
+
+
 			if ($registration) {
 
 				require 'vendor/autoload.php'; //For Unione template authoload
-
-				// Execute the Partnero script after successful registration
-				$this->executePartneroScript($id, $fname, $email);
 
 				//Unione Template
 				$headers = array(
@@ -1931,7 +1932,6 @@ class Buytolet extends CI_Controller
             });
         </script>
     ";
-
 		// Echo the Partnero script
 		echo $partneroScript;
 	}
