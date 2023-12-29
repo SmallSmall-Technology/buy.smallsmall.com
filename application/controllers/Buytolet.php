@@ -1860,6 +1860,7 @@ class Buytolet extends CI_Controller
 				// -- $notificationDataSentToDb = $this->buytolet_model->insertNotification('', '', '', '', 'SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
+
 			} else {
 
 				//Unsuccessful insert
@@ -1933,7 +1934,8 @@ class Buytolet extends CI_Controller
         </script>
     ";
 		// Echo the Partnero script
-		echo $partneroScript;
+		// echo $partneroScript;
+		return $partneroScript;
 	}
 
 

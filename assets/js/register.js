@@ -182,6 +182,7 @@ $('#signupForm').submit(function(e){
 				$('.all-fields').hide();
  
 				window.scrollTo(0);
+				
 
 			}else{
 
