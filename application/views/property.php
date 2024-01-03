@@ -276,7 +276,7 @@
                 </div>--->
         </div>
         <div class="features_description">
-            <?php if ($property['investment_type'] != 6 && $property['investment_type'] != 7) { ?>
+            <?php if ($property['investment_type'] != 6) { ?>
                 <div class="payment-box">
                     <h2>Buy now</h2>
                     <h1><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></h1>
@@ -289,7 +289,7 @@
                             </div>
                             <div class="finance-right-options">
                                 <select id="payment-option" class="minimal payment-option">
-                                    <option value="finance">BuySmallSmall Finance</option>
+                                    <option value="finance">Financing</option>
                                     <option value="outright">Outright Payment</option>
                                 </select>
                             </div>
@@ -302,7 +302,7 @@
             <!--- Finance payment option ---->
 
             <div class="payment-box payment-boxes mortgage-finance-payment">
-                <?php if ($property['investment_type'] != 6 && $property['investment_type'] != 7) { ?>
+                <?php if ($property['investment_type'] != 6) { ?>
                     <h2>Financing</h2>
                     <h4>Down Payment</h4>
                     <p>What do you have?</p>
@@ -315,29 +315,33 @@
 
                     </div>
                     <!---- Range selector ---->
-                    <div class="single-span-col-input year-selector-container">
-                        <select id="repayment-period" class="minimal year-selector">
-                            <option value="">Payback period</option>
-                            <?php if ($property['payment_plan_period'] >= 12) { ?>
-                                <option value="1">1 Year</option>
-                            <?php } ?>
-                            <?php if ($property['payment_plan_period'] > 12) { ?>
-                                <option value="2">2 Years</option>
-                            <?php } ?>
-                            <?php if ($property['payment_plan_period'] > 24) { ?>
-                                <option value="3">3 Years</option>
-                            <?php } ?>
-                            <?php if ($property['payment_plan_period'] > 36) { ?>
-                                <option value="4">4 Years</option>
-                            <?php } ?>
-                            <?php if ($property['payment_plan_period'] > 48) { ?>
-                                <option value="5">5 Years</option>
-                            <?php } ?>
-                            <?php if ($property['payment_plan_period'] > 60) { ?>
-                                <option value="6">6 Years</option>
-                            <?php } ?>
-                        </select>
-                    </div>
+
+                    <?php if ($property['investment_type'] != 7) { ?>
+                        <!---- Payback period for buy to let only ---->
+                        <div class="single-span-col-input year-selector-container">
+                            <select id="repayment-period" class="minimal year-selector">
+                                <option value="">Payback period</option>
+                                <?php if ($property['payment_plan_period'] >= 12) { ?>
+                                    <option value="1">1 Year</option>
+                                <?php } ?>
+                                <?php if ($property['payment_plan_period'] > 12) { ?>
+                                    <option value="2">2 Years</option>
+                                <?php } ?>
+                                <?php if ($property['payment_plan_period'] > 24) { ?>
+                                    <option value="3">3 Years</option>
+                                <?php } ?>
+                                <?php if ($property['payment_plan_period'] > 36) { ?>
+                                    <option value="4">4 Years</option>
+                                <?php } ?>
+                                <?php if ($property['payment_plan_period'] > 48) { ?>
+                                    <option value="5">5 Years</option>
+                                <?php } ?>
+                                <?php if ($property['payment_plan_period'] > 60) { ?>
+                                    <option value="6">6 Years</option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    <?php } ?>
                     <div class="financing-options-sect">
                         <div class="option-list1">
                             <div class="finance-left-options">
@@ -400,7 +404,7 @@
                 <?php } ?>
                 <?php if ($property['availability'] != 'Sold' && $property['availability'] != 'Locked') { ?>
                     <div style="width:100%;text-align:center;">
-                        <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 6) ? 'Lockdown Now' : 'Apply Now'; ?></div>
+                        <div class="payment-btn option-but"><?php //echo ($property['investment_type'] == 6) ? 'Lockdown Now' : 'Apply Now'; ?>Apply Now</div>
                     </div>
                 <?php } ?>
             </div>
@@ -572,13 +576,7 @@
         </form>
     </div>
 </div>
-<input type="hidden" id="option-but" value="<?php if ($property['investment_type'] == 6) {
-                                                echo 'bnpl';
-                                            } elseif ($property['investment_type'] == 7) {
-                                                echo 'onpl';
-                                            } else {
-                                                echo 'finance';
-                                            } ?>" />
+<input type="hidden" id="option-but" value="<?php echo ($property['investment_type'] == 6) ? 'bnpl' : 'finance'; ?>" />
 <input type="hidden" id="userID" value="<?php echo @$userID; ?>" />
 <input type="hidden" class="prop-id" value="<?php echo $property['propertyID']; ?>" />
 <input type="hidden" class="pool_check" value="<?php echo $property['pool_buy']; ?>" />
@@ -599,10 +597,10 @@
 <input type="hidden" class="pool_units" id="pool_units" value="<?php echo @$property['pool_units']; ?>" />
 <input type="hidden" class="pool-total-cost" value="" />
 <!---Own now pay later--->
-<input type="hidden" class="onpl-property" id="onpl-property" value="<?php ($property['investment_type'] == 7) ? 1 : ''; ?>" />
+<input type="hidden" class="onpl-property" id="onpl-property" value="<?php ($property['investment_type'] == 7) ? 1 : 0; ?>" />
 <!---Own now pay later--->
 <!---Buy now pay later--->
-<input type="hidden" class="bnpl-property" id="bnpl-property" value="<?php ($property['investment_type'] == 6) ? 1 : ''; ?>" />
+<input type="hidden" class="bnpl-property" id="bnpl-property" value="<?php ($property['investment_type'] == 6) ? 1 : 0; ?>" />
 <!---Buy now pay later--->
 <input type="hidden" class="expected-rent" id="expected-rent" value="<?php echo @$property['expected_rent']; ?>" />
 <input type="hidden" class="total-cost" id="total-cost" value="<?php echo @$property['price']; ?>" />
