@@ -32,6 +32,8 @@ $('.option-but').click(function(){
 	} 
 
 	var plan = $('#option-but').val();
+
+	var onpl_option = $('#onpl-property').val();
 	
 	var pool_check = $('.pool_check').val();	
 	
@@ -75,13 +77,17 @@ $('.option-but').click(function(){
 	
 	var duration = 0;
 	
-	if(payment_period == ''){
+	if(payment_period == '' && !(onpl_option)){
 	    
 	    alert("Select a tenor period please");
 	    
 	    $('.option-but').html("Apply Now");
 	    
 	    return false;
+	}else if(payment_period == '' && (onpl_option)){
+
+		payment_period = 6;
+
 	}
 	
 	if(plan == 'finance'){		
@@ -103,13 +109,13 @@ $('.option-but').click(function(){
 
 		payable = bnpl_payable;
 
-	}else if(plan == 'onpl'){
+	}/*else if(plan == 'onpl'){
 
 		onpl_payable = $('#onpl-payable').val();
 
 		payable = onpl_payable;
 
-	}
+	}*/
 	
 	if(pool_check == 'yes'){
 	    
