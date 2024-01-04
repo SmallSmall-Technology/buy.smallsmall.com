@@ -965,7 +965,7 @@ class Buytolet extends CI_Controller
 
 			$data['interest'] = $this->session->userdata('interest');
 
-			$data['target_option'] = $this->session->userdata('target_option');;
+			$data['target_option'] = $this->session->userdata('target_option');
 
 			//Check login status
 
@@ -2320,9 +2320,11 @@ class Buytolet extends CI_Controller
 		//} else {
 
 		if ($purchase_frequency && $duration) {
+
 			$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref, $plan_amount);
 
 			$target_option = 1;
+
 		}
 
 		//}
@@ -3289,7 +3291,7 @@ class Buytolet extends CI_Controller
 
 			if ($target_option)
 
-				$this->create_target_option_plan($userID);
+				$this->create_target_option_plan($userID, $ref_id);
 
 			$notificationRes = 0;
 
@@ -4696,10 +4698,10 @@ class Buytolet extends CI_Controller
 		//print_r($users);
 	}
 
-	public function create_target_option_plan($userID)
+	public function create_target_option_plan($userID, $ref)
 	{
 
-		$user = $this->buytolet_model->get_single_stp_user($userID);
+		$user = $this->buytolet_model->get_single_stp_user($userID, $ref);
 
 		if ($user) {
 

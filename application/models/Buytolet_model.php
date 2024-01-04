@@ -2658,16 +2658,18 @@ class Buytolet_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function get_single_stp_user($id)
+	public function get_single_stp_user($id, $ref_id)
 	{
 
 		$this->db->select('a.*, b.*, c.*, a.amount as purchase_amount, d.lastName, d.email as user_email');
 
 		$this->db->from('target_options as a');
 
-		$this->db->where('a.active', 1);
+		//$this->db->where('a.active', 1);
 
 		$this->db->where('a.userID', $id);
+
+		$this->db->where('a.request_id', $ref_id);
 
 		$this->db->join('buytolet_request as b', 'b.userID = a.userID');
 
