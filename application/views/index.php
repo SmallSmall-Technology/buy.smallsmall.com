@@ -65,7 +65,7 @@
 
 	<div class="section-word">
 		<h1 style='text-align:center; padding-top:30px;'>The best mortgage alternative in Nigeria.</h1>
-		<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall buying a home is as straightforward as ordering your favorite food at a nice restaurant.</div>
+		<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall, buying a home is as straightforward as ordering your favorite food at a nice restaurant.</div>
 	</div>
 	<section class="product-card-container">
 
@@ -89,7 +89,7 @@
 			<div class="bottom-section">
 				<h1>Buy2Live</h1>
 				<div class="text-section">
-					Acquire your dream home today and pay for it conviniently in 5 years.
+					Acquire your dream home today and pay for it conveniently in 5 years.
 				</div>
 				<a class="learn-more-btn" href="<?php echo base_url('faq'); ?>"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
 			</div>

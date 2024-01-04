@@ -3398,10 +3398,15 @@ class Buytolet extends CI_Controller
 
 		$prop = $this->buytolet_model->getProperty($property_id);
 
+		// Execute the Partnero script after successful payment callback from Paystack
+		$sendUsersRecordToPartneroForTracking = $this->executeTransactionPartneroScript($ref_id, $payable,  $userID);
+
 		$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref_id);
 
 		if ($payment_plan == 'bnpl' || $payment_plan == 'onpl') {
+
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
+
 		}
 
 		require 'vendor/autoload.php';
@@ -3422,6 +3427,9 @@ class Buytolet extends CI_Controller
 			$property_details = $prop['property_name'] . '' . $prop['address'] . ', ' . $prop['city'] . ' ' . $prop['propState'];
 
 			$propertyLocation = $prop['address'] . ', ' . $prop['city'] . ' ' . $prop['propState'];
+
+			// Execute the Partnero script after successful payment
+			// $sendUsersRecordToPartneroForTracking = $this->executePartneroScript($id, $fname, $email);
 
 			if ($this->input->post('plan') == 'Outright') {
 
@@ -3540,6 +3548,29 @@ class Buytolet extends CI_Controller
 
 			echo 0;
 		}
+	}
+
+	//Partnero Script for Payment (Sales) Tracking
+	public function executeTransactionPartneroScript($ref_id, $payable,  $userID)
+	{
+		// Sales Partnero script content
+		$transactionPartneroScript = "
+		<script>
+    		po('transactions', 'create', {
+    		    data: {
+    		        key: '{$ref_id}', 		// Transaction ID
+    		        amount: $payable,		// Amount Paid
+    		        amount_units: 'ngn',	// Currency
+   		 		        customer: {
+    		            key: '{$userID}' 	// User ID
+    		        }
+    		    }
+    		});
+		</script>
+    ";
+
+		return $transactionPartneroScript;
+
 	}
 
 	public function validate_bvn()
