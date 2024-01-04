@@ -4783,8 +4783,11 @@ class Buytolet extends CI_Controller
 						return 0;
 				}
 			} else {
+
 				$err = curl_error($curl);
+
 				echo "Error : " . $err;
+				
 			}
 		}
 	}
