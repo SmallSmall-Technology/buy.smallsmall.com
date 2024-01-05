@@ -75,7 +75,7 @@
             		<a class="link-text" href="tel:+2348098666255">+234 809 866 6255</a>
           		</div>
         	</div>
-        	<p class="footer-copyright">@ 2023 Smallsmall Technology</p>
+			<p class="footer-copyright">&copy; <?php echo date("Y"); ?> Smallsmall Technology</p>
       	</div>
     </div>
   	</div>
