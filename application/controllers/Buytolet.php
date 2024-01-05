@@ -2324,7 +2324,6 @@ class Buytolet extends CI_Controller
 			$this->buytolet_model->insertTargetOptions($data['userID'], $purchase_frequency, $duration, $ref, $plan_amount);
 
 			$target_option = 1;
-
 		}
 
 		//}
@@ -3281,6 +3280,9 @@ class Buytolet extends CI_Controller
 
 		$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref_id);
 
+		// Execute the Partnero script after successful payment callback from Paystack for payment tracking
+		$sendUsersPaymentToPartneroForTracking = $this->executeTransactionPartneroScript($ref_id, $payable,  $userID);
+
 		if ($payment_plan == 'bnpl' || $payment_plan == 'onpl') {
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
 		}
@@ -3422,6 +3424,28 @@ class Buytolet extends CI_Controller
 
 			echo 0;
 		}
+	}
+
+	//Partnero Script for Payment (Sales) Tracking
+	public function executeTransactionPartneroScript($ref_id, $payable,  $userID)
+	{
+		// Sales Partnero script content
+		$transactionPartneroScript = "
+			<script>
+    			po('transactions', 'create', {
+    			    data: {
+    			        key: '{$ref_id}', 		// Transaction ID
+    			        amount: $payable,		// Amount Paid
+    			        amount_units: 'ngn',	// Currency
+   			 		        customer: {
+    			            key: '{$userID}' 	// User ID
+    			        }
+    			    }
+    			});
+			</script>
+    	";
+
+		return $transactionPartneroScript;
 	}
 
 	public function validate_bvn()
@@ -4787,7 +4811,6 @@ class Buytolet extends CI_Controller
 				$err = curl_error($curl);
 
 				echo "Error : " . $err;
-				
 			}
 		}
 	}
