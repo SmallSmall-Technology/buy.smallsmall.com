@@ -289,7 +289,7 @@
                             </div>
                             <div class="finance-right-options">
                                 <select id="payment-option" class="minimal payment-option">
-                                    <option value="finance">Financing</option>
+                                    <option value="finance">Payment Plan</option>
                                     <option value="outright">Outright Payment</option>
                                 </select>
                             </div>
@@ -305,7 +305,7 @@
                 <?php if ($property['investment_type'] != 6) { ?>
                     <h2>Financing</h2>
                     <h4>Down Payment</h4>
-                    <p>What do you have?</p>
+                    <!---<p>What do you have?</p>--->
                     <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); 
                                                                                                     ?></h1>
                     <!---- Range selector ---->
@@ -446,16 +446,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="option-list1">
+                    <!---<div class="option-list1">
                         <div class="finance-left-options">
                             <div class="finance">Discount</div>
                         </div>
                         <div class="finance-right-options">
                             <div>
-                                <div class="red finance-numbers">- <span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(@$property['outrightDiscount']); ?></div>
+                                <div class="red finance-numbers">- <span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format(@$property['outrightDiscount']); ?></div>
                             </div>
                         </div>
-                    </div>
+                    </div>--->
                     <div class="option-list3">
                         <div class="finance-left-options">
                             <div class="finance">Amount saved</div>
