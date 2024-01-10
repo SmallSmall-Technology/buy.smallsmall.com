@@ -540,6 +540,9 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
+    .left-section h1 {
+        line-height: 35px;
+    }
     .header-wrapper .right-section {
         height: 0 !important;
     }
