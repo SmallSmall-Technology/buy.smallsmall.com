@@ -1860,7 +1860,6 @@ class Buytolet extends CI_Controller
 				// -- $notificationDataSentToDb = $this->buytolet_model->insertNotification('', '', '', '', 'SmallSmall Confirmation', "Successful Registration", $id, $fname);
 
 				echo 1;
-
 			} else {
 
 				//Unsuccessful insert
@@ -2023,7 +2022,7 @@ class Buytolet extends CI_Controller
 
 	public function scheduleInsp()
 	{
-		
+
 		require 'vendor/autoload.php'; // For Unione template authoload
 
 		// Retrieve input data
@@ -2052,24 +2051,6 @@ class Buytolet extends CI_Controller
 		$userDetails = $this->buytolet_model->get_user($userID);
 
 		$property = $this->buytolet_model->getProp($propID);
-		
-		// Unione Template
-
-		$headers = array(
-			'Content-Type' => 'application/json',
-			'Accept' => 'application/json',
-			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
-		);
-
-		$client = new \GuzzleHttp\Client([
-			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
-		]);
-
-		$requestBody = [
-			"id" => "ec4e6058-af99-11ee-9baf-a2f5ccca1c91"
-		];
-
-		// end Unione Template
 
 		//Insert data
 		$res = $this->buytolet_model->setInspection($inspDate, $inspTime, $inspPeriod, $propID, $userID);
@@ -2122,7 +2103,6 @@ class Buytolet extends CI_Controller
 			$custEmail = $this->email->send();
 
 			echo 1;
-
 		} else {
 			echo "Error setting up inspection";
 		}
@@ -2131,36 +2111,56 @@ class Buytolet extends CI_Controller
 	public function sendUnioneTemplateEmailForInspectionRequest($inspDate, $inspTime, $inspPeriod, $fname, $lname, $email, $userDetails, $property)
 	{
 
-    //Unione Template
+		require 'vendor/autoload.php'; // For Unione template authoload
+
+		// Unione Template
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "ec4e6058-af99-11ee-9baf-a2f5ccca1c91"
+		];
+
+		// end Unione Template
+
+		//Unione Template
 
 		try {
 			$response = $client->request('POST', 'template/get.json', array(
 				'headers' => $headers,
 				'json' => $requestBody,
 			));
-	
+
 			$jsonResponse = $response->getBody()->getContents();
-	
+
 			$responseData = json_decode($jsonResponse, true);
-	
+
 			$htmlBody = $responseData['template']['body']['html'];
-	
+
 			$customerName = $fname . ' ' . $lname;
-	
+
 			$customerEmail = $email;
-	
+
 			$customerPhoneNumber = $userDetails['phone'];
 
 			$propertyName = $property['property_name'];
-	
+
 			$propertyAddress = $property['address'] . ', ' . $property['city'];;
-	
+
 			$timeofVisit = $inspTime . ' ' . $inspPeriod;
 
 			$inspectionDatea = date('d F Y', strtotime($inspDate));
-	
+
 			// Replace the placeholder in the HTML body
-	
+
 			$htmlBody = str_replace('{{CustomerName}}', $customerName, $htmlBody);
 			$htmlBody = str_replace('{{CustomerEmail}}', $customerEmail, $htmlBody);
 			$htmlBody = str_replace('{{CustomerPhoneNumber}}', $customerPhoneNumber, $htmlBody);
@@ -2168,9 +2168,9 @@ class Buytolet extends CI_Controller
 			$htmlBody = str_replace('{{PropertyAddress}}', $propertyAddress, $htmlBody);
 			$htmlBody = str_replace('{{timeofVisit}}', $timeofVisit, $htmlBody);
 			$htmlBody = str_replace('{{InspectionDatea}}', $inspectionDatea, $htmlBody);
-	
+
 			$data['response'] = $htmlBody;
-	
+
 			// Prepare the email data to send
 			$emailData = [
 				"message" => [
@@ -2183,20 +2183,18 @@ class Buytolet extends CI_Controller
 					"from_name" => "BSS SmallSmall Alert",
 				],
 			];
-	
+
 			// Send the email using the Unione API
 			$responseEmail = $client->request('POST', 'email/send.json', [
 				'headers' => $headers,
 				'json' => $emailData,
 			]);
+		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
-	} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+			$data['response'] = $e->getMessage();
+		}
 
-			 $data['response'] = $e->getMessage();
-
-	}
-
-	// End of unione template
+		// End of unione template
 
 	}
 
@@ -3510,7 +3508,6 @@ class Buytolet extends CI_Controller
 		if ($payment_plan == 'bnpl' || $payment_plan == 'onpl') {
 
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
-
 		}
 
 		require 'vendor/autoload.php';
@@ -3674,7 +3671,6 @@ class Buytolet extends CI_Controller
     ";
 
 		return $transactionPartneroScript;
-
 	}
 
 	public function validate_bvn()
