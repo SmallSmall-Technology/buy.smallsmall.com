@@ -595,6 +595,11 @@
             </div>
         </form>
     </div>
+
+    <!-- Tracking code for bss inspection details - Start of HubSpot Embed Code -->
+	<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/143441522.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
 </div>
 <input type="hidden" id="option-but" value="<?php if ($property['investment_type'] == 6) {
                                                 echo 'bnpl';
