@@ -2023,12 +2023,19 @@ class Buytolet extends CI_Controller
 
 	public function scheduleInsp()
 	{
+		
+		require 'vendor/autoload.php'; // For Unione template authoload
 
+		// Retrieve input data
 		$inspDate = trim($this->input->post("insp_date"));
 
 		$inspTime = $this->input->post("insp_time");
 
 		$inspPeriod = $this->input->post("insp_period");
+
+		$propID = $this->input->post('propID');
+
+		// Get user details
 
 		$userID = $this->session->userdata('userID');
 
@@ -2040,14 +2047,39 @@ class Buytolet extends CI_Controller
 
 		$data['interest'] = $this->session->userdata('interest');
 
-		$propID = $this->input->post('propID');
+		// Retrieve user and property details from the model
 
-		//Insert date
+		$userDetails = $this->buytolet_model->get_user($userID);
+
+		$property = $this->buytolet_model->getProp($propID);
+		
+		// Unione Template
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "ec4e6058-af99-11ee-9baf-a2f5ccca1c91"
+		];
+
+		// end Unione Template
+
+		//Insert data
 		$res = $this->buytolet_model->setInspection($inspDate, $inspTime, $inspPeriod, $propID, $userID);
 
 		if ($res) {
 
-			$property = $this->buytolet_model->getProp($propID);
+			// Send Unione Template email
+			$this->sendUnioneTemplateEmailForInspectionRequest($inspDate, $inspTime, $inspPeriod, $fname, $lname, $email, $userDetails, $property);
+
+			// $property = $this->buytolet_model->getProp($propID);
 
 			// To send notification mail to db for New Inspection Request
 
@@ -2090,10 +2122,82 @@ class Buytolet extends CI_Controller
 			$custEmail = $this->email->send();
 
 			echo 1;
-		} else {
 
+		} else {
 			echo "Error setting up inspection";
 		}
+	}
+
+	public function sendUnioneTemplateEmailForInspectionRequest($inspDate, $inspTime, $inspPeriod, $fname, $lname, $email, $userDetails, $property)
+	{
+
+    //Unione Template
+
+		try {
+			$response = $client->request('POST', 'template/get.json', array(
+				'headers' => $headers,
+				'json' => $requestBody,
+			));
+	
+			$jsonResponse = $response->getBody()->getContents();
+	
+			$responseData = json_decode($jsonResponse, true);
+	
+			$htmlBody = $responseData['template']['body']['html'];
+	
+			$customerName = $fname . ' ' . $lname;
+	
+			$customerEmail = $email;
+	
+			$customerPhoneNumber = $userDetails['phone'];
+
+			$propertyName = $property['property_name'];
+	
+			$propertyAddress = $property['address'] . ', ' . $property['city'];;
+	
+			$timeofVisit = $inspTime . ' ' . $inspPeriod;
+
+			$inspectionDatea = date('d F Y', strtotime($inspDate));
+	
+			// Replace the placeholder in the HTML body
+	
+			$htmlBody = str_replace('{{CustomerName}}', $customerName, $htmlBody);
+			$htmlBody = str_replace('{{CustomerEmail}}', $customerEmail, $htmlBody);
+			$htmlBody = str_replace('{{CustomerPhoneNumber}}', $customerPhoneNumber, $htmlBody);
+			$htmlBody = str_replace('{{PropertyName}}', $propertyName, $htmlBody);
+			$htmlBody = str_replace('{{PropertyAddress}}', $propertyAddress, $htmlBody);
+			$htmlBody = str_replace('{{timeofVisit}}', $timeofVisit, $htmlBody);
+			$htmlBody = str_replace('{{InspectionDatea}}', $inspectionDatea, $htmlBody);
+	
+			$data['response'] = $htmlBody;
+	
+			// Prepare the email data to send
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => 'tunde.b@smallsmall.com'],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "BSS New Inspection Request Alert!",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "BSS SmallSmall Alert",
+				],
+			];
+	
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+
+	} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+			 $data['response'] = $e->getMessage();
+
+	}
+
+	// End of unione template
+
 	}
 
 	public function loginForm()
