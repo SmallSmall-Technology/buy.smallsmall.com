@@ -48,7 +48,8 @@
 					<a class="link-text" href="<?php echo base_url(); ?>">Buy</a>
 					<a class="link-text" href="<?php echo base_url('refer-and-earn'); ?>">Referal</a>
 					<a class="link-text" href="<?php echo base_url('reward'); ?>">Reward & Loyalty</a>
-
+					<a class="link-text" href="https://edap.buysmallsmall.ng/">Property Developer</a>
+					<a class="link-text" href="https://asapp.smallsmall.com/program">Sales agent</a>
 				</div>
 				<div class="footer-grid-box">
 					<a class="link-header" href="/">Company</a>
