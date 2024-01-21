@@ -288,6 +288,22 @@
 	<!-- End Partnero Universal -->
 
 
+	<!-- Google tag manager (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FTLFC09RY"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-0FTLFC09RY');
+	</script>
+
+	<!-- End Google tag manager (gtag.js) -->
+
+
 </head>
 
 <body>
