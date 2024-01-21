@@ -145,7 +145,9 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('email', $email);
 
-		return $this->db->row_array();
+		$query = $this->db->get();
+
+		return $query->row_array();
 	}
 
 	public function update_login_attempt($user_id, $attempt)
