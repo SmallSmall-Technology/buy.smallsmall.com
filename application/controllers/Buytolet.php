@@ -611,14 +611,6 @@ class Buytolet extends CI_Controller
 
 		if (!$this->session->has_userdata('loggedIn')) {
 
-			/*$data['userID'] = $this->session->userdata('userID');
-
-			$data['fname'] = $this->session->userdata('fname');
-
-			$data['lname'] = $this->session->userdata('lname');*/
-
-			//Check login status
-
 			$data['title'] = "Login :: Buy2Let";
 
 			$this->load->view('templates/header', $data);
@@ -1727,7 +1719,7 @@ class Buytolet extends CI_Controller
 
 		$age = trim($this->input->post("age"));
 
-		$password = md5($this->input->post("password"));
+		$password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
 
 		$income = $this->input->post("income");
 
@@ -1755,7 +1747,7 @@ class Buytolet extends CI_Controller
 
 		$email_res = $this->buytolet_model->check_email($email);
 
-		if (!$email_res) {
+		if (!empty($email_res)) {
 			//Check if user has been bought a gift before
 			$beneficiary = $this->buytolet_model->check_beneficiary_details($email)['userID'];
 
@@ -2195,52 +2187,101 @@ class Buytolet extends CI_Controller
 
 	public function loginForm()
 	{
-
 		$username = trim($this->input->post("username"));
 
-		$password = md5($this->input->post("password"));
+		$raw_password = $this->input->post("password");
 
-		//Login
+		$check_email = $this->buytolet_model->check_email($username);
 
-		$user = $this->buytolet_model->login_user($username, $password);
+		if(!empty($check_email)){
 
-		if (!empty($user)) {
-			//Successful insert then send email to user
+			$result = $this->login_user($username, $raw_password, $check_email['password'], $check_email['userID']);
 
-			if ($user['confirmation'] == '' || trim($user['confirmation']) == '') {
+			if ($result) {
 
-				if ($user['status'] == 'Active') {
+				$user = $this->buytolet_model->get_user_login($check_email['userID']);
 
-					$date = date('M d, Y h:i:s A');
+				//Successful insert then send email to user
 
-					$subject = "New Login";
+				if ($user['confirmation'] == '' || trim($user['confirmation']) == '') {
 
-					$userdata = array('userID' => $user['userID'], 'loggedIn' => 'yes', 'fname' => $user['firstName'], 'lname' => $user['lastName'], 'email' => $user['email'], 'verified' => $user['verified'], 'phone' => $user['phone'], 'user_type' => $user['user_type'], 'referral_code' => $user['referral_code'], 'rss_points' => $user['points'], 'interest' => $user['interest']);
-					//Set session
+					if ($user['status'] == 'Active') {
 
-					$this->session->set_userdata($userdata);
+						$date = date('M d, Y h:i:s A');
 
-					// Send Notification
-					$message = "We noticed a new sign-in to your account at $date. If you signed in recently, no 
-					need to worry, you can disregards this message.";
+						$subject = "New Login";
 
-					//to-do $this->buytolet_model->insertNotification($subject, $message, $user['userID'], $user['firstName']);
+						$userdata = array('userID' => $user['userID'], 'loggedIn' => 'yes', 'fname' => $user['firstName'], 'lname' => $user['lastName'], 'email' => $user['email'], 'verified' => $user['verified'], 'phone' => $user['phone'], 'user_type' => $user['user_type'], 'referral_code' => $user['referral_code'], 'rss_points' => $user['points'], 'interest' => $user['interest']);
+						//Set session
+
+						$this->session->set_userdata($userdata);
+
+						// Send Notification
+						$message = "We noticed a new sign-in to your account at $date. If you signed in recently, no 
+						need to worry, you can disregards this message.";
 
 
-					echo 1;
+						echo 1;
+
+					} else {
+
+						echo "This account may have been suspended";
+					}
 				} else {
 
-					echo "This account may have been suspended";
+					echo "Account not confirmed!";
 				}
 			} else {
 
-				echo "Account not confirmed!";
+				echo "Check Username/Password";
 			}
-		} else {
+		}else{
 
 			echo "Check Username/Password";
+
 		}
 	}
+
+	public function login_user($username, $password, $dbpassword, $userID){
+
+		$login_limit = 5;
+
+		$user = 0;
+
+		$md5_password = md5($password);
+
+		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+		if($md5_password == $dbpassword){
+
+			$this->buytolet_model->update_password_to_hash($userID, $hashed_password);
+
+			$user = 1;
+
+		}else if(password_verify($password, $dbpassword)){
+
+			$user = 1;
+
+		}else{
+
+			if(!$this->session->has_userdata('attempt')){
+
+				$this->session->set_userdata(array('attempt' => 1));
+
+			}else{
+
+				$new_val = $this->session->userdata('attempt') + 1;
+
+				$this->session->set_userdata('attempt', $new_val);
+
+			}
+
+
+		}
+
+		return $user;
+	}
+
 	public function insertRequest()
 	{
 
@@ -2456,7 +2497,7 @@ class Buytolet extends CI_Controller
 
 					$user_id = '';
 
-					if ($user) {
+					if (!empty($user)) {
 						//Get user ID
 						$user_id = $this->buytolet_model->get_user_by_email($beneficiary_email[$i])['userID'];
 					} else {
@@ -3199,7 +3240,7 @@ class Buytolet extends CI_Controller
 	public function newPass()
 	{
 
-		$password = md5($this->input->post("password"));
+		$password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
 
 		$userID = $this->input->post("userID");
 

@@ -139,14 +139,28 @@ class Buytolet_model extends CI_Model
 	public function check_email($email)
 	{
 
-		$this->db->select('email');
+		$this->db->select('email, password, userID');
 
 		$this->db->from('user_tbl');
 
 		$this->db->where('email', $email);
 
-		return $this->db->count_all_results();
+		return $this->db->row_array();
 	}
+
+	public function update_login_attempt($user_id, $attempt)
+	{
+		$update = array('login_attempt' => $attempt);
+
+		$this->db->select('email, password, userID, login_attempt');
+
+		$this->db->from('user_tbl');
+
+		$this->db->where('email', $email);
+
+		return $this->db->row_array();
+	}
+
 
 	public function add_user($id, $fname, $lname, $email, $phone, $password, $medium, $age, $income, $occupation, $position, $address, $gender, $accredited_investor, $investment_experience, $investment_goal, $investment_capital, $financing_choice, $investment_period, $purchase_plan, $preferred_location_1, $preferred_location_2)
 	{
@@ -228,6 +242,50 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
+	}
+
+	public function get_user_login($user_id)
+	{
+
+		$this->db->select('a.password, a.lastLogin, a.confirmation, b.*, b.user_type');
+
+		$this->db->from('login_tbl as a');
+
+		$this->db->where('a.userID', $user_id);
+
+		$this->db->where('b.status', 'Active');
+
+		$this->db->join('user_tbl as b', 'b.userID = a.userID');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
+
+	public function update_password_to_hash($id, $password){
+
+		$new_password = array("password" => $password);
+
+		$this->db->where('userID', $id);
+
+		if($this->db->update('user_tbl', $new_password)){
+
+			if($this->db->update('login_tbl', $new_password)){
+				
+				return 1;
+
+			}else{
+
+				return 0;
+
+			}
+
+		}else{
+
+			return 0;
+
+		}
+
 	}
 	/*public function login_user($username, $password){
 
