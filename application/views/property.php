@@ -306,8 +306,7 @@
                     <h2>Financing</h2>
                     <h4>Down Payment</h4>
                     <!---<p>What do you have?</p>--->
-                    <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); 
-                                                                                                    ?></h1>
+                    <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
                     <!---- Range selector ---->
                     <div class="range-container">
                         <div class="percentage-container"><?php echo $property['minimum_payment_plan']; ?>%</div>
