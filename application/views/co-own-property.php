@@ -341,15 +341,8 @@
 
                 <h1 class="price" id="unit-demo"><?php echo round((100 / $property['pool_units']), 2); ?>%</h1>
                 <!---- Range selector ---->
-                <!---<div class="range-container">
-                        <div class="percentage-container" id="share-amount-value"><?php //echo round((100/$property['pool_units']), 2); 
-                                                                                    ?>%</div>
-						<input type="range" min="1" max="<?php //echo $property['pool_units']; 
-                                                            ?>" step="1" value="1" class="sliders" id="myRange"> 
-						
-					</div>--->
                 <div class="share-quantity">
-                    <input id="unit-amount" class="unit-amount" min="1" max="<?php echo $property['available_units'] - 1; ?>" value="1" type="number">
+                    <input id="unit-amount" class="unit-amount" min="<?php echo (($property['available_units'] - 1) > 1)? $property['available_units'] - 1 : 0; ?>" max="<?php echo (($property['available_units'] - 1) > 1)? $property['available_units'] - 1 : 0; ?>" value="<?php echo (($property['available_units'] - 1) > 1)? $property['available_units'] - 1 : 0; ?>" type="number">
                 </div>
 
                 <div class="financing-options-sect">
@@ -530,7 +523,7 @@
 <!---- Co own data for purchase ---->
 <input type="hidden" class="co-own-payable" id="co-own-payable" value="<?php echo ($property['price'] + ($property['price'] * 0.1)); ?>" />
 <input type="hidden" class="co-own-shares-amount" id="co-own-shares-amount" value="1" />
-<input type="hidden" id="current_num_of_shares" value="<?php echo $property['available_units'] - 1; ?>" />
+<input type="hidden" id="current_num_of_shares" value="<?php echo (($property['available_units'] - 1) > 0)? $property['available_units'] - 1 : 0; ?>" />
 <!----Co own data for purchase---->
 
 
@@ -749,32 +742,35 @@
 
             var curr_units = $('#current_num_of_shares').val();
 
+            if(curr_units > 1){
 
-            pps = (newVal * 100) / pool_units;
+                pps = (newVal * 100) / pool_units;
 
-            $("#unit-demo").html((pps).toFixed(2) + "%");
+                $("#unit-demo").html((pps).toFixed(2) + "%");
 
-            total_price = parseInt(newVal) * parseInt(total_cost);
+                total_price = parseInt(newVal) * parseInt(total_cost);
 
-            $("#total-output").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas((newVal * total_cost) + parseInt(total_price * 0.1)));
+                $("#total-output").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas((newVal * total_cost) + parseInt(total_price * 0.1)));
 
-            $("#transaction-fee").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(total_price * 0.1));
+                $("#transaction-fee").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(total_price * 0.1));
 
-            //$("#unit-demo").val(numberWithCommas(newVal));
+                //$("#unit-demo").val(numberWithCommas(newVal));
 
-            var coOwnPayable = ((newVal * total_cost) + ((newVal * total_cost) * 0.1));
+                var coOwnPayable = ((newVal * total_cost) + ((newVal * total_cost) * 0.1));
 
-            $("#co-own-payable").val(coOwnPayable);
+                $("#co-own-payable").val(coOwnPayable);
 
-            $('#co-own-shares-amount').val(newVal);
+                $('#co-own-shares-amount').val(newVal);
 
-            spinner.find("input").val(newVal);
+                spinner.find("input").val(newVal);
 
-            spinner.find("input").trigger("change");
+                spinner.find("input").trigger("change");
 
-            $('#remaining-shares').html(numberWithCommas(curr_units - 1));
+                $('#remaining-shares').html(numberWithCommas(curr_units - 1));
 
-            $('#current_num_of_shares').val(curr_units - 1);
+                $('#current_num_of_shares').val(curr_units - 1);
+
+            }
         });
 
         btnDown.click(function() {
@@ -800,35 +796,38 @@
 
             }
 
-            pps = (newVal * 100) / pool_units;
+            if(curr_units > 1){
 
-            $("#unit-demo").html((pps).toFixed(2) + "%");
+                pps = (newVal * 100) / pool_units;
 
-            total_price = parseInt(newVal) * parseInt(total_cost);
+                $("#unit-demo").html((pps).toFixed(2) + "%");
 
-            $("#total-output").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas((newVal * total_cost) + parseInt(total_price * 0.1)));
+                total_price = parseInt(newVal) * parseInt(total_cost);
 
-            $("#transaction-fee").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(total_price * 0.1));
+                $("#total-output").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas((newVal * total_cost) + parseInt(total_price * 0.1)));
 
-            //$("#unit-demo").val(numberWithCommas(newVal));
+                $("#transaction-fee").html("<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(total_price * 0.1));
 
-            var coOwnPayable = ((newVal * total_cost) + ((newVal * total_cost) * 0.1));
+                //$("#unit-demo").val(numberWithCommas(newVal));
 
-            $("#co-own-payable").val(coOwnPayable);
+                var coOwnPayable = ((newVal * total_cost) + ((newVal * total_cost) * 0.1));
 
-            $('#co-own-shares-amount').val(newVal);
+                $("#co-own-payable").val(coOwnPayable);
 
-            spinner.find("input").val(newVal);
+                $('#co-own-shares-amount').val(newVal);
 
-            spinner.find("input").trigger("change");
+                spinner.find("input").val(newVal);
 
-            $('#remaining-shares').html(numberWithCommas(parseInt(curr_units) + 1));
+                spinner.find("input").trigger("change");
 
-            spinner.find("input").val(newVal);
+                $('#remaining-shares').html(numberWithCommas(parseInt(curr_units) + 1));
 
-            spinner.find("input").trigger("change");
+                spinner.find("input").val(newVal);
 
-            $('#current_num_of_shares').val(parseInt(curr_units) + 1);
+                spinner.find("input").trigger("change");
+
+                $('#current_num_of_shares').val(parseInt(curr_units) + 1);
+            }
         });
 
     });
