@@ -1747,7 +1747,7 @@ class Buytolet extends CI_Controller
 
 		$email_res = $this->buytolet_model->check_email($email);
 
-		if (!empty($email_res)) {
+		if (empty($email_res)) {
 			//Check if user has been bought a gift before
 			$beneficiary = $this->buytolet_model->check_beneficiary_details($email)['userID'];
 
