@@ -4348,17 +4348,17 @@ class Buytolet extends CI_Controller
 
 			$body = '%3Ctable%20width%3D%22100%25%22%3E%3Ctr%3E%3Ctd%20width%3D%2233.3%25%22%3E%26nbsp%3B%3C%2Ftd%3E%3Ctd%20style%3D%22text-align%3Acenter%22%20class%3D%22logo-container%22%20width%3D%2233.3%25%22%3E%3Cimg%20width%3D%22130px%22%20src%3D%22https%3A%2F%2Fbuy.smallsmall.com%2Fassets%2Fimg%2Flogo.png%22%20%2F%3E%3C%2Ftd%3E%3Ctd%20width%3D%2233.3%25%22%3E%26nbsp%3B%3C%2Ftd%3E%3C%2Ftr%3E%3C%2Ftable%3EYou%20are%20on%20your%20way%21%3Cp%3ELet%27s%20confirm%20your%20email%20address%3C%2Fp%3EClick%20on%20the%20link%20below%20to%20confirm%20your%20email%20address.%3Cdiv%20style%3D%22width%3A100%25%3Bheight%3A1px%3Bmargin%3A10px%200%3B%22%3E%3C%2Fdiv%3E' . $button . '';
 
-			$method = 'https://api.selzy.com/en/api/sendEmail?format=json&api_key=6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y&email=' . $email . '&sender_name=Buy+Small+Small&sender_email=hello@buysmallsmall.ng&subject=Sample+Subject&body=' . $body . '&list_id=20';
+			$method = 'https://api.selzy.com/en/api/sendEmail?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&email=' . $email . '&sender_name=Buy+Small+Small&sender_email=hello@buysmallsmall.ng&subject=Sample+Subject&body=' . $body . '&list_id=20';
 		} elseif ($email_type == 'subscribe') {
 
-			$method = 'https://api.selzy.com/en/api/subscribe?format=json&api_key=6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y&list_ids=20&fields[email]=' . $email . '&fields[Name]=' . $name . '&double_optin=3&overwrite=0';
+			$method = 'https://api.selzy.com/en/api/subscribe?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&list_ids=20&fields[email]=' . $email . '&fields[Name]=' . $name . '&double_optin=3&overwrite=0';
 		} elseif ($email_type == 'password-reset') {
 
 			$button = '%3Cdiv%20style%3D%22display%3Ainline-block%3Btext-align%3Acenter%3Bpadding-left%3A15px%3Bpadding-right%3A15px%3Bpadding-top%3A20px%3Bpadding-bottom%3A20px%3Bbackground%3A%2364318a%22%3E%3Ca%20style%3D%22text-decoration%3Anone%3Bcolor%3A%23FFF%22%20href%3D%22' . $link . '%22%3EReset%20password%3C%2Fa%3E%3C%2Fdiv%3E';
 
 			$body = '%3Ctable%20width%3D%22100%25%22%3E%3Ctr%3E%3Ctd%20width%3D%2233.3%25%22%3E%26nbsp%3B%3C%2Ftd%3E%3Ctd%20style%3D%22text-align%3Acenter%22%20class%3D%22logo-container%22%20width%3D%2233.3%25%22%3E%3Cimg%20width%3D%22130px%22%20src%3D%22https%3A%2F%2Fbuy.smallsmall.com%2Fassets%2Fimg%2Flogo.png%22%20%2F%3E%3C%2Ftd%3E%3Ctd%20width%3D%2233.3%25%22%3E%26nbsp%3B%3C%2Ftd%3E%3C%2Ftr%3E%3C%2Ftable%3EHello%20' . $name . '%2C%3Cbr%3EWe%20received%20a%20request%20to%20reset%20your%20password.%20Click%20the%20link%20below%20to%20reset%20your%20password%3Cdiv%20style%3D%22width%3A100%25%3Bheight%3A1px%3Bmargin%3A10px%200%3B%22%3E%3C%2Fdiv%3E' . $button . '%3Cdiv%20style%3D%22width%3A100%25%3Bheight%3A1px%3Bmargin%3A10px%200%3B%22%3E%3C%2Fdiv%3E%3Cb%3EIf%20you%20didn%27t%20intend%20to%20reset%20your%20password%2C%20no%20action%20is%20needed.%3C%2Fb%3E%3Cbr%3EHave%20questions%3F%3Cbr%3EPlease%20check%20our%20faq%20or%20contact%20us%3A%20hello%40buysmallsmall.ng%3Cbr%3E%3Cbr%3ERegards%2C%3Cbr%3E%3Cb%3ETeam%20BuySmallSmall%3C%2Fb%3E';
 
-			$method = 'https://api.selzy.com/en/api/sendEmail?format=json&api_key=6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y&email=' . $email . '&sender_name=Buy+Small+Small&sender_email=hello@buysmallsmall.ng&subject=' . $subject . '&body=' . $body . '&list_id=20';
+			$method = 'https://api.selzy.com/en/api/sendEmail?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&email=' . $email . '&sender_name=Buy+Small+Small&sender_email=hello@buysmallsmall.ng&subject=' . $subject . '&body=' . $body . '&list_id=20';
 		}
 
 

@@ -1473,9 +1473,9 @@ class Buytolet_model extends CI_Model
 
 		$this->db->group_end();
 
-		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'LEFT OUTER');
+		$this->db->join('buytolet_transactions as b', 'b.transaction_id = a.refID', 'INNER');
 
-		$this->db->join('buytolet_beneficiary_details as c', 'c.requestID = a.refID', 'LEFT OUTER');
+		$this->db->join('buytolet_beneficiary_details as c', 'c.requestID = a.refID', 'INNER');
 
 		$query = $this->db->get();
 
