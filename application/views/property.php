@@ -595,6 +595,8 @@
     $minimum = $property['minimum_payment_plan'];
 } ?>
 
+<input type="hidden" id="percentage-value" value="<?php echo @$property['minimum_payment_plan']; ?>" />
+
 <input type="hidden" class="payment-plan-minimum" id="payment-plan-minimum" value="<?php echo $property['minimum_payment_plan'] / 100; //if(@$property['promo_category'] == 'payment-plan'){ echo @$property['promo_price'] * (@$minimum / 100); }else{ echo @$property['price'] * (@$minimum / 100); } 
                                                                                     ?>" />
 
@@ -826,6 +828,8 @@
 
         //Insert percentage in div
         $('.percentage-container').html(((slider.value * 100) / total_cost) + "%");
+
+        $('#percentage-value').html(((slider.value * 100) / total_cost) + "%");
 
         total_price = parseInt(this.value) + parseInt(one_percent) + parseInt(four_percent);
 

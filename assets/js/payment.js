@@ -76,7 +76,10 @@ $('.option-but').click(function(){
 	var purchase_frequency = 0;
 	
 	var duration = 0;
-	
+
+	var percentage_value = 0;
+
+		
 	if(payment_period == '' && !(onpl_option)){
 	    
 	    alert("Select a tenor period please");
@@ -84,16 +87,31 @@ $('.option-but').click(function(){
 	    $('.option-but').html("Apply Now");
 	    
 	    return false;
+
 	}else if(payment_period == '' && (onpl_option)){
 
-		payment_period = 6;
+		percentage_value = $('#percentage-value').val();
+
+		if(percentage_value >= 35 && percentage_value <= 54){
+
+			payment_period = 1;
+
+		}else if(percentage_value >= 55 && percentage_value <= 64){
+
+			payment_period = 2;
+
+		}else if(percentage_value >= 65 && percentage_value <= 100){
+
+			payment_period = 3;
+
+		}
 
 	}
 	
 	if(plan == 'finance'){		
 		
-		payable = finance_payable;	
-	
+		payable = finance_payable;
+
 		down_payment = $('.payment').val();
 		
 		balance = property_cost - down_payment;
@@ -175,6 +193,8 @@ $('.option-but').click(function(){
 						
 						"duration" : duration,
 
+						"percentage_value" : percentage_value,
+
 						"personal_details" : [],
 
 						"employment_details" : []
@@ -222,6 +242,8 @@ $('.option-but').click(function(){
 		order.method = '';
 						
 		order.purchase_frequency = purchase_frequency;
+
+		order.percentage_value = percentage_value;
 		
 		order.duration = duration;
 
