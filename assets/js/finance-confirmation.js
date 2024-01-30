@@ -24,6 +24,7 @@ $(document).ready(function(){
 
         due_amount = order.payable;
 
+
     }
     
     $('#total-amount-payable').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.payable));
