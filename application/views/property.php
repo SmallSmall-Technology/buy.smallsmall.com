@@ -303,7 +303,7 @@
 
             <div class="payment-box payment-boxes mortgage-finance-payment">
                 <?php if ($property['investment_type'] != 6) { ?>
-                    <h2>Financing</h2>
+                    <h2>Payment Plan</h2>
                     <h4>Down Payment</h4>
                     <!---<p>What do you have?</p>--->
                     <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
@@ -372,6 +372,16 @@
                             <div class="finance-right-options">
                                 <div>
                                     <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.04); ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-list3">
+                            <div class="finance-left-options">
+                                <div class="finance">Payment duration</div>
+                            </div>
+                            <div class="finance-right-options">
+                                <div>
+                                    <div class="finance-numbers" id="repayment-period-display">1 Year</div>
                                 </div>
                             </div>
                         </div>
@@ -816,6 +826,8 @@
 
     var total_price = 0;
 
+    var percentage_val = 0;
+
     total_price = (total_cost * pplan_minimum) + parseInt(one_percent) + parseInt(four_percent);
 
     output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(slider.value);
@@ -826,10 +838,26 @@
 
     slider.oninput = function() {
 
-        //Insert percentage in div
-        $('.percentage-container').html(((slider.value * 100) / total_cost) + "%");
+        percentage_val = ((slider.value * 100) / total_cost);
 
-        $('#percentage-value').html(((slider.value * 100) / total_cost) + "%");
+        if(percentage_val > 35 && percentage_val < 54){
+
+            $('#repayment-period-display').html('1 Year');
+
+        }else if(percentage_val > 55 && percentage_val < 64){
+
+            $('#repayment-period-display').html('2 Years');
+
+        }else if(percentage_val > 65 && percentage_val < 100){
+
+            $('#repayment-period-display').html('3 Years');
+
+        }
+
+        //Insert percentage in div
+        $('.percentage-container').html(percentage_val + "%");
+
+        $('#percentage-value').val(percentage_val);
 
         total_price = parseInt(this.value) + parseInt(one_percent) + parseInt(four_percent);
 
@@ -845,11 +873,7 @@
 
         finance_payment.value = total_price;
 
-        //$("input[name='repayment-duration']:checked"). val(); 
-
-        var payment_period = $(".repayment-duration").val();
-
-
+        //var payment_period = $(".repayment-duration").val();
 
     }
 
