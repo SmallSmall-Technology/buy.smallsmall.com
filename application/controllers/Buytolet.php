@@ -1758,6 +1758,8 @@ class Buytolet extends CI_Controller
 			//Isert Record To Nector For Awward and Reward for Users Signing up newly
 			$nectorContry = "nga";
 
+			$sendUsersRecordToSelzy = $this->insertToSelzyDashboard($fname, $lname, $email, $phone);
+
 			$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
 
 			// Execute the Partnero script after successful registration
@@ -1773,7 +1775,7 @@ class Buytolet extends CI_Controller
 				$headers = array(
 					'Content-Type' => 'application/json',
 					'Accept' => 'application/json',
-					'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+					'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
 				);
 
 				$client = new \GuzzleHttp\Client([
@@ -1913,6 +1915,44 @@ class Buytolet extends CI_Controller
 		// echo $ajaxResponse;
 
 	}
+
+	// Insert new subscribers details to Selzy dashboard for easy tracking on signup
+	public function insertToSelzyDashboard($fname, $lname, $email, $phone)
+	{
+
+		$method = 'https://api.selzy.com/en/api/subscribe?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&list_ids=323&fields[email]=' . $email . '&fields[Name]=' . $fname . '&fields[Surname]=' . $lname . '&fields[phone]=' . $phone . '&double_optin=3&overwrite=0';
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+
+			CURLOPT_URL => $method,
+
+			CURLOPT_CUSTOMREQUEST => "POST",
+
+			CURLOPT_RETURNTRANSFER => true,
+
+			CURLOPT_HTTPHEADER => [
+
+				"content-type: application/json"
+
+			],
+
+		));
+
+		$result = curl_exec($curl); 
+
+		if (curl_errno($curl)) { // Check for cURL errors
+			echo 'cURL Error: ' . curl_error($curl);
+		}
+
+		// Close the cURL session
+		//curl_close($curl);
+
+		// Return the API response
+		return $result;
+	}
+
 
 	public function executePartneroScript($id, $fname, $email)
 	{
@@ -2106,7 +2146,7 @@ class Buytolet extends CI_Controller
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
-			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
 		);
 
 		$client = new \GuzzleHttp\Client([
@@ -2193,7 +2233,7 @@ class Buytolet extends CI_Controller
 
 		$check_email = $this->buytolet_model->check_email($username);
 
-		if(!empty($check_email)){
+		if (!empty($check_email)) {
 
 			$result = $this->login_user($username, $raw_password, $check_email['password'], $check_email['userID']);
 
@@ -2222,7 +2262,6 @@ class Buytolet extends CI_Controller
 
 
 						echo 1;
-
 					} else {
 
 						echo "This account may have been suspended";
@@ -2235,14 +2274,14 @@ class Buytolet extends CI_Controller
 
 				echo "Check Username/Password";
 			}
-		}else{
+		} else {
 
 			echo "Check Username/Password";
-
 		}
 	}
 
-	public function login_user($username, $password, $dbpassword, $userID){
+	public function login_user($username, $password, $dbpassword, $userID)
+	{
 
 		$login_limit = 5;
 
@@ -2252,31 +2291,25 @@ class Buytolet extends CI_Controller
 
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-		if($md5_password == $dbpassword){
+		if ($md5_password == $dbpassword) {
 
 			$this->buytolet_model->update_password_to_hash($userID, $hashed_password);
 
 			$user = 1;
-
-		}else if(password_verify($password, $dbpassword)){
+		} else if (password_verify($password, $dbpassword)) {
 
 			$user = 1;
+		} else {
 
-		}else{
-
-			if(!$this->session->has_userdata('attempt')){
+			if (!$this->session->has_userdata('attempt')) {
 
 				$this->session->set_userdata(array('attempt' => 1));
-
-			}else{
+			} else {
 
 				$new_val = $this->session->userdata('attempt') + 1;
 
 				$this->session->set_userdata('attempt', $new_val);
-
 			}
-
-
 		}
 
 		return $user;
@@ -3095,7 +3128,7 @@ class Buytolet extends CI_Controller
 
 				'Accept' => 'application/json',
 
-				'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+				'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
 			);
 
 			$client = new \GuzzleHttp\Client([
@@ -4661,7 +4694,7 @@ class Buytolet extends CI_Controller
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
-			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
 		);
 
 		$client = new \GuzzleHttp\Client([
@@ -4729,7 +4762,7 @@ class Buytolet extends CI_Controller
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
-			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
 		);
 
 		$client = new \GuzzleHttp\Client([
@@ -5072,7 +5105,7 @@ class Buytolet extends CI_Controller
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/json',
-			'X-API-KEY' => '6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
 		);
 
 		$client = new \GuzzleHttp\Client([
