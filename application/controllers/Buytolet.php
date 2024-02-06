@@ -4502,9 +4502,11 @@ class Buytolet extends CI_Controller
 	public function test_email()
 	{
 
+		$method = 'https://api.selzy.com/en/api/subscribe?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&list_ids=100&fields[email]=' . $email . '&fields[Name]=' . $fname . '&fields[Surname]='.$lname.'&fields[phone]=' . $phone . '&double_optin=3&overwrite=0';
+
 		$body = '%3Ctable%20width%3D%22100%25%22%3E%3Ctr%3E%3Ctd%20width%3D%2233.3%25%22%3E%26nbsp%3B%3C%2Ftd%3E%3Ctd%20style%3D%22text-align%3Acenter%22%20class%3D%22logo-container%22%20width%3D%2233.3%25%22%3E%3Cimg%20width%3D%22130px%22%20src%3D%22https%3A%2F%2Fbuy.smallsmall.com%2Fassets%2Fimg%2Flogo.png%22%20%2F%3E%3C%2Ftd%3E%3Ctd%20width%3D%2233.3%25%22%3E%26nbsp%3B%3C%2Ftd%3E%3C%2Ftr%3E%3C%2Ftable%3EYou%20are%20on%20your%20way%21%3Cp%3ELet%27s%20confirm%20your%20email%20address%3C%2Fp%3EClick%20on%20the%20link%20below%20to%20confirm%20your%20email%20address.%3Cdiv%20style%3D%22display%3Ainline-block%3Btext-align%3Acenter%3Bpadding-left%3A15px%3Bpadding-right%3A15px%3Bpadding-top%3A20px%3Bpadding-bottom%3A20px%3Bbackground%3A%2364318a%22%3E%3Ca%20style%3D%22text-decoration%3Anone%3Bcolor%3A%23FFF%22%20href%3D%22https://seun.com%22%3EConfirm%20email%20address%3C%2Fa%3E%3C%2Fdiv%3E';
 
-		$verify = 'https://api.selzy.com/en/api/sendEmail?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&email=seuncrowther@gmail.com&sender_name=Seun&sender_email=hello@buysmallsmall.ng&subject=Sample+Subject&body=' . $body . '&list_id=20';
+		$verify = 'https://api.selzy.com/en/api/sendEmail?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&email=seuncrowther@gmail.com&sender_name=Seun&sender_email=hello@buysmallsmall.ng&subject=Sample+Subject&body=' . $body . '&list_id=323';
 
 		$subscribe = 'https://api.selzy.com/en/api/subscribe?format=json&api_key=6tkb5syz5g1bgtkz1uonenrxwpngrwpq9za1u6ha&list_ids=20&fields[email]=seuncrowther@gmail.com&fields[Name]=Oluwaseun+Crowther&double_optin=0&overwrite=0';
 
