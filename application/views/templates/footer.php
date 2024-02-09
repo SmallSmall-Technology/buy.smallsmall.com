@@ -59,12 +59,13 @@
 					<a class="link-text" href="#">Careers</a>
 					<!-- <a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>		 -->
 					<a class="link-text" href="https://intercom.help/BuySmallsmall/en/" target="_blank">Knowledge base</a>
+					<a class="link-text" href="https://newsletter.smallsmall.com/" target="_blank">Sign up to our newsletter</a>
 
 				</div>
           		<div class="footer-grid-box">
             		<a class="link-header" href="<?php echo base_url('/'); ?>">Legal</a>
             		<a class="link-text" href="<?php echo base_url('privacy-policy'); ?>">Privacy policy</a>
-            		<a class="link-text" href="<?php echo base_url('terms-and-condition'); ?>">Terms & Conditions</a>
+            		<a class="link-text" href="<?php echo base_url('terms-and-conditions'); ?>">Terms & Conditions</a>
             		<a class="link-text" href="<?php echo base_url('bnpl-terms-and-conditions'); ?>">BNPL Terms & Conditions</a>
 					<!-- <a class="link-text" href="</?php echo base_url('faq'); ?>">FAQ</a> -->
             		<a class="link-text" href="https://intercom.help/BuySmallsmall/en/">FAQ</a>
