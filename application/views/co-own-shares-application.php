@@ -22,7 +22,8 @@
                         <span class="shares-txt-info small"><input class="target-option" type="checkbox" /> Subscribe to <?php echo ($targetOption)? 'another' : 'our'; ?> Co-ownership Shares Target Program </span>
                     </div>
                     
-                    <a id="shares-target-link" href="https://smallsmall.zendesk.com/hc/en-us/categories/10765648854429-Shares-Target-Program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a>
+                    <!-- <a id="shares-target-link" href="https://smallsmall.zendesk.com/hc/en-us/categories/10765648854429-Shares-Target-Program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a> -->
+                    <a id="shares-target-link" href="https://intercom.help/BuySmallsmall/en/collections/6443737-shares-target-program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a>
 
                     <div class="single-span-col-input btm-spc user-target-options">
                         <span id="field-label">Select a plan</span>
