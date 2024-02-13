@@ -277,7 +277,7 @@ class Buytolet_model extends CI_Model
 	public function getHomeProps($type, $limit)
 	{
 
-		$this->db->select('a.*, b.id, b.type, b.slug');
+		$this->db->select('a.*, b.id, b.type, b.slug, c.name as propState');
 
 		$this->db->from('buytolet_property as a');
 
@@ -290,6 +290,8 @@ class Buytolet_model extends CI_Model
 		//$this->db->where('a.featured', 1);
 
 		$this->db->join('apt_type_tbl as b', 'b.id = a.apartment_type', 'LEFT');
+
+		$this->db->join('states as c', 'c.id = a.state', 'LEFT');
 
 		$this->db->limit($limit);
 
@@ -302,7 +304,7 @@ class Buytolet_model extends CI_Model
 	public function getHomePropsTest($type, $limit)
 	{
 
-		$this->db->select('a.*, b.id, b.type, b.slug');
+		$this->db->select('a.*, b.id, b.type, b.slug, c.name as propState');
 
 		$this->db->from('buytolet_property as a');
 
@@ -315,6 +317,8 @@ class Buytolet_model extends CI_Model
 		//$this->db->where('a.featured', 1);
 
 		$this->db->join('apt_type_tbl as b', 'b.id = a.apartment_type', 'LEFT');
+
+		$this->db->join('states as c', 'c.id = a.state', 'LEFT');
 
 		$this->db->limit($limit);
 
@@ -328,7 +332,7 @@ class Buytolet_model extends CI_Model
 	public function getPoolHomeProps()
 	{
 
-		$this->db->select('a.*, b.id, b.type, b.slug');
+		$this->db->select('a.*, b.id, b.type, b.slug, c.name as propState');
 
 		$this->db->from('buytolet_property as a');
 
@@ -341,6 +345,8 @@ class Buytolet_model extends CI_Model
 		//$this->db->where('a.availability !=', 'Sold');
 
 		$this->db->join('apt_type_tbl as b', 'b.id = a.apartment_type', 'LEFT');
+
+		$this->db->join('states as c', 'c.id = a.state', 'LEFT');
 
 		$this->db->limit(4);
 
