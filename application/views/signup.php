@@ -39,28 +39,32 @@
 							<input placeholder="Lastname" class="verify-txt" id="lname" type="text">
 						</div>
 					</div>
+
 					<div class="single-span-col-input">
 						<div class="textInput-box">
 							<input placeholder="Email" class="verify-txt" id="email" type="text">
 						</div>
 					</div>
+
 					<div class="single-span-col-input">
 						<div class="textInput-box">
 							<input placeholder="Phone number" class="verify-txt" id="phone" type="text">
 						</div>
 					</div>
+
 					<div class="single-span-col-input">
 						<div class="textInput-box">
 							<input placeholder="Password" class="verify-txt" id="password" type="password">
 						</div>
 					</div>
+
 					<div class="single-span-col-input">
 						<div class="textInput-box">
 							<input placeholder="Confirm password" class="verify-txt" id="confirm-pass" type="password">
 						</div>
 					</div>
 
-					<div class="double-span-col-input">
+					<!-- <div class="double-span-col-input">
 						<div class="single-span-col-input">
 							<select id="gender" class="minimal gender verify-txt">
 								<option>Gender</option>
@@ -76,70 +80,8 @@
 								<?php } ?>
 							</select>
 						</div>
-					</div>
-					<div class="single-span-col-input">
-						<a class="button next">Next</a>
-					</div>
-					<!---<div class="sign-up-link">
-						<span>Already have an account?</span>  <a href="">Sign in</a>
-						</div>--->
+					</div> -->
 
-				</Box>
-			</div>
-			<!--- Sixth form here --->
-
-		</fieldset>
-
-		<fieldset>
-			<!--- Seventh form here --->
-			<div class="form-wrapper">
-				<Box class="form-input-container">
-					<div class="form-title">
-						<h1>Create an account</h1>
-						<p>Create an investor profile to get started</p>
-					</div>
-					<div class="form-report">Error signing you up</div>
-
-					<div class="single-span-col-input all-fields">
-						<div class="textInput-box">
-							<select class="minimal income-range" id="income-range">
-								<option value="">Income range</option>
-								<option value="500000">Under N500,000</option>
-								<option value="1000000">N500,000 - N1,000,000</option>
-								<option value="2500000">N1,100,000 - N2,500,000</option>
-								<option value="5000000">N2,600,000 - N5,000,000</option>
-								<option value="7500000">N5,100,000 - N7,500,000</option>
-								<option value="10000000">N7,600,000 - N10,000,000</option>
-								<option value="15000000">N10,100,000 - N15,000,000</option>
-								<option value="20000000">N15,100,000 - N20,000,000</option>
-								<option value="30000000">N21,000,000 - N30,000,000</option>
-								<option value="40000000">N31,000,000 - N40,000,000</option>
-								<option value="50000000">N41,000,000 - N50,000,000</option>
-								<option value="51000000">N51,000,000 + </option>
-							</select>
-						</div>
-					</div>
-					<div class="single-span-col-input all-fields">
-						<div class="textInput-box">
-							<input placeholder="Occupation" id="occupation" class="occupation verify-txt" type="text">
-						</div>
-					</div>
-					<div class="single-span-col-input all-fields">
-						<div class="textInput-box">
-							<input class="position verify-txt" id="position" placeholder="Position" type="text">
-						</div>
-					</div>
-					<div class="single-span-col-input all-fields">
-						<textarea class="text-area address" rows="4" placeholder="Address"></textarea>
-					</div>
-					<div class="single-span-col-input">
-						<select id="country-code" class="minimal country-code verify-txt">
-							<option value="">Select Country</option>
-							<?php foreach ($countries as $country => $value) { ?>
-								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] . ' - ' . $value['sortname'] ?></option>
-							<?php } ?>
-						</select>
-					</div>
 					<div class="single-span-col-input all-fields">
 						<select class="medium verify-txt minimal">
 							<option value="">How did you hear about us</option>
@@ -166,15 +108,111 @@
 						<input type="submit" class="signup-button button" value="Finish" />
 
 						<p>By signing up I agree to BuySmallsmall's Terms of Service and Privacy Policy. </p>
+
 					</div>
+
+					<!-- <div class="single-span-col-input">
+						<a class="button next">Next</a>
+					</div> -->
 					<!---<div class="sign-up-link">
-						<span>Already have an account?</span>  <Link to="">Sign in</Link>
+						<span>Already have an account?</span>  <a href="">Sign in</a>
 						</div>--->
 
 				</Box>
 			</div>
-			<!--- Seventh form here --->
+			<!--- Sixth form here --->
+
 		</fieldset>
+
+		<!-- <fieldset> -->
+			<!--- Seventh form here --->
+			<!-- <div class="form-wrapper"> -->
+				<!-- <Box class="form-input-container"> -->
+					<!-- <div class="form-title">
+						<h1>Create an account</h1>
+						<p>Create an investor profile to get started</p>
+					</div> -->
+					<!-- <div class="form-report">Error signing you up</div> -->
+
+					<!-- <div class="single-span-col-input all-fields">
+						<div class="textInput-box">
+							<select class="minimal income-range" id="income-range">
+								<option value="">Income range</option>
+								<option value="500000">Under N500,000</option>
+								<option value="1000000">N500,000 - N1,000,000</option>
+								<option value="2500000">N1,100,000 - N2,500,000</option>
+								<option value="5000000">N2,600,000 - N5,000,000</option>
+								<option value="7500000">N5,100,000 - N7,500,000</option>
+								<option value="10000000">N7,600,000 - N10,000,000</option>
+								<option value="15000000">N10,100,000 - N15,000,000</option>
+								<option value="20000000">N15,100,000 - N20,000,000</option>
+								<option value="30000000">N21,000,000 - N30,000,000</option>
+								<option value="40000000">N31,000,000 - N40,000,000</option>
+								<option value="50000000">N41,000,000 - N50,000,000</option>
+								<option value="51000000">N51,000,000 + </option>
+							</select>
+						</div>
+					</div> -->
+					<!-- <div class="single-span-col-input all-fields">
+						<div class="textInput-box">
+							<input placeholder="Occupation" id="occupation" class="occupation verify-txt" type="text">
+						</div>
+					</div> -->
+					<!-- <div class="single-span-col-input all-fields">
+						<div class="textInput-box">
+							<input class="position verify-txt" id="position" placeholder="Position" type="text">
+						</div>
+					</div> -->
+					<!-- <div class="single-span-col-input all-fields">
+						<textarea class="text-area address" rows="4" placeholder="Address"></textarea>
+					</div> -->
+
+					<!-- <div class="single-span-col-input"> -->
+						<!-- <select id="country-code" class="minimal country-code verify-txt"> -->
+							<!-- <option value="">Select Country</option> -->
+
+							<!-- </?php foreach ($countries as $country => $value) { ?> -->
+								<!-- <option value="</?php echo $value['id'] ?>"></?php echo $value['name'] . ' - ' . $value['sortname'] ?></option> -->
+							<!-- </?php } ?> -->
+
+						<!-- </select> -->
+					<!-- </div> -->
+
+					<!-- <div class="single-span-col-input all-fields">
+						<select class="medium verify-txt minimal">
+							<option value="">How did you hear about us</option>
+							<option value="Instagram">Instagram</option>
+							<option value="Facebook">Facebook</option>
+							<option value="Twitter">Twitter</option>
+							<option value="Television">Television</option>
+							<option value="Radio">Radio</option>
+							<option value="Word of mouth">Word Of Mouth</option>
+							<option value="Instagram">Newpaper</option>
+							<option value="Billboards/Banner Ads">Billboards/Banner Ads</option>
+							<option value="Newsletter/Email Campaigns">Newsletter/Email Campaigns</option>
+						</select>
+					</div> -->
+
+					<!-- <div class="single-span-col-input all-fields">
+						<div class="textInput-box">
+							<input class="referral-code" id="referral-code" placeholder="Referral code" type="text">
+						</div>
+					</div>
+ -->
+					<!-- <div class="single-span-col-input all-fields">
+
+						<input type="submit" class="signup-button button" value="Finish" />
+
+						<p>By signing up I agree to BuySmallsmall's Terms of Service and Privacy Policy. </p>
+					</div> -->
+					<!---<div class="sign-up-link">
+						<span>Already have an account?</span>  <Link to="">Sign in</Link>
+						</div>--->
+
+				<!-- </Box> -->
+			<!-- </div> -->
+			<!--- Seventh form here --->
+		<!-- </fieldset> -->
 	</form>
 	</div>
 
