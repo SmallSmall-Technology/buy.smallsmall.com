@@ -27,21 +27,21 @@
 				<Box class="form-input-container">
 					<div class="form-title">
 						<h1>Create an account</h1>
-						<p>Create an investor profile to get started</p>
+						<p><?php echo (!empty($user))? 'Complete your' : 'Create an' ; ?> investor profile to get started</p>
 					</div>
 					<div class="form-report">Error signing you up</div>
 
 					<div class="double-span-col-input">
 						<div class="textInput-box">
-							<input placeholder="Firstname" class="verify-txt" id="fname" type="text">
+							<input <?php echo (!empty($user))? 'disabled' : '' ; ?> placeholder="Firstname" class="verify-txt" id="fname" type="text" value="<?php echo (!empty($user))? $user['firstName'] : '' ; ?>">
 						</div>
 						<div class="textInput-box">
-							<input placeholder="Lastname" class="verify-txt" id="lname" type="text">
+							<input <?php echo (!empty($user))? 'disabled' : '' ; ?> placeholder="Lastname" class="verify-txt" id="lname" type="text" value="<?php echo (!empty($user))? $user['lastName'] : '' ; ?>">
 						</div>
 					</div>
 					<div class="single-span-col-input">
 						<div class="textInput-box">
-							<input placeholder="Email" class="verify-txt" id="email" type="text">
+							<input <?php echo (!empty($user))? 'disabled' : '' ; ?> placeholder="Email" class="verify-txt" id="email" type="text" value="<?php echo (!empty($user))? $user['email'] : '' ; ?>">
 						</div>
 					</div>
 					<div class="single-span-col-input">
@@ -96,7 +96,7 @@
 				<Box class="form-input-container">
 					<div class="form-title">
 						<h1>Create an account</h1>
-						<p>Create an investor profile to get started</p>
+						<p><?php echo (!empty($user))? 'Complete your' : 'Create an' ; ?> investor profile to get started</p>
 					</div>
 					<div class="form-report">Error signing you up</div>
 
@@ -167,9 +167,7 @@
 
 						<p>By signing up I agree to BuySmallsmall's Terms of Service and Privacy Policy. </p>
 					</div>
-					<!---<div class="sign-up-link">
-						<span>Already have an account?</span>  <Link to="">Sign in</Link>
-						</div>--->
+					<input type="hidden" name="userID" class="userID" value="<?php echo $user['userID']; ?>" />
 
 				</Box>
 			</div>

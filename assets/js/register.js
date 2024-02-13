@@ -89,6 +89,8 @@ $('#signupForm').submit(function(e){
 
 	var ref_code = $.trim($('#referral-code').val());
 
+	var registered = $.trim($('.userID').val());
+
 	var filteredList = []; 
 	
 	//Check for empty fields
@@ -124,6 +126,7 @@ $('#signupForm').submit(function(e){
 	
 
 	var data = {
+		'user_id' : registered,
 
 		'fname' : fname,
 

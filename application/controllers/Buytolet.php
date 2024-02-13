@@ -538,10 +538,14 @@ class Buytolet extends CI_Controller
 
 		$this->load->view('templates/footer', $data);
 	}
-	public function signup()
+	public function signup($userID = NULL)
 	{
 
 		if (!$this->session->has_userdata('loggedIn')) {
+
+			if($userID)
+
+				$data['user'] = $this->buytolet_model->get_user($userID);
 
 			//Check login status
 
@@ -1707,6 +1711,8 @@ class Buytolet extends CI_Controller
 
 		$ua = $_SERVER['HTTP_USER_AGENT'];
 
+		$user_id = trim($this->input->post("user_id"));
+
 		$fname = trim($this->input->post("fname"));
 
 		$lname = trim($this->input->post("lname"));
@@ -1743,17 +1749,135 @@ class Buytolet extends CI_Controller
 
 		$rc = strtoupper(substr($lname, 0, 3) . $code);
 
-		//Check to see if email exists already
+		if(!$user_id){
 
-		$email_res = $this->buytolet_model->check_email($email);
+			//Check to see if email exists already
+			$email_res = $this->buytolet_model->check_email($email);
 
-		if (empty($email_res)) {
-			//Check if user has been bought a gift before
-			$beneficiary = $this->buytolet_model->check_beneficiary_details($email)['userID'];
+			if (empty($email_res)) {
+				//Check if user has been bought a gift before
+				$beneficiary = $this->buytolet_model->check_beneficiary_details($email)['userID'];
 
-			$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
+				$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
 
-			$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
+				$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
+
+				//Isert Record To Nector For Awward and Reward for Users Signing up newly
+				$nectorContry = "nga";
+
+				$sendUsersRecordToSelzy = $this->insertToSelzyDashboard($fname, $lname, $email, $phone);
+
+				$sendUsersRecordToNector = $this->insertToNectorDashboard($id, $fname, $lname, $email, $phone, $nectorContry);
+
+				// Execute the Partnero script after successful registration
+				$sendUsersRecordToPartneroForTracking = $this->executePartneroScript($id, $fname, $email);
+
+				if ($registration) {
+
+					require 'vendor/autoload.php'; //For Unione template authoload
+
+					// $sendUsersRecordToPartneroForTracking = $this->executePartneroScript($id, $fname, $email);
+
+					//Unione Template
+					$headers = array(
+						'Content-Type' => 'application/json',
+						'Accept' => 'application/json',
+						'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
+					);
+
+					$client = new \GuzzleHttp\Client([
+						'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+					]);
+
+					$requestBody = [
+						"id" => "5b4bd50c-f3ad-11ed-a4f1-dabfde6df242"
+					];
+
+					// end Unione Template
+
+					$link = base_url() . 'activate/' . $confirmationCode;
+
+					//Unione Template
+
+					try {
+						$response = $client->request('POST', 'template/get.json', array(
+							'headers' => $headers,
+
+							'json' => $requestBody,
+						));
+
+						$jsonResponse = $response->getBody()->getContents();
+
+						$responseData = json_decode($jsonResponse, true);
+
+						$htmlBody = $responseData['template']['body']['html'];
+
+						// Replace the placeholder in the HTML body with the username
+
+						$htmlBody = str_replace('{{link}}', $link, $htmlBody);
+
+						$data['response'] = $htmlBody;
+
+						// Prepare the email data
+						$emailData = [
+							"message" => [
+								"recipients" => [
+									["email" => $email],
+								],
+								"body" => ["html" => $htmlBody],
+
+								"subject" => "Email Confirmation BuySmallsmall",
+
+								"from_email" => "donotreply@smallsmall.com",
+
+								"from_name" => "Smallsmall",
+							],
+						];
+
+						// Send the email using the Unione API
+						$responseEmail = $client->request('POST', 'email/send.json', [
+							'headers' => $headers,
+							'json' => $emailData,
+						]);
+					} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+						$data['response'] = $e->getMessage();
+					}
+					// $this->email->from('donotreply@smallsmall.com', 'Small Small');
+
+					// $this->email->to($email);
+
+					// $this->email->subject("Confirm your email");
+
+					// $this->email->set_mailtype("html");
+
+					// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+
+					// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
+
+					// $this->email->message($message);
+
+					// $emailRes = $this->email->send();
+
+					// End Of Unione
+
+					//Insert notification
+					//to-do $notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
+
+					echo 1;
+				} else {
+
+					//Unsuccessful insert
+
+					echo "Error inserting details";
+				}
+			} else {
+
+				echo "User email exists already";
+			}
+		}else{
+
+			$registration = $this->buytolet_model->update_user($user_id, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
 
 			//Isert Record To Nector For Awward and Reward for Users Signing up newly
 			$nectorContry = "nga";
@@ -1836,37 +1960,15 @@ class Buytolet extends CI_Controller
 
 					$data['response'] = $e->getMessage();
 				}
-				// $this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-				// $this->email->to($email);
-
-				// $this->email->subject("Confirm your email");
-
-				// $this->email->set_mailtype("html");
-
-				// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-				// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-				// $this->email->message($message);
-
-				// $emailRes = $this->email->send();
-
-				// End Of Unione
-
-				//Insert notification
-				//to-do $notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
-
+				
 				echo 1;
-			} else {
 
-				//Unsuccessful insert
-
+			}else{
+				
 				echo "Error inserting details";
-			}
-		} else {
 
-			echo "User email exists already";
+			}
+
 		}
 	}
 

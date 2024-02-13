@@ -208,6 +208,23 @@ class Buytolet_model extends CI_Model
 			return 0;
 		}
 	}
+	public function update_user($id, $password, $phone, $income, $confirmationCode, $referral, $user_type, $interest, $rc, $gender, $user_agent, $country)
+	{
+
+		$today = date('Y-m-d H:i:s');
+
+		$user_insert = array("userID" => $id, "password" => $password, "phone" => $phone, "income" => $income, "referral" => $referral, "gender" => $gender, "referral_code" => $rc, "user_type" => $user_type, "interest" => $interest, "verified" => 'no', "points" => 0, "status" => 'Active', "platform" => 'Web', "user_agent" => $user_agent, "regDate" => $today, "country" => $country);
+
+		$this->db->where('userID', $id);
+
+		if ($this->db->update('user_tbl', $user_insert)) {
+
+			return $this->db->update('login_tbl', array('password' => $password, 'lastLogin' => $today, 'confirmation' => $confirmationCode));
+		} else {
+
+			return 0;
+		}
+	}
 
 	public function create_user_account($id, $fname, $lname, $email, $password, $phone, $refCode, $confirmationCode)
 	{
