@@ -268,6 +268,8 @@ $route['signup-investor-profile'] = 'buytolet/signup_investor/';
 
 $route['signup'] = 'buytolet/signup';
 
+$route['signup/(:any)'] = 'buytolet/signup/$1';
+
 $route['pool-buy-faq'] = 'buytolet/pool_buy_faq';
 
 $route['faq'] = 'buytolet/faq';
