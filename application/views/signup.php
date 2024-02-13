@@ -21,7 +21,7 @@
 
 	<form id="signupForm" class="register-form">
 
-		<fieldset>
+		<!-- <fieldset> -->
 			<!--- Sixth form here --->
 			<div class="form-wrapper">
 				<Box class="form-input-container">
@@ -122,7 +122,7 @@
 			</div>
 			<!--- Sixth form here --->
 
-		</fieldset>
+		<!-- </fieldset> -->
 
 		<!-- <fieldset> -->
 			<!--- Seventh form here --->
@@ -235,7 +235,7 @@
 ></script> -->
 
 
-<script>
+<!-- <script>
 	$(document).ready(function() {
 
 		//jQuery time
@@ -273,7 +273,8 @@
 		});
 
 	});
-</script>
+</script> -->
+
 <script>
 	$(document).ready(function() {
 

@@ -14,22 +14,22 @@ function isEmail(email) {
 
 }
 
-$('#income').keyup(function(){
+// $('#income').keyup(function(){
 
-	"use strict";
+// 	"use strict";
 	
-	var income_val = $.trim($(this).val());
+// 	var income_val = $.trim($(this).val());
 	
-	if(isNaN(income_val)){
+// 	if(isNaN(income_val)){
 		
-		alert("This field accepts numbers only");
+// 		alert("This field accepts numbers only");
 		
-		$(this).val('');
+// 		$(this).val('');
 		
-		return false;
+// 		return false;
 		
-	}
-}); 
+// 	}
+// }); 
 
 $('#confirm-pass').keyup(function(){
 
@@ -67,37 +67,37 @@ $('#signupForm').submit(function(e){
 
 	var phone = $.trim($('#phone').val());
 
-	var age = $.trim($('.age').val());
+	// var age = $.trim($('.age').val());
 
 	var pass = $.trim($('#password').val());
 
 	var pass_2 = $.trim($('#confirm-pass').val());
 	
-	var income = $.trim($('.income-range').val());	
+	// var income = $.trim($('.income-range').val());	
 	
-	var address = $.trim($('.address').val());
+	// var address = $.trim($('.address').val());
 
-	var occupation = $.trim($('.occupation').val());
+	// var occupation = $.trim($('.occupation').val());
 
-	var position = $.trim($('.position').val());
+	// var position = $.trim($('.position').val());
 
-	var gender = $.trim($('.gender').val());
+	// var gender = $.trim($('.gender').val());
 
 	var medium = $.trim($('.medium').val());
 
-	var country = $.trim($('.country-code').val());
+	// var country = $.trim($('.country-code').val());
 
 	var ref_code = $.trim($('#referral-code').val());
 
-	var filteredList = []; 
+	// var filteredList = []; 
 	
 	//Check for empty fields
 
-	filteredList = $('.verify-txt').filter(function(){
+	// filteredList = $('.verify-txt').filter(function(){
 
-		return $(this).val() === "";
+	// 	return $(this).val() === "";
 
-	});
+	// });
 
 	//Do something about the empty fields
 
