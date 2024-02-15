@@ -137,21 +137,21 @@ $('#signupForm').submit(function(e){
 		
 		'medium' : medium,
 		
-		'income' : income,
+		// 'income' : income,
 		
-		'age'   : age,
+		// 'age'   : age,
 		
-		'occupation' : occupation,
+		// 'occupation' : occupation,
 		
-		'address' : address,
+		// 'address' : address,
 		
-		'position' : position,
+		// 'position' : position,
 		
-		'gender' : gender,
+		// 'gender' : gender,
 		
 		'ref_code' : ref_code,
 
-		'country' : country
+		// 'country' : country
 
 	};
 
