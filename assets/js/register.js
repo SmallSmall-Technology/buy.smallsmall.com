@@ -89,17 +89,30 @@ $('#signupForm').submit(function(e){
 
 	var ref_code = $.trim($('#referral-code').val());
 
-	// var filteredList = []; 
+	var filteredList = []; 
 	
 	//Check for empty fields
 
-	// filteredList = $('.verify-txt').filter(function(){
+	filteredList = $('.verify-txt').filter(function(){
 
-	// 	return $(this).val() === "";
+		return $(this).val() === "";
 
-	// });
+	});
 
 	//Do something about the empty fields
+
+	//
+    if (filteredList.length > 0) {
+        $('.verify-txt').css("border", "1px solid #CCC");
+        filteredList.css("border", "1px solid rgba(251, 0, 0, 0.8)");
+        $('.form-report').html("Fields in red are mandatory fields");
+        $('.form-report').css("background", "red");
+        $('.form-report').show();
+        $('.signup-button').val("Finish");
+        return false;
+    }
+
+	//
 
 	if(filteredList.length > 0){
 
