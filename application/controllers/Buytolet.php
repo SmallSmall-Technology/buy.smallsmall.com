@@ -1753,9 +1753,12 @@ class Buytolet extends CI_Controller
 
 		if (!$email_res) {
 			//Check if user has been bought a gift before
-			$beneficiary = $this->buytolet_model->check_beneficiary_details($email)['userID'];
 
-			$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
+			// $beneficiary = $this->buytolet_model->check_beneficiary_details($email)['userID'];
+
+			// $id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
+
+			$id = $this->generate_user_id(12);
 
 			// $registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
 
