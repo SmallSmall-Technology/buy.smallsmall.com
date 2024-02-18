@@ -353,25 +353,25 @@
                             </div>
                         </div>
 
-                        <div class="option-list2">
+                        <!---<div class="option-list2">
                             <div class="finance-left-options">
                                 <div class="finance">Origination fee</div>
                                 <div class="finance-desc">1% of property price</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.01); ?></div>
+                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price'] * 0.01); ?></div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--->
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
-                                <div class="finance-desc">4% of property price</div>
+                                <div class="finance-desc">5% of property price</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.04); ?></div>
+                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.05); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -413,7 +413,7 @@
                 <?php } ?>
                 <?php if ($property['availability'] != 'Sold' && $property['availability'] != 'Locked') { ?>
                     <div style="width:100%;text-align:center;">
-                        <div class="payment-btn option-but"><?php //echo ($property['investment_type'] == 6) ? 'Lockdown Now' : 'Apply Now'; ?>Apply Now</div>
+                        <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 7) ? 'Own Now' : 'Apply Now'; ?></div>
                     </div>
                 <?php } ?>
             </div>
