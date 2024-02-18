@@ -215,7 +215,7 @@
 								</div>
 								<div>
 									<span>Assured rent</span>
-									<h3>4m p.a</h3>
+									<h3><?php echo ($each_prop['rent_per_annum'])? : 0; ?>M p.a</h3>
 								</div>
 							</div>
 						<?php } else { ?>
