@@ -73,12 +73,7 @@
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slider.css?version=<?php echo rand(99, 999999999); ?>">
 
-
-
-
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.css?version=<?php echo rand(99, 999999999); ?>">
-
-
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/info.css?version=<?php echo rand(99, 999999999); ?>">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/form.css?version=<?php echo rand(99, 999999999); ?>">
@@ -219,6 +214,23 @@
 		});
 	</script>
 
+	<!--- Popupular JS Tag --->
+	<script type="text/javascript">
+		window.Popupular || function(w, d, s, u, p) {
+			window.Popupular = {
+				_q: [],
+				_p: p,
+				autoload: true
+			};
+			var s = d.createElement(s);
+			s.type = "text/javascript";
+			s.src = u;
+			s.async = true;
+			d.head.appendChild(s);
+		}(window, document, "script", "https://cdn.popupular.io/script.js", "95ba5b75-f7ad-40e3-b645-b43f6205471d");
+	</script>
+	<!--- Popupular JS Tag --->
+
 	<!-- TruConversion for buy.smallsmall.com -->
 	<script type="text/javascript">
 		var _tip = _tip || [];
@@ -305,11 +317,16 @@
 
 	<!-- clerity heatmap session	 -->
 	<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "kpu5m58d0q");
+		(function(c, l, a, r, i, t, y) {
+			c[a] = c[a] || function() {
+				(c[a].q = c[a].q || []).push(arguments)
+			};
+			t = l.createElement(r);
+			t.async = 1;
+			t.src = "https://www.clarity.ms/tag/" + i;
+			y = l.getElementsByTagName(r)[0];
+			y.parentNode.insertBefore(t, y);
+		})(window, document, "clarity", "script", "kpu5m58d0q");
 	</script>
 	<!-- end clerity heatmap session	 -->
 
