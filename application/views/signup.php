@@ -60,7 +60,7 @@
 						</div>
 					</div>
 
-					<div class="double-span-col-input">
+					<!-- <div class="double-span-col-input">
 						<div class="single-span-col-input">
 							<select id="gender" class="minimal gender verify-txt">
 								<option>Gender</option>
@@ -71,15 +71,47 @@
 						<div class="single-span-col-input">
 							<select id="age" class="minimal age verify-txt">
 								<option>Age</option>
-								<?php for ($i = 18; $i < 80; $i++) { ?>
-									<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-								<?php } ?>
+								<?php //for ($i = 18; $i < 80; $i++) { ?>
+									<option value="<?php //echo $i; ?>"><?php //echo $i; ?></option>
+								<?php //} ?>
 							</select>
 						</div>
+					</div> -->
+
+					<div class="single-span-col-input all-fields">
+						<select class="medium verify-txt minimal">
+							<option value="">How did you hear about us</option>
+							<option value="Instagram">Instagram</option>
+							<option value="Facebook">Facebook</option>
+							<option value="Twitter">Twitter</option>
+							<option value="Television">Television</option>
+							<option value="Radio">Radio</option>
+							<option value="Word of mouth">Word Of Mouth</option>
+							<option value="Instagram">Newpaper</option>
+							<option value="Billboards/Banner Ads">Billboards/Banner Ads</option>
+							<option value="Newsletter/Email Campaigns">Newsletter/Email Campaigns</option>
+						</select>
 					</div>
-					<div class="single-span-col-input">
+
+					<div class="single-span-col-input all-fields">
+						<div class="textInput-box">
+							<input class="referral-code" id="referral-code" placeholder="Referral code" type="text">
+						</div>
+					</div>
+
+					<div class="single-span-col-input all-fields">
+
+						<input type="submit" class="signup-button button" value="Finish" />
+
+						<p>By signing up I agree to BuySmallsmall's Terms of Service and Privacy Policy. </p>
+					</div>
+					
+					<input type="hidden" name="userID" class="userID" value="<?php echo $user['userID']; ?>" />
+
+
+					<!-- <div class="single-span-col-input">
 						<a class="button next">Next</a>
-					</div>
+					</div> -->
 					<!---<div class="sign-up-link">
 						<span>Already have an account?</span>  <a href="">Sign in</a>
 						</div>--->
@@ -90,13 +122,13 @@
 
 		</fieldset>
 
-		<fieldset>
+		<!-- <fieldset> -->
 			<!--- Seventh form here --->
-			<div class="form-wrapper">
+			<!-- <div class="form-wrapper">
 				<Box class="form-input-container">
 					<div class="form-title">
 						<h1>Create an account</h1>
-						<p><?php echo (!empty($user))? 'Complete your' : 'Create an' ; ?> investor profile to get started</p>
+						<p><?php //echo (!empty($user))? 'Complete your' : 'Create an' ; ?> investor profile to get started</p>
 					</div>
 					<div class="form-report">Error signing you up</div>
 
@@ -135,9 +167,9 @@
 					<div class="single-span-col-input">
 						<select id="country-code" class="minimal country-code verify-txt">
 							<option value="">Select Country</option>
-							<?php foreach ($countries as $country => $value) { ?>
-								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] . ' - ' . $value['sortname'] ?></option>
-							<?php } ?>
+							<?php //foreach ($countries as $country => $value) { ?>
+								<option value="<?php //echo $value['id'] ?>"><?php //echo $value['name'] . ' - ' . $value['sortname'] ?></option>
+							<?php //} ?>
 						</select>
 					</div>
 					<div class="single-span-col-input all-fields">
@@ -167,12 +199,12 @@
 
 						<p>By signing up I agree to BuySmallsmall's Terms of Service and Privacy Policy. </p>
 					</div>
-					<input type="hidden" name="userID" class="userID" value="<?php echo $user['userID']; ?>" />
+					<input type="hidden" name="userID" class="userID" value="<?php //echo $user['userID']; ?>" />
 
 				</Box>
-			</div>
+			</div> -->
 			<!--- Seventh form here --->
-		</fieldset>
+		<!-- </fieldset> -->
 	</form>
 	</div>
 

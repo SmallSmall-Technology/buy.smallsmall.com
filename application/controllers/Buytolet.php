@@ -1723,21 +1723,21 @@ class Buytolet extends CI_Controller
 
 		$medium = trim($this->input->post("medium"));
 
-		$age = trim($this->input->post("age"));
+		// $age = trim($this->input->post("age"));
 
 		$password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
 
-		$income = $this->input->post("income");
+		// $income = $this->input->post("income");
 
-		$country = $this->input->post("country");
+		// $country = $this->input->post("country");
 
-		$occupation = $this->input->post("occupation");
+		// $occupation = $this->input->post("occupation");
 
-		$position = $this->input->post("position");
+		// $position = $this->input->post("position");
 
-		$address = $this->input->post("address");
+		// $address = $this->input->post("address");
 
-		$gender = $this->input->post("gender");
+		// $gender = $this->input->post("gender");
 
 		$ref_code = $this->input->post("ref_code");
 
@@ -1760,7 +1760,9 @@ class Buytolet extends CI_Controller
 
 				$id = ($beneficiary) ? $beneficiary : $this->generate_user_id(12);
 
-				$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
+				// $registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, $income, $confirmationCode, $medium, 'tenant', 'Buy', $rc, $gender, $user_agent['userAgent'], $country);
+
+				$registration = $this->buytolet_model->register($id, $fname, $lname, $email, $password, $phone, '', $confirmationCode, $medium, 'tenant', 'Buy', $rc, '', $user_agent['userAgent'], '');
 
 				//Isert Record To Nector For Awward and Reward for Users Signing up newly
 				$nectorContry = "nga";

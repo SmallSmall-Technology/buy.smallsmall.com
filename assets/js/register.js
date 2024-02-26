@@ -3,7 +3,6 @@
 var baseUrl = "https://buy.smallsmall.com/";
 
 
-
 function isEmail(email) {
 
 	"use strict";
@@ -14,22 +13,22 @@ function isEmail(email) {
 
 }
 
-$('#income').keyup(function(){
+// $('#income').keyup(function(){
 
-	"use strict";
+// 	"use strict";
 	
-	var income_val = $.trim($(this).val());
+// 	var income_val = $.trim($(this).val());
 	
-	if(isNaN(income_val)){
+// 	if(isNaN(income_val)){
 		
-		alert("This field accepts numbers only");
+// 		alert("This field accepts numbers only");
 		
-		$(this).val('');
+// 		$(this).val('');
 		
-		return false;
+// 		return false;
 		
-	}
-}); 
+// 	}
+// }); 
 
 $('#confirm-pass').keyup(function(){
 
@@ -67,25 +66,25 @@ $('#signupForm').submit(function(e){
 
 	var phone = $.trim($('#phone').val());
 
-	var age = $.trim($('.age').val());
+	// var age = $.trim($('.age').val());
 
 	var pass = $.trim($('#password').val());
 
 	var pass_2 = $.trim($('#confirm-pass').val());
 	
-	var income = $.trim($('.income-range').val());	
+	// var income = $.trim($('.income-range').val());	
 	
-	var address = $.trim($('.address').val());
+	// var address = $.trim($('.address').val());
 
-	var occupation = $.trim($('.occupation').val());
+	// var occupation = $.trim($('.occupation').val());
 
-	var position = $.trim($('.position').val());
+	// var position = $.trim($('.position').val());
 
-	var gender = $.trim($('.gender').val());
+	// var gender = $.trim($('.gender').val());
 
 	var medium = $.trim($('.medium').val());
 
-	var country = $.trim($('.country-code').val());
+	// var country = $.trim($('.country-code').val());
 
 	var ref_code = $.trim($('#referral-code').val());
 
@@ -124,7 +123,6 @@ $('#signupForm').submit(function(e){
 	}
 
 	
-
 	var data = {
 		'user_id' : registered,
 
@@ -140,21 +138,21 @@ $('#signupForm').submit(function(e){
 		
 		'medium' : medium,
 		
-		'income' : income,
+		// 'income' : income,
 		
-		'age'   : age,
+		// 'age'   : age,
 		
-		'occupation' : occupation,
+		// 'occupation' : occupation,
 		
-		'address' : address,
+		// 'address' : address,
 		
-		'position' : position,
+		// 'position' : position,
 		
-		'gender' : gender,
+		// 'gender' : gender,
 		
 		'ref_code' : ref_code,
 
-		'country' : country
+		// 'country' : country
 
 	};
 
