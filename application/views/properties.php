@@ -203,7 +203,7 @@
 							<div class="key-values">
 								<div>
 									<span>Down Payment</span>
-									<h3>40%</h3>
+									<h3><?php echo $each_prop['minimum_payment_plan']; ?>%</h3>
 								</div>
 								<div>
 									<span>Installment Period</span>
