@@ -5433,6 +5433,24 @@ class Buytolet extends CI_Controller
 
 	}
 
+	public function certify_me_test($name = 'Pidah Tnadah', $email = 'pidah.t@smallsmall.com', $requestID, $propertyDets = 'Olivia Courts Lekki', $amountOfShares = 30, $phone = 0000000000)
+	{
+
+		$response = $client->request('POST', 'https://api.certopus.com/v1/certificates', [
+		'body' => '{"recipients":[{"data": {"{Name}": "'.$name.'", "{Property}": "'.$propertyDets.'", "{Shares}": "'.$amountOfShares.'", "{Phone}": "'.$phone.'"}, "email": "'.$email.'"}],"organisationId":"smallsmall","eventId":"1579a382-ef25-1ee4-b577-f71005b99a81","categoryId":"1579a380-ef25-1ee4-b577-f71005b99a81"}',
+		'headers' => [
+			'accept' => 'application/json',
+			'content-type' => 'application/json',
+			'x-api-key' => 'b223cc5fc7be2ae65aa8f8ec25bfaa9b1e4d2c8c07322a581d94f71ef83de549',
+		],
+		]);
+		
+		$result = json_decode($response->getBody(), true);
+
+		return $result['message'];
+
+	}
+
 	public function refer_and_earn()
 	{
 
