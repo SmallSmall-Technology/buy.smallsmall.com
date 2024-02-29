@@ -3650,12 +3650,12 @@ class Buytolet extends CI_Controller
 					//$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
 
 					//Send certificate
-					$certificate = $this->certify_me($name, $email, $ref_id, $propertyLocation, $request['unit_amount']);
+					$certificate = $this->certify_me($name, $email, $ref_id, $propertyLocation, $request['unit_amount'], $phone);
 
-					if ($certificate['credential_url']) {
+					/*if ($certificate['credential_url']) {
 						//Update shares certificate folder
 						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $certificate['credential_image'], $ref_id, $user_id);
-					}
+					}*/
 
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
 
@@ -3683,10 +3683,10 @@ class Buytolet extends CI_Controller
 						//$notificationRes = $this->insertNotification($subject, $message, $userID, $name);
 
 
-						if ($certificate['credential_url']) {
+						/*if ($certificate['credential_url']) {
 							//Update shares certificate folder
 							$this->buytolet_model->updateSharesCertificateFieldB($certificate['credential_url'], $certificate['credential_image'], $beneficiary[$i]['requestID'], $beneficiary[$i]['receiverID']);
-						}
+						}*/
 					}
 				}
 
@@ -5311,10 +5311,7 @@ class Buytolet extends CI_Controller
 
 					$result = $this->certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
 
-					if ($result['credential_url']) {
-						//Update shares certificate folder
-						$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
-					} else {
+					if ($result != 'success') {
 
 						echo "No credential URL";
 					}
@@ -5366,10 +5363,10 @@ class Buytolet extends CI_Controller
 
 							$result = $this->certify_me($name, $email, $requestID, $propertyDets, $amountOfShares);
 
-							if ($result['credential_url']) {
+							//if ($result['credential_url']) {
 								//Update shares certificate folder
-								$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
-							}
+								//$this->buytolet_model->updateSharesCertificateFieldO($result['credential_url'], $result['credential_image'], $user_request[$i]['refID'], $userID);
+							//}
 
 							print_r($result);
 
@@ -5389,10 +5386,10 @@ class Buytolet extends CI_Controller
 		}
 	}
 
-	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares)
+	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares, $phone = 0000000000)
 	{
 
-		$curl = curl_init();
+		/*$curl = curl_init();
 
 		$today = date('Y-m-d H:i:s');
 
@@ -5419,9 +5416,21 @@ class Buytolet extends CI_Controller
 
 		$response = curl_exec($curl);
 
-		$result = json_decode($response, true);
+		$result = json_decode($response, true);*/
 
-		return $result;
+		$response = $client->request('POST', 'https://api.certopus.com/v1/certificates', [
+		'body' => '{"recipients":[{"data": {"{Name}": "'.$name.'", "{Property}": "'.$propertyDets.'", "{Shares}": "'.$amountOfShares.'", "{Phone}": "'.$phone.'"}, "email": "'.$email.'"}],"organisationId":"smallsmall","eventId":"1579a382-ef25-1ee4-b577-f71005b99a81","categoryId":"1579a380-ef25-1ee4-b577-f71005b99a81"}',
+		'headers' => [
+			'accept' => 'application/json',
+			'content-type' => 'application/json',
+			'x-api-key' => 'b223cc5fc7be2ae65aa8f8ec25bfaa9b1e4d2c8c07322a581d94f71ef83de549',
+		],
+		]);
+		
+		$result = json_decode($response->getBody(), true);
+
+		return $result['message'];
+
 	}
 
 	public function refer_and_earn()

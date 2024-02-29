@@ -187,7 +187,7 @@
 								</div>
 								<div>
 									<span>Down Payment</span>
-									<h3><?php echo number_format(($each_prop['minimum_payment_plan'] / 100) * $each_prop['price']); ?>
+									<h3>N<?php echo number_format(($each_prop['minimum_payment_plan'] / 100) * $each_prop['price']); ?>
 									</h3>
 								</div>
 								<div>
