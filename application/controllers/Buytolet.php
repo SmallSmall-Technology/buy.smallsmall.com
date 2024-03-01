@@ -1723,21 +1723,7 @@ class Buytolet extends CI_Controller
 
 		$medium = trim($this->input->post("medium"));
 
-		// $age = trim($this->input->post("age"));
-
 		$password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
-
-		// $income = $this->input->post("income");
-
-		// $country = $this->input->post("country");
-
-		// $occupation = $this->input->post("occupation");
-
-		// $position = $this->input->post("position");
-
-		// $address = $this->input->post("address");
-
-		// $gender = $this->input->post("gender");
 
 		$ref_code = $this->input->post("ref_code");
 
@@ -1845,28 +1831,9 @@ class Buytolet extends CI_Controller
 
 						$data['response'] = $e->getMessage();
 					}
-					// $this->email->from('donotreply@smallsmall.com', 'Small Small');
-
-					// $this->email->to($email);
-
-					// $this->email->subject("Confirm your email");
-
-					// $this->email->set_mailtype("html");
-
-					// $message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-					// 		$message = $this->load->view('email/unione-email-template.php', $data, TRUE);
-
-					// $this->email->message($message);
-
-					// $emailRes = $this->email->send();
-
-					// End Of Unione
-
-					//Insert notification
-					//to-do $notificationDataSentToDb = $this->buytolet_model->insertNotification('SmallSmall Confirmation', "Successful Registration", $id, $fname);
-
+					
 					echo 1;
+
 				} else {
 
 					//Unsuccessful insert
@@ -5017,7 +4984,7 @@ class Buytolet extends CI_Controller
 
 			$frequency = $frequency;
 
-			$amount = $user['purchase_amount'];
+			$amount = $user['payable'];
 
 			$interval = $user['duration'];
 
@@ -5137,8 +5104,6 @@ class Buytolet extends CI_Controller
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		$result = json_decode(curl_exec($ch), true);
-
-		print_r($result);
 
 		if ($result['status']) {
 
