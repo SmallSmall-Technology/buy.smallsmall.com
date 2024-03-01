@@ -5447,7 +5447,9 @@ class Buytolet extends CI_Controller
 		
 		$result = json_decode($response->getBody(), true);
 
-		return $result['message'];
+		echo $result['message'];
+
+		exit;
 
 	}
 
