@@ -3652,10 +3652,10 @@ class Buytolet extends CI_Controller
 					//Send certificate
 					$certificate = $this->certify_me($name, $email, $ref_id, $propertyLocation, $request['unit_amount'], $phone);
 
-					/*if ($certificate['credential_url']) {
+					if ($certificate['credential_url']) {
 						//Update shares certificate folder
 						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $certificate['credential_image'], $ref_id, $user_id);
-					}*/
+					}
 
 					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
 
@@ -5389,7 +5389,7 @@ class Buytolet extends CI_Controller
 	public function certify_me($name, $email, $requestID, $propertyDets, $amountOfShares, $phone = 0000000000)
 	{
 
-		/*$curl = curl_init();
+		$curl = curl_init();
 
 		$today = date('Y-m-d H:i:s');
 
@@ -5416,9 +5416,11 @@ class Buytolet extends CI_Controller
 
 		$response = curl_exec($curl);
 
-		$result = json_decode($response, true);*/
+		$result = json_decode($response, true);
 
-		$response = $client->request('POST', 'https://api.certopus.com/v1/certificates', [
+		return $result;
+
+		/*$response = $client->request('POST', 'https://api.certopus.com/v1/certificates', [
 		'body' => '{"recipients":[{"data": {"{Name}": "'.$name.'", "{Property}": "'.$propertyDets.'", "{Shares}": "'.$amountOfShares.'", "{Phone}": "'.$phone.'"}, "email": "'.$email.'"}],"organisationId":"smallsmall","eventId":"1579a382-ef25-1ee4-b577-f71005b99a81","categoryId":"1579a380-ef25-1ee4-b577-f71005b99a81"}',
 		'headers' => [
 			'accept' => 'application/json',
@@ -5429,7 +5431,7 @@ class Buytolet extends CI_Controller
 		
 		$result = json_decode($response->getBody(), true);
 
-		return $result['message'];
+		return $result['message'];*/
 
 	}
 
@@ -5447,7 +5449,9 @@ class Buytolet extends CI_Controller
 		
 		$result = json_decode($response->getBody(), true);
 
-		return $result['message'];
+		echo $result['message'];
+
+		exit;
 
 	}
 
