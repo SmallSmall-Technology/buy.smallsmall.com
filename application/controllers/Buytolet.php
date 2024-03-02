@@ -3612,10 +3612,6 @@ class Buytolet extends CI_Controller
 
 				if ($request['purchase_beneficiary'] == 'Self') {
 
-					//$user_certificate = $this->shares_certificate($userID,  $request['refID'], $name, $email, $request['unit_amount'], $property_details, $message, $prop['hold_period'], $prop['maturity_date']);
-
-					//$this->buytolet_model->updateSharesCertificateFieldO($user_certificate['filename'], $request['refID'], $userID);
-
 					//Send certificate
 					$certificate = $this->certify_me($name, $email, $ref_id, $propertyLocation, $request['unit_amount'], $phone);
 
@@ -3624,7 +3620,7 @@ class Buytolet extends CI_Controller
 						$this->buytolet_model->updateSharesCertificateFieldO($certificate['credential_url'], $certificate['credential_image'], $ref_id, $user_id);
 					}
 
-					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, 0, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
+					$this->self_shares_notification_email($name, $prop['property_name'], $propertyLocation, $request['unit_amount'], $payable, $email, $returns, $hold_period . ' years', $prop['maturity_date'], $prop['finish_date']);
 
 					$userdata = array("target_option" => 0);
 
@@ -4875,7 +4871,7 @@ class Buytolet extends CI_Controller
 
 			$htmlBody = str_replace('{{holdPeriod}}', $holdPeriod, $htmlBody);
 
-			$htmlBody = str_replace('{{rate}}', $rate, $htmlBody);
+			$htmlBody = str_replace('{{rate}}', $rate.'%', $htmlBody);
 
 			$data['response'] = $htmlBody;
 
