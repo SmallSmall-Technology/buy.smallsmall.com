@@ -299,6 +299,19 @@
 	</script>
 	<!-- End Partnero Universal -->
 
+	<!-- Answerly.io: Customer support AI that engage with customer-->
+
+	<script>
+		(function(f, n) {
+			n = document.createElement('script');
+			n.src = 'https://fcdn.answerly.io/fn.js';
+			n.setAttribute('data-companyId', f);
+			document.getElementsByTagName('html')[0].insertAdjacentElement('beforeend', n);
+		})('26f97cbf-2e77-49ff-8dfb-ea3cba326b8e');
+	</script>
+
+	<!-- End Answerly.io -->
+
 
 	<!-- Google tag manager (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FTLFC09RY"></script>
