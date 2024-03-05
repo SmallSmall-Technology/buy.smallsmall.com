@@ -5483,4 +5483,54 @@ class Buytolet extends CI_Controller
 
 		echo json_encode(array('status' => 'success', 'msg' => $cities));
 	}
+	public function insertRequestManually()
+	{
+		$ref = md5(date('YmdHis'));
+
+		$userID = '389819311874';
+
+		$buyer_type = 'Investor';
+
+		$payable = '15000000';
+
+		$balance = '65000000';
+
+		$payment_plan = 'onpl';
+
+		$property_id = '260130225969';
+
+		//$personal_details = $this->input->post('personal_details');
+
+		//$employment_details = $this->input->post('employment_details');
+
+		$cost = '80000000';
+
+		$promo_code = '';
+
+		$unit_amount = 0;
+
+		$payment_period = 0;
+
+		$mop = 'Transfer';
+
+		$id_path = '389819311874';
+
+		$statement_path = '389819311874';
+
+		$prop = $this->buytolet_model->getProperty($property_id);
+
+		$result = $this->buytolet_model->insertRequestManually($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $ref);
+
+		if ($result) {
+
+			$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref);
+
+			echo "Request successfully added";
+
+		} else {
+
+			echo $result;
+
+		}
+	}
 }

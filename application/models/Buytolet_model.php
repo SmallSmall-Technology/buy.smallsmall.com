@@ -713,7 +713,88 @@ class Buytolet_model extends CI_Model
 			return 0;
 		}
 	}
+	public function insertRequestManually($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $ref)
+	{
 
+		$this->userID = $userID;
+
+		$this->refID = $ref;
+
+		$this->propertyID = $property_id;
+
+		$this->plan = $payment_plan;
+
+		$this->buyer_type = $buyer_type;
+
+		$this->firstname = 'Afolabi';
+
+		$this->lastname = 'Fagbemi';
+
+		$this->email = 'fagbemigroup@gmail.com';
+
+		$this->phone = '07069354598';
+
+		$this->bvn = '0000000000';
+
+		$this->marital_status = 'Married';
+
+		$this->dateOfBirth = '0000-00-00';
+
+		$this->personal_address = '';
+
+		$this->company = 'Fagbemi Group';
+
+		$this->occupation = 'Real Estate';
+
+		$this->position = ' ';
+
+		$this->income_range = '2500000';
+
+		$this->company_address = ' ';
+
+		$this->amount = $cost;
+
+		$this->payable = $payable;
+
+		$this->finance_balance = $balance;
+
+		$this->method = $mop;
+
+		$this->unit_amount = $unit_amount;
+
+		$this->status = 'new';
+
+		$this->payment_period = $payment_period;
+
+		$this->promo_code = $promo_code;
+
+		$this->request_date = date('Y-m-d H:i:s');
+
+		if ($this->db->insert("buytolet_request", $this)) {
+
+			$statement_entry = array("userID" => $userID, "refID" => $ref, "statementPath" => $statement_path);
+
+			if ($this->db->insert('buytolet_bank_statement', $statement_entry)) {
+
+				$id_entry = array("userID" => $userID, "refID" => $ref, "idPath" => $id_path);
+
+				if ($this->db->insert('buytolet_finance_id', $id_entry)) {
+
+					return 1;
+					
+				} else {
+
+					return 0;
+				}
+			} else {
+
+				return 0;
+			}
+		} else {
+
+			return 0;
+		}
+	}
 	public function insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $statement_path, $firstname, $lastname, $beneficiary_type, $share_condition = 0)
 	{
 
