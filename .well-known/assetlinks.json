@@ -1,0 +1,8 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+        "namespace": "android_app",
+        "package_name": "com.buysmallsmall.mobile",
+        "sha256_cert_fingerprints": ["A9:52:EB:C9:25:96:16:A1:35:E7:AC:B8:17:09:78:C6:4D:A1:AC:35:86:22:09:84:0D:EC:1E:BC:03:19:22:D2"]
+    }
+}]
