@@ -100,6 +100,18 @@
                                         <div class="summary-info" id="payment-charges">*******</div>
                                     </td>
                                 </tr>
+                                <?php if($discount['discount_price']){ ?>
+                                    <tr class="summary-tr">
+                                        <td width="50%">
+                                            <div class="summary-desc">Discount price <!---<span id="actual-percentage">0%</span>---></div>
+                                            <div class="summary-info" id="total-cost"><?php echo number_format($discount['discount_price']); ?></div>
+                                        </td>
+                                        <td>
+                                            <div class="summary-desc">Discount</div>
+                                            <div class="summary-info" id="payment-charges"><?php echo number_format($discount['discount_value']); ?>%</div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </table>
                         </div>
                     </div>
@@ -113,6 +125,29 @@
                 <input type="hidden" id="email" value="<?php echo $email; ?>" />
                 
                 <input type="hidden" id="due_amount" value="" />
+
+                <?php
+                    $final_amount = 0;
+
+                    if($discount['discount_price']){
+
+                        $paystack_charges = 0.0195;
+
+                        $charges = $paystack_charges * $discount['discount_price'];
+
+                        if($charges < 2000){        
+                            //
+                            $final_amount = ($due_amount / (1 - $paystack_charges)) + 0.01;
+                            
+                        }else{
+                            
+                            $final_amount = $due_amount + 2000;
+                            
+                        }
+
+                    }                    
+                ?>                
+                <input type="hidden" id="discount_amount" value="<?php echo round($final_amount, 2); ?>" />
                 
                 <input type="hidden" id="refID" value="<?php echo $refID; ?>" />
                 
@@ -143,6 +178,16 @@
         if($('#terms-and-conds').is(':checked')){
         
             $('.payment-btn').html('Wait...');
+
+            var due_amount = parseInt(document.getElementById("due_amount").value) * 100;
+
+            var discount_amount = parseInt(document.getElementById("discount_amount").value) * 100;
+
+            if(discount_amount){
+
+                due_amount = discount_amount;
+
+            }
         
             let handler = PaystackPop.setup({
             
@@ -150,7 +195,7 @@
                 
                 email: document.getElementById("email").value,
                 
-                amount: parseInt(document.getElementById("due_amount").value) * 100,
+                amount: due_amount,
                 
                 ref: document.getElementById("refID").value, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                 
@@ -183,6 +228,12 @@
     function updateTransaction(){
         
         var payable = $('#due_amount').val();
+
+        var discount_amount = $('#discount_amount').val();
+
+        if(discount_amount){
+            payable = discount_amount;
+        }
         
         var ref = $('#refID').val();
         

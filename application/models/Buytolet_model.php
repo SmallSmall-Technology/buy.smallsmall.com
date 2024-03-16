@@ -561,6 +561,22 @@ class Buytolet_model extends CI_Model
 		return $query->row_array();
 	}
 
+	public function check_discount($id)
+	{
+
+		$this->db->select('a.discount_price, b.*');
+
+		$this->db->from('buytolet_request as a');
+
+		$this->db->where('a.refID', $id);
+
+		$this->db->join('buytolet_promos as b', 'b.discount_code = a.promo_code');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
+
 	public function getProperty($id)
 	{
 
@@ -795,7 +811,7 @@ class Buytolet_model extends CI_Model
 			return 0;
 		}
 	}
-	public function insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $statement_path, $firstname, $lastname, $beneficiary_type, $share_condition = 0)
+	public function insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $statement_path, $firstname, $lastname, $beneficiary_type, $new_price, $share_condition = 0)
 	{
 
 		$this->userID = $userID;
@@ -829,6 +845,8 @@ class Buytolet_model extends CI_Model
 		$this->promo_code = $promo_code;
 
 		$this->promo_amount = $promo_amount;
+
+		$this->discount_price = $new_price;
 
 		$this->purchase_beneficiary = $beneficiary_type;
 
@@ -2732,7 +2750,7 @@ class Buytolet_model extends CI_Model
 		return $this->db->insert('buytolet_sent_emails', $email_dets);
 	}
 
-	public function getActivePromo($promo_type = 'Free')
+	public function getActivePromo($promo_type = ['Free', 'Coupon'])
 	{
 
 		$today = date('Y-m-d');
@@ -2743,7 +2761,7 @@ class Buytolet_model extends CI_Model
 
 		$this->db->where('status', 1);
 
-		$this->db->where('type', $promo_type);
+		$this->db->where_in('type', $promo_type);
 
 		$this->db->where('end_date >=', $today);
 
@@ -2756,6 +2774,42 @@ class Buytolet_model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->row_array();
+	}
+
+	public function getActiveDiscount($code)
+	{
+
+		$today = date('Y-m-d');
+
+		$this->db->select('*');
+
+		$this->db->from('buytolet_promos');
+
+		$this->db->where('status', 1);
+
+		$this->db->where_in('discount_code', $code);
+
+		$this->db->where('end_date >=', $today);
+
+		$this->db->where('start_date <=', $today);
+
+		$this->db->order_by('id', 'DESC');
+
+		$this->db->limit(1);
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
+
+	public function update_discount_price($new_price, $ref){
+
+		$inserts = array('discount_price' => $new_price);
+
+		$this->db->where('refID', $ref);
+
+		return $this->db->update('buytolet_request', $inserts);
+
 	}
 
 	public function unlockChampionsShares($requestID, $userID)

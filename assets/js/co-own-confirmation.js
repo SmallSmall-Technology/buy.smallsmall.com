@@ -52,7 +52,7 @@ function init(){
 	
 	//Check promo code
 	$.ajaxSetup ({ cache: false });
-	$.ajax({			
+	$.ajax({			 
 
 		url: baseUrl+"buytolet/getProperty/",
 
