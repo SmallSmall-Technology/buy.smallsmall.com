@@ -963,6 +963,8 @@ class Buytolet extends CI_Controller
 
 			$data['target_option'] = $this->session->userdata('target_option');
 
+			$data['discount'] = $this->buytolet_model->check_discount($data['refID']);
+
 			//Check login status
 
 			$data['title'] = "Finance Confirmation :: Buy2Let";
@@ -2503,7 +2505,11 @@ class Buytolet extends CI_Controller
 
 		$coupon_code = $this->input->post('coupon_code');
 
+		$discount_code = $this->input->post('discount_code');
+
 		$promo = $this->buytolet_model->getActivePromo();
+
+		$discount = $this->buytolet_model->getActiveDiscount($discount_code);
 
 		$promo_details = array();
 
@@ -2511,9 +2517,11 @@ class Buytolet extends CI_Controller
 
 		$target_option = 0;
 
+		$new_price = 0;
+
 		$prop = $this->buytolet_model->getProperty($property_id);
 
-		if (!empty($promo) && $promo['promo_term'] <= $unit_amount) {
+		if ($promo['type'] != 'Discount' && !empty($promo) && $promo['promo_term'] <= $unit_amount) {
 
 			if ($promo['type'] == 'Coupon') {
 
@@ -2529,9 +2537,21 @@ class Buytolet extends CI_Controller
 
 			$promo_amount = $promo_details['promo_value'];
 		}
+		
+		if (!empty($discount)) {
 
+			//Calculate promo price and insert in row $ref
+			$discounted_price = $cost * ($discount['discount_value'] / 100);
 
-		$result = $this->buytolet_model->insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $beneficiary_id_path, $firstname, $lastname, $beneficiary_type);
+			$new_price = $cost - $discounted_price;
+
+			$promo_code = $discount_code;
+
+			//$this->buytolet_model->update_discount_price($new_price, $ref);
+
+		}
+
+		$result = $this->buytolet_model->insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $beneficiary_id_path, $firstname, $lastname, $beneficiary_type, $new_price);
 
 		if (!$this->input->post('user-info')) {
 
