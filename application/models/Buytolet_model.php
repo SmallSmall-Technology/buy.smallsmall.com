@@ -2785,9 +2785,11 @@ class Buytolet_model extends CI_Model
 
 		$this->db->from('buytolet_promos');
 
+		$this->db->where('type', 'Discount');
+
 		$this->db->where('status', 1);
 
-		$this->db->where_in('discount_code', $code);
+		$this->db->where('discount_code', $code);
 
 		$this->db->where('end_date >=', $today);
 
