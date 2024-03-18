@@ -2505,11 +2505,11 @@ class Buytolet extends CI_Controller
 
 		$coupon_code = $this->input->post('coupon_code');
 
-		$discount_code = $this->input->post('discount_code');
+		//$discount_code = $this->input->post('discount_code');
 
 		$promo = $this->buytolet_model->getActivePromo();
 
-		$discount = $this->buytolet_model->getActiveDiscount($discount_code);
+		$discount = $this->buytolet_model->getActiveDiscount($coupon_code);
 
 		$promo_details = array();
 
