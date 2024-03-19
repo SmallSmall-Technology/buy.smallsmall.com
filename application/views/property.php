@@ -174,19 +174,27 @@
                     <div class="full-disp">
                         <div class="half-disp">
                             <span class="date-top">Start date</span>
-                            <span class="date-bottom"><?php if (@$property['start_date']) {
-                                                            echo date('d M, Y', strtotime($property['start_date']));
-                                                        } else {
-                                                            echo '';
-                                                        } ?></span>
+                            <span class="date-bottom">
+                                <?php 
+                                    if (@$property['start_date']) {
+                                        echo date('d M, Y', strtotime($property['start_date']));
+                                    } else {
+                                        echo '';
+                                    } 
+                                ?>
+                            </span>
                         </div>
                         <div class="half-disp">
                             <span class="date-top">Finish date</span>
-                            <span class="date-bottom"><?php if (@$property['finish_date']) {
-                                                            echo date('d M, Y', strtotime($property['finish_date']));
-                                                        } else {
-                                                            echo '';
-                                                        } ?></span>
+                            <span class="date-bottom">
+                                <?php 
+                                    if (@$property['finish_date']) {
+                                        echo date('d M, Y', strtotime($property['finish_date']));
+                                    } else {
+                                        echo '';
+                                    } 
+                                ?>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -195,11 +203,15 @@
             <div class="property-props">
                 <p><?php echo $property['bed']; ?> bed</p>
                 <p><?php echo $property['bath']; ?> bathroom</p>
-                <p><?php if (@$property['property_size']) {
-                        echo number_format($property['property_size']);
-                    } else {
-                        echo 0;
-                    } ?> sqm</p>
+                <p>
+                    <?php 
+                        if (@$property['property_size']) {
+                            echo number_format($property['property_size']);
+                        } else {
+                            echo 0;
+                        } 
+                    ?> sqm
+                </p>
             </div>
         </div>
         <!---<div class="features_description">
@@ -230,55 +242,15 @@
                         <td><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format((@$property['expected_rent'] + ((@$property['expected_rent'] * 0.18) * 5)) / 1000000) . "M"; ?></td>
                         <td><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format((@$property['expected_rent'] + ((@$property['expected_rent'] * 0.18) * 10)) / 1000000) . "M"; ?></td>
                     </tr>
-                    <!---<tr>
-                            <th>Appreciation</th>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_0 = (@$property['marketValue']); echo number_format(@$asset_0/1000000)."M"; 
-                                                                                    ?>
-                            </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_1 = (((@$property['asset_appreciation_1'] / 100) * $asset_0) + @$property['marketValue']); echo number_format($asset_1/1000000)."M"; 
-                                                                                    ?>
-                            </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_2 = (((80 / 100) * $asset_1) + @$property['marketValue']); echo number_format($asset_2/1000000)."M"; 
-                                                                                    ?>
-                            </td>
-                            <td><span style="font-family:helvetica;">&#x20A6;</span><?php //$asset_3 = (((100 / 100) * $asset_2) + @$property['marketValue']); echo number_format($asset_3/1000000)."M"; 
-                                                                                    ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Ann. returns</th>
-                            <td><?php //echo number_format((pow(((@$asset_0 + @$property['expected_rent']) / @$property['marketValue']), "") - 1) * 100); 
-                                ?>%
-                            </td>
-                            <td><?php //echo number_format((pow(((@$asset_1 + @$property['expected_rent']) / @$property['marketValue']), 1) - 1) * 100); 
-                                ?>%
-                            </td>
-                            <td><?php //echo number_format((pow(((@$asset_2 + ((@$property['expected_rent'] * 0.18) * 5)) / @$property['marketValue']), (1 / 5)) - 1) * 100); 
-                                ?>%
-                            </td>
-                            <td><?php //echo number_format((pow(((@$asset_3 + ((@$property['expected_rent'] * 0.18) * 10)) / @$property['marketValue']),(1 / 10)) - 1) * 100); 
-                                ?>%
-                            </td>
-                        </tr>--->
+                    
                 </table>
             </div>
 
-            <!---<div class="rent-and-yield">
-                    <div class="key-and-value">
-                        <h1 class="key">Expected Rent</h1>
-                        <p class="value"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['expected_rent']); 
-                                                                                                ?></p>
-                    </div>
-                    <div class="key-and-value">
-                        <h1 class="key">Gross yield</h1>
-                        <p class="value">2.6%</p>
-                    </div>
-                </div>--->
         </div>
         <div class="features_description">
             <?php if ($property['investment_type'] != 6) { ?>
                 <div class="payment-box">
-                    <h2>Buy now</h2>
+                    <h2><?php echo ($property['investment_type'] == 2)? 'Own' : 'Buy'; ?> now</h2>
                     <h1><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></h1>
 
 
@@ -289,8 +261,13 @@
                             </div>
                             <div class="finance-right-options">
                                 <select id="payment-option" class="minimal payment-option">
-                                    <option value="finance">Payment Plan</option>
-                                    <option value="outright">Outright Payment</option>
+                                    <?php if ($property['investment_type'] == 2) { ?>
+                                        <option value="standard-btl">Standard</option>
+                                        <option value="outright">Champ</option>
+                                    <?php }else{ ?>
+                                        <option value="finance">Payment Plan</option>
+                                        <option value="outright">Outright Payment</option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
