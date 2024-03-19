@@ -54,20 +54,22 @@
 		<!-- Filter Section -->
 		<div class="form-properties">
 			<form method="POST" action="<?php echo base_url() . "properties-filter"; ?>">
-				<?php //$slugValue = $slug != 'co-ownership' ? 2 : 5 ?>
-				<?php //$slugValue = $slug != 'co-ownership' ? ($slug == 'bnpl' || $slug == 'onpl' ? 2 : 5) : 5; ?>
+				<?php //$slugValue = $slug != 'co-ownership' ? 2 : 5 
+				?>
+				<?php //$slugValue = $slug != 'co-ownership' ? ($slug == 'bnpl' || $slug == 'onpl' ? 2 : 5) : 5; 
+				?>
 
 				<?php
-            		if ($slug == 'bnpl') {
-            		    $slugValue = 6;
-            		} elseif ($slug == 'onpl') {
-            		    $slugValue = 7;
-            		} elseif ($slug == 'co-ownership') {
-            		    $slugValue = 5;
-            		} else {
-            		    $slugValue = 2;
-            		}
-            	?>
+				if ($slug == 'bnpl') {
+					$slugValue = 6;
+				} elseif ($slug == 'onpl') {
+					$slugValue = 7;
+				} elseif ($slug == 'co-ownership') {
+					$slugValue = 5;
+				} else {
+					$slugValue = 2;
+				}
+				?>
 
 				<input type="hidden" name="slug" value="<?php echo $slugValue; ?>">
 				<select name="list_price" class="properties-select" id="list_price_select">
@@ -86,7 +88,7 @@
 					<option value="51000000">N51,000,000 + </option>
 				</select>
 
-				
+
 				<!-- <select name="location" class="properties-select" id="location_select">
 					<option value="0">Location</option>
 					</?php if (isset($locations) && !empty($locations)) { ?>
@@ -110,11 +112,17 @@
 
 				<select name="location" class="properties-select" id="location_select">
 					<option value="0">Location</option>
-					<?php //if (isset($locations) && !empty($locations)) { ?>
-						<?php //foreach ($locations as $location => $value) { ?>
-							<!---<option value="<?php //echo $value['name'] ?>"><?php //echo $value['name'] ?></option>--->
-						<?php //} ?>
-					<?php //} ?>
+					<?php //if (isset($locations) && !empty($locations)) { 
+					?>
+					<?php //foreach ($locations as $location => $value) { 
+					?>
+					<!---<option value="<?php //echo $value['name'] 
+										?>"><?php //echo $value['name'] 
+																		?></option>--->
+					<?php //} 
+					?>
+					<?php //} 
+					?>
 				</select>
 
 				<!-- End Adding state and loading locations base on state -->
@@ -162,17 +170,17 @@
 
 				<a href="<?php echo base_url() . "property/" . $each_prop['propertyID']; ?>" class="card">
 
-				<?php
+					<?php
 
-        		$url = 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image'];
-        		
-				$url = rtrim($url, '/');
+					$url = 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image'];
 
-        		?>
+					$url = rtrim($url, '/');
+
+					?>
 
 					<div style="background-image:url('<?php echo $url; ?>')" class="top-section">
 
-					<!-- <div style="background-image:url('</?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section"> -->
+						<!-- <div style="background-image:url('</?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section"> -->
 
 						<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section"> -->
 
@@ -263,17 +271,17 @@
 
 				<a href="<?php echo base_url() . "co-own/" . $each_prop['propertyID']; ?>" class="card">
 
-				<?php
+					<?php
 
-        		$url = 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image'];
-        		
-				$url = rtrim($url, '/');
+					$url = 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image'];
 
-        		?>
+					$url = rtrim($url, '/');
+
+					?>
 
 					<div style="background-image:url('<?php echo $url; ?>')" class="top-section">
 
-					<!-- <div style="background-image:url('</?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section"> -->
+						<!-- <div style="background-image:url('</?php echo 'https://' . $bucket . '.s3.amazonaws.com/uploads/buytolet/' . $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>')" class="top-section"> -->
 
 						<!-- <div style='background-image:url("</?php echo base_url(); ?>uploads/buytolet/</?php echo $each_prop['image_folder'] . '/' . $each_prop['featured_image']; ?>")' class="top-section"> -->
 						<?php if (@$each_prop['construction_lvl']) { ?>
@@ -365,6 +373,21 @@
 </div>
 
 <script src="<?php echo base_url('asset\js\properties-page.js'); ?>"></script>
+
+
+<script>
+	function loadCCWidget() {
+		(new window["click-connector-widget"]).mount({})
+	}
+
+	function loadCCScript() {
+		var t = document.createElement("script");
+		t.id = "cc-widget-script", t.setAttribute("data-widget-id", "a4e580-bedc4"), t.type = "text/javascript", t.defer = !0, t.addEventListener("load", (function(t) {
+			loadCCWidget()
+		})), t.src = "https://widget.clickconnector.app/widget.js", document.getElementsByTagName("head")[0].appendChild(t)
+	}
+	loadCCScript();
+</script>
 
 <!-- <script>
 	function fbShare(url, title, descr, image, winWidth, winHeight) {

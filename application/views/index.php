@@ -233,7 +233,7 @@
 
 								<span class="price-type down-payment">Starting price</span>
 								<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($pool_value['price']); ?><span style="display:inline-block;font-size:16px;line-height:27px"> / Share</span></h3>
-								<p><?php echo $pool_value['property_name']; ?>. <?php echo (@$pool_value['propState'])? $pool_value['propState'] : '' ; ?></p>
+								<p><?php echo $pool_value['property_name']; ?>. <?php echo (@$pool_value['propState']) ? $pool_value['propState'] : ''; ?></p>
 								<ul class="pool-price-box">
 									<li class="pool-price-box-item">
 										<span class="price-type actual-price">Shares available</span>
@@ -332,7 +332,7 @@
 								<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($value['price'] * 0.40); ?></h3>
 								<span class="price-type actual-price">Property price</span>
 								<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($value['price']); ?></h3>
-								<p><?php echo $value['property_name']; ?>. <?php echo (@$value['propState'])? $value['propState'] : '' ; ?></p>
+								<p><?php echo $value['property_name']; ?>. <?php echo (@$value['propState']) ? $value['propState'] : ''; ?></p>
 								<ul>
 									<li style='list-style:none'>&bullet; <?php echo $value['bed']; ?> bed</li>
 									<li>&bullet; <?php echo $value['bath']; ?> bathroom</li>
@@ -350,7 +350,7 @@
 									</div>
 									<div>
 										<span>Down Payment</span>
-										<h3><?php echo ($value['minimum_payment_plan'])? number_format(($value['minimum_payment_plan'] / 100) * $value['price']) : 0; ?>
+										<h3><?php echo ($value['minimum_payment_plan']) ? number_format(($value['minimum_payment_plan'] / 100) * $value['price']) : 0; ?>
 										</h3>
 									</div>
 									<div>
@@ -398,7 +398,7 @@
 								<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($value['price'] * 0.40); ?></h3>
 								<span class="price-type actual-price">Property price</span>
 								<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($value['price']); ?></h3>
-								<p><?php echo $value['property_name']; ?>. <?php echo (@$value['propState'])? $value['propState'] : '' ; ?></p>
+								<p><?php echo $value['property_name']; ?>. <?php echo (@$value['propState']) ? $value['propState'] : ''; ?></p>
 								<ul>
 									<li style='list-style:none'>&bullet; <?php echo $value['bed']; ?> bed</li>
 									<li>&bullet; <?php echo $value['bath']; ?> bathroom</li>
@@ -482,6 +482,21 @@
 			    <div class="partner-logo-item"></div>--->
 		</div>
 	</div>
+
+
+	<script>
+		function loadCCWidget() {
+			(new window["click-connector-widget"]).mount({})
+		}
+
+		function loadCCScript() {
+			var t = document.createElement("script");
+			t.id = "cc-widget-script", t.setAttribute("data-widget-id", "a4e580-bedc4"), t.type = "text/javascript", t.defer = !0, t.addEventListener("load", (function(t) {
+				loadCCWidget()
+			})), t.src = "https://widget.clickconnector.app/widget.js", document.getElementsByTagName("head")[0].appendChild(t)
+		}
+		loadCCScript();
+	</script>
 
 </section>
 

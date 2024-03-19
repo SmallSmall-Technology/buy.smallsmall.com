@@ -1151,7 +1151,6 @@ class Buytolet extends CI_Controller
 	}
 	public function property($id)
 	{
-
 		//Get featured properties
 
 		$data['property'] = $this->buytolet_model->getProperty($id);
@@ -1459,7 +1458,6 @@ class Buytolet extends CI_Controller
 
 	public function properties_test($slug = '')
 	{
-
 		$config['total_rows'] = $this->buytolet_model->getAllPropCount($slug);
 
 		$data['total_count'] = $config['total_rows'];
