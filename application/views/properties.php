@@ -218,6 +218,13 @@
 									<h3><?php echo ($each_prop['rent_per_annum'])? : 0; ?>M p.a</h3>
 								</div>
 							</div>
+						<?php } elseif ($slug == 'buy-to-let') { ?>
+							<div class="key-values">
+								<div>
+									<span>Alt-Mortgage period</span>
+									<h3>18yrs Min | 20yrs Max</h3>
+								</div>
+							</div>
 						<?php } else { ?>
 							<div class="key-values">
 								<div>
