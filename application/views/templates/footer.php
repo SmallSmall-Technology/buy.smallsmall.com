@@ -60,7 +60,7 @@
 					<!-- <a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>		 -->
 					<a class="link-text" href="https://intercom.help/BuySmallsmall/en/" target="_blank">Knowledge base</a>
 					<a class="link-text" href="https://newsletter.smallsmall.com/" target="_blank">Sign up to our newsletter</a>
-					<a class="link-text" href="https://review.buysmallsmall.ng/customers" target="_blank">Leave us a review </a>
+					<a class="link-text" href="https://review.buysmallsmall.ng/new" target="_blank">Leave us a review </a>
 
 				</div>
           		<div class="footer-grid-box">
