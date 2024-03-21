@@ -263,7 +263,7 @@
                                 <select id="payment-option" class="minimal payment-option">
                                     <?php if ($property['investment_type'] == 2) { ?>
                                         <option value="standard-btl">Standard</option>
-                                        <option value="outright">Champ</option>
+                                        <option value="champ">Champ</option>
                                     <?php }else{ ?>
                                         <option value="finance">Payment Plan</option>
                                         <option value="outright">Outright Payment</option>
@@ -279,14 +279,14 @@
             <!--- Finance payment option ---->
 
             <div class="payment-box payment-boxes mortgage-finance-payment">
-                <?php if ($property['investment_type'] != 6) { ?>
+                <?php if ($property['investment_type'] != 6 && $property['investment_type'] != 2) { ?>
                     <h2>Payment Plan</h2>
                     <h4>Down Payment</h4>
                     <!---<p>What do you have?</p>--->
                     <h1 class="price" id="demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
                     <!---- Range selector ---->
                     <div class="range-container">
-                        <div class="percentage-container"><?php echo $property['minimum_payment_plan']; ?>%</div>
+                        <div class="pc percentage-container"><?php echo $property['minimum_payment_plan']; ?>%</div>
                         <input type="range" min="<?php echo ((@$property['minimum_payment_plan'] / 100) * $property['price']); ?>" max="<?php echo $property['price']; ?>" step="<?php echo (0.05 * $property['price']); ?>" value="<?php echo ((@$property['minimum_payment_plan'] / 100) * $property['price']); ?>" class="sliders" id="myRange">
 
                     </div>
@@ -329,18 +329,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!---<div class="option-list2">
-                            <div class="finance-left-options">
-                                <div class="finance">Origination fee</div>
-                                <div class="finance-desc">1% of property price</div>
-                            </div>
-                            <div class="finance-right-options">
-                                <div>
-                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price'] * 0.01); ?></div>
-                                </div>
-                            </div>
-                        </div>--->
                         <div class="option-list3">
                             <div class="finance-left-options">
                                 <div class="finance">Transaction fee</div>
@@ -373,6 +361,53 @@
                             </div>
                         </div>
                     </div>
+                <?php }elseif ($property['investment_type'] == 2) { ?>
+
+                    <h2>Equity</h2>
+                    <h4>Amount</h4>
+                    <h1 class="price" id="standard-demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
+                    <!---- Range selector ---->
+                    <div class="range-container">
+                        <div class="std-percentage-container pc">20%</div>
+                        <input type="range" min="<?php echo (0.20 * $property['price']); ?>" max="<?php echo  (0.50 * $property['price']); ?>" step="<?php echo (0.10 * $property['price']); ?>" value="<?php echo (0.20 * $property['price']); ?>" class="sliders" id="myStandardRange">
+
+                    </div>
+                    <!---- Range selector ---->
+                    
+                    <div class="financing-options-sect">
+                        <div class="option-list1">
+                            <div class="finance-left-options">
+                                <div class="finance">Equity</div>
+                            </div>
+                            <div class="finance-right-options">
+                                <div>
+                                    <div id="standard-down-payment" class="price finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-list1">
+                            <div class="finance-left-options">
+                                <div class="finance">Alt Mortgage Period</div>
+                            </div>
+                            <div class="finance-right-options">
+                                <div>
+                                    <div id="std-alt-mortgage-period" class="price finance-numbers">18 Years</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-list3">
+                            <div class="finance-left-options">
+                                <div class="finance">Pay Transaction fee now</div>
+                                <div class="finance-desc">5% of property price</div>
+                            </div>
+                            <div class="finance-right-options">
+                                <div>
+                                    <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.05); ?></div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+
                 <?php } else { ?>
                     <h2>Start now</h2>
                     <div class="option-list3">
@@ -390,11 +425,61 @@
                 <?php } ?>
                 <?php if ($property['availability'] != 'Sold' && $property['availability'] != 'Locked') { ?>
                     <div style="width:100%;text-align:center;">
-                        <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 7) ? 'Own Now' : 'Apply Now'; ?></div>
+                        <div class="payment-btn option-but"><?php echo ($property['investment_type'] == 7 || $property['investment_type'] == 2) ? 'Own Now' : 'Apply Now'; ?></div>
                     </div>
                 <?php } ?>
             </div>
             <!--- Finance payment option ---->
+
+
+            <!--- Champ payment option ---->
+            <div class="payment-box payment-boxes champ-payment">
+                <h2>Equity</h2>
+                <h4>Amount</h4>
+                <h1 class="price" id="champ-demo"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></h1>
+                <!---- Range selector ---->
+                <div class="range-container">
+                    <div class="champ-percentage-container pc">20%</div>
+                    <input type="range" min="<?php echo (0.20 * $property['price']); ?>" max="<?php echo (0.50 * $property['price']); ?>" step="<?php echo (0.10 * $property['price']); ?>" value="<?php echo (0.20 * $property['price']); ?>" class="sliders" id="myChampRange">
+
+                </div>
+                <!---- Range selector ---->
+                
+                <div class="financing-options-sect">
+                    <div class="option-list1">
+                        <div class="finance-left-options">
+                            <div class="finance">Equity</div>
+                        </div>
+                        <div class="finance-right-options">
+                            <div>
+                                <div id="champ-down-payment" class="price finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="option-list1">
+                        <div class="finance-left-options">
+                            <div class="finance">Alt Mortgage Period</div>
+                        </div>
+                        <div class="finance-right-options">
+                            <div>
+                                <div id="champ-alt-mortgage-period" class="price finance-numbers">18 Years</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="option-list3">
+                        <div class="finance-left-options">
+                            <div class="finance">Pay Transaction fee now</div>
+                            <div class="finance-desc">2.5% of property price</div>
+                        </div>
+                        <div class="finance-right-options">
+                            <div>
+                                <div class="finance-numbers"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price'] * 0.025); ?></div>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>                
+            </div>
+            <!--- Champ payment option ---->
 
 
             <!--- Outright payment option ---->
@@ -432,16 +517,7 @@
                             </div>
                         </div>
                     </div>
-                    <!---<div class="option-list1">
-                        <div class="finance-left-options">
-                            <div class="finance">Discount</div>
-                        </div>
-                        <div class="finance-right-options">
-                            <div>
-                                <div class="red finance-numbers">- <span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format(@$property['outrightDiscount']); ?></div>
-                            </div>
-                        </div>
-                    </div>--->
+                    
                     <div class="option-list3">
                         <div class="finance-left-options">
                             <div class="finance">Amount saved</div>
@@ -614,7 +690,7 @@
 
 <?php } ?>
 <input type="hidden" class="subsequent-payment" id="subsequent-payment" value="0" />
-<input type="hidden" class="repayment-period" id="repayment-period" value="0" />
+<input type="hidden" class="repayment-period" id="btl-repayment-period" value="<?php echo ($property['investment_type'] == 2)? 18 : 0; ?>" />
 <input type="hidden" class="total-amount" value="<?php echo @$property['price']; ?>" />
 <input type="hidden" id="promo-price" class="promo-price" value="<?php if (@$property['promo_price']) {
                                                                         echo $property['promo_price'];
@@ -764,101 +840,14 @@
     });
 </script>
 <script src="<?php echo base_url(); ?>asset/js/payment-options.js"></script>
+<?php if ($property['investment_type'] == 2) { ?>
+    <script src="<?php echo base_url(); ?>asset/js/standard-btl-range-slider.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/champ-range-slider.js"></script>
+<?php }else{ ?>
+    <script src="<?php echo base_url(); ?>asset/js/finance-range-slider.js"></script>
+<?php } ?>
 <script>
-    var slider = document.getElementById("myRange");
-
-    var output = document.getElementById("demo");
-
-    var down_payment_output = document.getElementById("down-payment");
-
-    var payment = document.getElementById("payment");
-
-    var finance_payment = document.getElementById('finance-payment');
-
-    var total_cost = parseInt(document.getElementById("total-cost").value);
-
-    var expected_rent = document.getElementById("expected-rent").value;
-
-    var tooltip = document.getElementById('pp-tooltip');
-
-    var one_percent = document.getElementById("one-percent").value;
-
-    var four_percent = document.getElementById("four-percent").value;
-
-    var fourty_five_percent = document.getElementById("fourty-five-percent").value;
-
-    var seventy_five_percent = document.getElementById("seventy-five-percent").value;
-
-    var ninety_five_percent = document.getElementById("ninety-five-percent").value;
-
-    var total_output = document.getElementById("total-output");
-
-    var developerPlan = document.getElementById("developer-plan");
-
-    var mortgagePlan = document.getElementById("mortgage-plan");
-
-    var selfFinance = document.getElementById("self-finance");
-
-    var pplan_minimum = document.getElementById("payment-plan-minimum").value;
-
-    var total_price = 0;
-
-    var percentage_val = 0;
-
-    total_price = (total_cost * pplan_minimum) + parseInt(one_percent) + parseInt(four_percent);
-
-    output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(slider.value);
-
-    down_payment_output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(slider.value);
-
-    total_output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(total_price);
-
-    slider.oninput = function() {
-
-        percentage_val = ((slider.value * 100) / total_cost);
-
-        if(percentage_val > 35 && percentage_val < 54){
-
-            $('#repayment-period-display').html('1 Year');
-
-        }else if(percentage_val > 55 && percentage_val < 64){
-
-            $('#repayment-period-display').html('2 Years');
-
-        }else if(percentage_val > 65 && percentage_val < 100){
-
-            $('#repayment-period-display').html('3 Years');
-
-        }
-
-        //Insert percentage in div
-        $('.percentage-container').html(percentage_val + "%");
-
-        $('#percentage-value').val(percentage_val);
-
-        total_price = parseInt(this.value) + parseInt(one_percent) + parseInt(four_percent);
-
-        var pplan = $(".payment-plan-option").val();
-
-        output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(this.value);
-
-        down_payment_output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(this.value);
-
-        total_output.innerHTML = "<span style='font-family:helvetica;'>&#x20A6;</span> " + numberWithCommas(total_price);
-
-        payment.value = this.value;
-
-        finance_payment.value = total_price;
-
-        //var payment_period = $(".repayment-duration").val();
-
-    }
-
-    function numberWithCommas(x) {
-
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    }
+    
     $('#share-btn').click(function() {
 
         if ($('.share-container').is(':hidden')) {
@@ -872,8 +861,8 @@
         }
     });
 </script>
+
 <script>
-    var baseURL = "https://buy.smallsmall.com/";
 
     const paymentForm = document.getElementById('outrightPaymentForm');
 
@@ -954,7 +943,7 @@
 
         $.ajax({
 
-            url: baseURL + 'buytolet/updatePayment/',
+            url: <?php echo base_url(); ?>'buytolet/updatePayment/',
 
             type: "POST",
 

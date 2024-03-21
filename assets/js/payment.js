@@ -108,7 +108,7 @@ $('.option-but').click(function(){
 
 	}
 	
-	if(plan == 'finance'){		
+	if(plan == 'finance' || plan == 'champ' || plan == 'btl-standard'){		
 		
 		payable = finance_payable;
 
@@ -133,7 +133,11 @@ $('.option-but').click(function(){
 
 		payable = onpl_payable;
 
-	}*/
+	}*/	
+
+	if(plan == 'champ' || plan == 'btl-standard'){
+		payment_period = $('#btl-repayment-period').val();
+	}
 	
 	if(pool_check == 'yes'){
 	    
