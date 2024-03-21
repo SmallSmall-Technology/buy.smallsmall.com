@@ -2545,13 +2545,13 @@ class Buytolet extends CI_Controller
 
 			$new_price = $cost - $discounted_price;
 
-			$promo_code = $discount_code;
+			//$promo_code = $discount_code;
 
 			//$this->buytolet_model->update_discount_price($new_price, $ref);
 
 		}
 
-		$result = $this->buytolet_model->insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $promo_amount, $beneficiary_id_path, $firstname, $lastname, $beneficiary_type, $new_price);
+		$result = $this->buytolet_model->insertCoOwnRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $coupon_code, $promo_amount, $beneficiary_id_path, $firstname, $lastname, $beneficiary_type, $new_price);
 
 		if (!$this->input->post('user-info')) {
 
