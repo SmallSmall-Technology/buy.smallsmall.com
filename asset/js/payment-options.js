@@ -38,5 +38,23 @@ $('.payment-option').on('change', function(){
     
         $('#option-but').val('outright');
         
+    }else if(option == 'champ'){        
+
+        //Close all other options
+        $('.payment-boxes').hide();    
+
+        $('.champ-payment').show();    
+
+        $('#option-but').val('champ'); 
+
+    }else if(option == 'standard-btl'){        
+
+        //Close all other options
+        $('.payment-boxes').hide();    
+
+        $('.mortgage-finance-payment').show();    
+
+        $('#option-but').val('standard-btl'); 
+
     }
 });

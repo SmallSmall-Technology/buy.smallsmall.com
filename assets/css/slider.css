@@ -5,15 +5,17 @@
 	height:30px;
 	position:relative;
 }
-.percentage-container{
-    width:50px;
-    line-height:50px;
+.pc{
     position:absolute;
     right:0;
     top:-50px;
     font-family:'Cera Pro';
     font-size:14px;
     text-align:center;
+	padding:10px 30px;
+	background:#64318A;
+	color:#FFF;
+	border-radius:225px;
 }
 .scale{
 	position:relative;	
