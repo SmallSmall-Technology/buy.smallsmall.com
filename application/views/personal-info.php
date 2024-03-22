@@ -21,9 +21,9 @@
                 <div class="finance-form-elem-container">
                     <input class="verify-txt" type="text" id="phone" placeholder="Phone number" value="<?php echo $phone; ?>" />
                 </div>
-                <div id="bvn-spc" class="finance-form-elem-container bvn-spc">
+                <!----<div id="bvn-spc" class="finance-form-elem-container bvn-spc">
                     <input class="" type="text" id="bvn" placeholder="BVN" maxlength="11" />
-                </div>
+                </div>---->
                  
                 <!-- <input type="text" id="dob" placeholder="Date of birth" type="text"name="date of birth"><br/> -->
                 <div class="finance-form-elem-container">
@@ -38,13 +38,13 @@
                         <option value="Married">Married</option>
                         <option value="Divorced">Divorced</option>
                         <option value="Widowed">Widowed</option>
-                    <select/>
+                    </select>
                 </div>
                 <div class="finance-form-elem-container">
                     <textarea placeholder="Residential Address" class="verify-txt" id="residential_address" ></textarea>
                 </div>
                 <div class="finance-form-elem-container">
-                    <button disabled type="submit" id="finance-button" class="finance-form-btns">Proceed</button>
+                    <button type="submit" id="finance-button" class="finance-form-btns activated-button">Proceed</button>
                 </div>
             </div>
         </form>

@@ -276,7 +276,7 @@ $('#financeBasicInformation').submit(function(e){
 	
 	var phone = $.trim($("#phone").val());
 	
-	var bvn = $.trim($("#bvn").val());
+	var bvn = 0;//$.trim($("#bvn").val());
 	
 	var dateOfBirth = $("#dob").val();
 	
