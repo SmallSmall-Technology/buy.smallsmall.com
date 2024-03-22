@@ -43,7 +43,7 @@ $(document).ready(function(){
     	
     }
     
-    $('#bvn').keyup(function(){
+    /*$('#bvn').keyup(function(){
         
         var bvn_number = $(this).val();
     
@@ -97,6 +97,6 @@ $(document).ready(function(){
         }
         
         
-    });
+    });*/
     
 });

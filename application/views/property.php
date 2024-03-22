@@ -145,7 +145,7 @@
                     <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period'] / 12); ?> Years</h2>
                 </div>
                 <div class="price-box">
-                    <p>Minimum down payment</p>
+                    <p><?php echo ($property['investment_type'] == 2)? 'Equity' : 'Minimum down payment'; ?></p>
                     <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan'] / 100) * $property['price']); ?>
                         <div class="tooltip"><i class="fa fa-info"></i>
                             <span class="tooltiptext">
@@ -477,7 +477,12 @@
                             </div>
                         </div>
                     </div>                        
-                </div>                
+                </div> 
+                <?php if ($property['availability'] != 'Sold' && $property['availability'] != 'Locked') { ?>
+                    <div style="width:100%;text-align:center;">
+                        <div class="payment-btn option-but">Own Now</div>
+                    </div>
+                <?php } ?>               
             </div>
             <!--- Champ payment option ---->
 
