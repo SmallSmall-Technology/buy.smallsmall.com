@@ -73,6 +73,7 @@
 
 				<?php
 					$slugValues = [
+						'buy-2-let' => 2,
 					    'bnpl' => 6,
 					    'onpl' => 7,
 					    'co-ownership' => 5
@@ -165,7 +166,18 @@
 					</div>
 					<div class="bottom-section">
 						<div class="sale-status <?php echo strtolower($each_prop['availability']); ?>"><?php echo $each_prop['availability']; ?></div>
-						<span class="price-type down-payment"><?php echo ($slug == 'bnpl') ? 'Lockdown Fee' : 'Down payment'; ?></span>
+						<span class="price-type down-payment">
+							<?php
+								if($slug == 'bnpl'){
+									echo "Lockdown Fee";
+								} elseif($slug == 'buy-2-let'){
+									echo "Start with";
+								}else{
+									echo "Down Payment";
+								}
+							//echo ($slug == 'bnpl') ? 'Lockdown Fee' : 'Down payment'; 
+							?>
+						</span>
 						<h3 class="down-payment"><span style="font-family:helvetica;">&#x20A6;</span><?php echo ($slug == 'bnpl') ? number_format($each_prop['price'] * ($each_prop['lockdown_fee'] / 100)) : number_format($each_prop['price'] * ($each_prop['minimum_payment_plan'] / 100)); ?></h3>
 						<span class="price-type actual-price">Property price</span>
 						<h3><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($each_prop['price']); ?></h3>
@@ -218,11 +230,15 @@
 									<h3><?php echo ($each_prop['rent_per_annum'])? : 0; ?>M p.a</h3>
 								</div>
 							</div>
-						<?php } elseif ($slug == 'buy-to-let') { ?>
+						<?php } elseif ($slug == 'buy-2-let') { ?>
 							<div class="key-values">
 								<div>
-									<span>Alt-Mortgage period</span>
-									<h3>18yrs Min | 20yrs Max</h3>
+									<span>Min Alt-Mortgage period</span>
+									<h3>18yrs</h3>
+								</div>
+								<div>
+									<span>Max Alt-Mortgage period</span>
+									<h3>20yrs</h3>
 								</div>
 							</div>
 						<?php } else { ?>
