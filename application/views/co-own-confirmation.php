@@ -104,7 +104,7 @@
                                     <tr class="summary-tr">
                                         <td width="50%">
                                             <div class="summary-desc">Discount price <!---<span id="actual-percentage">0%</span>---></div>
-                                            <div class="summary-info" id="total-cost"><?php echo number_format($discount['discount_price']); ?></div>
+                                            <div class="summary-info" id="total-cost"><span style='font-family:helvetica;'>&#x20A6;</span><?php echo number_format($discount['discount_price']); ?></div>
                                         </td>
                                         <td>
                                             <div class="summary-desc">Discount</div>
@@ -137,11 +137,11 @@
 
                         if($charges < 2000){        
                             //
-                            $final_amount = ($due_amount / (1 - $paystack_charges)) + 0.01;
+                            $final_amount = ($discount['discount_price'] / (1 - $paystack_charges)) + 0.01;
                             
                         }else{
                             
-                            $final_amount = $due_amount + 2000;
+                            $final_amount = $discount['discount_price'] + 2000;
                             
                         }
 
