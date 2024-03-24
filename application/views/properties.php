@@ -31,7 +31,7 @@
 			</div>
 			<!--<div class="prop-option-below">Start your home ownership journey today with as little as <span style="font-family:helvetica;">&#x20A6;</span>4,000</div>--->
 
-		<?php } elseif ($slug == 'bnpl' || $slug == 'onpl') { ?>
+		<?php } elseif ($slug == 'bnpl' || $slug == 'onpl' || $slug == 'buy-2-let') { ?>
 			<div class="property-hero-container">
 				<div class="property-hero-item">
 					<?php if ($slug == 'bnpl') { ?>
