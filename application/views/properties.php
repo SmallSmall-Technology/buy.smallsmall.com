@@ -51,6 +51,35 @@
 
 							<p>But what truly sets us apart from other home ownership programs is our interest-free installment plan. We understand that buying a house is a huge investment and we don't want it to become an overwhelming burden on your finances. That's why we offer flexible payment options over a period of 3 years, giving you enough time and breathing space while still being able to call yourself a homeowner.</p>
 						</div>
+					<?php } elseif ($slug == 'buy-2-let'){ ?>
+						<div class="note">
+							<p>
+							We launched BuySmallSmall with our Buy2Let package in 2021, and we sold the first 34 listed units within a month. For 3 years we've been consumed by the passion to offer a plan that could further lower the barrier and allow as many aspiring homeowners to become actual homeowners.
+							</p>
+							<p>
+							Mortgage is known globally to be one of the affordable and flexible ways to own homes, sadly, mortgages are extremely expensive in Nigeria, coupled with long application processes and unstable interest rates.
+							</p>
+							<p>
+							There is a need to create a cheaper and safer alternative that is scalable. Hence we've stepped in with Buy2Let. Just imagine not having to pay all these traditional mortgage fees when you do Buy2Let
+							</p>
+							<ul>
+								<li>No "Origination" fee</li>
+								<li>No "Title Search" fee</li>
+								<li>No "Valuation" fee</li>
+								<li>No "Verification of Title" fee</li>
+								<li>No "Charting" fee</li>
+								<li>No "Mortgage protection insurance" fee</li>
+								<li>No "Credit Bureau" fee</li>
+								<li>No "interest rate"</li>
+								<li>No "monthly repayment obligation"</li>
+							</ul>
+							<p>Our Buy2Let package reduces the chances of you losing your home to zero. When you buy any of our listed units, you get:  /p>
+							<ul>
+								<li>Instant allocation</li>
+								<li>Instant deed issuance in your name (Kept in escrow)<</li>
+							</ul>
+							<p>All that you’re required to pay to secure a unit is your 20% to 50% equity deposit, and the balance, 50% to 80% is covered with the rent generated from the property over a period of 10 to 20 years.</p>
+						</div>
 					<?php } ?>
 				</div>
 				<div class="property-hero-item">
@@ -58,6 +87,8 @@
 						<img src="<?php echo base_url(); ?>asset/images/onpl-hero-img.svg" alt="buy now pay later image" />
 					<?php } elseif ($slug == 'onpl') { ?>
 						<img src="<?php echo base_url(); ?>asset/images/bnpl-image.jpg" alt="Own now pay later image" />
+					<?php } elseif ($slug == 'buy-2-let') { ?>
+						<img src="<?php echo base_url(); ?>asset/images/buy-2-let-image.svg" alt="Buy 2 Let image" />
 					<?php } ?>
 				</div>
 			</div>
@@ -234,11 +265,11 @@
 							<div class="key-values">
 								<div>
 									<span>Min Alt-Mortgage period</span>
-									<h3>18yrs</h3>
+									<h3><?php echo $each_prop['min_mortgage'].'yrs'; ?></h3>
 								</div>
 								<div>
 									<span>Max Alt-Mortgage period</span>
-									<h3>20yrs</h3>
+									<h3><?php echo $each_prop['max_mortgage'].'yrs'; ?></h3>
 								</div>
 							</div>
 						<?php } else { ?>
