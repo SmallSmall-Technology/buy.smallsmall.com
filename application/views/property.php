@@ -140,10 +140,12 @@
                         </h2>
                     </div>
                 <?php } ?>
+                <?php if($property['investment_type'] != 2){ ?>
                 <div class="price-box">
                     <p>Payment tenure</p>
                     <h2 style="font-weight:bold"><?php echo ($property['payment_plan_period'] / 12); ?> Years</h2>
                 </div>
+                <?php } ?>
                 <div class="price-box">
                     <p><?php echo ($property['investment_type'] == 2)? 'Equity' : 'Minimum down payment'; ?></p>
                     <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan'] / 100) * $property['price']); ?>
