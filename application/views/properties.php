@@ -8,6 +8,8 @@
 					Buy Now Pay Later
 				<?php } elseif ($slug == 'onpl') { ?>
 					Own Now Pay Later
+				<?php } elseif ($slug == 'buy-2-let') { ?>
+					Buy2Let				
 				<?php } else { ?>
 					Sole Ownership
 				<?php } ?>
