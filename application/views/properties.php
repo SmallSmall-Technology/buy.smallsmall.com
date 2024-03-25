@@ -59,9 +59,6 @@
 							We launched BuySmallSmall with our Buy2Let package in 2021, and we sold the first 34 listed units within a month. For 3 years we've been consumed by the passion to offer a plan that could further lower the barrier and allow as many aspiring homeowners to become actual homeowners.
 							</p>
 							<p>
-							Mortgage is known globally to be one of the affordable and flexible ways to own homes, sadly, mortgages are extremely expensive in Nigeria, coupled with long application processes and unstable interest rates.
-							</p>
-							<p>
 							There is a need to create a cheaper and safer alternative that is scalable. Hence we've stepped in with Buy2Let. Just imagine not having to pay all these traditional mortgage fees when you do Buy2Let
 							</p>
 							<ul>
@@ -80,7 +77,6 @@
 								<li>Instant allocation</li>
 								<li>Instant deed issuance in your name (Kept in escrow)<</li>
 							</ul>
-							<p>All that you’re required to pay to secure a unit is your 20% to 50% equity deposit, and the balance, 50% to 80% is covered with the rent generated from the property over a period of 10 to 20 years.</p>
 						</div>
 					<?php } ?>
 				</div>

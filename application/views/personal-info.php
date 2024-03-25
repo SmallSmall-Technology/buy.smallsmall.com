@@ -21,9 +21,6 @@
                 <div class="finance-form-elem-container">
                     <input class="verify-txt" type="text" id="phone" placeholder="Phone number" value="<?php echo $phone; ?>" />
                 </div>
-                <!----<div id="bvn-spc" class="finance-form-elem-container bvn-spc">
-                    <input class="" type="text" id="bvn" placeholder="BVN" maxlength="11" />
-                </div>---->
                  
                 <!-- <input type="text" id="dob" placeholder="Date of birth" type="text"name="date of birth"><br/> -->
                 <div class="finance-form-elem-container">
