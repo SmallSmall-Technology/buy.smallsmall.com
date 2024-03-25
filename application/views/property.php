@@ -6,48 +6,6 @@
             <div id="slider">
                 <ul class="rslides" id="slider1">
 
-                    <!-- Slider Image from local uploads -->
-                    <!-- </?php
-
-						$dir = './uploads/buytolet/'.$property['image_folder'].'/';
-					
-						$url = "uploads/buytolet/".$property['image_folder'].'/';
-
-						if (file_exists($dir) == false) {
-
-							echo 'Directory \'', $dir, '\' not found!'; 
-
-						} else {
-
-							$dir_contents = scandir($dir); 
-
-							$count = 0;
-
-							$content_size = count($dir_contents);
-
-							foreach ($dir_contents as $file) {
-
-								//$file_type = strtolower(end(explode('.', $file)));
-
-								if ( $file !== '.' && $file !== '..'&& $count <= ($content_size - 2) ){ 
-
-						?>
-									<li>
-										<img src="</?php echo base_url().$url.$file; ?>" alt=" buy smallsmall property">										
-									</li>
-						</?php		
-
-								}  
-								$count++;
-
-							}
-
-						}
-
-						?> -->
-                    <!-- End Slider Image from local uploads -->
-
-
                     <!-- Slider Image from AWS S3 Bucket -->
 
                     <?php
@@ -147,7 +105,7 @@
                 </div>
                 <?php } ?>
                 <div class="price-box">
-                    <p><?php echo ($property['investment_type'] == 2)? 'Equity' : 'Minimum down payment'; ?></p>
+                    <p><?php echo ($property['investment_type'] == 2)? 'Minimum Deposit' : 'Minimum down payment'; ?></p>
                     <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan'] / 100) * $property['price']); ?>
                         <div class="tooltip"><i class="fa fa-info"></i>
                             <span class="tooltiptext">
@@ -365,7 +323,7 @@
                     </div>
                 <?php }elseif ($property['investment_type'] == 2) { ?>
 
-                    <h2>Equity</h2>
+                    <h2>Deposit</h2>
                     <h4>Amount</h4>
                     <h1 class="price" id="standard-demo"><span style="font-family:helvetica;">&#x20A6;</span><?php //echo number_format($property['price']); ?></h1>
                     <!---- Range selector ---->
@@ -379,7 +337,7 @@
                     <div class="financing-options-sect">
                         <div class="option-list1">
                             <div class="finance-left-options">
-                                <div class="finance">Equity</div>
+                                <div class="finance">Deposit</div>
                             </div>
                             <div class="finance-right-options">
                                 <div>
@@ -399,7 +357,7 @@
                         </div>
                         <div class="option-list3">
                             <div class="finance-left-options">
-                                <div class="finance">Pay Transaction fee now</div>
+                                <div class="finance">Transaction fee</div>
                                 <div class="finance-desc">5% of property price</div>
                             </div>
                             <div class="finance-right-options">
@@ -436,7 +394,7 @@
 
             <!--- Champ payment option ---->
             <div class="payment-box payment-boxes champ-payment">
-                <h2>Equity</h2>
+                <h2>Deposit</h2>
                 <h4>Amount</h4>
                 <h1 class="price" id="champ-demo"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['price']); ?></h1>
                 <!---- Range selector ---->
@@ -450,7 +408,7 @@
                 <div class="financing-options-sect">
                     <div class="option-list1">
                         <div class="finance-left-options">
-                            <div class="finance">Equity</div>
+                            <div class="finance">Deposit</div>
                         </div>
                         <div class="finance-right-options">
                             <div>
@@ -470,7 +428,7 @@
                     </div>
                     <div class="option-list3">
                         <div class="finance-left-options">
-                            <div class="finance">Pay Transaction fee now</div>
+                            <div class="finance">Transaction fee</div>
                             <div class="finance-desc">2.5% of property price</div>
                         </div>
                         <div class="finance-right-options">

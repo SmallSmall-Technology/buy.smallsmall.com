@@ -24,6 +24,23 @@ $(document).ready(function(){
 
         due_amount = order.payable;
 
+    }else if(order.paymentPlan == 'buy-2-let'){
+
+        $('#other-finance-confirmation').hide();
+
+        $('#buytolet-confirmation').show();
+
+        $('#cta-info').html('Pay transaction fee now to secure the unit');
+
+        $('#deposit-amount').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.down_payment));
+
+        $('#btl-transaction-fee').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(transaction_fee));
+
+        $('#btl-amount-due').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(parseInt(transaction_fee) + parseInt(order.down_payment)));
+
+        $('#alt-mortgage-period').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+order-payment_period);
+
+        $('#deposit-percentage').html(balance_percentage+"%");
 
     }
     

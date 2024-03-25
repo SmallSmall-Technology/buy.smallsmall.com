@@ -12,7 +12,7 @@
                     </div>
                     <div class="summary-dets">
                         <div id="summary-sub-head" class="summary-sub-head align-left">Financing information</div>
-                        <div class="finance-table-container">
+                        <div id="other-finance-confirmation" class="finance-table-container">
                             <table class="summary-table finance-tbl" width="100%">
                                 <tr class="finance-spc summary-tr">
                                     <td width="50%">
@@ -46,6 +46,43 @@
                                 </tr>
                             </table>
                         </div>
+
+                        <!----Buy2Let confirmation table ---->
+                        <div class="finance-table-container" id="buytolet-confirmation">
+                            <table class="summary-table finance-tbl" width="100%">
+                                <tr class="finance-spc summary-tr">
+                                    <td width="50%">
+                                        <div class="summary-desc">Deposit Amount</div>
+                                        <div class="summary-info" id="deposit-amount">***********</div>
+                                    </td>
+                                    <td>
+                                        <div class="summary-desc">Deposit Percentage</div>
+                                        <div class="summary-info" id="deposit-percentage">***********</div>
+                                    </td>
+                                </tr>
+                                <tr class="summary-tr">
+                                    <td width="50%">
+                                        <div id="summary-desc" class="summary-desc">5% Transaction fee</div>
+                                        <div class="summary-info" id="btl-transaction-fee">**************</div>
+                                    </td>
+                                    <td>
+                                        <div class="summary-desc">Alt-Mortgage Period</div>
+                                        <div class="summary-info" id="alt-mortgage-period">**************</div>
+                                    </td>
+                                </tr>
+                                <tr class="finance-spc summary-tr">
+                                    <td width="50%">
+                                        <div class="summary-desc">Total Payment Due <span id="actual-percentage">0%</span></div>
+                                        <div class="summary-info" id="btl-amount-due">**************</div>
+                                    </td>
+                                    <!---<td>
+                                        <div class="summary-desc">Payment tenure</div>
+                                        <div class="summary-info" id="payment-tenor">**************</div>
+                                    </td>--->
+                                </tr>
+                            </table>
+                        </div>
+                        <!----Buy2Let confirmation table ---->
                     </div>
                 </div> 
             </div> 
@@ -164,7 +201,7 @@
                 <input type="hidden" id="refID" value="<?php echo md5(date('YmdHis')); ?>" />
                 
 			    
-                <div id="payment-txt" class="payment-txt">Click the finish button to submit and pay origination fee: <span id="payment-output">0</span></div>
+                <div id="payment-txt" class="payment-txt"><span id="cta-info">Click the finish button to submit and pay origination fee:<span> <span id="payment-output">0</span></div>
                 <button onclick="payWithPaystack()" type="submit" id="" class="doc-submit-btn">Finish</button>
 
             </form>

@@ -17,7 +17,7 @@
                         <div id="dd-dir">Drag and Drop or <span class="browse-btn-2">Browse</span></div> 
                     </div>
                 </div>
-
+                
                 <div id="finance-form-elem" class="finance-form-elem-container">
                     <div class="uploadArea" id="dropzone-bank">
                         Upload 6 months<br /> bank statement minimum                 
