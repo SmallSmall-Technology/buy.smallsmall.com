@@ -608,7 +608,17 @@
     <!-- End of HubSpot Embed Code -->
 
 </div>
-<input type="hidden" id="option-but" value="<?php echo ($property['investment_type'] == 6) ? 'bnpl' : 'finance'; ?>" />
+<?php
+    $payment_plan = 'finance';
+
+    if($property['investment_type'] == 6){
+        $payment_plan = 'bnpl';
+    }else if($property['investment_type'] == 2){
+        $payment_plan = 'buy-2-let';
+    }
+
+?>
+<input type="hidden" id="option-but" value="<?php echo $payment_plan; ?>" />
 <input type="hidden" id="userID" value="<?php echo @$userID; ?>" />
 <input type="hidden" class="prop-id" value="<?php echo $property['propertyID']; ?>" />
 <input type="hidden" class="pool_check" value="<?php echo $property['pool_buy']; ?>" />
