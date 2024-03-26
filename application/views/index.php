@@ -481,6 +481,23 @@
 
 </section>
 
+<!-- click connector script -->
+<script>
+		function loadCCWidget() {
+			(new window["click-connector-widget"]).mount({})
+		}
+
+		function loadCCScript() {
+			var t = document.createElement("script");
+			t.id = "cc-widget-script", t.setAttribute("data-widget-id", "a4e580-bedc4"), t.type = "text/javascript", t.defer = !0, t.addEventListener("load", (function(t) {
+				loadCCWidget()
+			})), t.src = "https://widget.clickconnector.app/widget.js", document.getElementsByTagName("head")[0].appendChild(t)
+		}
+		loadCCScript();
+</script>
+
+<!-- end of click connector script -->
+
 <!-- hopscotch-script -->
 <script id="hopscotch-script" type="text/javascript">
 	(function(w, d) {
