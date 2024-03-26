@@ -1,3 +1,17 @@
+<script>
+	function loadCCWidget() {
+		(new window["click-connector-widget"]).mount({})
+	}
+
+	function loadCCScript() {
+		var t = document.createElement("script");
+		t.id = "cc-widget-script", t.setAttribute("data-widget-id", "a4e580-bedc4"), t.type = "text/javascript", t.defer = !0, t.addEventListener("load", (function(t) {
+			loadCCWidget()
+		})), t.src = "https://widget.clickconnector.app/widget.js", document.getElementsByTagName("head")[0].appendChild(t)
+	}
+	loadCCScript();
+</script>
+
 <div class="grid-box">
 	<div class="prop-option-head">
 		<div class="prop-option-top">
