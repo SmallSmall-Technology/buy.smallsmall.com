@@ -312,21 +312,15 @@
 
 	<!-- End Answerly.io -->
 
-
-	<!-- Google tag manager (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FTLFC09RY"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FCZPG953ZN"></script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
+	window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
-		gtag('config', 'G-0FTLFC09RY');
+		gtag('config', 'G-FCZPG953ZN');
 	</script>
-
-	<!-- End Google tag manager (gtag.js) -->
 
 	<!-- clerity heatmap session	 -->
 	<script type="text/javascript">
