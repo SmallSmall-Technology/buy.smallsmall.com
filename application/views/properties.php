@@ -86,10 +86,10 @@
 								<li>No "interest rate"</li>
 								<li>No "monthly repayment obligation"</li>
 							</ul>
-							<p>Our Buy2Let package reduces the chances of you losing your home to zero. When you buy any of our listed units, you get:  /p>
+							<p>Our Buy2Let package reduces the chances of you losing your home to zero. When you buy any of our listed units, you get:  </p>
 							<ul>
 								<li>Instant allocation</li>
-								<li>Instant deed issuance in your name (Kept in escrow)<</li>
+								<li>Instant deed issuance in your name (Kept in escrow)</li>
 							</ul>
 						</div>
 					<?php } ?>
