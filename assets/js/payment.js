@@ -108,7 +108,7 @@ $('.option-but').click(function(){
 
 	}
 	
-	if(plan == 'finance' || plan == 'champ' || plan == 'btl-standard'){		
+	if(plan == 'finance' || plan == 'champ' || plan == 'btl-standard' || plan == 'buy-2-let'){		
 		
 		payable = finance_payable;
 
