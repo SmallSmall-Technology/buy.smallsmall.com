@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         due_amount = order.payable;
 
-    }else if(order.paymentPlan == 'buy-2-let'){
+    }else if(order.paymentPlan == 'buy-2-let' || order.paymentPlan == 'btl-standard' || order.paymentPlan == 'champ'){
 
         $('#other-finance-confirmation').hide();
 
