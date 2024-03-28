@@ -174,18 +174,23 @@
                 </p>
             </div>
         </div>
-        <!---<div class="features_description">
-                <p>Floor plan</p>
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            </div>--->
+        <?php if($property['investment_type'] == 2){ ?>
+        <div class="migration-txt">
+            Things to note about Buy2Let:
+            <ul class="migration-list">
+                <li>i. Make only 20% to 50% deposit to own this unit.</li>
+                <li>ii. The title is issued in your name upon deposit payment.</li>
+                <li>iii. Your deposit % determines the Alt-Mortgage Period (AMP).</li>
+                <li>iv. The balance is covered from generated rent over the AMP.</li>
+                <li>v. Take full possession of the property and title at the end of AMP.</li>
+            </ul>
+            <a class="migration-lnk" href="#" target="_blank">Learn more about Buy2Let here <i class="fa fa-angle-double-right"></i></a>
+        </div>
+        <?php } ?>
+        <?php if($property['investment_type'] != 2){ ?>
         <div class="features_description">
             <!---<p>Financial highlights</p>--->
             <p>Projected rent</p>
-            <!---<div class="switch">
-                    <div id="monthly" class="monthly period-selector active">Monthly</div>
-                    <div id="annual" class="annual period-selector">Annual</div>
-                </div>--->
-
             <div class="highlight-tbl-container">
                 <table cellpadding="5" class="highlight-tbl">
                     <tr>
@@ -207,6 +212,7 @@
             </div>
 
         </div>
+        <?php } ?>
         <div class="features_description">
             <?php if ($property['investment_type'] != 6) { ?>
                 <div class="payment-box">
@@ -647,6 +653,7 @@
 <input type="hidden" class="bnpl-property" id="bnpl-property" value="<?php ($property['investment_type'] == 6) ? 1 : 0; ?>" />
 <!---Buy now pay later--->
 <input type="hidden" class="expected-rent" id="expected-rent" value="<?php echo @$property['expected_rent']; ?>" />
+<input type="hidden" class="alt-mortgage-period" id="alt-mortgage-period" value="0" />
 <input type="hidden" class="total-cost" id="total-cost" value="<?php echo @$property['price']; ?>" />
 <input type="hidden" class="payment" id="payment" value="<?php echo (@$property['price'] * 0.40); ?>" />
 <?php if ($property['investment_type'] == 6) { ?>

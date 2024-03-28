@@ -38,7 +38,7 @@ $(document).ready(function(){
 
         $('#btl-amount-due').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(parseInt(transaction_fee) + parseInt(order.down_payment)));
 
-        $('#alt-mortgage-period').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+order-payment_period);
+        $('#alt-mortgage-period').html(order.payment_period+" Months");
 
         $('#deposit-percentage').html(balance_percentage+"%");
 

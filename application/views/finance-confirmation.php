@@ -98,19 +98,15 @@
                                 <div class="summary-info" id="full-name">***********</div>
                             </td>
                             <td width="33.3%">
-                                <div class="summary-desc">BVN</div>
-                                <div class="summary-info" id="bvn">***********</div>
-                            </td>
-                            <td width="33.3%">
                                 <div class="summary-desc">Email</div>
                                 <div class="summary-info" id="email-address">***********</div>
                             </td>
-                        </tr>
-                        <tr>
                             <td width="33.3%">
                                 <div class="summary-desc">Phone</div>
                                 <div class="summary-info" id="phone-number">***********</div>
                             </td>
+                        </tr>
+                        <tr>
                             <td width="33.3%">
                                 <div class="summary-desc">Marital Status</div>
                                 <div class="summary-info" id="marital-status">***********</div>
@@ -119,19 +115,9 @@
                                 <div class="summary-desc">DOB</div>
                                 <div class="summary-info" id="dob">***********</div>
                             </td>
-                        </tr>
-                        <tr>
                             <td width="33.3%">
                                 <div class="summary-desc">Home Address</div>
                                 <div class="summary-info" id="home-address">***********</div>
-                            </td>
-                            <td width="33.3%">
-                                <!---<div class="summary-desc">BVN</div>
-                                <div class="summary-info" id="bvn">***********</div>--->
-                            </td>
-                            <td width="33.3%">
-                                <!---<div class="summary-desc">Email</div>
-                                <div class="summary-info" id="email-address">***********</div>--->
                             </td>
                         </tr>
                     </table> 
