@@ -116,6 +116,8 @@ $('.option-but').click(function(){
 		
 		balance = property_cost - down_payment;
 
+		percentage_value = $('#percentage-value').val();
+
 	}else if(plan == 'outright'){
 
 		payable = property_cost;
@@ -136,7 +138,9 @@ $('.option-but').click(function(){
 	}*/	
 
 	if(plan == 'champ' || plan == 'btl-standard' || plan == 'buy-2-let'){
+
 		payment_period = $('#btl-repayment-period').val();
+
 	}
 	
 	if(pool_check == 'yes'){

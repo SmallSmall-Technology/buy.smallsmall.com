@@ -40,7 +40,7 @@ $(document).ready(function(){
 
         $('#alt-mortgage-period').html(order.payment_period+" Months");
 
-        $('#deposit-percentage').html(balance_percentage+"%");
+        $('#deposit-percentage').html(percentage_value+"%");
 
     }
     
