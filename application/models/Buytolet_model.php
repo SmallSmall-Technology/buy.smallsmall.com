@@ -646,7 +646,7 @@ class Buytolet_model extends CI_Model
 		}
 	}
 
-	public function insertRequest($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details)
+	public function insertRequest($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $discount)
 	{
 
 		$ref = md5(date('YmdHis'));
@@ -702,6 +702,8 @@ class Buytolet_model extends CI_Model
 		$this->payment_period = $payment_period;
 
 		$this->promo_code = $promo_code;
+
+		$this->discount_price = $discount;
 
 		$this->request_date = date('Y-m-d H:i:s');
 

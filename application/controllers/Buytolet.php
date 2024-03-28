@@ -2440,7 +2440,7 @@ class Buytolet extends CI_Controller
 
 		}
 
-		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details);
+		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $new_price);
 
 		if ($result) {
 
