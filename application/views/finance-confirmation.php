@@ -1,7 +1,7 @@
 
         <div style="width:100%">
             <div class="summary-container">
-                <div id="summary-header" class="summary-header">Finance Application</div>
+                <div id="summary-header" class="summary-header">Summary</div>
                 <div class="payment-summary">
                     <div class="summary-dets">
                         <div class="summary-sub-head align-left">Property information</div>

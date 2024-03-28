@@ -75,7 +75,7 @@
 							<p>
 							There is a need to create a cheaper and safer alternative that is scalable. Hence we've stepped in with Buy2Let. Just imagine not having to pay all these traditional mortgage fees when you do Buy2Let
 							</p>
-							<ul>
+							<ul style="padding-left:10px;">
 								<li>No "Origination" fee</li>
 								<li>No "Title Search" fee</li>
 								<li>No "Valuation" fee</li>

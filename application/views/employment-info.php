@@ -1,9 +1,9 @@
 
     <div class="info">
-        <h1 id="the-form-title"> Financing Application</h1>
+        <h1 id="the-form-title"> KYC</h1>
         
         <div  class="form_elem">
-            <h3 id="persona"> Employment information</h3>
+            <h3 id="persona" style="line-height:40px;"> Employment information</h3>
         </div>
     
         <form id="financeEmploymentInformation" method="POST">

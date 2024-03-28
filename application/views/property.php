@@ -109,7 +109,11 @@
                     <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format(($property['minimum_payment_plan'] / 100) * $property['price']); ?>
                         <div class="tooltip"><i class="fa fa-info"></i>
                             <span class="tooltiptext">
-                                Initial down-payment due based on listing duration from day property is locked.
+                                <?php if($property['investment_type'] == 2){ ?>
+                                        Minimum deposit is required to own this property.
+                                <?php } else { ?>}
+                                        Initial down-payment due based on listing duration from day property is locked.
+                                <?php } ?>
                             </span>
                         </div>
                     </h2>
