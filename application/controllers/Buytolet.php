@@ -2427,6 +2427,19 @@ class Buytolet extends CI_Controller
 
 		$prop = $this->buytolet_model->getProperty($property_id);
 
+		$new_price = 0;
+
+		$discount = $this->buytolet_model->getActiveDiscount($coupon_code, $payment_plan);
+
+		if (!empty($discount)) {
+
+			//Calculate promo price and insert in row $ref
+			$discounted_price = $cost * ($discount['discount_value'] / 100);
+
+			$new_price = $cost - $discounted_price;
+
+		}
+
 		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details);
 
 		if ($result) {
@@ -2509,7 +2522,7 @@ class Buytolet extends CI_Controller
 
 		$promo = $this->buytolet_model->getActivePromo();
 
-		$discount = $this->buytolet_model->getActiveDiscount($coupon_code);
+		$discount = $this->buytolet_model->getActiveDiscount($coupon_code, 'co-own');
 
 		$promo_details = array();
 
