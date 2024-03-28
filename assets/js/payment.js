@@ -135,7 +135,7 @@ $('.option-but').click(function(){
 
 	}*/	
 
-	if(plan == 'champ' || plan == 'btl-standard'){
+	if(plan == 'champ' || plan == 'btl-standard' || plan == 'buy-2-let'){
 		payment_period = $('#btl-repayment-period').val();
 	}
 	
