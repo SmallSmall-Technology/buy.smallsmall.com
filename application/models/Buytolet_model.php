@@ -646,7 +646,7 @@ class Buytolet_model extends CI_Model
 		}
 	}
 
-	public function insertRequest($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details)
+	public function insertRequest($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $discount)
 	{
 
 		$ref = md5(date('YmdHis'));
@@ -702,6 +702,8 @@ class Buytolet_model extends CI_Model
 		$this->payment_period = $payment_period;
 
 		$this->promo_code = $promo_code;
+
+		$this->discount_price = $discount;
 
 		$this->request_date = date('Y-m-d H:i:s');
 
@@ -830,7 +832,7 @@ class Buytolet_model extends CI_Model
 
 		$this->amount = $cost;
 
-		$this->payable = $payable;
+		$this->payable = $payable; 
 
 		$this->finance_balance = $balance;
 
@@ -2776,7 +2778,7 @@ class Buytolet_model extends CI_Model
 		return $query->row_array();
 	}
 
-	public function getActiveDiscount($code)
+	public function getActiveDiscount($code, $type)
 	{
 
 		$today = date('Y-m-d');
@@ -2790,6 +2792,14 @@ class Buytolet_model extends CI_Model
 		$this->db->where('status', 1);
 
 		$this->db->where('discount_code', $code);
+
+		$this->db->group_start();
+
+		$this->db->where('discount_product', 'all');
+
+		$this->db->or_where('discount_product', $type);
+
+		$this->db->group_end();
 
 		$this->db->where('end_date >=', $today);
 
