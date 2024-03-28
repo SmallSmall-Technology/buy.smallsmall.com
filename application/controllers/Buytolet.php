@@ -4588,13 +4588,20 @@ class Buytolet extends CI_Controller
 
 				if ($promo['promo_term']) {
 
-					$term_result = intval($shares_bought / $promo['promo_term']);
+					if($promo['promo_count'] == 'multiples'){
 
-					$promo_value = $term_result * $promo['promo_value'];
+						$term_result = intval($shares_bought / $promo['promo_term']);
 
-					if ($promo['promo_term_max'] && $promo['promo_term_max'] <= $shares_bought) {
+						$promo_value = $term_result * $promo['promo_value'];
 
-						$max_term_result = intval($shares_bought / $promo['promo_term_max']);
+						if ($promo['promo_term_max'] && $promo['promo_term_max'] <= $shares_bought) {
+
+							$max_term_result = intval($shares_bought / $promo['promo_term_max']);
+						}
+					}else if($promo['promo_count'] == 'single'){
+
+						$promo_value = $promo['promo_value'];
+
 					}
 
 					$promo_value = $max_term_result + $promo_value;
@@ -4608,16 +4615,25 @@ class Buytolet extends CI_Controller
 
 				if ($promo['promo_term']) {
 
-					$term_result = intval($shares_bought / $promo['promo_term']);
+					if($promo['promo_count'] == 'multiples'){
 
-					$promo_value = $term_result * $promo['promo_value'];
+						$term_result = intval($shares_bought / $promo['promo_term']);
 
-					if ($promo['promo_term_max'] && $promo['promo_term_max'] <= $shares_bought) {
+						$promo_value = $term_result * $promo['promo_value'];
 
-						$max_term_result = intval($shares_bought / $promo['promo_term_max']);
+						if ($promo['promo_term_max'] && $promo['promo_term_max'] <= $shares_bought) {
+
+							$max_term_result = intval($shares_bought / $promo['promo_term_max']);
+						}
+
+						$promo_value = $max_term_result + $promo_value;
+						
+					}else if($promo['promo_count'] == 'single'){
+
+						$promo_value = $promo['promo_value'];
+
 					}
 
-					$promo_value = $max_term_result + $promo_value;
 				} else {
 
 					$promo_value = $promo['promo_value'];
