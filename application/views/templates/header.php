@@ -373,20 +373,20 @@
 							</a>
 							<a class="NavLink" href="<?php echo base_url('properties/onpl'); ?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
-								Own Now Pay Later
+								OwnNowPayLater
 							</a>
-							<!---<a class="NavLink" href="<?php //echo base_url('properties/buy-to-live'); 
+							<a class="NavLink" href="<?php //echo base_url('properties/buy-2-let'); 
 															?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
-								Buy2live
-							</a>--->
+								Buy2Let
+							</a>
 							<a class="NavLink" href="<?php echo base_url('properties/co-ownership'); ?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
 								Buy2Co-Own
 							</a>
 							<a class="NavLink" href="<?php echo base_url('properties/bnpl'); ?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
-								Buy Now Pay Later
+								BuyNowPayLater
 							</a>
 						</div>
 
