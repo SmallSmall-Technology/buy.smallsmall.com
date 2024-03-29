@@ -3550,7 +3550,7 @@ class Buytolet extends CI_Controller
 
 		$mop = 'Paystack';
 
-		$prop = $this->buytolet_model->getProperty($property_id);
+		//$prop = $this->buytolet_model->getProperty($property_id);
 
 		$result = $this->buytolet_model->insertPayment($property_id, $userID, $payable, $mop, $ref_id);
 
@@ -3559,6 +3559,12 @@ class Buytolet extends CI_Controller
 
 		if ($payment_plan == 'bnpl' || $payment_plan == 'onpl') {
 			$this->buytolet_model->update_property_status($property_id, 'Locked');
+		}
+
+		if($payment_plan == 'standard-btl' || $payment_plan == 'champ'){
+
+			$this->send_btl_customer_email($name, $email, $payable, $prop);
+
 		}
 
 		require 'vendor/autoload.php';
@@ -5580,6 +5586,158 @@ class Buytolet extends CI_Controller
 
 			echo $result;
 
+		}
+	}
+
+	public function send_btl_customer_email($name, $email, $payable, $property_details){
+
+		require 'vendor/autoload.php'; // For Unione template authoload
+
+		// Unione Template
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "a2eb640a-e2e4-11ee-a5f5-6e88759aa722"
+		];
+
+		// end Unione Template
+
+		try {
+			$response = $client->request('POST', 'template/get.json', array(
+				'headers' => $headers,
+				'json' => $requestBody,
+			));
+
+			$jsonResponse = $response->getBody()->getContents();
+
+			$responseData = json_decode($jsonResponse, true);
+
+			$htmlBody = $responseData['template']['body']['html'];
+
+			$customerName = $name;
+
+			$propertyName = $property_details['property_name'];
+
+			$equity = $property_details['payable'];
+
+			$paymentOption = $property_details['plan'];
+
+			$altMortgagePeriod = $property_details['payment_period'];
+
+			$transactionFee = $payable;
+
+			// Replace the placeholder in the HTML body
+
+			$htmlBody = str_replace('{{CustomerName}}', $customerName, $htmlBody);
+			$htmlBody = str_replace('{{PropertyName}}', $propertyName, $htmlBody);
+			$htmlBody = str_replace('{{Equity}}', $equity, $htmlBody);
+			$htmlBody = str_replace('{{PaymentOption}}', $paymentOption, $htmlBody);
+			$htmlBody = str_replace('{{AltMortgagePeriod}}', $altMortgagePeriod, $htmlBody);
+			$htmlBody = str_replace('{{TransactionFee}}', $transactionFee, $htmlBody);
+
+			$data['response'] = $htmlBody;
+
+			// Prepare the email data to send
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => $email],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Buy2let Subscription Notification",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "BSS SmallSmall Notification",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+
+			$this->send_btl_cx_email($customerName, $propertyName, $equity, $paymentOption, $altMortgagePeriod, $transactionFee);
+		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+			$data['response'] = $e->getMessage();
+		}
+	}
+
+	public function send_btl_cx_email($customerName, $propertyName, $equity, $paymentOption, $altMortgagePeriod, $transactionFee){
+
+		require 'vendor/autoload.php'; // For Unione template authoload
+
+		// Unione Template
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/json',
+			'X-API-KEY' => '6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y',
+		);
+
+		$client = new \GuzzleHttp\Client([
+			'base_uri' => 'https://eu1.unione.io/en/transactional/api/v1/'
+		]);
+
+		$requestBody = [
+			"id" => "a2eb640a-e2e4-11ee-a5f5-6e88759aa722"
+		];
+
+		// end Unione Template
+
+		try {
+			$response = $client->request('POST', 'template/get.json', array(
+				'headers' => $headers,
+				'json' => $requestBody,
+			));
+
+			$jsonResponse = $response->getBody()->getContents();
+
+			$responseData = json_decode($jsonResponse, true);
+
+			$htmlBody = $responseData['template']['body']['html'];
+
+			// Replace the placeholder in the HTML body
+
+			$htmlBody = str_replace('{{SubscriberName}}', $customerName, $htmlBody);
+			$htmlBody = str_replace('{{PropertyName}}', $propertyName, $htmlBody);
+			$htmlBody = str_replace('{{Equity}}', $equity, $htmlBody);
+			$htmlBody = str_replace('{{PaymentOption}}', $paymentOption, $htmlBody);
+			$htmlBody = str_replace('{{AltMortgagePeriod}}', $altMortgagePeriod, $htmlBody);
+			$htmlBody = str_replace('{{TransactionFee}}', $transactionFee, $htmlBody);
+
+			$data['response'] = $htmlBody;
+
+			// Prepare the email data to send
+			$emailData = [
+				"message" => [
+					"recipients" => [
+						["email" => 'tunde.b@smallsmall.com',
+						"email" => 'marketing@smallsmall.com',
+						"email" => 'hello@buysmallsmall.ng'],
+					],
+					"body" => ["html" => $htmlBody],
+					"subject" => "Buy2let Subscription Notification",
+					"from_email" => "donotreply@smallsmall.com",
+					"from_name" => "BSS SmallSmall Notification",
+				],
+			];
+
+			// Send the email using the Unione API
+			$responseEmail = $client->request('POST', 'email/send.json', [
+				'headers' => $headers,
+				'json' => $emailData,
+			]);
+		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+
+			$data['response'] = $e->getMessage();
 		}
 	}
 }
