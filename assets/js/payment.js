@@ -108,7 +108,7 @@ $('.option-but').click(function(){
 
 	}
 	
-	if(plan == 'finance' || plan == 'champ' || plan == 'btl-standard' || plan == 'buy-2-let'){		
+	if(plan == 'finance' || plan == 'champ' || plan == 'standard-btl' || plan == 'buy-2-let'){		
 		
 		payable = finance_payable;
 
@@ -137,7 +137,7 @@ $('.option-but').click(function(){
 
 	}*/	
 
-	if(plan == 'champ' || plan == 'btl-standard' || plan == 'buy-2-let'){
+	if(plan == 'champ' || plan == 'standard-btl' || plan == 'buy-2-let'){
 
 		payment_period = $('#btl-repayment-period').val();
 
@@ -156,7 +156,7 @@ $('.option-but').click(function(){
 	    plan = "poolbuy";
 	}
 	
-	if(plan != 'finance' && plan != 'champ' && plan != 'btl-standard' && plan != 'buy-2-let'){
+	if(plan != 'finance' && plan != 'champ' && plan != 'standard-btl' && plan != 'buy-2-let'){
 		
 		payment_period = 0;
 		

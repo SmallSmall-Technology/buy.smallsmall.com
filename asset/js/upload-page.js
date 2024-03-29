@@ -17,7 +17,7 @@ $(document).ready(function(){
         $('#statement').val('https://buy.smallsmall.com/');
         $('#agreement').html('I have read the <a href="'+baseUrl+'bnpl-terms-and-conditions" target="_blank">BNPL Terms and Condition.</a>');
         $('#add-onpl-agreement').show();
-	}else if(order.paymentPlan == 'buy-2-let'){
+	}else if(order.paymentPlan == 'buy-2-let' || order.paymentPlan == 'standard-btl' || order.paymentPlan == 'champ'){
         $('#finance-form-elem').hide();
         $('#statement-state').val(1);        
         $('#statement').val('https://buy.smallsmall.com/');

@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         due_amount = order.payable;
 
-    }else if(order.paymentPlan == 'buy-2-let' || order.paymentPlan == 'btl-standard' || order.paymentPlan == 'champ'){
+    }else if(order.paymentPlan == 'buy-2-let' || order.paymentPlan == 'standard-btl' || order.paymentPlan == 'champ'){
 
         $('#other-finance-confirmation').hide();
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
         $('#alt-mortgage-period').html(order.payment_period+" Months");
 
-        $('#deposit-percentage').html(percentage_value+"%");
+        $('#deposit-percentage').html(order.percentage_value+"%");
 
     }
     
