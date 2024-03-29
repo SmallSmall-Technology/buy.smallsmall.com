@@ -375,7 +375,7 @@
 								<span style='font-size:9px;'>&nbsp;</span>
 								OwnNowPayLater
 							</a>
-							<a class="NavLink" href="<?php //echo base_url('properties/buy-2-let'); 
+							<a class="NavLink" href="<?php echo base_url('properties/buy-2-let'); 
 															?>" onclick='closeMobileMenu()'>
 								<span style='font-size:9px;'>&nbsp;</span>
 								Buy2Let
