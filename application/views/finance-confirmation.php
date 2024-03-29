@@ -72,7 +72,7 @@
                                 </tr>
                                 <tr class="finance-spc summary-tr">
                                     <td width="50%">
-                                        <div class="summary-desc">Total Payment Due <span id="actual-percentage">0%</span></div>
+                                        <div class="summary-desc">Total Payment Due <!---<span id="actual-percentage">0%</span>---></div>
                                         <div class="summary-info" id="btl-amount-due">**************</div>
                                     </td>
                                     <!---<td>
