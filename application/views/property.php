@@ -227,7 +227,14 @@
                     <div class="financing-options-sect">
                         <div class="option-list1">
                             <div class="finance-left-options">
-                                <div class="finance">Payment options</div>
+                                <div class="finance">
+                                    Select Plan
+                                    <div class="tooltip"><i class="fa fa-info"></i>
+                                        <span class="tooltiptext">
+                                            Champ plan only for children age 1 to 12 years.
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="finance-right-options">
                                 <select id="payment-option" class="minimal payment-option">
