@@ -185,6 +185,8 @@
                 <input type="hidden" id="due_amount" value="" />
                 
                 <input type="hidden" id="refID" value="<?php echo md5(date('YmdHis')); ?>" />
+
+                <input type="hidden" id="plan" value="" />
                 
 			    
                 <div id="payment-txt" class="payment-txt"><span id="cta-info">Click the finish button to submit and pay origination fee:<span> <span id="payment-output">0</span></div>
@@ -245,7 +247,7 @@
         
         var propertyID = $('.prop-id').val();
         
-        var plan = 'Financing';
+        var plan = $('#plan').val();
     	
     	var cost = $('.total-amount').val();
     	

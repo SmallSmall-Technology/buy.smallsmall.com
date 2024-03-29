@@ -631,7 +631,7 @@
     if($property['investment_type'] == 6){
         $payment_plan = 'bnpl';
     }else if($property['investment_type'] == 2){
-        $payment_plan = 'buy-2-let';
+        $payment_plan = 'standard-btl';
     }
 
 ?>

@@ -42,6 +42,8 @@ $(document).ready(function(){
 
         $('#deposit-percentage').html(order.percentage_value+"%");
 
+        $('#plan').val(order.paymentPlan);
+
     }
     
     $('#total-amount-payable').html("<span style='font-family:helvetica;'>&#x20A6;</span>"+numberWithCommas(order.payable));
