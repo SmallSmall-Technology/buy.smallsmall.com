@@ -1,10 +1,10 @@
     <!---<div class="header__image">--->
 
     <div class="info">
-        <h1 id="the-form-title"> Financing Application</h1>
+        <h1 id="the-form-title">KYC</h1>
         
         <div  class="form_elem">
-            <h3 id="persona"> Upload Documents</h3>
+            <h3 id="persona" style="line-height:40px;"> Upload Documents</h3>
         </div>
     
         <form id="uploadForm" method="POST">

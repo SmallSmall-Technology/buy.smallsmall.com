@@ -156,7 +156,7 @@ $('.option-but').click(function(){
 	    plan = "poolbuy";
 	}
 	
-	if(plan != 'finance'){
+	if(plan != 'finance' && plan != 'champ' && plan != 'btl-standard' && plan != 'buy-2-let'){
 		
 		payment_period = 0;
 		
