@@ -646,10 +646,8 @@ class Buytolet_model extends CI_Model
 		}
 	}
 
-	public function insertRequest($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $discount)
+	public function insertRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $discount)
 	{
-
-		$ref = md5(date('YmdHis'));
 
 		$this->userID = $userID;
 
@@ -677,7 +675,7 @@ class Buytolet_model extends CI_Model
 
 		$this->personal_address = $personal_details[0]['residential_address'];
 
-		$this->company = $employment_details[0]['companyName'];
+		$this->company = $employment_details[0]['company_name'];
 
 		$this->occupation = $employment_details[0]['occupation'];
 
@@ -731,6 +729,15 @@ class Buytolet_model extends CI_Model
 			return 0;
 		}
 	}
+
+	public function insert_champ($champ, $ref){
+
+		$inputs = array("child_name" => $champ['child_name'], "child_age" => $champ['child_age'], "child_dob" => $champ['child_dob'], "refID" => $ref);
+
+		return $this->db->insert('champ_tbl', $inputs);
+
+	}
+
 	public function insertRequestManually($buyer_type, $payment_plan, $property_id, $cost, $userID, $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $ref)
 	{
 

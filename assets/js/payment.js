@@ -261,8 +261,17 @@ $('.option-but').click(function(){
 		
 	}
 	
-	//redirect to finance form page	
-	window.location.href = baseUrl+"personal-info";
+	if(plan == 'champ'){
+
+		//redirect to finance form page	
+		window.location.href = baseUrl+"champ-form";
+
+	}else{
+
+		//redirect to finance form page	
+		window.location.href = baseUrl+"personal-info";
+
+	}
 
 });
 
@@ -396,7 +405,15 @@ $('#uploadForm').submit(function(e){
     
     e.preventDefault();
 	
+	var champ = [];
+	
 	var order = JSON.parse(localStorage.getItem('buytolet_basket'));
+
+	if(localStorage.getItem('buytolet_champ') != NULL){
+
+		champ = JSON.parse(localStorage.getItem('buytolet_champ'));
+
+	}
     
     if(!$('#agreement').is(":checked")){
 
@@ -431,7 +448,7 @@ $('#uploadForm').submit(function(e){
 
 	var id_path = $('#idcard').val();
 	
-	var data = {"balance" : order.balance, "payment_plan" : order.paymentPlan, "property_id" : order.property_id, "cost" : order.cost, "payable" : order.payable, "method_of_payment" : "paystack", "payment_period" : order.payment_period, "promo_code" : order.promo_code, "id_path" : id_path, "statement_path" : statement_path, "personal_details" : order.personal_details, "employment_details" : order.employment_details};
+	var data = {"balance" : order.balance, "payment_plan" : order.paymentPlan, "property_id" : order.property_id, "cost" : order.cost, "payable" : order.payable, "method_of_payment" : "paystack", "payment_period" : order.payment_period, "promo_code" : order.promo_code, "id_path" : id_path, "statement_path" : statement_path, "personal_details" : order.personal_details, "employment_details" : order.employment_details, "champ" : champ};
 	
 	$.ajaxSetup ({ cache: false });
 	$.ajax({			
@@ -473,6 +490,68 @@ $('#uploadForm').submit(function(e){
 		}
 
 	});
+       
+});
+
+$('#champForm').submit(function(e){
+    
+    e.preventDefault();
+	
+	var champ = JSON.parse(localStorage.getItem('buytolet_champ'));
+	
+	var id_state = $('#id-state').val();
+	
+	if(id_state == 0){
+
+		alert('You need to upload proof of age');
+		
+		$('.champ-form-btn').html("Proceed");
+
+		return false;
+	}
+	
+	var id_path = $('#idcard').val();
+	
+	var child_name = $('#child_name').val();
+	
+	var child_age = $('#child_age').val();
+	
+	var child_dob = $('#dob').val();
+
+	if(localStorage.getItem('buytolet_champ') === null){
+
+		var newChampBasket = {
+
+			"child_name" : child_name,
+
+			"child_age" : child_age,
+
+			"child_dob" : child_dob,
+
+			"id_path" : id_path
+
+	   	};
+
+		window.localStorage.setItem('buytolet_champ', JSON.stringify(newChampBasket));
+
+	}else{
+
+		var champ = JSON.parse(localStorage.getItem('buytolet_champ'));
+
+		champ.child_name = child_name;
+		
+		champ.child_age = child_age;
+		
+		champ.child_dob = child_dob;
+
+		champ.id_path = id_path;
+
+		//local storage
+		window.localStorage.setItem('buytolet_champ', JSON.stringify(champ));	
+	}
+
+	//redirect to finance form page	
+	window.location.href = baseUrl+"personal-info"; 
        
 });
 
