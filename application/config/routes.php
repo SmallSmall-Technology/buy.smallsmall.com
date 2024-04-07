@@ -213,6 +213,8 @@ $route['co-own-form'] = 'buytolet/co_own_form';
 
 $route['finance-form'] = 'buytolet/finance_form';
 
+$route['champ-form'] = 'buytolet/champ_form';
+
 $route['personal-info'] = 'buytolet/personal_info';
 
 $route['employment-info'] = 'buytolet/employment_info';

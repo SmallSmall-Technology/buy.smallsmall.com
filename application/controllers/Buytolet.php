@@ -858,6 +858,42 @@ class Buytolet extends CI_Controller
 		}
 	}
 
+	public function champ_form()
+	{
+
+		if ($this->session->has_userdata('loggedIn')) {
+
+			$data['userID'] = $this->session->userdata('userID');
+
+			$data['fname'] = $this->session->userdata('fname');
+
+			$data['lname'] = $this->session->userdata('lname');
+
+			$data['phone'] = $this->session->userdata('phone');
+
+			$data['email'] = $this->session->userdata('email');
+
+			$data['user_type'] = $this->session->userdata('user_type');
+
+			$data['loggedIn'] = $this->session->userdata('loggedIn');
+
+			$data['interest'] = $this->session->userdata('interest');
+
+			//Check login status
+
+			$data['title'] = "Champ Form";
+
+			$this->load->view('templates/header', $data);
+
+			$this->load->view('champ-form', $data);
+
+			$this->load->view('templates/footer', $data);
+		} else {
+
+			redirect(base_url() . "login", 'refresh');
+		}
+	}
+
 	public function upload_info()
 	{
 
@@ -2395,6 +2431,9 @@ class Buytolet extends CI_Controller
 
 			redirect(base_url() . "login", 'refresh');
 		}
+
+		$ref = md5(date('YmdHis'));
+
 		$data['userID'] = $this->session->userdata('userID');
 
 		$buyer_type = 'Investor';
@@ -2425,6 +2464,8 @@ class Buytolet extends CI_Controller
 
 		$statement_path = $this->input->post("statement_path");
 
+		$champ = $this->input->post("champ");
+
 		$prop = $this->buytolet_model->getProperty($property_id);
 
 		$new_price = 0;
@@ -2440,15 +2481,23 @@ class Buytolet extends CI_Controller
 
 		}
 
-		$result = $this->buytolet_model->insertRequest($buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $new_price);
+		$result = $this->buytolet_model->insertRequest($ref, $buyer_type, $payment_plan, $property_id, $cost, $data['userID'], $payable, $balance, $mop, $payment_period, $unit_amount, $promo_code, $id_path, $statement_path, $employment_details, $personal_details, $new_price);
 
 		if ($result) {
 
-			if ($prop['pool_buy'] == 'yes')
+			if(!empty($champ)){
+				$this->buytolet_model->insert_champ($champ, $ref);
+			}
+
+			if ($prop['pool_buy'] == 'yes'){
+
 				$new_pool_units = $prop['available_units'] - $unit_amount;
-			$this->buytolet_model->update_units($new_pool_units, $property_id);
+				$this->buytolet_model->update_units($new_pool_units, $property_id);
+
+			}
 
 			echo 1;
+			
 		} else {
 
 			echo $result;
@@ -3412,7 +3461,87 @@ class Buytolet extends CI_Controller
 
 		echo json_encode(array("result" => $result, "msg" => $msg));
 	}
+	public function uploadChildIdentification($folder)
+	{
 
+		$filename = '';
+
+		if (!$folder) {
+
+			$folder = md5(date("Ymd His"));
+		}
+
+		sleep(1);
+
+		if (!is_dir('./uploads/financing/' . $folder .'/child_id')) {
+
+			mkdir('./uploads/financing/' . $folder .'/child_id', 0711, TRUE);
+		}
+
+		if ($_FILES["files"]["name"] != '') {
+
+			$output = '';
+
+			$config["upload_path"] = './uploads/financing/' . $folder .'/child_id';
+
+			$config["allowed_types"] = 'jpg|jpeg|png|JPG|PNG|JPEG|pdf';
+
+			$config['max_size'] = '5000';
+
+			$config['encrypt_name'] = TRUE;
+
+			$this->load->library('upload', $config);
+
+			$this->upload->initialize($config);
+
+			if (is_array($_FILES["files"]["name"])) {
+
+				for ($count = 0; $count < count($_FILES["files"]["name"]); $count++) {
+
+					$_FILES["file"]["name"] = $_FILES["files"]["name"][$count];
+
+					$_FILES["file"]["type"] = $_FILES["files"]["type"][$count];
+
+					$_FILES["file"]["tmp_name"] = $_FILES["files"]["tmp_name"][$count];
+
+					$_FILES["file"]["error"] = $_FILES["files"]["error"][$count];
+
+					$_FILES["file"]["size"] = $_FILES["files"]["size"][$count];
+
+					if ($this->upload->do_upload('file')) {
+
+						$data = $this->upload->data();
+
+						$output = "success";
+
+						$filename = $data["file_name"];
+					}
+				}
+			} else {
+
+				$_FILES["file"]["name"] = $_FILES["files"]["name"];
+
+				$_FILES["file"]["type"] = $_FILES["files"]["type"];
+
+				$_FILES["file"]["tmp_name"] = $_FILES["files"]["tmp_name"];
+
+				$_FILES["file"]["error"] = $_FILES["files"]["error"];
+
+				$_FILES["file"]["size"] = $_FILES["files"]["size"];
+
+				if ($this->upload->do_upload('file')) {
+
+					$data = $this->upload->data();
+
+					$output = "success";
+
+					$filename = $data["file_name"];
+				}
+			}
+
+			echo json_encode(array('result' => $output, 'folder' => $folder.'/child_id', 'filename' => $filename));
+		}
+	}
 	public function uploadIdentification($folder)
 	{
 
