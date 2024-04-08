@@ -70,14 +70,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+
 $active_group = 'default';
 $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
+	'hostname' => 'rss.cojxxisixk5c.eu-west-1.rds.amazonaws.com',
 	// 'hostname' => 'rss.cbhrg1lzyru7.eu-west-1.rds.amazonaws.com',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'rentsmallsmall_buytolet',
+	'password' => 'Buytolet!2021',
  	'database' => 'rentsmallsmall_furnisure_buytolet_database',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -94,31 +95,6 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-// $active_group = 'default';
-// $query_builder = TRUE;
-// $db['default'] = array(
-// 	'dsn'	=> '',
-// 	'hostname' => 'rss.cojxxisixk5c.eu-west-1.rds.amazonaws.com',
-// 	// 'hostname' => 'rss.cbhrg1lzyru7.eu-west-1.rds.amazonaws.com',
-// 	'username' => 'rentsmallsmall_buytolet',
-// 	'password' => 'Buytolet!2021',
-//  	'database' => 'rentsmallsmall_furnisure_buytolet_database',
-// 	'dbdriver' => 'mysqli',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'development'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );
 
 /*$db['default'] = array(
 	'dsn'	=> '',
