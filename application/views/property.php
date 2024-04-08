@@ -959,6 +959,7 @@
 <script>
     $(document).ready(function() {
         window.localStorage.removeItem('buytolet_basket');
+        window.localStorage.removeItem('buytolet_champ');
     });
 </script>
 <script src="https://js.paystack.co/v1/inline.js"></script>

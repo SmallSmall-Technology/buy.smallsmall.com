@@ -880,10 +880,13 @@ class Buytolet extends CI_Controller
 			$data['interest'] = $this->session->userdata('interest');
 
 			//Check login status
+			$data['progress'] = 60;
 
 			$data['title'] = "Champ Form";
 
 			$this->load->view('templates/header', $data);
+
+			$this->load->view('templates/breadcrumb-finance', $data);
 
 			$this->load->view('champ-form', $data);
 
