@@ -46,6 +46,13 @@
             </div>
         </form>
         
-    </div> 
+    </div>
+    <script>
+        if(localStorage.getItem('buytolet_champ') == null){
+
+            $('#champ-tab').hide();
+
+        }
+    </script> 
     <script src="<?php echo base_url(); ?>assets/js/payment.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/personal-page.js"></script>
