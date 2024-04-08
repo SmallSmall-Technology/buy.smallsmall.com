@@ -409,7 +409,7 @@ $('#uploadForm').submit(function(e){
 	
 	var order = JSON.parse(localStorage.getItem('buytolet_basket'));
 
-	if(localStorage.getItem('buytolet_champ') != NULL){
+	if(localStorage.getItem('buytolet_champ') != null){
 
 		champ = JSON.parse(localStorage.getItem('buytolet_champ'));
 
