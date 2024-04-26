@@ -5872,4 +5872,34 @@ class Buytolet extends CI_Controller
 			$data['response'] = $e->getMessage();
 		}
 	}
+
+	public function get_inactive_users(){
+
+		if($this->input->is_cli_request()){
+
+			$min_date = date('Y-m-d', strtotime('-1 week'));
+
+			$max_date = date('Y-m-d', strtotime('-4 week'));
+
+			$bss_users = $this->buytolet_model->get_bss_requests();
+
+			//Get recent users
+			$recent_users = $this->buytolet_model->get_dated_users( $min_date, $max_date );
+
+			if(!empty($recent_users)){
+
+
+
+			}else{
+
+				exit;
+
+			}
+
+		}else{
+
+			exit;
+
+		} 
+	}
 }
