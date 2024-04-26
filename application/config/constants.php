@@ -84,4 +84,5 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 define('PAYSTACK_PRIVATE_KEY','pk_live_34a3561ac7f3d3e35d118e3e4bf3777065d92f62');
+define('PAYSTACK_SECRET_KEY','sk_live_d9e66b7adff0577b22bb73653f833e4004c657e9');
 define('UNIONE_API_KEY','6bgqu7a8bd7xszkz1uonenrxwpdeium56kb1kb3y');
