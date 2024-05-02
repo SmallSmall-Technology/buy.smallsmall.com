@@ -41,8 +41,7 @@
     position:relative;
 }
 .bottom-section{
-    padding:10px 10px;
-    height:200px;
+    padding:40px 20px;
     position:relative;
 }
 .sale-status{
@@ -64,13 +63,11 @@
     background:#D32318;
 }
 .top-section{
-    /* background-image:url("/public/img/Rectangle1.png"); */
     background-size:cover;
     background-repeat:no-repeat;
     height: 200px;
     border-top-right-radius:10px;
     border-top-left-radius:10px;
-    margin-bottom:40px;
 }
 .badge{
     background: #64318A;
