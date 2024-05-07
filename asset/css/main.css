@@ -38,7 +38,7 @@ h1 {
 
 .product-card {
     width: 330px;
-    height: 430px;
+    /*height: 430px;*/
     margin: 20px;
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.68);
@@ -156,6 +156,8 @@ h1 {
 .section-word {
     padding-top: 70px;
     font-family: 'Cera Pro';
+    width: 70%;
+    margin: auto;
 }
 
 .link-section {
@@ -250,6 +252,10 @@ h1 {
         width: 60%;
         font-size: 12px;
         line-height: 18px;
+    }
+
+    .section-word {
+        width: 80%; 
     }
 
 }
@@ -574,9 +580,8 @@ h1 {
 
     .product-card {
         width: 100%;
-        height: 530px;
+        /*height: 530px;*/
         margin: 10px 0 20px 0;
-        border-radius: 10px;
     }
 
     .partner-logo-container {
