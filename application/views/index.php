@@ -19,22 +19,16 @@
 			<div class="text-slider">
 				<ul class="rslides" id="slider1">
 					<li>
-						<h1>Own a Home on</h1> 
-						<h1>Installment No Matter</h1>
-						<h1>How Much You Earn</h1>
+						<h1>Home ownership</h1>
+						<h1>is not a birthright</h1>
+						<h1>of a few.</h1>
 						<p>&nbsp;</p>
 					</li>
 					<li>
-						<h1>Tech-driven</h1>  
-						<h1>Homeownership for the</h1>
-						<h1>New Generation</h1>
-						<p>&nbsp;</p>
-					</li>
-					<li>
-						<h1>You're Not Too</h1>
-						<h1>Young to Own a Home!</h1>
-						<h1>Start Now!</h1>
-						<p>&nbsp;</p>
+						<h1>Buy a home</h1>
+						<h1>in Lagos</h1>
+						<h1>and pay in 5 years?</h1>
+						<p>We have a deal for you.</p>
 					</li>
 				</ul>
 			</div>
@@ -70,8 +64,8 @@
 	</header>
 
 	<div class="section-word">
-		<h1 style='text-align:center; padding-top:30px;'>65% OF BUYSMALLSMALL SUBSCRIBERS ARE BELOW 40 YEARS OLD!</h1>
-		<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>BuySmallSmall is a tech-driven homeownership platform helping the new generation of Nigerians become homeowners, no matter their age or current income level.</div>
+		<h1 style='text-align:center; padding-top:30px;'>The best mortgage alternative in Nigeria.</h1>
+		<div style='margin:auto; text-align:center; max-width: 90%; padding:20px 0'>On BuySmallsmall, buying a home is as straightforward as ordering your favorite food at a nice restaurant.</div>
 	</div>
 	<section class="product-card-container">
 
@@ -79,10 +73,10 @@
 			<div style='background-image:url("<?php echo base_url(); ?>asset/img/btl-img.png")' class="top-section">
 			</div>
 			<div class="bottom-section">
-				<h1>Buy2Co-Own</h1>
+				<h1>Buy2Let</h1>
 
 				<div class="text-section">
-					Buy property shares in existing properties for as little as N4000 per share. You can continue to buy the shares until you have enough to make a down payment on your preferred BuySmallSmall property.
+					Own prime rental property of any type with 80% financing at zero percent interest.
 				</div>
 
 				<a class="learn-more-btn" href="<?php echo base_url('faq'); ?>"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
@@ -93,23 +87,24 @@
 			<div style='background-image:url("<?php echo base_url(); ?>asset/img/cardImg2.png")' class="top-section">
 			</div>
 			<div class="bottom-section">
-				<h1>Buy Now Pay Later</h1>
+				<h1>Buy2Live</h1>
 				<div class="text-section">
-					This plan allows you to pay 5% lockdown fee, get 3 to 9 months to make the first 35% payment and spread the balance across 5 years at a fixed 9% interest rate.
+					Acquire your dream home today and pay for it conveniently in 5 years.
 				</div>
 				<a class="learn-more-btn" href="<?php echo base_url('faq'); ?>"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
 			</div>
 		</div>
-		<div class="product-card">
-				<div style='background-image:url("<?php echo base_url(); ?>asset/img/cardImg1.png")' class="top-section"></div>
+		<!---<div class="product-card">
+				<div style='background-image:url("<?php //echo base_url(); 
+													?>asset/img/cardImg1.png")' class="top-section"></div>
 				<div class="bottom-section">
-					<h1>Own Now Pay Later</h1>
+					<h1>Buy2Sell</h1>
 					<div class="text-section">
-						This plan makes it possible to pay just 35% down payment and spread the balance across 12 months. If you pay up to 65% down payment, you can spread the balance across 3 years at zero interest.
+						Find real estate deals that give minimum of 25% return in 24months or less
 					</div>
-					<a class="learn-more-btn" href="<?php echo base_url('faq'); ?>"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
+					<a class="learn-more-btn" href="#"><span>Learn more</span> <i class="fa fa-arrow-right"></i> </a>
 				</div>
-			</div>
+			</div>--->
 	</section>
 
 
