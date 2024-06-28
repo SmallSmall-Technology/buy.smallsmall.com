@@ -62,10 +62,11 @@ h1 {
 .price-type.down-payment {
     font-family: 'Cera Medium';
     font-size: 10px !important;
+    margin-top: 20px;
 }
 
 .price-type.actual-price {
-    font-family: 'Cera Pro';
+    font-family: 'Cera Medium';
 }
 
 .left-section h1 {
