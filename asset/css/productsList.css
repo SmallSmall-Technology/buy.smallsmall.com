@@ -48,7 +48,7 @@
     padding:6px 8px;
     position:absolute;
     color:#FFF;
-    top:-20px;
+    top:-38px;
     right:10px;
     font-family:'Cera Medium';
     font-size:12px;
@@ -102,7 +102,7 @@
     white-space:normal;
 }
 .bottom-section >h3{
-    font-family: 'Cera Pro';
+    font-family: 'Cera Medium';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
