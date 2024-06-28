@@ -231,6 +231,20 @@
 	</script>
 	<!--- Popupular JS Tag --->
 
+	<!-- Poper Code Start - poper.ai -->
+	<script 
+	id="poper-js-script" 
+	data-account-id="63435aa036f45572cbae1637da0aeb42" 
+	src="https://app.poper.ai/share/poper.js" 
+	defer
+	></script>
+	<script>
+		window.Poper = window.Poper || [];
+		window.Poper.push({
+			accountID: "63435aa036f45572cbae1637da0aeb42",
+		});
+	</script>
+	<!-- Poper Code End -->
 	<!-- TruConversion for buy.smallsmall.com -->
 	<script type="text/javascript">
 		var _tip = _tip || [];
