@@ -5915,7 +5915,7 @@ class Buytolet extends CI_Controller
 
 			for ($i = 0; $i < count($properties); $i++) {
 
-				//$worth = $worth + $properties[$i]['amount'];
+				$worth = $worth + $properties[$i]['amount'];
 
 				//get request date diff
 				$date_diff = $this->getNumOfDays($properties[$i]['request_date']);
@@ -5924,12 +5924,12 @@ class Buytolet extends CI_Controller
 
 				$buy_back_rate = getBuyBackRate($date_diff, $properties[$i]['propertyID'], $noOfUnits);
 
-				//$worth = $worth + $buy_back_rate;
+				$worth = $worth + $buy_back_rate;
 
 			}
 		} else {
 			//Return single property worth
-			//$worth = $properties[0]['amount'];
+			$worth = $properties[0]['amount'];
 
 			//get request date diff
 			$date_diff = $this->getNumOfDays($properties[0]['request_date']);
@@ -5938,7 +5938,7 @@ class Buytolet extends CI_Controller
 
 			$buy_back_rate = getBuyBackRate($date_diff, $properties[0]['propertyID'], $noOfUnits);
 
-			//$worth = $worth + $buy_back_rate;
+			$worth = $worth + $buy_back_rate;
 		}
 
 		print_r($worth);
