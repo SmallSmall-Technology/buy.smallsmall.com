@@ -5902,4 +5902,45 @@ class Buytolet extends CI_Controller
 
 		} 
 	}
+
+	public function get_buyback_by_user($useremail = 'w1plus@yahoo.co.uk'){
+
+		$user_email = $this->buytolet_model->get_user_by_email($useremail);
+
+		$user_id = $user_email['userID'];
+
+		$properties = $this->buytolet_model->getAllUserCoOwnProperties($user_id);
+
+		if (count($properties) > 1) {
+
+			for ($i = 0; $i < count($properties); $i++) {
+
+				//$worth = $worth + $properties[$i]['amount'];
+
+				//get request date diff
+				$date_diff = $this->getNumOfDays($properties[$i]['request_date']);
+
+				$noOfUnits = (@$properties[$i]['no_of_units']) ? @$properties[$i]['no_of_units'] : @$properties[$i]['unit_amount'];
+
+				$buy_back_rate = getBuyBackRate($date_diff, $properties[$i]['propertyID'], $noOfUnits);
+
+				//$worth = $worth + $buy_back_rate;
+
+			}
+		} else {
+			//Return single property worth
+			//$worth = $properties[0]['amount'];
+
+			//get request date diff
+			$date_diff = $this->getNumOfDays($properties[0]['request_date']);
+
+			$noOfUnits = (@$properties[0]['no_of_units']) ? @$properties[0]['no_of_units'] : @$properties[0]['unit_amount'];
+
+			$buy_back_rate = getBuyBackRate($date_diff, $properties[0]['propertyID'], $noOfUnits);
+
+			//$worth = $worth + $buy_back_rate;
+		}
+
+		print_r($worth);
+	}
 }

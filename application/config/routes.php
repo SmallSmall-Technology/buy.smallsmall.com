@@ -100,6 +100,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // Properties filter
 
+$route['private/get-buyback'] = 'buytolet/get_buyback_by_user';
+
 $route['private/manual-onpl'] = 'buytolet/insertRequestManually';
 
 $route['test/certification'] = 'buytolet/certify_me_test';
