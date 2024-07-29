@@ -5903,13 +5903,13 @@ class Buytolet extends CI_Controller
 		} 
 	}
 
-	public function get_buyback_by_user($useremail = 'w1plus@yahoo.co.uk'){
+	public function get_buyback_by_user(){
 
-		$user_email = $this->buytolet_model->get_user_by_email($useremail);
+		//$user_email = $this->buytolet_model->get_user_by_email($useremail);
 
-		$user_id = $user_email['userID'];
+		//$user_id = $user_email['userID'];
 
-		$properties = $this->buytolet_model->getAllUserCoOwnProperties($user_id);
+		$properties = $this->buytolet_model->getAllUserCoOwnProperties('157460883185');
 
 		if (count($properties) > 1) {
 
@@ -5942,5 +5942,6 @@ class Buytolet extends CI_Controller
 		}
 
 		print_r($worth);
+		echo $worth;
 	}
 }
