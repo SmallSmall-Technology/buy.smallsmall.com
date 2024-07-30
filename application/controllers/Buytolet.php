@@ -5903,45 +5903,74 @@ class Buytolet extends CI_Controller
 		} 
 	}
 
-	public function get_buyback_by_user(){
+	public function get_buyback_by_user($user_id = '157460883185')
+	{
 
-		//$user_email = $this->buytolet_model->get_user_by_email($useremail);
+		$worth = 0;
 
-		//$user_id = $user_email['userID'];
+		$buy_back_rate = 0.00;
 
-		$properties = $this->buytolet_model->getAllUserCoOwnProperties('157460883185');
+		$buy_back_per_prop = array();
+
+		$properties = $this->buytolet_model->getAllUserCoOwnProperties($user_id);
+
 
 		if (count($properties) > 1) {
 
 			for ($i = 0; $i < count($properties); $i++) {
 
-				$worth = $worth + $properties[$i]['amount'];
-
 				//get request date diff
 				$date_diff = $this->getNumOfDays($properties[$i]['request_date']);
 
-				$noOfUnits = (@$properties[$i]['no_of_units']) ? @$properties[$i]['no_of_units'] : @$properties[$i]['unit_amount'];
+				if ($properties[$i]['purchase_beneficiary'] == 'Self' || $properties[$i]['purchase_beneficiary'] == 'Free') {
 
-				$buy_back_rate = getBuyBackRate($date_diff, $properties[$i]['propertyID'], $noOfUnits);
+					$worth = $worth + ($properties[$i]['unit_amount'] * $properties[$i]['price']);
 
-				$worth = $worth + $buy_back_rate;
+					$bbr = $this->getBuyBackRate($date_diff, $properties[$i]['propertyID'], $properties[$i]['unit_amount']);
 
+					$buy_back_rate = $buy_back_rate + $bbr;
+
+					array_push($buy_back_per_prop, array("propertyID" => $properties[$i]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+				} else {
+
+					$worth = $worth + ($properties[$i]['no_of_units'] * $properties[$i]['price']);
+
+					$bbr = $this->getBuyBackRate($date_diff, $properties[$i]['propertyID'], $properties[$i]['no_of_units']);
+
+					$buy_back_rate = $buy_back_rate + $bbr;
+
+					array_push($buy_back_per_prop, array("propertyID" => $properties[$i]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+				}
 			}
-		} else {
+		} else if (count($properties) == 1) {
 			//Return single property worth
-			$worth = $properties[0]['amount'];
-
+			//$worth = $properties[0]['amount'];
 			//get request date diff
 			$date_diff = $this->getNumOfDays($properties[0]['request_date']);
 
-			$noOfUnits = (@$properties[0]['no_of_units']) ? @$properties[0]['no_of_units'] : @$properties[0]['unit_amount'];
+			if ($properties[0]['purchase_beneficiary'] == 'Self' || $properties[0]['purchase_beneficiary'] == 'Free') {
 
-			$buy_back_rate = getBuyBackRate($date_diff, $properties[0]['propertyID'], $noOfUnits);
+				$worth = $worth + ($properties[0]['unit_amount'] * $properties[0]['price']);
 
-			$worth = $worth + $buy_back_rate;
+				$bbr = $this->getBuyBackRate($date_diff, $properties[0]['propertyID'], $properties[0]['unit_amount']);
+
+				$buy_back_rate = $buy_back_rate + $bbr;
+
+				array_push($buy_back_per_prop, array("propertyID" => $properties[0]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+			} else {
+
+				$worth = $worth + ($properties[0]['no_of_units'] * $properties[0]['price']);
+
+				$bbr = $this->getBuyBackRate($date_diff, $properties[0]['propertyID'], $properties[0]['no_of_units']);
+
+				$buy_back_rate = $buy_back_rate + $bbr;
+
+				array_push($buy_back_per_prop, array("propertyID" => $properties[0]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+			}
 		}
 
-		print_r($worth);
-		echo $worth;
+		$worth = $worth + $buy_back_rate;
+
+		return array("worth" => $worth, "buybackrate" => $buy_back_rate, "properties" => $buy_back_per_prop);
 	}
 }
