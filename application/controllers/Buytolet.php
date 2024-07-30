@@ -4853,6 +4853,7 @@ class Buytolet extends CI_Controller
 			$valuePerDay = (($property['co_appr_1'] * $property['marketValue']) / 100) / 365;
 
 			$rates = $rates + ($numberOfDays * $valuePerDay);
+
 		} elseif ($numberOfDays > 365 && $numberOfDays <= 730) {
 
 			//Add first year
@@ -4863,6 +4864,7 @@ class Buytolet extends CI_Controller
 			$valuePerDay = (($property['co_appr_2'] * $property['marketValue']) / 100) / 365;
 
 			$rates = $first_year + ($remaining_days * $valuePerDay);
+
 		} elseif ($numberOfDays > 730 && $numberOfDays <= 1095) {
 
 			//Add first year
@@ -5905,9 +5907,8 @@ class Buytolet extends CI_Controller
 
 	public function get_buyback_by_user($user_id = '157460883185')
 	{
-
 		$worth = 0;
-
+		
 		$buy_back_rate = 0.00;
 
 		$buy_back_per_prop = array();
@@ -5918,6 +5919,10 @@ class Buytolet extends CI_Controller
 		if (count($properties) > 1) {
 
 			for ($i = 0; $i < count($properties); $i++) {
+
+				$worth = 0;
+
+				$buy_back_rate = 0.00;
 
 				//get request date diff
 				$date_diff = $this->getNumOfDays($properties[$i]['request_date']);
@@ -5943,6 +5948,11 @@ class Buytolet extends CI_Controller
 				}
 			}
 		} else if (count($properties) == 1) {
+			
+			$worth = 0;
+
+			$buy_back_rate = 0.00;
+
 			//Return single property worth
 			//$worth = $properties[0]['amount'];
 			//get request date diff
