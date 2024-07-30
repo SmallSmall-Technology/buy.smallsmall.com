@@ -5971,6 +5971,6 @@ class Buytolet extends CI_Controller
 
 		$worth = $worth + $buy_back_rate;
 
-		return array("worth" => $worth, "buybackrate" => $buy_back_rate, "properties" => $buy_back_per_prop);
+		print_r(array("worth" => $worth, "buybackrate" => $buy_back_rate, "properties" => $buy_back_per_prop));
 	}
 }
