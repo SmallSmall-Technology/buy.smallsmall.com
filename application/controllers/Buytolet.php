@@ -5930,7 +5930,7 @@ class Buytolet extends CI_Controller
 
 					$buy_back_rate = $buy_back_rate + $bbr;
 
-					array_push($buy_back_per_prop, array("propertyID" => $properties[$i]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+					array_push($buy_back_per_prop, array("worth" => $worth, "propertyID" => $properties[$i]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
 				} else {
 
 					$worth = $worth + ($properties[$i]['no_of_units'] * $properties[$i]['price']);
@@ -5939,7 +5939,7 @@ class Buytolet extends CI_Controller
 
 					$buy_back_rate = $buy_back_rate + $bbr;
 
-					array_push($buy_back_per_prop, array("propertyID" => $properties[$i]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+					array_push($buy_back_per_prop, array("worth" => $worth, "propertyID" => $properties[$i]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
 				}
 			}
 		} else if (count($properties) == 1) {
@@ -5956,7 +5956,7 @@ class Buytolet extends CI_Controller
 
 				$buy_back_rate = $buy_back_rate + $bbr;
 
-				array_push($buy_back_per_prop, array("propertyID" => $properties[0]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+				array_push($buy_back_per_prop, array("worth" => $worth, "propertyID" => $properties[0]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
 			} else {
 
 				$worth = $worth + ($properties[0]['no_of_units'] * $properties[0]['price']);
@@ -5965,7 +5965,7 @@ class Buytolet extends CI_Controller
 
 				$buy_back_rate = $buy_back_rate + $bbr;
 
-				array_push($buy_back_per_prop, array("propertyID" => $properties[0]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
+				array_push($buy_back_per_prop, array("worth" => $worth, "propertyID" => $properties[0]['propertyID'], "num_of_days" => $date_diff, "buybackrate" => $bbr));
 			}
 		}
 
