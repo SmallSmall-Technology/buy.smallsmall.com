@@ -130,11 +130,11 @@
                     <h2 style="font-weight:bold"><span style="font-family:helvetica;">&#x20A6;</span><?php echo number_format($property['marketValue']); ?></h2>
                 </div>
             </div>
-            <div class="price-discount-sect">
+            <!---<div class="price-discount-sect">
                 <div class="price-box">
                     <p>Closing date</p>
                     <h2 class="list-price">
-                        <?php echo date('d-m-Y', strtotime($property['closing_date'])); ?>
+                        <?php //echo date('d-m-Y', strtotime($property['closing_date'])); ?>
 
                     </h2>
                 </div>
@@ -142,7 +142,7 @@
                     <p>Hold period</p>
                     <h2 class="list-price">
                         <?php
-                        if (@$property['hold_period'] == 'One year') {
+                        /*if (@$property['hold_period'] == 'One year') {
                             echo "1 year";
                         } elseif (@$property['hold_period'] == 'Two years') {
                             echo "2 years";
@@ -156,7 +156,7 @@
                             echo "6 years";
                         } else {
                             echo @$property['hold_period'];
-                        }
+                        }*/
                         ?>
                         <div class="tooltip"><i class="fa fa-info"></i>
                             <span class="tooltiptext">
@@ -169,7 +169,7 @@
                 <div class="price-box">
                     <p>Migrate</p>
                     <h2 class="list-price">
-                        <?php echo date('d-m-Y', strtotime($property['maturity_date'])); ?>
+                        <?php //echo date('d-m-Y', strtotime($property['maturity_date'])); ?>
                         <div class="tooltip"><i class="fa fa-info"></i>
                             <span class="tooltiptext">
                                 The date shown is the last day you can migrate your shares in the property and convert to sole-ownership
@@ -177,7 +177,7 @@
                         </div>
                     </h2>
                 </div>
-            </div>
+            </div>--->
             <div class="full-disp">
                 <div class="half-disp">
                     <h3 style="font-family:'Cera Medium'"><?php echo $property['bed']; ?> bedroom apartment</h3>
@@ -219,15 +219,15 @@
                             } ?> sqm</p>
             </div>
         </div>
-        <div class="migration-txt">
+        <!---<div class="migration-txt">
             Please note that if you haven’t accumulated enough shares to migrate to sole-ownership at migration final date of the properties you co-own, you have two other migration options
             <ul class="migration-list">
                 <li>i. Migrate and switch your shares to another co-ownership property.</li>
                 <li>ii. Migrate and exit with cash through our buyback program.</li>
             </ul>
             <a class="migration-lnk" href="https://intercom.help/BuySmallsmall/en/" target="_blank">Learn more about migration <i class="fa fa-angle-double-right"></i></a>
-        </div>
-        <div class="features_description">
+        </div>--->
+        <!---<div class="features_description">
             <p>Buyback highlights</p>
             <label class="toggle-switch">
                 <input class="toggle-checkbox" type="checkbox">
@@ -328,7 +328,7 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </div>--->
         <div class="features_description">
 
             <!--- Finance payment option ---->

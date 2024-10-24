@@ -65,7 +65,7 @@
       ?>
         </div>
         <div class="text-right mt-3">
-          <a href="#" class="btn btn-custom-tertiary">Request payout</a>
+          <!--<a href="#" class="btn btn-custom-tertiary">Request payout</a>--->
         </div>
       </div>
     </div>

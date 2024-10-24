@@ -10,7 +10,7 @@
             Portfolio</a>
         </li>
         <li class="nav-item mr-3 ">
-          <a class="nav-link primary-text-color px-0" id="championBtn" href="#" role="button">Champions Basket</a>
+          <!---<a class="nav-link primary-text-color px-0" id="championBtn" href="#" role="button">Champions Basket</a>--->s
         </li>
 
       </nav>
@@ -20,7 +20,7 @@
       <div class="p-md-5 p-2 primary-background">
         <div class="row">
 
-          <div class="col-md-4 col-12  mb-4">
+          <div class="col-md-4 col-12  mb-4" style="display:none">
             <div class="card border-0 default-background h-100">
               <div class="card-body">
                 <div class="d-flex justify-content-between my-2">
@@ -66,7 +66,7 @@
 
 
 
-          <div class="col-md-4 col-12  mb-4">
+          <div class="col-md-4 col-12  mb-4" style="display:none">
             <div class="card border-0 default-background h-100">
               <div class="card-body">
                 <div class="d-flex justify-content-between my-2">
@@ -88,7 +88,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 col-12  mb-4">
+          <div class="col-md-4 col-12  mb-4" style="display:none">
             <div class="card border-0 default-background h-100">
               <div class="card-body">
                 <div class="d-flex justify-content-between my-2">

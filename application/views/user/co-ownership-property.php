@@ -22,7 +22,7 @@
   <!-- Property -->
   <div class="col-12 mt-5 collapse show" id="property">
     <div class="primary-background p-md-5 p-3">
-      <div>
+      <!---<div>
         <h6>Financial Highlights</h6>
         <div class="row">
           <div class="col-md-8 col-12">
@@ -44,77 +44,77 @@
                       <td>Year 2</td>
                       <td>Year 3</td>
                       <td>Year 4</td>
-                      <?php if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
+                      <?php //if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
                         <th>Year 5</th>
-                      <?php } ?>
-                      <?php if ($co_details['hold_period'] == 'Six years') { ?>
+                      <?php //} ?>
+                      <?php //if ($co_details['hold_period'] == 'Six years') { ?>
                         <th>Year 6</th>
-                      <?php } ?>
+                      <?php //} ?>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td scope="row">Rent</td>
-                      <td><?php echo $co_details['co_rent_1']; ?>%</td>
-                      <td><?php echo $co_details['co_rent_2']; ?>%</td>
-                      <td><?php echo $co_details['co_rent_3']; ?>%</td>
-                      <td><?php echo $co_details['co_rent_4']; ?>%</td>
-                      <?php if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
-                        <td><?php echo $co_details['co_rent_5']; ?>%</td>
+                      <td><?php //echo $co_details['co_rent_1']; ?>%</td>
+                      <td><?php //echo $co_details['co_rent_2']; ?>%</td>
+                      <td><?php //echo $co_details['co_rent_3']; ?>%</td>
+                      <td><?php //echo $co_details['co_rent_4']; ?>%</td>
+                      <?php //if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
+                        <td><?php //echo $co_details['co_rent_5']; ?>%</td>
 
-                      <?php } ?>
-                      <?php if ($co_details['hold_period'] == 'Six years') { ?>
-                        <td><?php echo $co_details['co_rent_6']; ?>%</td>
-                      <?php } ?>
+                      <?php //} ?>
+                      <?php //if ($co_details['hold_period'] == 'Six years') { ?>
+                        <td><?php //echo $co_details['co_rent_6']; ?>%</td>
+                      <?php //} ?>
                     </tr>
                     <tr>
                       <td scope="row">Appreciation</td>
-                      <td><?php echo $co_details['co_appr_1']; ?>%</td>
-                      <td><?php echo $co_details['co_appr_2']; ?>%</td>
-                      <td><?php echo $co_details['co_appr_3']; ?>%</td>
-                      <td><?php echo $co_details['co_appr_4']; ?>%</td>
-                      <?php if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
-                        <td><?php echo $co_details['co_appr_5']; ?>%</td>
+                      <td><?php //echo $co_details['co_appr_1']; ?>%</td>
+                      <td><?php //echo $co_details['co_appr_2']; ?>%</td>
+                      <td><?php //echo $co_details['co_appr_3']; ?>%</td>
+                      <td><?php //echo $co_details['co_appr_4']; ?>%</td>
+                      <?php //if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
+                        <td><?php //echo $co_details['co_appr_5']; ?>%</td>
 
-                      <?php } ?>
-                      <?php if ($co_details['hold_period'] == 'Six years') { ?>
-                        <td><?php echo $co_details['co_appr_6']; ?>%</td>
-                      <?php } ?>
+                      <?php //} ?>
+                      <?php //if ($co_details['hold_period'] == 'Six years') { ?>
+                        <td><?php //echo $co_details['co_appr_6']; ?>%</td>
+                      <?php //} ?>
                     </tr>
                     <tr>
                       <td scope="row">Capital + Appreciation</td>
-                      <td>&#8358;<?php $appr_1 = $co_details['marketValue'] * ($co_details['co_appr_1'] / 100); ?>
-                        <?php echo round(($co_details['marketValue'] + $appr_1) / 1000000, 1); ?>m</td>
-                      <td>&#8358;<?php $appr_2 = $co_details['marketValue'] * ($co_details['co_appr_2'] / 100); ?>
-                        <?php echo round(($co_details['marketValue'] + $appr_2) / 1000000, 1); ?>m</td>
-                      <td>&#8358;<?php $appr_3 = $co_details['marketValue'] * ($co_details['co_appr_3'] / 100); ?>
-                        <?php echo round(($co_details['marketValue'] + $appr_3) / 1000000, 1); ?>m</td>
-                      <td>&#8358;<?php $appr_4 = $co_details['marketValue'] * ($co_details['co_appr_4'] / 100); ?>
-                        <?php echo round(($co_details['marketValue'] + $appr_4) / 1000000, 1); ?>m</td>
-                      <?php if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
-                        <td>&#8358;<?php $appr_5 = $co_details['marketValue'] * ($co_details['co_appr_5'] / 100); ?>
-                          <?php echo round(($co_details['marketValue'] + $appr_5) / 1000000, 1); ?>m</td>
+                      <td>&#8358;<?php //$appr_1 = $co_details['marketValue'] * ($co_details['co_appr_1'] / 100); ?>
+                        <?php //echo round(($co_details['marketValue'] + $appr_1) / 1000000, 1); ?>m</td>
+                      <td>&#8358;<?php //$appr_2 = $co_details['marketValue'] * ($co_details['co_appr_2'] / 100); ?>
+                        <?php //echo round(($co_details['marketValue'] + $appr_2) / 1000000, 1); ?>m</td>
+                      <td>&#8358;<?php //$appr_3 = $co_details['marketValue'] * ($co_details['co_appr_3'] / 100); ?>
+                        <?php //echo round(($co_details['marketValue'] + $appr_3) / 1000000, 1); ?>m</td>
+                      <td>&#8358;<?php //$appr_4 = $co_details['marketValue'] * ($co_details['co_appr_4'] / 100); ?>
+                        <?php //echo round(($co_details['marketValue'] + $appr_4) / 1000000, 1); ?>m</td>
+                      <?php //if ($co_details['hold_period'] == 'Five years' || $co_details['hold_period'] == 'Six years') { ?>
+                        <td>&#8358;<?php //$appr_5 = $co_details['marketValue'] * ($co_details['co_appr_5'] / 100); ?>
+                          <?php //echo round(($co_details['marketValue'] + $appr_5) / 1000000, 1); ?>m</td>
 
-                      <?php } ?>
-                      <?php if ($co_details['hold_period'] == 'Six years') { ?>
-                        <td>&#8358;<?php $appr_6 = $co_details['marketValue'] * ($co_details['co_appr_6'] / 100); ?>
-                          <?php echo round(($co_details['marketValue'] + $appr_6) / 1000000, 1); ?>m</td>
-                      <?php } ?>
+                      <?php //} ?>
+                      <?php //if ($co_details['hold_period'] == 'Six years') { ?>
+                        <td>&#8358;<?php //$appr_6 = $co_details['marketValue'] * ($co_details['co_appr_6'] / 100); ?>
+                          <?php //echo round(($co_details['marketValue'] + $appr_6) / 1000000, 1); ?>m</td>
+                      <?php //} ?>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
+          </div>--->
           <!----- Pie chart ---->
-          <div class="col-md-4 d-md-block d-none">
+          <!---<div class="col-md-4 d-md-block d-none">
             <div class="default-background h-100">
               <div id="donutchart" style="height: 100%"></div>
             </div>
-          </div>
+          </div>--->
           <!----- Pie chart ---->
-        </div>
-      </div>
+        <!--</div>
+      </div>--->
       <!---- separator here ---->
       <div class="divider my-5"></div>
 
@@ -137,7 +137,7 @@
           <p style="font-size: 14px;" class="font-weight-light">Property Status</p>
           <p style="font-size: 26px;"><?php echo $co_details['construction_lvl']; ?></p>
         </div>
-        <div class="col-md-2 col-6 my-2 my-md-0">
+        <div class="col-md-2 col-6 my-2 my-md-0" style="display:none">
           <p style="font-size: 14px;" class="font-weight-light">Hold Period</p>
           <p style="font-size: 26px;" class="d-flex align-items-center"><?php
                                                                         if (@$co_details['hold_period'] == 'One year') {
@@ -156,11 +156,11 @@
                                                                           echo @$co_details['hold_period'];
                                                                         } ?></p>
         </div>
-        <div class="col-md-2 col-6 my-2 my-md-0">
+        <div class="col-md-2 col-6 my-2 my-md-0" style="display:none">
           <p style="font-size: 14px;" class="font-weight-light">Migration Date</p>
           <p style="font-size: 26px;" class="d-flex align-items-center"><?php echo date('M, Y', strtotime($co_details['maturity_date'])); ?></p>
         </div>
-        <div class="col-md-2 col-6 my-2 my-md-0">
+        <div class="col-md-2 col-6 my-2 my-md-0" style="display:none">
           <p style="font-size: 14px;" class="font-weight-light">Migration Countdown</p>
           <p style="font-size: 26px;" class="d-flex align-items-center">
             <?php
@@ -176,7 +176,7 @@
           <p style="font-size: 14px;" class="font-weight-light">Payouts received</p>
           <p style="font-size: 26px;">&#8358;0</p>
         </div>
-        <div class="col-md-2 col-6 my-2 my-md-0">
+        <div class="col-md-2 col-6 my-2 my-md-0" style="display:none">
           <p style="font-size: 14px;" class="font-weight-light">Buyback Appr'n.</p>
           <p style="font-size: 26px;">&#8358;<?php echo number_format((float)$buybackrate, 2, '.', ','); ?></p>
         </div>
@@ -203,8 +203,8 @@
             Put in Gift Basket</button>
         </div>
         <div class="col-md-3 col-12">
-          <button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary" type="button">
-            Request Buyback appr.</button>
+          <button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary vote-button" type="button">
+            Vote to Sell</button>
         </div>
 
 
