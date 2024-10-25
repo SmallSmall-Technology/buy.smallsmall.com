@@ -339,7 +339,7 @@
                 <h4>Number of shares</h4>
                 </p>
 
-                <div style="display:block; margin-bottom:15px"><h1 class="price" id="unit-demo"><?php echo round((100 / $property['pool_units']), 2); ?>%</h1></div>
+                <div style="display:block; margin-bottom:15px;text-align:center"><h3 class="price" id="unit-demo"><?php echo round((100 / $property['pool_units']), 2); ?>%</h3></div>
                 <!---- Range selector ---->
                 <div class="share-quantity">
                     <input id="unit-amount" class="unit-amount" min="<?php echo (($property['available_units'] - 1) > 1)? 1 : 0; ?>" max="<?php echo (($property['available_units'] - 1) > 1)? $property['available_units'] - 1 : 0; ?>" value="<?php echo (($property['available_units'] - 1) > 1)? 1 : 0; ?>" type="number">
