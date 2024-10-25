@@ -189,7 +189,7 @@
                 <div class="half-disp">
                     <h3 style="font-family:'Cera Medium'">Property status</h3>
                     <div class="full-disp">
-                        <div class="half-disp">
+                        <div class="half-disp" style="display:none">
                             <span class="date-top">Start</span>
                             <span class="date-bottom"><?php if (@$property['start_date']) {
                                                             echo date('d M, Y', strtotime($property['start_date']));

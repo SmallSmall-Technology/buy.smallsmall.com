@@ -55,10 +55,10 @@
 					<a class="link-header" href="/">Company</a>
 					<a target="_blank" class="link-text" href="https://www.smallsmall.com/about">About us</a>
 					<!-- <a target="_blank" class="link-text" href="https://rent.smallsmall.com/blog">Blog</a> -->
-					<a target="_blank" class="link-text" href="https://blog.smallsmall.com/">Blog</a>
+					<a target="_blank" class="link-text" href="https://media.smallsmall.com/">Blog</a>
 					<a class="link-text" href="#">Careers</a>
 					<!-- <a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>		 -->
-					<a class="link-text" href="https://intercom.help/BuySmallsmall/en/" target="_blank">Knowledge base</a>
+					<a class="link-text" href="https://buy-small-small.helpcenter.guide/" target="_blank">Knowledge base</a>
 					<a class="link-text" href="https://newsletter.smallsmall.com/" target="_blank">Sign up to our newsletter</a>
 					<a class="link-text" href="https://review.buysmallsmall.ng/new" target="_blank">Leave us a review </a>
 
@@ -69,7 +69,7 @@
             		<a class="link-text" href="<?php echo base_url('co-own-tandc'); ?>">Terms & Conditions</a>
             		<a class="link-text" href="<?php echo base_url('bnpl-terms-and-conditions'); ?>">BNPL Terms & Conditions</a>
 					<!-- <a class="link-text" href="</?php echo base_url('faq'); ?>">FAQ</a> -->
-            		<a class="link-text" href="https://intercom.help/BuySmallsmall/en/">FAQ</a>
+            		<a class="link-text" href="https://buy-small-small.helpcenter.guide/collections/faq-a4e580-c57a5">FAQ</a>
           		</div>
           		<div class="footer-grid-box">
             		<a class="link-header" href="/">Contact Us</a>

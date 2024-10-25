@@ -38,6 +38,7 @@
   border: 0;
   position:inherit;
   background-position:center;
+  object-fit: cover;
   }
   
   .rslides .notes{

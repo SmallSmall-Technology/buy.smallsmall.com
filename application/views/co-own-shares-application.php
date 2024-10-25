@@ -13,17 +13,17 @@
     				              <input id="unit-amount" class="unit-amount" min="" value="" type="number">
     					          </div>
                         <span class="shares-txt-info small">add more shares</span>
-                        <?php if($targetOption){ ?>
-                          <span class="shares-txt-info small">
-                            Hi <?php echo $fname; ?><br /><br />
+                        <?php //if($targetOption){ ?>
+                          <!---<span class="shares-txt-info small">
+                            Hi <?php //echo $fname; ?><br /><br />
                             You are already on an STP plan, if you would like to subscribe to another plan you can do so by clicking the checkbox below.
-                          </span>
-                        <?php } ?>
-                        <span class="shares-txt-info small"><input class="target-option" type="checkbox" /> Subscribe to <?php echo ($targetOption)? 'another' : 'our'; ?> Co-ownership Shares Target Program </span>
+                          </span>--->
+                        <?php //} ?>
+                        <span class="shares-txt-info small"><input class="target-option" type="checkbox" /> Subscribe to our<?php //echo ($targetOption)? 'another' : 'our'; ?> Co-ownership Shares Target Program </span>
                     </div>
                     
                     <!-- <a id="shares-target-link" href="https://smallsmall.zendesk.com/hc/en-us/categories/10765648854429-Shares-Target-Program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a> -->
-                    <a id="shares-target-link" href="https://intercom.help/BuySmallsmall/en/collections/6443737-shares-target-program" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a>
+                    <a id="shares-target-link" href="https://buy-small-small.helpcenter.guide/collections/shares-target-program-a4e580-efff9" target="_blank">What is shares target program?  <i class="fa fa-angle-double-right"></i></a>
 
                     <div class="single-span-col-input btm-spc user-target-options">
                         <span id="field-label">Select a plan</span>
