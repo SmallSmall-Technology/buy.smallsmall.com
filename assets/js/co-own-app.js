@@ -5,6 +5,8 @@ $(document).ready(function(){
     //Populate necessary fields
     
     $('#shares-amount').html(co_own_order.shares_amount); 
+
+    $('#plan-amount').html(co_own_order.payable_amount); 
     
     $("#unit-amount").attr({
         

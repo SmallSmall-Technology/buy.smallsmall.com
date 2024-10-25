@@ -27,7 +27,8 @@
 
                     <div class="single-span-col-input btm-spc user-target-options">
                         <span id="field-label">Select a plan</span>
-                        <select name="plan-amount" class="minimal plan-amount verify-txt" id="plan-amount">
+                        <input type="hidden" class="plan-amount" id="plan-amount" value="" />
+                        <!---<select name="plan-amount" class="minimal plan-amount verify-txt" id="plan-amount">
                               <option value="20000">20,000 (5 Shares)</option>
                               <option value="40000">40,000 (10 Shares)</option>
                               <option value="60000">60,000 (15 Shares)</option>
@@ -37,7 +38,7 @@
                               <option value="140000">140,000 (35 Shares)</option>
                               <option value="160000">160,000 (40 Shares)</option>
                               <option value="180000">180,000 (45 Shares)</option>
-                        </select>
+                        </select>--->
                     </div>
                     
                     <div class="single-span-col-input btm-spc user-target-options">
