@@ -207,7 +207,7 @@
                 
                 callback: function(response){
                 
-                    let message = 'Payment complete! Reference: ' + response.reference;
+                    //let message = 'Payment complete! Reference: ' + response.reference;
                     updateTransaction();
                 
                 }
@@ -250,7 +250,7 @@
     
     		$.ajax({
     
-    			url : baseUrl+'buytolet/updatePayment/',
+    			url : baseUrl+'buytolet/updatePayment/', 
     
     			type: "POST",
     
