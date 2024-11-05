@@ -1199,7 +1199,7 @@ class Buytolet extends CI_Controller
 
 		$data['similarProps'] = $this->buytolet_model->similarProperties($data['property']['city']);
 
-		if ($this->session->has_userdata('loggedIn')) {
+		//if ($this->session->has_userdata('loggedIn')) {
 
 			$data['userID'] = $this->session->userdata('userID');
 
@@ -1230,10 +1230,10 @@ class Buytolet extends CI_Controller
 			$this->load->view('property', $data);
 
 			$this->load->view('templates/footer', $data);
-		} else {
+		/*} else {
 			//Ask to Login
 			redirect(base_url() . "login", 'refresh');
-		}
+		}*/
 	}
 
 	public function sole_own($id)
@@ -1245,7 +1245,7 @@ class Buytolet extends CI_Controller
 
 		$data['similarProps'] = $this->buytolet_model->similarProperties($data['property']['city']);
 
-		if ($this->session->has_userdata('loggedIn')) {
+		//if ($this->session->has_userdata('loggedIn')) {
 
 			$data['userID'] = $this->session->userdata('userID');
 
@@ -1274,11 +1274,11 @@ class Buytolet extends CI_Controller
 			$this->load->view('property', $data);
 
 			$this->load->view('templates/footer', $data);
-		} else {
+		/*} else {
 
 			//Ask to Login
 			redirect(base_url() . "login", 'refresh');
-		}
+		}*/
 	}
 
 	public function co_own($id)
@@ -1290,7 +1290,7 @@ class Buytolet extends CI_Controller
 
 		$data['similarProps'] = $this->buytolet_model->similarProperties($data['property']['city']);
 
-		if ($this->session->has_userdata('loggedIn')) {
+		//if ($this->session->has_userdata('loggedIn')) {
 
 			$data['userID'] = $this->session->userdata('userID');
 
@@ -1321,10 +1321,10 @@ class Buytolet extends CI_Controller
 			$this->load->view('co-own-property', $data);
 
 			$this->load->view('templates/footer', $data);
-		} else {
+		/*} else {
 			//Ask to Login
 			redirect(base_url() . "login", 'refresh');
-		}
+		}*/
 	}
 
 	public function co_own_test($id)
@@ -3663,7 +3663,7 @@ class Buytolet extends CI_Controller
 
 		$name = $this->session->userdata('fname') . ' ' . $this->session->userdata('lname');
 
-		$payable = $this->input->post('payable');
+		$payable = $this->input->post('payable'); 
 
 		$ref_id = $this->input->post("ref");
 
