@@ -138,7 +138,7 @@
           <p style="font-size: 26px;"><?php echo $co_details['construction_lvl']; ?></p>
         </div>
         <div class="col-md-2 col-6 my-2 my-md-0">
-          <p style="font-size: 14px;color: red" class="font-weight-light">Upgraded</p>
+          <p style="font-size: 14px;color: red" class="font-weight-bold">Upgraded</p>
           <p style="font-size: 26px;">&nbsp;</p>
         </div>
         <div class="col-md-2 col-6 my-2 my-md-0" style="display:none">

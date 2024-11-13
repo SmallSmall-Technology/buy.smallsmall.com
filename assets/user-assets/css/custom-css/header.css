@@ -83,11 +83,11 @@ header nav {
 }
 .deactivated-background {
 
-  background: #f2f2f2;
+  background: #f3f3f3 !important;
 
-  color: #333333;
+  color: #333333 !important;
 
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 
 }
 .tertiary-background {
@@ -438,6 +438,7 @@ p {
 
 .action-btn-container a{
   width: 48%;
+  padding: .375rem .75rem;
 }
 
 
