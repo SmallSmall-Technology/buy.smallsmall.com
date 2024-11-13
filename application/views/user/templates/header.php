@@ -25,15 +25,15 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link href="<?php echo base_url(); ?>assets/user-assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
-  <link href="<?php echo base_url(); ?>assets/user-assets/fontawesome/css/brands.css" rel="stylesheet" />
-  <link href="<?php echo base_url(); ?>assets/user-assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>assets/user-assets/fontawesome/css/brands.css?version=<?php echo rand(99, 999999999); ?>" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>assets/user-assets/fontawesome/css/solid.css?version=<?php echo rand(99, 999999999); ?>" rel="stylesheet" />
 
 
-  <!-- custom CSS -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/header.css" />
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/footer.css" />
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/index.css" />
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/giftBasket.css" />
+  <!-- custom CSS --> 
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/header.css?version=<?php echo rand(99, 999999999); ?>" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/footer.css?version=<?php echo rand(99, 999999999); ?>" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/index.css?version=<?php echo rand(99, 999999999); ?>" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/giftBasket.css?version=<?php echo rand(99, 999999999); ?>" />
   
   <!--Dashboard Notification Link-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user-assets/css/custom-css/notification.css" />
