@@ -191,19 +191,21 @@
       </div>
       <div class="row mt-4">
         <div class="col-md-3 col-5 mb-3">
-          <button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary" type="button" data-target="#liquidate" data-toggle="modal">
+          <button class="btn font-weight-light w-100 p-md-3 p-2 deactivated-background btn-custom-tertiary" type="button" data-target="#liquidate" >
             Liquidate</button>
+            <!---<button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary" type="button" data-target="#liquidate" data-toggle="modal">
+            Liquidate</button>--->
         </div>
         <div class="col-md-3 col-7 mb-3">
-          <button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary" type="button" data-target="#transferShares" data-toggle="modal">
+          <button class="btn font-weight-light w-100 p-md-3 p-2 deactivated-background btn-custom-tertiary" type="button" data-target="#transferShares" >
             Transfer Shares</button>
         </div>
         <div class="col-md-3 col-12">
-          <button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary" type="button" data-target="#giftBasket" data-toggle="modal">
+          <button class="btn font-weight-light w-100 p-md-3 p-2 deactivated-background btn-custom-tertiary" type="button" data-target="#giftBasket" >
             Put in Gift Basket</button>
         </div>
         <div class="col-md-3 col-12">
-          <button class="btn font-weight-light w-100 p-md-3 p-2 tertiary-background btn-custom-tertiary vote-button" type="button">
+          <button class="btn font-weight-light w-100 p-md-3 p-2 deactivated-background btn-custom-tertiary vote-button" type="button">
             Vote to Sell</button>
         </div>
 

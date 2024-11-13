@@ -81,9 +81,15 @@ header nav {
   color: #ffffff;
 
 }
+.deactivated-background {
 
+  background: #f2f2f2;
 
+  color: #333333;
 
+  cursor: not-allowed;
+
+}
 .tertiary-background {
 
   background: #64318A;
@@ -109,25 +115,16 @@ header nav {
   color: #222224;
 
 }
-
-
-
 .primary-text-color {
 
   color: #222224;
 
 }
-
-
-
 .secondary-text-color {
 
   color: #7D8993;
 
 }
-
-
-
 .divider {
 
   width: 100%;
@@ -138,8 +135,6 @@ header nav {
 
 }
 
-
-
 .divider-vertical {
 
   width: 0.1px;
@@ -149,12 +144,6 @@ header nav {
   background-color: #CCCCD3;
 
 }
-
-
-
-
-
-
 
 .btn-custom-primary {
 
