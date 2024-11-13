@@ -37,8 +37,9 @@
                   </div>
                   <p class="card-text"><?php echo $value['property_name']; ?></p>
                   <p class="card-text font-weight-lighter"><?php echo ($p_ben == 'Self' || $p_ben == 'Free') ? $value['unit_amount'] : $value['no_of_units']; ?> Shares <?php echo ($p_ben == 'Free')? '(Free)' : ''; ?></p>
-                  <div class=" mt-5">
+                  <div class="action-btn-container mt-5">
                     <a href="<?php echo base_url(); ?>user/co-ownership-property/<?php echo $value['reqID']; ?>" class="btn tertiary-background px-5">view</a>
+                    <a  class="btn plain-background px-5">Upgraded</a>
                   </div>
                 </div>
               </div>

@@ -92,7 +92,13 @@ header nav {
 
 }
 
+.plain-background{
 
+  background: #ffffff;
+
+  color: #f00;
+
+}
 
 .default-background {
 
@@ -435,9 +441,15 @@ p {
   left: 12px;
 
 }
+.action-btn-container{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
 
-
-
+.action-btn-container a{
+  width: 48%;
+}
 
 
 
