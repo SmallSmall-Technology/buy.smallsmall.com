@@ -19,23 +19,23 @@
     <div class="footer-container">
       <div class="footer-left-section">
         	<a href="/" class="footer-logo">
-          		<img src="<?php echo base_url(); ?>asset/img/buysmallsmall-logo.png" alt="" >
+          		<img src="<?php echo base_url(); ?>asset/img/buysmallsmall-logo.png" alt="BuySmallSmall" >
         	</a>
 			<div class="social-section">
-				<a href="">
-					<img src="<?php echo base_url(); ?>asset/img/Logo_00000038394049246713568260000012923108920998390947_.png" alt="" />
+				<a href="https://x.com/smallsmallhq" target="_blank" rel="noopener noreferrer">
+					<img src="<?php echo base_url(); ?>asset/img/Logo_00000038394049246713568260000012923108920998390947_.png" alt="X" />
 				</a>
-				<a href="">
-					<img src="<?php echo base_url(); ?>asset/img/Group.png" alt="" />
+				<a href="https://www.instagram.com/buysmallsmall/" target="_blank" rel="noopener noreferrer">
+					<img src="<?php echo base_url(); ?>asset/img/Group.png" alt="Instagram" />
 				</a>
-				<a href="">
-					<img src="<?php echo base_url(); ?>asset/img/Path_2520.png" alt="" />
+				<a href="https://www.linkedin.com/company/small-small-technology" target="_blank" rel="noopener noreferrer">
+					<img src="<?php echo base_url(); ?>asset/img/Path_2520.png" alt="LinkedIn" />
 				</a>
-				<a href="">
-					<img src="<?php echo base_url(); ?>asset/img/Vector (3).png" alt="" />
+				<a href="https://www.facebook.com/smallsmallhq" target="_blank" rel="noopener noreferrer">
+					<img src="<?php echo base_url(); ?>asset/img/Vector (3).png" alt="Facebook" />
 				</a>
-				<a href="">
-					<img src="<?php echo base_url(); ?>asset/img/Vector (4).png" alt="" />
+				<a href="https://www.youtube.com/@thesmallsmallhq" target="_blank" rel="noopener noreferrer">
+					<img src="<?php echo base_url(); ?>asset/img/Vector (4).png" alt="Youtube" />
 				</a>
 			</div>
       </div>
@@ -53,14 +53,14 @@
 				</div>
 				<div class="footer-grid-box">
 					<a class="link-header" href="/">Company</a>
-					<a target="_blank" class="link-text" href="https://www.smallsmall.com/about">About us</a>
+					<a rel="noopener noreferrer" target="_blank" class="link-text" href="https://www.smallsmall.com/about">About us</a>
 					<!-- <a target="_blank" class="link-text" href="https://rent.smallsmall.com/blog">Blog</a> -->
-					<a target="_blank" class="link-text" href="https://media.smallsmall.com/">Blog</a>
+					<a rel="noopener noreferrer" target="_blank" class="link-text" href="https://media.smallsmall.com/">Blog</a>
 					<a class="link-text" href="#">Careers</a>
 					<!-- <a class="link-text" href="https://smallsmall.zendesk.com/hc/en-us" target="_blank">Knowledge base</a>		 -->
-					<a class="link-text" href="https://buy-small-small.helpcenter.guide/" target="_blank">Knowledge base</a>
-					<a class="link-text" href="https://newsletter.smallsmall.com/" target="_blank">Sign up to our newsletter</a>
-					<a class="link-text" href="https://review.buysmallsmall.ng/new" target="_blank">Leave us a review </a>
+					<a rel="noopener noreferrer" class="link-text" href="https://buy-small-small.helpcenter.guide/" target="_blank">Knowledge base</a>
+					<a rel="noopener noreferrer" class="link-text" href="https://newsletter.smallsmall.com/" target="_blank">Sign up to our newsletter</a>
+					<a rel="noopener noreferrer" class="link-text" href="https://review.buysmallsmall.ng/new" target="_blank">Leave us a review </a>
 
 				</div>
           		<div class="footer-grid-box">
