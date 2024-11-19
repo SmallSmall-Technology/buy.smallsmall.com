@@ -344,7 +344,7 @@ class User extends CI_Controller
 
 			$data['gifts'] = $this->buytolet_model->get_gifts($data['userID']);
 
-			$data['co_details'] = $this->buytolet_model->get_co_own_property($id);
+			$data['co_details'] = $this->buytolet_model->get_co_own_property($id); 
 
 			$data['all_co_own_properties'] = $this->buytolet_model->get_all_co_own_properties($data['userID']);
 

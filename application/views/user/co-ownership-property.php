@@ -370,8 +370,8 @@
               <?php
                 $image_source = base_url().'assets/user-assets/images/pdf-icon.svg';
 
-                if($co_details['certificate_image']){
-                  $image_source = $co_details['certificate_image'];
+                if($co_details['shares_certificate']){
+                  $image_source = $co_details['shares_certificate'];
                 }
               ?>
               <img class="img-fluid d-inline-block mb-4" src="<?php echo $image_source; ?>" alt="certificate image" />
