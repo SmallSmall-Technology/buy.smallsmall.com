@@ -368,14 +368,17 @@
           <div class="d-flex justify-content-center mt-5">
             <div class="d-flex flex-column align-items-center">
               <?php
+
                 $image_source = base_url().'assets/user-assets/images/pdf-icon.svg';
 
                 if($co_details['shares_certificate']){
-                  $image_source = $co_details['shares_certificate'];
+                  $image_source = 'https://bss-prod-uploads.s3.eu-west-1.amazonaws.com/uploads/shares_certificate/'.$co_details['shares_certificate'];
                 }
-              ?>
+
+            ?>
+            
               <img class="img-fluid d-inline-block mb-4" src="<?php echo $image_source; ?>" alt="certificate image" />
-              <a href="<?php echo $co_details['shares_certificate']; ?>" target="_blank" class="btn tertiary-background d-inline-block">Download</a>
+              <a href="https://bss-prod-uploads.s3.eu-west-1.amazonaws.com/uploads/shares_certificate/<?php echo $co_details['shares_certificate']; ?>" target="_blank" class="btn tertiary-background d-inline-block">Download</a>
             </div>
 
           </div>
