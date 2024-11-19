@@ -330,14 +330,14 @@
       $("#gift").removeClass("show");
       $("#history").removeClass("show");
       $("#stp").removeClass("show");
-      $("#giftBtn").addClass("secondary-text-color")
-      $("#giftBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#historyBtn").addClass("secondary-text-color")
-      $("#historyBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#myPortfolioBtn").addClass("primary-text-color sub-menu--dashboard-active")
-      $("#stpBtn").addClass("secondary-text-color")
-      $("#stpBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#myPortfolioBtn").removeClass("secondary-text-color")
+      $("#giftBtn").addClass("secondary-text-color");
+      $("#giftBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#historyBtn").addClass("secondary-text-color");
+      $("#historyBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#myPortfolioBtn").addClass("primary-text-color sub-menu--dashboard-active");
+      $("#stpBtn").addClass("secondary-text-color");
+      $("#stpBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#myPortfolioBtn").removeClass("secondary-text-color");
 
     });
     $("#giftBtn").click(function() {
@@ -345,14 +345,14 @@
       $("#myPortfolio").removeClass("show");
       $("#history").removeClass("show");
       $("#stp").removeClass("show");
-      $("#giftBtn").addClass("primary-text-color sub-menu--dashboard-active")
-      $("#giftBtn").removeClass("secondary-text-color")
-      $("#myPortfolioBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#myPortfolioBtn").addClass("secondary-text-color")
-      $("#stpBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#stpBtn").addClass("secondary-text-color")
-      $("#historyBtn").addClass("secondary-text-color")
-      $("#historyBtn").removeClass("primary-text-color sub-menu--dashboard-active")
+      $("#giftBtn").addClass("primary-text-color sub-menu--dashboard-active");
+      $("#giftBtn").removeClass("secondary-text-color");
+      $("#myPortfolioBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#myPortfolioBtn").addClass("secondary-text-color");
+      $("#stpBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#stpBtn").addClass("secondary-text-color");
+      $("#historyBtn").addClass("secondary-text-color");
+      $("#historyBtn").removeClass("primary-text-color sub-menu--dashboard-active");
 
     });
     $("#stpBtn").click(function() {
@@ -360,14 +360,14 @@
       $("#myPortfolio").removeClass("show");
       $("#history").removeClass("show");
       $("#gift").removeClass("show");
-      $("#stpBtn").addClass("primary-text-color sub-menu--dashboard-active")
-      $("#stpBtn").removeClass("secondary-text-color")
-      $("#myPortfolioBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#myPortfolioBtn").addClass("secondary-text-color")
-      $("#giftBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#giftBtn").addClass("secondary-text-color")
-      $("#historyBtn").addClass("secondary-text-color")
-      $("#historyBtn").removeClass("primary-text-color sub-menu--dashboard-active")
+      $("#stpBtn").addClass("primary-text-color sub-menu--dashboard-active");
+      $("#stpBtn").removeClass("secondary-text-color");
+      $("#myPortfolioBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#myPortfolioBtn").addClass("secondary-text-color");
+      $("#giftBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#giftBtn").addClass("secondary-text-color");
+      $("#historyBtn").addClass("secondary-text-color");
+      $("#historyBtn").removeClass("primary-text-color sub-menu--dashboard-active");
 
     });
     $("#historyBtn").click(function() {
@@ -375,14 +375,14 @@
       $("#myPortfolio").removeClass("show");
       $("#gift").removeClass("show");
       $("#stp").removeClass("show");
-      $("#giftBtn").addClass("secondary-text-color")
-      $("#giftBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#myPortfolioBtn").addClass("secondary-text-color")
-      $("#myPortfolioBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#stpBtn").addClass("secondary-text-color")
-      $("#stpBtn").removeClass("primary-text-color sub-menu--dashboard-active")
-      $("#historyBtn").removeClass("secondary-text-color")
-      $("#historyBtn").addClass("primary-text-color sub-menu--dashboard-active")
+      $("#giftBtn").addClass("secondary-text-color");
+      $("#giftBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#myPortfolioBtn").addClass("secondary-text-color");
+      $("#myPortfolioBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#stpBtn").addClass("secondary-text-color");
+      $("#stpBtn").removeClass("primary-text-color sub-menu--dashboard-active");
+      $("#historyBtn").removeClass("secondary-text-color");
+      $("#historyBtn").addClass("primary-text-color sub-menu--dashboard-active");
     });
 
   });
